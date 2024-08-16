@@ -1,30 +1,46 @@
-**目前请减少使用！！！谢谢配合。**
-
 # 雀魂回放编辑器Replay_Editor
 
-## 负面效果：可能导致会被封号，请谨慎使用。目前在考虑解决方案，故暂时停止更新。
-## 功能：自己造一个雀魂的回放
-## 使用方法
+Fork from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majsoul-replay-editor), 版权归原作者所有
 
-1.油猴脚本：请下载`tampermonkey_header.js`、`add_function.js`和`main.js`，并在一起放入油猴脚本。
+(话说作者和我是校友? 贴贴)
 
-[GreasyFork已停止安装，修复时间暂定](https://greasyfork.org/zh-CN/scripts/427921-replay-editor)
+## 免责声明: 由于这属于第三方脚本, 猫粮可能发威封号, 使用时请用小号登录实验, 个人对任何因封号等导致的损失概不负责
 
-[点击前往Github](https://github.com/xiaolan16/make-a-replay-in-maj-soul)
+## 功能: 自定义雀魂牌谱回放
 
-2.正常输入：请下载`add_function.js`和`main.js`。
+## 使用方法 (体验)
 
-文字版说明：请访问[这里](https://github.com/xiaolan16/make-a-replay-in-maj-soul/wiki/%E7%BC%96%E8%BE%91%E6%AF%8F%E4%B8%80%E5%9C%BA%E6%B8%B8%E6%88%8F%E7%9A%84%E6%96%B9%E6%B3%95)，并配有[example](https://github.com/xiaolan16/majsoul-replay-editor/wiki/examples%E6%96%87%E4%BB%B6%E8%A7%A3%E9%87%8A)作样例。
+(原repo提供了油猴脚本使用方法, 我对这方面不是很熟就删掉了)
+
+`git clone` 该仓库或直接下载 `main.js` 和 example 文件夹下的任一js文件
+
+电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 `main.js` 里面的内容全选复制到控制台中,
+然后将 [examples](examples) 文件夹下的js文件内容也复制到控制台中
+
+在网页版雀魂里随便打开一个牌谱, 就可以看到自制的牌谱了
+
+---
+
+上面是简单的使用教程, 具体的修改教程要看下面的文档
+
+原repo用wiki的方式当做文档, 我这里为了维护方便就把文档放到 [doc](doc) 文件夹下面了
+
+想看原wiki的请阅读 [majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)
+
+TODO:
+- 简要做一个英文版文档
+- 实现一个能报完所有菜名的简洁的牌谱模版(分为多小局)
+- 理解 `main.js` 文件的逻辑
+
+(下面内容基本没有改动)
 
 ## 注意事项
 
 1.规则目前支持截止2021.7.10之前雀魂的所有规则和血流成河模式及二人麻将。
 
-2.对于不符合要求的填写，可能出现页面崩溃的问题。
+2.对于不符合要求的填写，可能出现页面崩溃的问题。(一般页面会卡住, 控制台会报错)
 
 3.除了变量名变动以外，大部分情况下会向下兼容。
-
-4.本代码基本完成，之后将不会进行大幅度改动。
 
 ## 已知BUG
 
@@ -36,7 +52,7 @@
 
 ## 版权声明
 
-1.md5加密来自于[百度百科](https://baike.baidu.com/item/MD5/212708?fromtitle=MD5%E5%8A%A0%E5%AF%86&fromid=5706230&fr=aladdin)。
+1.md5加密源自[百度百科](https://baike.baidu.com/item/MD5)。
 
 2.更改回放的方法参考了B站[一般通过彳亍人](https://space.bilibili.com/23019265)的[BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)。
 
@@ -44,14 +60,14 @@
 
 4.有少部分代码来自于雀魂源码。
 
-5.其他部分均由本人编写。版权归原作者[xiaolan16](https://github.com/xiaolan16)所有；未经原作者允许不得转载本文内容，否则将视为侵权；对于不遵守此声明或者其他违法使用本文内容者，本人依法保留追究权等。
+5.其他部分均由本人编写。版权归原作者[GrandDawn](https://github.com/GrandDawn)所有；未经原作者允许不得转载本文内容，否则将视为侵权；对于不遵守此声明或者其他违法使用本文内容者，本人依法保留追究权等。
 
 6.请不要在任何第三方网站下载该源代码，否则后果自负。
 
-7.允许用途：可以用于个人使用，请勿用于商业用途，谢谢配合。请不要将示例代码进行录制并宣传，谢谢。
+7.允许用途：可以用于个人使用，请勿用于商业用途，谢谢配合。请不要将 example 文件夹下面的代码进行录制并宣传，谢谢。
 
 ## 示例代码的部分截图
 
-![](https://raw.githubusercontent.com/xiaolan16/make-a-replay-in-maj-soul/master/preview1.JPG)
-![](https://raw.githubusercontent.com/xiaolan16/make-a-replay-in-maj-soul/master/preview2.JPG)
-![](https://raw.githubusercontent.com/xiaolan16/make-a-replay-in-maj-soul/master/preview3.JPG)
+![](./preview1.JPG)
+![](./preview2.JPG)
+![](./preview3.JPG)
