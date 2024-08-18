@@ -3,10 +3,10 @@ try {
 } catch (e) {
 }
 
-editdata.player_datas[0].nickname = "电脑0";
-editdata.player_datas[1].nickname = "电脑1";
-editdata.player_datas[2].nickname = "电脑2";
-editdata.player_datas[3].nickname = "电脑3";
+editdata.player_datas[0].nickname = "电脑(简单)";
+editdata.player_datas[1].nickname = "电脑(简单)";
+editdata.player_datas[2].nickname = "电脑(简单)";
+editdata.player_datas[3].nickname = "电脑(简单)";
 editdata.player_datas[0].avatar_id = 400101;
 editdata.player_datas[1].avatar_id = 400101;
 editdata.player_datas[2].avatar_id = 400101;
@@ -82,7 +82,6 @@ mopai();
 hupai(true);
 roundend();
 
-roundbegin();
 tiles2 = ["7s", "8s", "9s", "6p", "6p", "6p", "7p", "7p", "8p", "8p", "9p", "1m", "1m", "1m"];
 tiles3 = ["1z", "1z", "1z", "2z", "2z", "2z", "3s", "3s", "3s", "4z", "4z", "4z", "6z"];
 tiles0 = ["1m", "8s", "1p", "1s", "1z", "2z", "3z", "4z", "5z", "6z", "7z", "7p", "8p"];
@@ -90,10 +89,9 @@ tiles1 = ["2s", "2s", "2s", "4s", "4s", "4s", "3z", "3z", "3z", "6s", "6s", "6s"
 paishan = randompaishan("6z9m6z");
 roundbegin();
 huansanzhang(["7p", "8p", "8s"], ["3z", "3z", "3z"], ["9p", "7s", "9s"], ["3s", "3s", "3s"], 1);
-hupai(true);
+hupai(2, true);
 roundend();
 try {
     MRE.close();
 } catch (e) {
 }
-

@@ -1,6 +1,6 @@
 # 雀魂回放编辑器Replay_Editor
 
-Fork from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majsoul-replay-editor), 版权归原作者所有
+Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majsoul-replay-editor), 版权归原作者所有
 
 (话说作者和我是校友? 贴贴)
 
