@@ -3,6 +3,7 @@ try {
 } catch (e) {
 }
 
+loadproject();
 editdata.player_datas[0].nickname = "电脑0";
 editdata.player_datas[1].nickname = "电脑1";
 editdata.player_datas[2].nickname = "电脑2";
@@ -89,8 +90,9 @@ tiles1 = ["2s", "2s", "2s", "4s", "4s", "4s", "3z", "3z", "3z", "6s", "6s", "6s"
 paishan = randompaishan("6z9m6z");
 roundbegin();
 huansanzhang(["7p", "8p", "8s"], ["3z", "3z", "3z"], ["9p", "7s", "9s"], ["3s", "3s", "3s"], 1);
-hupai(2, true);
+hupai(true);
 roundend();
+
 try {
     MRE.close();
 } catch (e) {
