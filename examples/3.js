@@ -3,10 +3,10 @@ try {
 } catch (e) {
 }
 
-editdata.player_datas[0].nickname = "电脑(简单)";
-editdata.player_datas[1].nickname = "电脑(简单)";
-editdata.player_datas[2].nickname = "电脑(简单)";
-editdata.player_datas[3].nickname = "电脑(简单)";
+editdata.player_datas[0].nickname = "电脑0";
+editdata.player_datas[1].nickname = "电脑1";
+editdata.player_datas[2].nickname = "电脑2";
+editdata.player_datas[3].nickname = "电脑3";
 editdata.player_datas[0].avatar_id = 400101;
 editdata.player_datas[1].avatar_id = 400101;
 editdata.player_datas[2].avatar_id = 400101;
