@@ -10,7 +10,7 @@
 
 生成的文件中除了开头的 `editdata.player_datas` 不同之外其他都完全一样, 也和 template.js 中的一样
 
-不运行 Refresh_All.py 的话也可以直接查字典改 template.js
+不运行 Generate_All_Avatar.py 的话也可以直接查字典改 template.js
 
 
 ## 所用角色服饰

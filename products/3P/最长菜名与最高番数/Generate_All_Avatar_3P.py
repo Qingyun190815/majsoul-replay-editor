@@ -11,39 +11,37 @@ for i in range(len(avatar_ids)):
 
     tmp_nickname = []
     if len(nicknames[i]) == 1 or len(nicknames[i]) == 2:
-        for j in [0, 1, 2, 3]:
+        for j in [0, 1, 2]:
             tmp_nickname.append(nicknames[i][(j + 1) % len(nicknames[i])])
-    if len(nicknames[i]) == 3 or len(nicknames[i]) == 4:
+    if len(nicknames[i]) == 3:
         tmp_nickname.append(nicknames[i][1])
         tmp_nickname.append(nicknames[i][0])
-        tmp_nickname.append(nicknames[i][len(nicknames[i]) - 2])
-        tmp_nickname.append(nicknames[i][len(nicknames[i]) - 1])
-    if len(nicknames[i]) >= 5:
+        tmp_nickname.append(nicknames[i][2])
+    if len(nicknames[i]) >= 4:
         tmp_nickname.append(nicknames[i][1])
-        for j in [-3, -2, -1]:
+        for j in [-2, -1]:
             tmp_nickname.append(nicknames[i][j])
 
     tmp_avatar_id = []
     if len(avatar_ids[i]) == 1 or len(avatar_ids[i]) == 2:
-        for j in [0, 1, 2, 3]:
+        for j in [0, 1, 2]:
             tmp_avatar_id.append(avatar_ids[i][(j + 1) % len(avatar_ids[i])])
-    if len(avatar_ids[i]) == 3 or len(avatar_ids[i]) == 4:
+    if len(avatar_ids[i]) == 3:
         tmp_avatar_id.append(avatar_ids[i][1])
         tmp_avatar_id.append(avatar_ids[i][0])
-        tmp_avatar_id.append(avatar_ids[i][len(avatar_ids[i]) - 2])
-        tmp_avatar_id.append(avatar_ids[i][len(avatar_ids[i]) - 1])
-    if len(avatar_ids[i]) >= 5:
+        tmp_avatar_id.append(avatar_ids[i][2])
+    if len(avatar_ids[i]) >= 4:
         tmp_avatar_id.append(avatar_ids[i][1])
-        for j in [-3, -2, -1]:
+        for j in [-2, -1]:
             tmp_avatar_id.append(avatar_ids[i][j])
 
     for line in infile:
         result = re.search(pattern_name, line)
-        if name_count < 4 and result:
+        if name_count < 3 and result:
             # 匹配成功, result[0] 是全体, result[1] 是 nickname
             line = line.replace(result[1], tmp_nickname[name_count])
             name_count += 1
-        if id_count < 4 and name_count == 4:
+        if id_count < 3 and name_count == 3:
             result = re.search(pattern_id, line)
             if result:
                 # 匹配成功, result[0] 是全体, result[1] 是 avatar_id
