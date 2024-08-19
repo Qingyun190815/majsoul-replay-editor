@@ -12,7 +12,9 @@
 
 2.正常输入：请下载`add_function.js`和`main.js`。
 
-文字版说明：请访问[这里](https://github.com/xiaolan16/make-a-replay-in-maj-soul/wiki/%E7%BC%96%E8%BE%91%E6%AF%8F%E4%B8%80%E5%9C%BA%E6%B8%B8%E6%88%8F%E7%9A%84%E6%96%B9%E6%B3%95)，并配有[example](https://github.com/xiaolan16/majsoul-replay-editor/wiki/examples%E6%96%87%E4%BB%B6%E8%A7%A3%E9%87%8A)作样例。
+文字版说明：请访问[这里](https://github.com/xiaolan16/make-a-replay-in-maj-soul/wiki/%E7%BC%96%E8%BE%91%E6%AF%8F%E4%B8%80%E5%9C%BA%E6%B8%B8%E6%88%8F%E7%9A%84%E6%96%B9%E6%B3%95)
+，并配有[example](https://github.com/xiaolan16/majsoul-replay-editor/wiki/examples%E6%96%87%E4%BB%B6%E8%A7%A3%E9%87%8A)
+作样例。
 
 ## 注意事项
 
@@ -34,9 +36,11 @@
 
 1.md5加密来自于[百度百科](https://baike.baidu.com/item/MD5/212708?fromtitle=MD5%E5%8A%A0%E5%AF%86&fromid=5706230&fr=aladdin)。
 
-2.更改回放的方法参考了B站[一般通过彳亍人](https://space.bilibili.com/23019265)的[BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)。
+2.更改回放的方法参考了B站[一般通过彳亍人](https://space.bilibili.com/23019265)
+的[BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)。
 
-3.血流成河的实现方式中的使牌颜色变淡参考了greasyfork [2938137849](https://greasyfork.org/zh-CN/users/749724-2938137849)的[雀魂麻将脚本](https://greasyfork.org/zh-CN/scripts/423689-%E9%9B%80%E9%AD%82%E9%BA%BB%E5%B0%86%E8%84%9A%E6%9C%AC)。
+3.血流成河的实现方式中的使牌颜色变淡参考了greasyfork [2938137849](https://greasyfork.org/zh-CN/users/749724-2938137849)
+的[雀魂麻将脚本](https://greasyfork.org/zh-CN/scripts/423689-%E9%9B%80%E9%AD%82%E9%BA%BB%E5%B0%86%E8%84%9A%E6%9C%AC)。
 
 4.有少部分代码来自于雀魂源码。
 

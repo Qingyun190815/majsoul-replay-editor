@@ -15,14 +15,14 @@ editdata.player_datas[3].avatar_id = 400101;
 settings.chuanma_points_method = 0;
 editdata.config = {
     'category': 1,
-    'meta': {'mode_id': 2},
+    'meta': {'mode_id': 17},
     'mode': {
         'mode': 11,
         'detail_rule': {
             'begin_open_mode': 0,
             'chuanma': 0,
             'dora3_mode': 0,
-            'dora_count': 3,
+            'dora_count': 2,
             'fanfu': 1,
             'guyi_mode': 0,
             'have_zimosun': false,
@@ -89,49 +89,51 @@ mopai();
 qiepai(true);
 mopai();
 qiepai("8s", true);
-let tingpais = tingpai(1);
+{
+    let tingpais = tingpai(1);
 
-function hule(t, tingpais) {
-    for (let i = 0; i < tingpais.length; i++) if (tingpais[i].tile == t) return true;
-    return false;
-}
+    function hule(t, tingpais) {
+        for (let i = 0; i < tingpais.length; i++) if (tingpais[i].tile == t) return true;
+        return false;
+    }
 
-try {
-    mopai();
-    if (getlstaction().data.tile != "4z") qiepai(true);
-    else leimingpai();
-    if (hule(getlstaction().data.tile, tingpais)) hupai();
-    else {
-        if (getlstaction().name == "RecordBaBei") {
-            mopai();
-            if (getlstaction().data.tile != "4z") qiepai(true);
-            else leimingpai();
-            if (hule(getlstaction().data.tile, tingpais)) hupai();
+    try {
+        mopai();
+        if (getlstaction().data.tile != "4z") qiepai(true);
+        else leimingpai();
+        if (hule(getlstaction().data.tile, tingpais)) hupai();
+        else {
             if (getlstaction().name == "RecordBaBei") {
                 mopai();
                 if (getlstaction().data.tile != "4z") qiepai(true);
                 else leimingpai();
                 if (hule(getlstaction().data.tile, tingpais)) hupai();
-            }
-        } else {
-            while (getlstaction(2).data.left_tile_count >= 1) {
-                mopai();
-                let seat = getlstaction().data.seat, tile = getlstaction().data.tile;
-                if (hule(tile, tingpais)) {
-                    if (seat != 1 && tile != "4z") qiepai();
-                    else if (tile != 1) leimingpai();
-                    hupai();
-                    break;
-                } else if (tile == "4z") leimingpai();
-                else qiepai();
-                if (getlstaction(2).data.left_tile_count == 0) {
-                    notileliuju();
-                    break;
+                if (getlstaction().name == "RecordBaBei") {
+                    mopai();
+                    if (getlstaction().data.tile != "4z") qiepai(true);
+                    else leimingpai();
+                    if (hule(getlstaction().data.tile, tingpais)) hupai();
+                }
+            } else {
+                while (getlstaction(2).data.left_tile_count >= 1) {
+                    mopai();
+                    let seat = getlstaction().data.seat, tile = getlstaction().data.tile;
+                    if (hule(tile, tingpais)) {
+                        if (seat != 1 && tile != "4z") qiepai();
+                        else if (tile != 1) leimingpai();
+                        hupai();
+                        break;
+                    } else if (tile == "4z") leimingpai();
+                    else qiepai();
+                    if (getlstaction(2).data.left_tile_count == 0) {
+                        notileliuju();
+                        break;
+                    }
                 }
             }
         }
+    } catch (e) {
     }
-} catch (e) {
 }
 try {
     MRE.close();
