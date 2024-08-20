@@ -47,14 +47,10 @@ tiles2 = "233344447777m0s";
 tiles3 = "55506666888m08p";
 paishan = randompaishan("1m9m1p3p1m9m1p3p1m9m1p3p1m9m1p3p9p1s9s4p9p1s9s4p9p1s9s4p9p1s9s4p1z2z3z5p1z2z3z5p1z2z3z5p1z2z3z7p4z5z6z6p4z5z6z6p4z5z6z6p4z5z6z6p7z", "5864s");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai(true);
 for (let i = 65; i >= 1; i--) {
     mopai();

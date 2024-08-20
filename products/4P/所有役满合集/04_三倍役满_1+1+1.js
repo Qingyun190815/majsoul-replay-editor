@@ -120,12 +120,10 @@ mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第8局: 南亲, 南起 四暗刻, 字一色, 小四喜
@@ -154,12 +152,10 @@ mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

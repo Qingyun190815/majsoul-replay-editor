@@ -48,31 +48,25 @@ tiles2 = "1111222245550s";
 tiles3 = "3333444467777p";
 paishan = randompaishan("", "7z3336666s4444773z7m65z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("7m");
 mingpai();
 qiepai("3s");
 mingpai();
 qiepai("4s");
-mopai();
-qiepai();
-for (let i = 64; i >= 5; i--) {
+for (let i = 65; i >= 5; i--) {
     mopai();
     qiepai();
 }
 mopai();
 qiepai(true);
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
 hupai();
 
@@ -87,19 +81,15 @@ tiles3 = "3333444467777s";
 paishan = randompaishan("1119p", "44z8p4z8p4z88p776251z");
 roundbegin();
 qiepai("1p", true);
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 for (let i = 62; i >= 3; i--) {
     mopai();

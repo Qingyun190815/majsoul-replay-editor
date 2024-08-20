@@ -49,20 +49,10 @@ tiles1 = "2222556688889p";
 tiles2 = "1111222245550s";
 paishan = randompaishan("", "7z111m6666s333377z16p651444z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 7; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("6p")
 mingpai();
 qiepai('9p')
@@ -93,20 +83,10 @@ qiepai();
 mopai();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 7; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 for (let i = 43; i >= 2; i--) {
     mopai();
@@ -163,20 +143,10 @@ paishan = randompaishan("4z", "7z111m1111333377z16p652444z");
 roundbegin();
 qiepai("9m");
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 7; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("6p")
 mingpai();
 qiepai('9p')
@@ -192,7 +162,6 @@ mopai();
 qiepai();
 mopai();
 hupai();
-
 
 try {
     MRE.close();

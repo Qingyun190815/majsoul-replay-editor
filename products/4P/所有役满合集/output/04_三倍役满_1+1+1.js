@@ -113,19 +113,17 @@ tiles1 = "11123555666777z";
 tiles2 = "2223455067888m";
 tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
-paishan = randompaishan("1z", "2z5z6z7z");
+paishan = randompaishan("1z", "2567z");
 roundbegin();
 qiepai("3z");
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第8局: 南亲, 南起 四暗刻, 字一色, 小四喜
@@ -147,19 +145,17 @@ tiles1 = "1112223334z5557z";
 tiles2 = "2223455067888m";
 tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
-paishan = randompaishan("5z", "4z1z2z3z");
+paishan = randompaishan("5z", "4123z");
 roundbegin();
 qiepai();
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

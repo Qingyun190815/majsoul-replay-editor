@@ -46,59 +46,50 @@ tiles0 = "789s1111z5556667z";
 tiles1 = "222255088889m3s";
 tiles2 = "1111222245550s";
 tiles3 = "3333444467777p";
-paishan = randompaishan("", "7z3s3s3s6s6s6s6s4z4z4z4z7z7z3z7m6z5z");
+paishan = randompaishan("", "7z3336666s4444773z7m65z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("7m");
 mingpai();
 qiepai("3s");
 mingpai();
 qiepai("4s");
-mopai();
-qiepai();
-for (let i = 64; i >= 5; i--) {
+for (let i = 65; i >= 5; i--) {
     mopai();
     qiepai();
 }
 mopai();
 qiepai(true);
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
 hupai();
 
 // 最高番数(14条60番)
+// 这个其实在"所有角色报所有菜名系列"中已经有了, 在第八局(东四局0本场)
 // 两立直, 河底捞鱼, 白, 中, 东, 连东, 三杠子, 对对和,
 // 三暗刻, 小三元, 混老头, 混一色, 宝牌一大堆(20), 宝牌一大堆(20)
 tiles0 = "1999p1115556677z";
 tiles1 = "222255508888m6z";
 tiles2 = "222255508888s3z";
 tiles3 = "3333444467777s";
-paishan = randompaishan("1p1p1p9p", "4z4z8p4z8p4z8p8p7z7z6z2z5z1z");
+paishan = randompaishan("1119p", "44z8p4z8p4z88p776251z");
 roundbegin();
 qiepai("1p", true);
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 for (let i = 62; i >= 3; i--) {
     mopai();

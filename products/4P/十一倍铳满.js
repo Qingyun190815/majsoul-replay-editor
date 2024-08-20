@@ -47,14 +47,10 @@ tiles2 = "111333777999s6z";
 tiles3 = "222444666888s6z";
 paishan = randompaishan("6z", "0p432z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 mopai();
 qiepai("6z", true);

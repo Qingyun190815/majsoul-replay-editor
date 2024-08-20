@@ -78,14 +78,10 @@ tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("", "2m432z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

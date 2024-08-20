@@ -164,7 +164,7 @@ tiles3 = "111m11122233345z";
 tiles0 = "2223455067888m";
 tiles1 = "2223455067888p";
 tiles2 = "2223455067888s";
-paishan = randompaishan("5z4z");
+paishan = randompaishan("54z");
 roundbegin();
 qiepai();
 mopai();
@@ -178,16 +178,12 @@ tiles3 = "1111m1112223335z";
 tiles0 = "2223455067888m";
 tiles1 = "2223455067888p";
 tiles2 = "2223455067888s";
-paishan = randompaishan("", "5z1z2z3z");
+paishan = randompaishan("", "5123z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

@@ -75,10 +75,6 @@ paishan = randompaishan("");
 roundbegin();
 hupai();
 
-
-
-
-
 // 第5局: 东亲, 南起 地和, 大三元
 tiles0 = "1112340678999m1z";
 tiles1 = "23488m55566677z";
@@ -101,8 +97,6 @@ qiepai();
 mopai();
 hupai();
 
-
-
 // 第7局: 西亲, 北起 地和, 字一色
 tiles2 = "1112340678999m1z";
 tiles3 = "1122334455667z";
@@ -113,8 +107,6 @@ roundbegin();
 qiepai();
 mopai();
 hupai();
-
-
 
 // 第8局: 北亲, 东起 地和, 绿一色
 tiles3 = "1112340678999m1z";
@@ -165,15 +157,13 @@ tiles3 = "222m88p155566677z";
 tiles0 = "1112340678999m";
 tiles1 = "1112340678999p";
 tiles2 = "1112340678999s";
-paishan = randompaishan("1z1z1z7z");
+paishan = randompaishan("1117z");
 roundbegin();
 qiepai("1z");
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
 hupai();
 
@@ -194,19 +184,17 @@ tiles3 = "555m12555666777z";
 tiles0 = "1111234678999m";
 tiles1 = "1112340678999p";
 tiles2 = "1112340678999s";
-paishan = randompaishan("5z", "2z7z6z0m");
+paishan = randompaishan("5z", "276z0m");
 roundbegin();
 qiepai("1z");
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第15局: 北亲, 北起 四暗刻, 字一色
@@ -282,19 +270,17 @@ tiles3 = "11122233355567z";
 tiles0 = "2223455067888m";
 tiles1 = "2223455067888p";
 tiles2 = "2223455067888s";
-paishan = randompaishan("1z", "6z5z3z2z");
+paishan = randompaishan("1z", "6532z");
 roundbegin();
 qiepai();
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第21局: 北亲, 北起 绿一色, 四杠子 (副露)
@@ -302,19 +288,17 @@ tiles3 = "222444666888s67z";
 tiles0 = "2223455067888m";
 tiles1 = "2223455067888p";
 tiles2 = "1111333377779s";
-paishan = randompaishan("2s", "6z8s6s4s");
+paishan = randompaishan("2s", "6z864s");
 roundbegin();
 qiepai();
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第22局: 北亲, 北起 清老头, 四杠子 (副露)
@@ -322,19 +306,17 @@ tiles3 = "1999m111999p999s6z";
 tiles0 = "2223455067888m";
 tiles1 = "2223455067888p";
 tiles2 = "2223455067888s";
-paishan = randompaishan("9s", "1m9m1p9p");
+paishan = randompaishan("9s", "19m19p");
 roundbegin();
 qiepai();
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第23局: 北亲, 北起 小四喜, 四杠子 (副露)
@@ -342,19 +324,17 @@ tiles3 = "111s11122233347z";
 tiles0 = "2223455067888m";
 tiles1 = "2223455067888p";
 tiles2 = "2223455067888s";
-paishan = randompaishan("1s", "4z3z2z1z");
+paishan = randompaishan("1s", "4321z");
 roundbegin();
 qiepai();
 mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

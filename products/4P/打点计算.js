@@ -101,14 +101,10 @@ tiles2 = "1112340678999s";
 tiles3 = "2223455567888s";
 paishan = randompaishan("1117p", "66667z");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    qiepai();
+    mopai();
+}
 hupai();
 
 // 第4局, 77888999p11z 123m 自摸7p
@@ -178,14 +174,10 @@ tiles2 = "1112340678999s";
 tiles3 = "2223455567888s";
 paishan = randompaishan("555z7p", "66667z");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    qiepai();
+    mopai();
+}
 hupai();
 
 // 第9局, 11m77888999p 789m 自摸7p
@@ -230,7 +222,6 @@ qiepai();
 mopai();
 qiepai();
 hupai();
-
 
 try {
     MRE.close();

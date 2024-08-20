@@ -47,22 +47,12 @@ editdata.config = {
 tiles0 = "789s1114z5556667z";
 tiles1 = "2222556688889p";
 tiles2 = "1111222245550s";
-paishan = randompaishan("", "7z1m1m1m6s6s6s6s3z3z3z3z7z7z1p6p6z5z1z4z4z4z");
+paishan = randompaishan("", "7z111m6666s333377z16p651444z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 7; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("6p")
 mingpai();
 qiepai('9p')
@@ -85,7 +75,7 @@ hupai();
 tiles0 = "1999p1115556677z";
 tiles1 = "222255667777p6z";
 tiles2 = "1111222245550s";
-paishan = randompaishan("1p1p4z", "3z3z3z3z8p8p8p8p7z7z6z3p5z1z9p4z4z4z");
+paishan = randompaishan("11p4z", "3333z8888p776z3p51z9p444z");
 roundbegin();
 qiepai("1p", true);
 mopai();
@@ -93,20 +83,10 @@ qiepai();
 mopai();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 7; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 for (let i = 43; i >= 2; i--) {
     mopai();
@@ -159,24 +139,14 @@ hupai();
 tiles0 = "2222556688889p9m";
 tiles1 = "789s2225556667z";
 tiles2 = "1111222245550s";
-paishan = randompaishan("4z", "7z1m1m1m1z1z1z1z3z3z3z3z7z7z1p6p6z5z2z4z4z4z");
+paishan = randompaishan("4z", "7z111m1111333377z16p652444z");
 roundbegin();
 qiepai("9m");
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 7; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("6p")
 mingpai();
 qiepai('9p')
@@ -192,7 +162,6 @@ mopai();
 qiepai();
 mopai();
 hupai();
-
 
 try {
     MRE.close();

@@ -147,12 +147,10 @@ tiles0 = "2223455067888s";
 paishan = randompaishan("332z");
 roundbegin();
 qiepai("3z");
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 hupai();
 
 // 第12局: 南亲, 南起 大三元, 四杠子, 四暗刻单骑
@@ -162,14 +160,10 @@ tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
 paishan = randompaishan("", "2567z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第13局: 南亲, 南起 四暗刻, 字一色, 大四喜
@@ -194,12 +188,10 @@ tiles0 = "1113455067888s";
 paishan = randompaishan("664z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 hupai();
 
 // 第15局: 南亲, 南起 字一色, 四杠子, 四暗刻单骑
@@ -209,14 +201,10 @@ tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
 paishan = randompaishan("", "6532z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第16局: 南亲, 南起 绿一色, 四杠子, 四暗刻单骑
@@ -226,14 +214,10 @@ tiles3 = "1112340678999p";
 tiles0 = "1111333377779s";
 paishan = randompaishan("", "6z864s");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第17局: 南亲, 南起 清老头, 四杠子, 四暗刻单骑
@@ -243,14 +227,10 @@ tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
 paishan = randompaishan("", "1s9p1p9m");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第18局: 南亲, 南起 小四喜, 四杠子, 四暗刻单骑
@@ -260,14 +240,10 @@ tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
 paishan = randompaishan("", "4z3z2z1z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

@@ -78,14 +78,10 @@ tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("2221z");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    qiepai();
+    mopai();
+}
 hupai();
 
 // 第5局: 南亲, 南起 字一色
@@ -109,12 +105,10 @@ tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("776z");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    qiepai();
+    mopai();
+}
 qiepai();
 hupai();
 
@@ -151,12 +145,10 @@ tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
 paishan = randompaishan("554z");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    qiepai();
+    mopai();
+}
 qiepai();
 hupai();
 
@@ -172,12 +164,10 @@ mopai();
 qiepai();
 mingpai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第11局: 南亲, 南起 九莲宝灯
@@ -187,12 +177,10 @@ tiles3 = "2223455067888p";
 tiles0 = "2223455067888s";
 paishan = randompaishan("11z1m");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    qiepai();
+    mopai();
+}
 qiepai();
 hupai();
 

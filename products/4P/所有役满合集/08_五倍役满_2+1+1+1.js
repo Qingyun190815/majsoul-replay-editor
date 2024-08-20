@@ -97,14 +97,10 @@ tiles1 = "1112340678999p";
 tiles2 = "1112340678999s";
 paishan = randompaishan("", "2567z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 // 第7局: 北亲, 北起 字一色, 小四喜, 四杠子, 四暗刻单骑
@@ -114,14 +110,10 @@ tiles1 = "1112340678999p";
 tiles2 = "1112340678999s";
 paishan = randompaishan("", "4532z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

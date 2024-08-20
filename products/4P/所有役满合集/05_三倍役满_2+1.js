@@ -180,14 +180,10 @@ tiles1 = "2223455067888p";
 tiles2 = "2223455067888s";
 paishan = randompaishan("", "5123z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 hupai();
 
 try {

@@ -66,14 +66,12 @@ hupai();
         tiles2 = "2223455567888p";
         tiles3 = "1112340678999s";
         tiles0 = "1112340678999m";
-        paishan = randompaishan("1z1z2s");
+        paishan = randompaishan("11z2s");
         roundbegin();
-        qiepai();
-        mopai();
-        qiepai();
-        mopai();
-        qiepai();
-        mopai();
+        for (let i = 0; i < 3; i++) {
+            qiepai();
+            mopai();
+        }
         qiepai(true);
         hupai();
 
@@ -82,7 +80,7 @@ hupai();
         tiles2 = "19m19p19s1234567z";
         tiles3 = "23p11122233344z";
         tiles0 = "1112340678999m";
-        paishan = randompaishan("3s3s1p");
+        paishan = randompaishan("33s1p");
         roundbegin();
         qiepai("3s");
         mopai();
@@ -98,17 +96,15 @@ hupai();
         tiles2 = "1123450678999p";
         tiles3 = "1p222444666888s";
         tiles0 = "1112340678999m";
-        paishan = randompaishan("1p", "2p8s6s4s");
+        paishan = randompaishan("1p", "2p864s");
         roundbegin();
         qiepai("2s");
         mingpai();
         mopai();
-        leimingpai();
-        mopai();
-        leimingpai();
-        mopai();
-        leimingpai();
-        mopai();
+        for (let i = 0; i < 3; i++) {
+            leimingpai();
+            mopai();
+        }
         qiepai();
         mopai();
         qiepai(true);
@@ -119,7 +115,7 @@ hupai();
         tiles2 = "19m19p19s1234567z";
         tiles3 = "19m19p19s1234557z";
         tiles0 = "234m22234p22344s";
-        paishan = randompaishan("2m2m6z");
+        paishan = randompaishan("22m6z");
         roundbegin();
         qiepai("2m");
         mopai();
@@ -135,7 +131,7 @@ hupai();
         tiles2 = "1123406789999p";
         tiles3 = "23p11122233344z";
         tiles0 = "1112340678999m";
-        paishan = randompaishan("3s3s1p");
+        paishan = randompaishan("33s1p");
         roundbegin();
         qiepai("3s");
         mopai();
@@ -151,17 +147,15 @@ hupai();
         tiles2 = "2223455567888p";
         tiles3 = "5m222444666888s";
         tiles0 = "1112340678999p";
-        paishan = randompaishan("0m", "5s8s6s4s");
+        paishan = randompaishan("0m", "5864s");
         roundbegin();
         qiepai("2s");
         mingpai();
         mopai();
-        leimingpai();
-        mopai();
-        leimingpai();
-        mopai();
-        leimingpai();
-        mopai();
+        for (let i = 0; i < 3; i++) {
+            leimingpai();
+            mopai();
+        }
         qiepai();
         mopai();
         qiepai(true);
@@ -183,14 +177,12 @@ tiles2 = "1112340678999p7z";
 tiles3 = "1112340678999s";
 tiles0 = "1112223334555z";
 tiles1 = "1112340678999m";
-paishan = randompaishan("7z7z4z");
+paishan = randompaishan("774z");
 roundbegin();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    qiepai();
+    mopai();
+}
 qiepai();
 hupai();
 
@@ -201,22 +193,18 @@ tiles3 = "1999p1115556677z";
 tiles0 = "222255508888m6z";
 tiles1 = "222255508888s3z";
 tiles2 = "3333444467777s";
-paishan = randompaishan("1p1p1p9p", "4z4z8p4z8p4z8p8p7z7z6z2z5z1z");
+paishan = randompaishan("1119p", "44z8p4z8p4z88p776251z");
 roundbegin();
 qiepai("1p", true);
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 for (let i = 62; i >= 3; i--) {
     mopai();
@@ -235,7 +223,7 @@ tiles3 = "11122233344457z";
 tiles0 = "111666m22556p88s";
 tiles1 = "340m34p23334450s";
 tiles2 = "1111589p688s555z";
-paishan = randompaishan("3s9s9s0p", "2m2m2s4s2s2s6z6z6z6z");
+paishan = randompaishan("399s0p", "22m2422s6666z");
 roundbegin();
 qiepai("5z");
 mingpai();
@@ -262,7 +250,7 @@ tiles0 = "11122233344457z";
 tiles1 = "1111223378899p";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999s";
-paishan = randompaishan("6z6z6z1z7p", "9p6p9p6p7p2p5p2p5z6z3z2z");
+paishan = randompaishan("6661z7p", "96967252p5632z");
 roundbegin();
 qiepai();
 mopai();
@@ -272,12 +260,10 @@ qiepai();
 mopai();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 mopai();
 hupai();
@@ -289,18 +275,16 @@ tiles1 = "22225550888899m";
 tiles2 = "11m22p344556677s";
 tiles3 = "3333555088889p";
 tiles0 = "2222338889999s";
-paishan = randompaishan("1z1z1z1z", "3s2z2z2z2z1s1s1s1s9m1p9m1p1m1p5z9p9p9p");
+paishan = randompaishan("1111z", "3s2222z1111s9m1p9m1p1m1p5z999p");
 roundbegin();
 qiepai();
 mopai();
 qiepai(true);
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai("1z");
 for (let j = 64; j >= 6; j--) {
     mopai();
@@ -308,12 +292,10 @@ for (let j = 64; j >= 6; j--) {
 }
 mopai();
 leimingpai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
 hupai();
 
@@ -324,19 +306,17 @@ tiles2 = "11122233344457z";
 tiles3 = "12333m33350p333s";
 tiles0 = "1111448889999s";
 tiles1 = "1111666677779p";
-paishan = randompaishan("1z6z6z6z3s", "2m2p2s2s2s2s9p9p3m6z");
+paishan = randompaishan("1666z3s", "2m2p2222s99p3m6z");
 roundbegin();
 qiepai();
 mopai();
 qiepai(true);
 mopai();
 leimingpai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
 leimingpai();
 mopai();
@@ -349,7 +329,7 @@ tiles3 = "11133344445557z";
 tiles0 = "123m12399p12s222z";
 tiles1 = "1112340678999m";
 tiles2 = "1112345067899p";
-paishan = randompaishan("", "1z2z8p3s3s3s3s");
+paishan = randompaishan("", "12z8p3333s");
 roundbegin();
 leimingpai();
 mopai();
@@ -363,7 +343,7 @@ tiles0 = "1p1112224445557z";
 tiles1 = "1222333455667p";
 tiles2 = "123456789m1p333z";
 tiles3 = "2367788889999p";
-paishan = randompaishan("", "4p6z6z6z6z");
+paishan = randompaishan("", "4p6666z");
 roundbegin();
 qiepai("1p");
 hupai();
@@ -385,15 +365,13 @@ tiles2 = "11123406789999m";
 tiles3 = "1112340678999s";
 tiles0 = "1112223335557z";
 tiles1 = "123m23p23488s444z";
-paishan = randompaishan("9p9p1p");
+paishan = randompaishan("991p");
 roundbegin();
 leimingpai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai();
+}
 mopai();
 hupai();
 // (北亲, 南起和牌)
@@ -401,7 +379,7 @@ tiles3 = "11123406789999s";
 tiles0 = "1112223335557z";
 tiles1 = "123m23p23488s444z";
 tiles2 = "1112340678999m";
-paishan = randompaishan("9p1p");
+paishan = randompaishan("91p");
 roundbegin();
 leimingpai();
 mopai();
@@ -418,7 +396,7 @@ tiles0 = "1p1112223335557z";
 tiles1 = "1112340678999m";
 tiles2 = "1112340678999s";
 tiles3 = "123m23p23488s444z";
-paishan = randompaishan("", "5z6z6z6z6p");
+paishan = randompaishan("", "5666z6p");
 roundbegin();
 qiepai("1p");
 hupai();
@@ -438,14 +416,12 @@ tiles1 = "11112223334447z";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
-paishan = randompaishan("", "5z1p3z2z");
+paishan = randompaishan("", "5z1p32z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 mingpai();
 mopai();
@@ -457,15 +433,13 @@ tiles1 = "2223444666888s1z";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
-paishan = randompaishan("1z1z1z");
+paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-mopai();
-qiepai(true);
-mopai();
-qiepai(true);
-mopai();
-qiepai(true);
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai(true);
+}
 liuju();
 
 // 四家立直
@@ -473,15 +447,13 @@ tiles1 = "2223444666888s5z";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
-paishan = randompaishan("5z5z5z");
+paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-mopai();
-qiepai(true);
-mopai();
-qiepai(true);
-mopai();
-qiepai(true);
+for (let i = 0; i < 3; i++) {
+    mopai();
+    qiepai(true);
+}
 liuju();
 
 // 流局满贯, 听牌, 未听牌
@@ -490,16 +462,12 @@ tiles2 = "2228m333557777s";
 tiles3 = "233344447777m0s";
 tiles0 = "55506666888m08p";
 // 所有幺九都留山里, 所有非幺九都给亲, 非幺九还有 2-8p*4(除了0p和8p)
-paishan = randompaishan("1m9m1p3p1m9m1p3p1m9m1p3p1m9m1p3p9p1s9s4p9p1s9s4p9p1s9s4p9p1s9s4p1z2z3z5p1z2z3z5p1z2z3z5p1z2z3z7p4z5z6z6p4z5z6z6p4z5z6z6p4z5z6z6p7z", "5s8s6s4s");
+paishan = randompaishan("1m9m1p3p1m9m1p3p1m9m1p3p1m9m1p3p9p1s9s4p9p1s9s4p9p1s9s4p9p1s9s4p1z2z3z5p1z2z3z5p1z2z3z5p1z2z3z7p4z5z6z6p4z5z6z6p4z5z6z6p4z5z6z6p7z", "5864s");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai(true);
 for (let i = 65; i >= 1; i--) {
     mopai();
