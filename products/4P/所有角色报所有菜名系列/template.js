@@ -490,7 +490,7 @@ tiles2 = "2228m333557777s";
 tiles3 = "233344447777m0s";
 tiles0 = "55506666888m08p";
 // 所有幺九都留山里, 所有非幺九都给亲, 非幺九还有 2-8p*4(除了0p和8p)
-paishan = randompaishan("1m9m1p3p1m9m1p3p1m9m1p3p1m9m1p3p9p1s9s4p9p1s9s4p9p1s9s4p9p1s9s4p1z2z3z5p1z2z3z5p1z2z3z5p1z2z3z7p4z5z6z6p4z5z6z6p4z5z6z6p4z5z6z6p7z", "5s8s6s4s");
+paishan = randompaishan("1m9m1p3p1m9m1p3p1m9m1p3p1m9m1p3p9p1s9s4p9p1s9s4p9p1s9s4p9p1s9s4p1z2z3z5p1z2z3z5p1z2z3z5p1z2z3z7p4z5z6z6p4z5z6z6p4z5z6z6p4z5z6z6p7z", "5864s");
 roundbegin();
 leimingpai();
 mopai();
