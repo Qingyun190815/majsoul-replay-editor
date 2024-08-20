@@ -6,7 +6,7 @@
 
 首先是在 template.js 中做一个模版, 包含对局的所有数据
 
-然后用 Refresh_All.py 在 output 文件夹下生成不同角色的到对应文件
+然后用 Generate_All_Avatar.py 在 output 文件夹下生成不同角色的到对应文件
 
 生成的文件中除了开头的 `editdata.player_datas` 不同之外其他都完全一样, 也和 template.js 中的一样
 
