@@ -1,9 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
-loadproject();
+loadproject()
 
 editdata.player_datas[0].nickname = "艾丽莎-契约";
 editdata.player_datas[1].nickname = "择芳意";
@@ -100,9 +95,3 @@ leimingpai();
 mopai();
 qiepai();
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

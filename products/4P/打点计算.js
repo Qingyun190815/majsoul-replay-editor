@@ -1,8 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-loadproject();
+loadproject()
 
 // 这个主要是在算点的时候有歧义的选择(即选择最大的)
 
@@ -222,9 +218,3 @@ qiepai();
 mopai();
 qiepai();
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

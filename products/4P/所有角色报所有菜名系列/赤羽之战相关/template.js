@@ -1,12 +1,5 @@
-try {
-    MRE.open();
-} catch (e) {
-}
+loadproject()
 
-loadproject();
-
-// 由于 examples 文件夹下的 3.js 文件模板有点问题,
-// 或者 main.js 血战到底的部分还不完善, bug很严重, 故对应的赤羽报菜名暂缓, 欢迎 commit
 // 又或者使用非血战到底的只用和一次的情况, 同时为了方面编辑不考虑换三张的情况
 
 editdata.player_datas[0].nickname = "一姬-契约";
@@ -33,7 +26,7 @@ editdata.config = {
             'init_point': 500000,
             'muyu_mode': 0,
             'shiduan': 0,
-            'xuezhandaodi': 0
+            'xuezhandaodi': 1
         }
     }
 }
@@ -46,6 +39,16 @@ tiles3 = "1112223334467s";
 paishan = randompaishan("1p4s", "5p4p3p2p");
 roundbegin();
 dingque("pspm")
+hupai();
+mopai();
+leimingpai();
+mopai();
+leimingpai();
+mopai();
+leimingpai();
+mopai();
+leimingpai();
+mopai();
 hupai();
 roundend();
 
@@ -82,9 +85,3 @@ roundend();
 清十八罗汉       1111
 220411-cf000364-116c-4493-9cca-32156af4e130
 */
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

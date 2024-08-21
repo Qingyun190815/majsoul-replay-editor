@@ -1,11 +1,6 @@
-try {
-    MRE.open();
-} catch (e) {
-}
+loadproject()
 
 // 南起 铳三家共 2 (四单) + 3 (绿四单) + 6 (字杠骑喜) = 11 倍役满
-
-loadproject();
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -55,9 +50,3 @@ qiepai();
 mopai();
 qiepai("6z", true);
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

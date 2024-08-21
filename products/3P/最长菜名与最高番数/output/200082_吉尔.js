@@ -1,9 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
-loadproject();
+loadproject()
 
 // 主要是三个小局, 前两局和最后一局
 // 第一局亲家的最长菜名(15条49番), 第二局最高番数(14条64番)
@@ -164,9 +159,3 @@ mopai();
 qiepai();
 mopai();
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

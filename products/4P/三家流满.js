@@ -1,9 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
-loadproject();
+loadproject()
 
 // 这个其实在"所有角色报所有菜名系列"中已经有了, 在最后一局
 
@@ -57,8 +52,3 @@ for (let i = 65; i >= 1; i--) {
     qiepai();
 }
 notileliuju();
-
-try {
-    MRE.close();
-} catch (e) {
-}

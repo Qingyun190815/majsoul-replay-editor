@@ -1,9 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
-loadproject();
+loadproject()
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "一姬当千";
@@ -56,9 +51,3 @@ for (let i = 0; i < 50; i++) {
     qiepai();
 }
 notileliuju();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

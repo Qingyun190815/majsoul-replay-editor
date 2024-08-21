@@ -1,11 +1,7 @@
-try {
-    MRE.open();
-} catch (e) {
-}
+loadproject()
 
 // 南起 铳三家共 2 (十三面) + 3 (绿四单) + 5 (字骑喜) = 10 倍役满
 
-loadproject();
 //
 // var flag = 5;
 // // 0 表示使用天麻一期联动的四个角色, 1 表示天麻二期联动的四个角色,
@@ -123,9 +119,3 @@ qiepai("0p");
 mopai();
 qiepai("6z", true);
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

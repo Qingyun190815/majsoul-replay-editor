@@ -1,9 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
-loadproject();
+loadproject()
 
 editdata.player_datas[0].nickname = "艾丽莎-契约";
 editdata.player_datas[1].nickname = "择芳意";
@@ -58,110 +53,55 @@ roundbegin();
 qiepai();
 mopai();
 hupai();
-{
-    var old = 0
-    if (old === 0) {
 // 第3局: 南亲, 东起 铳两家: 绿一色, 纯正九莲宝灯 (3s)    役满, 两倍役满
-        tiles1 = "2233344666888s6z";
-        tiles2 = "2223455567888p";
-        tiles3 = "1112340678999s";
-        tiles0 = "1112340678999m";
-        paishan = randompaishan("11z2s");
-        roundbegin();
-        for (let i = 0; i < 3; i++) {
-            qiepai();
-            mopai();
-        }
-        qiepai(true);
-        hupai();
+tiles1 = "2233344666888s6z";
+tiles2 = "2223455567888p";
+tiles3 = "1112340678999s";
+tiles0 = "1112340678999m";
+paishan = randompaishan("11z2s");
+roundbegin();
+for (let i = 0; i < 3; i++) {
+    qiepai();
+    mopai();
+}
+qiepai(true);
+hupai();
 
 // 第4局: 南亲, 东起 铳三家: 大三元, 国士无双十三面, 小四喜,  (1p)
-        tiles1 = "23p355s555666777z";
-        tiles2 = "19m19p19s1234567z";
-        tiles3 = "23p11122233344z";
-        tiles0 = "1112340678999m";
-        paishan = randompaishan("33s1p");
-        roundbegin();
-        qiepai("3s");
-        mopai();
-        qiepai();
-        mopai();
-        qiepai();
-        mopai();
-        qiepai(true);
-        hupai();
+tiles1 = "23p355s555666777z";
+tiles2 = "19m19p19s1234567z";
+tiles3 = "23p11122233344z";
+tiles0 = "1112340678999m";
+paishan = randompaishan("33s1p");
+roundbegin();
+qiepai("3s");
+mopai();
+qiepai();
+mopai();
+qiepai();
+mopai();
+qiepai(true);
+hupai();
 
 // 第5局: 南亲, 东起 铳三家: 国士无双, 九莲宝灯, 四杠子 (1p, 四杠子家要副露)
-        tiles1 = "19m9p1129s1234567z";
-        tiles2 = "1123450678999p";
-        tiles3 = "1p222444666888s";
-        tiles0 = "1112340678999m";
-        paishan = randompaishan("1p", "2p864s");
-        roundbegin();
-        qiepai("2s");
-        mingpai();
-        mopai();
-        for (let i = 0; i < 3; i++) {
-            leimingpai();
-            mopai();
-        }
-        qiepai();
-        mopai();
-        qiepai(true);
-        hupai();
-    } else if (old === 1) {
-// 第3局: 南亲, 东起 铳三家: 绿一色, 国士无双十三面, 国士无双 (6z)    役满, 两倍役满
-        tiles1 = "2m223344666888s6z";
-        tiles2 = "19m19p19s1234567z";
-        tiles3 = "19m19p19s1234557z";
-        tiles0 = "234m22234p22344s";
-        paishan = randompaishan("22m6z");
-        roundbegin();
-        qiepai("2m");
-        mopai();
-        qiepai();
-        mopai();
-        qiepai();
-        mopai();
-        qiepai(true);
-        hupai();
-
-// 第4局: 南亲, 东起 铳三家: 大三元, 九莲宝灯, 小四喜 (1p)
-        tiles1 = "23p355s555666777z";
-        tiles2 = "1123406789999p";
-        tiles3 = "23p11122233344z";
-        tiles0 = "1112340678999m";
-        paishan = randompaishan("33s1p");
-        roundbegin();
-        qiepai("3s");
-        mopai();
-        qiepai();
-        mopai();
-        qiepai();
-        mopai();
-        qiepai(true);
-        hupai();
-
-// 第5局: 南亲, 东起 铳两家: 四杠子, 纯正九莲宝灯 (0m, 四杠子家要副露)
-        tiles1 = "1112345678999m2s";
-        tiles2 = "2223455567888p";
-        tiles3 = "5m222444666888s";
-        tiles0 = "1112340678999p";
-        paishan = randompaishan("0m", "5864s");
-        roundbegin();
-        qiepai("2s");
-        mingpai();
-        mopai();
-        for (let i = 0; i < 3; i++) {
-            leimingpai();
-            mopai();
-        }
-        qiepai();
-        mopai();
-        qiepai(true);
-        hupai();
-    }
+tiles1 = "19m9p1129s1234567z";
+tiles2 = "1123450678999p";
+tiles3 = "1p222444666888s";
+tiles0 = "1112340678999m";
+paishan = randompaishan("1p", "2p864s");
+roundbegin();
+qiepai("2s");
+mingpai();
+mopai();
+for (let i = 0; i < 3; i++) {
+    leimingpai();
+    mopai();
 }
+qiepai();
+mopai();
+qiepai(true);
+hupai();
+
 // 第6局: 南亲, 南起 铳 东起 字一色, 四暗刻单骑, 大四喜        五倍役满
 tiles1 = "1112340678999m7z";
 tiles2 = "1112340678999p";
@@ -474,9 +414,3 @@ for (let i = 65; i >= 1; i--) {
     qiepai();
 }
 notileliuju();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

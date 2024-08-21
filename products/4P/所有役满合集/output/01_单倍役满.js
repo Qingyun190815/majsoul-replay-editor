@@ -1,9 +1,4 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
-loadproject();
+loadproject()
 
 editdata.player_datas[0].nickname = "美游-契约";
 editdata.player_datas[1].nickname = "美游";
@@ -183,9 +178,3 @@ for (let i = 0; i < 3; i++) {
 }
 qiepai();
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

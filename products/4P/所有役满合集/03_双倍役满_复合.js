@@ -1,8 +1,3 @@
-try {
-    MRE.open();
-} catch (e) {
-}
-
 loadproject();
 
 editdata.player_datas[0].nickname = "一姬-契约";
@@ -336,9 +331,3 @@ for (let i = 0; i < 3; i++) {
     mopai();
 }
 hupai();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-
