@@ -78,7 +78,7 @@ tiles0 = "1999p1115556677z";
 tiles1 = "222255508888m6z";
 tiles2 = "222255508888s3z";
 tiles3 = "3333444467777s";
-paishan = randompaishan("1119p", "44z8p4z8p4z88p776251z");
+paishan = randompaishan("1119p", "4444z8888p776251z");
 roundbegin();
 qiepai("1p", true);
 for (let i = 0; i < 3; i++) {

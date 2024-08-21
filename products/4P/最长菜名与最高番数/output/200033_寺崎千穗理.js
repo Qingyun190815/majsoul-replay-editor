@@ -7,12 +7,12 @@ loadproject();
 
 editdata.player_datas[0].nickname = "寺崎千穗理-契约";
 editdata.player_datas[1].nickname = "寺崎千穗理";
-editdata.player_datas[2].nickname = "寺崎千穗理-契约";
-editdata.player_datas[3].nickname = "佳期不负";
+editdata.player_datas[2].nickname = "佳期不负";
+editdata.player_datas[3].nickname = "玩转夏日";
 editdata.player_datas[0].avatar_id = 403302;
 editdata.player_datas[1].avatar_id = 403301;
-editdata.player_datas[2].avatar_id = 403302;
-editdata.player_datas[3].avatar_id = 403303;
+editdata.player_datas[2].avatar_id = 403303;
+editdata.player_datas[3].avatar_id = 403304;
 
 settings.chuanma_points_method = 0;
 editdata.config = {
@@ -78,7 +78,7 @@ tiles0 = "1999p1115556677z";
 tiles1 = "222255508888m6z";
 tiles2 = "222255508888s3z";
 tiles3 = "3333444467777s";
-paishan = randompaishan("1119p", "44z8p4z8p4z88p776251z");
+paishan = randompaishan("1119p", "4444z8888p776251z");
 roundbegin();
 qiepai("1p", true);
 for (let i = 0; i < 3; i++) {

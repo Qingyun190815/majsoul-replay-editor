@@ -6,13 +6,13 @@ try {
 loadproject();
 
 editdata.player_datas[0].nickname = "二阶堂美树-契约";
-editdata.player_datas[1].nickname = "化妆舞会";
-editdata.player_datas[2].nickname = "万象沐春";
-editdata.player_datas[3].nickname = "鸢尾花之夜";
+editdata.player_datas[1].nickname = "万象沐春";
+editdata.player_datas[2].nickname = "鸢尾花之夜";
+editdata.player_datas[3].nickname = "玩转夏日";
 editdata.player_datas[0].avatar_id = 400202;
-editdata.player_datas[1].avatar_id = 400203;
-editdata.player_datas[2].avatar_id = 400206;
-editdata.player_datas[3].avatar_id = 400207;
+editdata.player_datas[1].avatar_id = 400206;
+editdata.player_datas[2].avatar_id = 400207;
+editdata.player_datas[3].avatar_id = 400208;
 
 settings.chuanma_points_method = 0;
 editdata.config = {
@@ -193,7 +193,7 @@ tiles3 = "1999p1115556677z";
 tiles0 = "222255508888m6z";
 tiles1 = "222255508888s3z";
 tiles2 = "3333444467777s";
-paishan = randompaishan("1119p", "44z8p4z8p4z88p776251z");
+paishan = randompaishan("1119p", "4444z8888p776251z");
 roundbegin();
 qiepai("1p", true);
 for (let i = 0; i < 3; i++) {
@@ -337,13 +337,13 @@ qiepai("3s");
 hupai();
 
 // 第14局: (西场) 东亲, 东起 铳三家     满贯, 跳满, 倍满 (西1局) (1p)
-// 西, 连西, 一气;         清一色;        清一色, dora 2
+// 西, 连西, 一气;   中, 混全带幺九, 混一色;  清一色, dora 2
 // 123456789m1p333z  2367788889999p  1222333455667p, dora 5p
 tiles0 = "1p1112224445557z";
 tiles1 = "1222333455667p";
 tiles2 = "123456789m1p333z";
-tiles3 = "2367788889999p";
-paishan = randompaishan("", "4p6666z");
+tiles3 = "23789999p66777z";
+paishan = randompaishan("", "4p1266z");
 roundbegin();
 qiepai("1p");
 hupai();

@@ -10,11 +10,11 @@ loadproject();
 // 最后一局子家的最长菜名(15条55番)
 
 editdata.player_datas[0].nickname = "二阶堂美树-契约";
-editdata.player_datas[1].nickname = "万象沐春";
-editdata.player_datas[2].nickname = "鸢尾花之夜";
+editdata.player_datas[1].nickname = "鸢尾花之夜";
+editdata.player_datas[2].nickname = "玩转夏日";
 editdata.player_datas[0].avatar_id = 400202;
-editdata.player_datas[1].avatar_id = 400206;
-editdata.player_datas[2].avatar_id = 400207;
+editdata.player_datas[1].avatar_id = 400207;
+editdata.player_datas[2].avatar_id = 400208;
 
 settings.chuanma_points_method = 0;
 editdata.config = {

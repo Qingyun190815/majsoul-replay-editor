@@ -1,8 +1,10 @@
 """
     这个文件使用"template.js"来对所有报菜名进行同步刷新
 """
-from products.Database import nicknames, avatar_ids, outfile_names, pattern_name, pattern_id, infile
+from products.Database import nicknames, avatar_ids, charids, special_charids, outfile_names, pattern_name, pattern_id, infile, change_hand
 import re
+
+special_charids_index = 0
 
 for i in range(len(avatar_ids)):
     outfile = open("./output/" + outfile_names[i], "w")
@@ -37,6 +39,11 @@ for i in range(len(avatar_ids)):
         for j in [-3, -2, -1]:
             tmp_avatar_id.append(avatar_ids[i][j])
 
+    flag = False
+    if special_charids_index < len(special_charids) and charids[i] == special_charids[special_charids_index]:
+        flag = True
+        special_charids_index = special_charids_index + 1
+
     for line in infile:
         result = re.search(pattern_name, line)
         if name_count < 4 and result:
@@ -50,6 +57,9 @@ for i in range(len(avatar_ids)):
                 line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                 id_count += 1
         outfile.write(line)
+        if flag and id_count == 4 and name_count == 4:
+            outfile.write("\n" + change_hand + "\n")
+            flag = False
     infile.seek(0)
     outfile.close()
 
