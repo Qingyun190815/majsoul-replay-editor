@@ -1,3 +1,5 @@
+import re
+
 nicknames = [
     ["一姬", "一姬-契约", "海滩派对", "新年初诣", "一姬当千", "绮春歌"],
     ["二阶堂美树", "二阶堂美树-契约", "化妆舞会", "万象沐春", "鸢尾花之夜", "玩转夏日"],
@@ -303,7 +305,6 @@ special_charids = [
     200039,  # 七夕
     200040,  # 蛇喰梦子
     200041,  # 早乙女芽亚里
-    200042,  # 生志摩妄
     200043,  # 桃喰绮罗莉
     200045,  # A-37
     200047,  # 莱恩
@@ -327,6 +328,53 @@ special_charids = [
 special_char_index = []
 for i in range(len(special_charids)):
     special_char_index.append((special_charids[i] % 200000) - 1)
+
+dict_paipu_uuids = [
+    "210922-89412f45-9f47-44d8-a4d4-5756308049ad",  # 汪次郎的手 0
+    "210926-5f5adaf3-0413-4489-95c2-98c212e521c3",  # 男性手 1
+    "211120-3d914e69-8654-4235-9748-5398f983ff18",  # 男性手-深色 2
+    "240423-2a2629fb-33c7-4034-ae42-29073bfb1da4",  # 手-深色 3
+    "220131-8698c15e-8a1b-4a94-a5c9-06d0e83da6ec",  # 手-狂赌联动 4
+    "211029-5b5b4162-c8d5-4677-b8af-cb78793df19c",  # 手-斗牌联动 5
+    "231025-6ffaba43-7abe-46ea-80d1-90edbe5ea686",  # 手-汉娜 6
+    "240814-8c6841b4-a706-446a-9e25-e07ce22867fb",  # 手-穆萨 7
+]
+
+dict_spchar_paipu = {
+    200011: dict_paipu_uuids[1],  # 四宫夏生
+    200012: dict_paipu_uuids[0],  # 汪次郎
+    200013: dict_paipu_uuids[1],  # 一之濑空
+    200014: dict_paipu_uuids[1],  # 明智英树
+    200016: dict_paipu_uuids[3],  # 莎拉
+    200022: dict_paipu_uuids[2],  # 约瑟夫
+    200023: dict_paipu_uuids[1],  # 斋藤治
+    200025: dict_paipu_uuids[1],  # 艾因
+    200027: dict_paipu_uuids[1],  # 月见山
+    200028: dict_paipu_uuids[3],  # 藤本绮罗
+    200030: dict_paipu_uuids[1],  # 如月莲
+    200031: dict_paipu_uuids[1],  # 石原碓海
+    200039: dict_paipu_uuids[1],  # 七夕
+    200040: dict_paipu_uuids[4],  # 蛇喰梦子
+    200041: dict_paipu_uuids[4],  # 早乙女芽亚里
+    200043: dict_paipu_uuids[4],  # 桃喰绮罗莉
+    200045: dict_paipu_uuids[2],  # A-37
+    200047: dict_paipu_uuids[1],  # 莱恩
+    200049: dict_paipu_uuids[1],  # 泷川夏彦
+    200050: dict_paipu_uuids[5],  # 赤木茂
+    200051: dict_paipu_uuids[5],  # 鹫巢岩
+    200054: dict_paipu_uuids[1],  # 夏弥尔
+    200056: dict_paipu_uuids[1],  # 白银御行
+    200060: dict_paipu_uuids[1],  # 泽克斯
+    200070: dict_paipu_uuids[1],  # 鲁鲁修·兰佩洛基
+    200072: dict_paipu_uuids[1],  # 枢木朱雀
+    200075: dict_paipu_uuids[1],  # 凌
+    200077: dict_paipu_uuids[6],  # 汉娜
+    200078: dict_paipu_uuids[7],  # 穆萨
+    200081: dict_paipu_uuids[3],  # 小黑
+    200082: dict_paipu_uuids[1],  # 吉尔
+    200085: dict_paipu_uuids[1],  # 袁枫
+    200090: dict_paipu_uuids[1],  # 玖辻
+}
 
 outfile_names = []
 for i in range(len(avatar_ids)):
@@ -425,17 +473,128 @@ title_ids = [
     600093,  # 花ノ国 戦国最強
 ]
 
-paipu_uuids = [
-    "210922-89412f45-9f47-44d8-a4d4-5756308049ad",  # 汪次郎的手
-    "210926-5f5adaf3-0413-4489-95c2-98c212e521c3",  # 男性手
-    "211120-3d914e69-8654-4235-9748-5398f983ff18",  # 男性手-深色
-    "240423-2a2629fb-33c7-4034-ae42-29073bfb1da4",  # 手-深色
-    "220131-8698c15e-8a1b-4a94-a5c9-06d0e83da6ec",  # 手-狂赌联动
-    "211029-5b5b4162-c8d5-4677-b8af-cb78793df19c",  # 手-斗牌联动
-    "231025-6ffaba43-7abe-46ea-80d1-90edbe5ea686",  # 手-汉娜
-]
-
+# 更改角色使用手的脚本
 change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{\"slot\": 3, \"item_id\": 309997}];'
 
+
 # 直接进入回放的脚本, 可以在控制台输入
-replay_script = ""
+def Replay_Script(uuid):
+    return "GameMgr.Inst.checkPaiPu(\"" + uuid + "\", 0)"
+
+
+def Generate_All_Avatar(player_num=4):
+    special_charids_index = 0
+
+    for index in range(len(avatar_ids)):
+        outfile = open("./output/" + outfile_names[index], "w")
+        name_count = 0
+        id_count = 0
+
+        if player_num == 4:
+            tmp_nickname = []
+            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
+                for j in [0, 1, 2, 3]:
+                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
+            if len(nicknames[index]) == 3 or len(nicknames[index]) == 4:
+                tmp_nickname.append(nicknames[index][1])
+                tmp_nickname.append(nicknames[index][0])
+                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 2])
+                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 1])
+            if len(nicknames[index]) >= 5:
+                tmp_nickname.append(nicknames[index][1])
+                for j in [-3, -2, -1]:
+                    tmp_nickname.append(nicknames[index][j])
+
+            tmp_avatar_id = []
+            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
+                for j in [0, 1, 2, 3]:
+                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
+            if len(avatar_ids[index]) == 3 or len(avatar_ids[index]) == 4:
+                tmp_avatar_id.append(avatar_ids[index][1])
+                tmp_avatar_id.append(avatar_ids[index][0])
+                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 2])
+                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 1])
+            if len(avatar_ids[index]) >= 5:
+                tmp_avatar_id.append(avatar_ids[index][1])
+                for j in [-3, -2, -1]:
+                    tmp_avatar_id.append(avatar_ids[index][j])
+
+            flag = False
+            if special_charids_index < len(special_charids) and charids[index] == special_charids[
+                special_charids_index]:
+                flag = True
+                special_charids_index = special_charids_index + 1
+
+            for line in infile:
+                result = re.search(pattern_name, line)
+                if name_count < 4 and result:
+                    # 匹配成功, result[0] 是全体, result[1] 是 nickname
+                    line = line.replace(result[1], tmp_nickname[name_count])
+                    name_count += 1
+                if id_count < 4 and name_count == 4:
+                    result = re.search(pattern_id, line)
+                    if result:
+                        # 匹配成功, result[0] 是全体, result[1] 是 avatar_id
+                        line = line.replace(result[1], str(tmp_avatar_id[id_count]))
+                        id_count += 1
+                outfile.write(line)
+                # if flag and id_count == 4 and name_count == 4:
+                #     outfile.write("\n" + change_hand + "\n")
+                #     flag = False
+
+        elif player_num == 3:
+            tmp_nickname = []
+            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
+                for j in [0, 1, 2]:
+                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
+            if len(nicknames[index]) == 3:
+                tmp_nickname.append(nicknames[index][1])
+                tmp_nickname.append(nicknames[index][0])
+                tmp_nickname.append(nicknames[index][2])
+            if len(nicknames[index]) >= 4:
+                tmp_nickname.append(nicknames[index][1])
+                for j in [-2, -1]:
+                    tmp_nickname.append(nicknames[index][j])
+
+            tmp_avatar_id = []
+            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
+                for j in [0, 1, 2]:
+                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
+            if len(avatar_ids[index]) == 3:
+                tmp_avatar_id.append(avatar_ids[index][1])
+                tmp_avatar_id.append(avatar_ids[index][0])
+                tmp_avatar_id.append(avatar_ids[index][2])
+            if len(avatar_ids[index]) >= 4:
+                tmp_avatar_id.append(avatar_ids[index][1])
+                for j in [-2, -1]:
+                    tmp_avatar_id.append(avatar_ids[index][j])
+
+            flag = False
+            if special_charids_index < len(special_charids) and charids[index] == special_charids[
+                special_charids_index]:
+                flag = True
+                special_charids_index = special_charids_index + 1
+
+            for line in infile:
+                result = re.search(pattern_name, line)
+                if name_count < 3 and result:
+                    # 匹配成功, result[0] 是全体, result[1] 是 nickname
+                    line = line.replace(result[1], tmp_nickname[name_count])
+                    name_count += 1
+                if id_count < 3 and name_count == 3:
+                    result = re.search(pattern_id, line)
+                    if result:
+                        # 匹配成功, result[0] 是全体, result[1] 是 avatar_id
+                        line = line.replace(result[1], str(tmp_avatar_id[id_count]))
+                        id_count += 1
+                outfile.write(line)
+                # if flag and id_count == 3 and name_count == 3:
+                #     outfile.write("\n" + change_hand + "\n")
+                #     flag = False
+        if charids[index] in dict_spchar_paipu:
+            outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
+        infile.seek(0)
+        outfile.close()
+
+    infile.close()
+    return

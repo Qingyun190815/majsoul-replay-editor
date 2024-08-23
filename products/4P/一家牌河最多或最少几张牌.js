@@ -126,9 +126,3 @@ for (let i = 0; i < 39; i++) {
     qiepai();
 }
 notileliuju();
-
-try {
-    MRE.close();
-} catch (e) {
-}
-

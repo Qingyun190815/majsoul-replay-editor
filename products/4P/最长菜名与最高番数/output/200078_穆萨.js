@@ -9,8 +9,6 @@ editdata.player_datas[1].avatar_id = 407801;
 editdata.player_datas[2].avatar_id = 407802;
 editdata.player_datas[3].avatar_id = 407801;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 3, "item_id": 309997}];
-
 settings.chuanma_points_method = 0;
 editdata.config = {
     'category': 1,
@@ -97,3 +95,5 @@ leimingpai();
 mopai();
 qiepai();
 hupai();
+
+GameMgr.Inst.checkPaiPu("240814-8c6841b4-a706-446a-9e25-e07ce22867fb", 0)

@@ -20,14 +20,18 @@ editdata.config = {
             'dora_count': 3,
             'fanfu': 1,
             'guyi_mode': 0,
+            'have_zimosun': true,
             'huansanzhang': 1,
+            'open_hand': 0,
             'init_point': 25000,
             'muyu_mode': 0,
             'shiduan': 1,
-            'xuezhandaodi': 1
+            'xuezhandaodi': 1,
+            'xueliu': 0
         }
     }
 }
+
 tiles0 = "1112378999m5z406p";
 tiles1 = "1112378999s555s";
 tiles2 = "11123p78999p406m";
@@ -47,7 +51,6 @@ for (let i = 62; i >= 0; i--) {
     qiepai();
 }
 notileliuju();
-roundend();
 
 tiles1 = "19m19p19s1234z6p550m";
 tiles2 = "12345p12345m406p";
@@ -67,7 +70,6 @@ mopai();
 qiepai();
 mopai();
 hupai(true);
-roundend();
 
 tiles2 = "8s6667788p111m9p79s";
 tiles3 = "111222z4446z333s";
@@ -77,4 +79,6 @@ paishan = randompaishan("6z9m6z");
 roundbegin();
 huansanzhang("78p8s", "333z", "9p79s", "333s", 1);
 hupai(true);
-roundend();
+
+gameend()
+

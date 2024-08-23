@@ -1091,8 +1091,8 @@ function calcfan_chuanma(tls, seat, zimo, type) {
                     ans[1000] -= 4;
                 }//十八罗汉
                 if (qingyise && gangzi == 4) ans[1017] = 6;//清十八罗汉
-                if (paihe[seat].tiles.length == 0 && seat == ju && zimo) ans[1018] = 6;//天和
-                if (paihe[seat].tiles.length == 0 && seat != ju && zimo) ans[1019] = 6;//地和
+                if (liqiinfo[seat].yifa != 0 && liqiinfo[seat].liqi == 0 && seat == ju && zimo) ans[1018] = 6;//天和
+                if (liqiinfo[seat].yifa != 0 && liqiinfo[seat].liqi == 0 && seat != ju && zimo) ans[1019] = 6;//地和
                 if (qingyise && quandai) ans[1020] = 5;//清带幺
                 if (type != 1 && paishan.length / 2 == 0) ans[1021] = 1;//海底捞月
                 return tofan(ans);
@@ -3438,26 +3438,6 @@ function gameend(noedit) {
 
 function randompaishan(paishan, paishanback, reddora) {
     if (editdata.actions.length == 0) gamebegin();
-    try {
-        if (unsafeWindow.tiles0 != null) {
-            tiles0 = unsafeWindow.tiles0;
-            unsafeWindow.tiles0 = null;
-        }
-        if (unsafeWindow.tiles1 != null) {
-            tiles1 = unsafeWindow.tiles1;
-            unsafeWindow.tiles1 = null;
-        }
-        if (unsafeWindow.tiles2 != null) {
-            tiles2 = unsafeWindow.tiles2;
-            unsafeWindow.tiles2 = null;
-        }
-        if (unsafeWindow.tiles3 != null) {
-            tiles3 = unsafeWindow.tiles3;
-            unsafeWindow.tiles3 = null;
-        }
-    } catch (e) {
-    }
-    ;
     if (tiles0 == null) tiles0 = [];
     if (tiles1 == null) tiles1 = [];
     if (tiles2 == null) tiles2 = [];
@@ -3569,6 +3549,12 @@ function randompaishan(paishan, paishanback, reddora) {
     tls.sort(randomcmp);
     for (let i = 0; i < tls.length; i++) paishan += tls[i];
     if (paishanback != undefined) paishan += paishanback;
+    if (is_chuanma() && paishan.length != 55 * 2)
+        console.warn("第 " + chang  + "第 " + ju + " 局" +juc+ " 局"+ben+ " paishan 不合规")
+    if (!is_chuanma() && config.mode.mode >= 11  && config.mode.mode <= 20 && paishan.length != 54 * 2)
+        console.warn("第 " + chang  + "第 " + ju + " 局" +juc+ " 局"+ben+ " paishan 不合规")
+    if (!is_chuanma() && config.mode.mode < 10 && paishan.length != 83 * 2)
+        console.warn("第 " + chang  + "第 " + ju + " 局" +juc+ " 局"+ben+ " paishan 不合规")
     return paishan;
 }
 
@@ -3630,9 +3616,4 @@ function loadreplay() {
         roundend();
     }
     gameend();
-}
-
-try {
-    unsafeWindow.MRE = new Majsoul_Replay_Editor;
-} catch (e) {
 }
