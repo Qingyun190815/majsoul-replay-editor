@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "一姬当千";

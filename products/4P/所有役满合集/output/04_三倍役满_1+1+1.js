@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "美游-契约";
 editdata.player_datas[1].nickname = "美游";
@@ -32,7 +32,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 第1局: 东亲, 南起 地和, 大三元, 四暗刻
 tiles0 = "1112340678999m1z";

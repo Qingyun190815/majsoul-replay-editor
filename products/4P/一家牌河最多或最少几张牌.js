@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -32,7 +32,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 要让一家牌河最多, 那该家最好是亲
 // 且 南家出的牌

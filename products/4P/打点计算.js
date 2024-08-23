@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 // 这个主要是在算点的时候有歧义的选择(即选择最大的)
 
@@ -59,7 +59,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 第1局, 123m777888999p1z 荣和1z
 tiles0 = "123m777888999p15z";

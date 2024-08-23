@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 // 为了方便编辑不考虑换三张的过程
 
@@ -29,7 +29,7 @@ editdata.config = {
             'xuezhandaodi': 1
         }
     }
-}
+};
 
 // 第1局: 天和, 根;  清十八罗汉, 杠上花; 清金钩钓, 杠上炮
 tiles0 = "11112222333344m";

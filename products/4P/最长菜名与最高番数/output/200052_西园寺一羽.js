@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "西园寺一羽-契约";
 editdata.player_datas[1].nickname = "西园寺一羽";
@@ -32,7 +32,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 最长菜名(15条45番)
 // 立直, 一发, 海底摸月, 门前清自摸和, 白, 发, 东, 连东, 混全带幺九,

@@ -1,5 +1,4 @@
-import re
-
+# 玩家昵称(与下面 avatar_ids 一一对应)
 nicknames = [
     ["一姬", "一姬-契约", "海滩派对", "新年初诣", "一姬当千", "绮春歌"],
     ["二阶堂美树", "二阶堂美树-契约", "化妆舞会", "万象沐春", "鸢尾花之夜", "玩转夏日"],
@@ -70,7 +69,7 @@ nicknames = [
     ["青鸾", "青鸾-契约", "贺今朝"],
     ["如月彩音", "如月彩音-契约", "暖冬邂逅"],
     ["未来", "未来-契约", "迷人礼颂"],
-    ["鲁鲁修·兰佩洛基", "鲁鲁修·兰佩洛基-契约", "棋盘晚宴"],
+    ["鲁鲁修·兰佩洛基", "鲁鲁修-契约", "棋盘晚宴"],
     ["C.C.", "C.C.-契约", "棋盘晚宴"],
     ["枢木朱雀", "枢木朱雀-契约", "棋盘晚宴"],
     ["红月卡莲", "红月卡莲-契约", "棋盘晚宴"],
@@ -96,6 +95,7 @@ nicknames = [
     ["南枫花", "南枫花-契约"],
 ]
 
+# 玩家所用头像(与上面 nicknames 一一对应)
 avatar_ids = [
     [400101, 400102, 400103, 400104, 400105, 400106],  # 一姬
     [400201, 400202, 400203, 400206, 400207, 400208],  # 二阶堂美树
@@ -192,6 +192,7 @@ avatar_ids = [
     [409501, 409502],  # 南枫花
 ]
 
+# 所有角色的 id
 charids = [
     200001,  # 一姬
     200002,  # 二阶堂美树
@@ -288,7 +289,7 @@ charids = [
     200095,  # 南枫花
 ]
 
-# 非普通女性角色手模的角色 id
+# 使用非一般手模的角色的 id
 special_charids = [
     200011,  # 四宫夏生
     200012,  # 汪次郎
@@ -325,11 +326,8 @@ special_charids = [
     200090,  # 玖辻
 ]
 
-special_char_index = []
-for i in range(len(special_charids)):
-    special_char_index.append((special_charids[i] % 200000) - 1)
-
-dict_paipu_uuids = [
+# 含有使用非一般手模的牌谱
+paipu_uuids = [
     "210922-89412f45-9f47-44d8-a4d4-5756308049ad",  # 汪次郎的手 0
     "210926-5f5adaf3-0413-4489-95c2-98c212e521c3",  # 男性手 1
     "211120-3d914e69-8654-4235-9748-5398f983ff18",  # 男性手-深色 2
@@ -340,52 +338,305 @@ dict_paipu_uuids = [
     "240814-8c6841b4-a706-446a-9e25-e07ce22867fb",  # 手-穆萨 7
 ]
 
+# 使用非一般手模的角色的 id 与 牌谱之间的映射关系
 dict_spchar_paipu = {
-    200011: dict_paipu_uuids[1],  # 四宫夏生
-    200012: dict_paipu_uuids[0],  # 汪次郎
-    200013: dict_paipu_uuids[1],  # 一之濑空
-    200014: dict_paipu_uuids[1],  # 明智英树
-    200016: dict_paipu_uuids[3],  # 莎拉
-    200022: dict_paipu_uuids[2],  # 约瑟夫
-    200023: dict_paipu_uuids[1],  # 斋藤治
-    200025: dict_paipu_uuids[1],  # 艾因
-    200027: dict_paipu_uuids[1],  # 月见山
-    200028: dict_paipu_uuids[3],  # 藤本绮罗
-    200030: dict_paipu_uuids[1],  # 如月莲
-    200031: dict_paipu_uuids[1],  # 石原碓海
-    200039: dict_paipu_uuids[1],  # 七夕
-    200040: dict_paipu_uuids[4],  # 蛇喰梦子
-    200041: dict_paipu_uuids[4],  # 早乙女芽亚里
-    200043: dict_paipu_uuids[4],  # 桃喰绮罗莉
-    200045: dict_paipu_uuids[2],  # A-37
-    200047: dict_paipu_uuids[1],  # 莱恩
-    200049: dict_paipu_uuids[1],  # 泷川夏彦
-    200050: dict_paipu_uuids[5],  # 赤木茂
-    200051: dict_paipu_uuids[5],  # 鹫巢岩
-    200054: dict_paipu_uuids[1],  # 夏弥尔
-    200056: dict_paipu_uuids[1],  # 白银御行
-    200060: dict_paipu_uuids[1],  # 泽克斯
-    200070: dict_paipu_uuids[1],  # 鲁鲁修·兰佩洛基
-    200072: dict_paipu_uuids[1],  # 枢木朱雀
-    200075: dict_paipu_uuids[1],  # 凌
-    200077: dict_paipu_uuids[6],  # 汉娜
-    200078: dict_paipu_uuids[7],  # 穆萨
-    200081: dict_paipu_uuids[3],  # 小黑
-    200082: dict_paipu_uuids[1],  # 吉尔
-    200085: dict_paipu_uuids[1],  # 袁枫
-    200090: dict_paipu_uuids[1],  # 玖辻
+    200011: paipu_uuids[1],  # 四宫夏生
+    200012: paipu_uuids[0],  # 汪次郎
+    200013: paipu_uuids[1],  # 一之濑空
+    200014: paipu_uuids[1],  # 明智英树
+    200016: paipu_uuids[3],  # 莎拉
+    200022: paipu_uuids[2],  # 约瑟夫
+    200023: paipu_uuids[1],  # 斋藤治
+    200025: paipu_uuids[1],  # 艾因
+    200027: paipu_uuids[1],  # 月见山
+    200028: paipu_uuids[3],  # 藤本绮罗
+    200030: paipu_uuids[1],  # 如月莲
+    200031: paipu_uuids[1],  # 石原碓海
+    200039: paipu_uuids[1],  # 七夕
+    200040: paipu_uuids[4],  # 蛇喰梦子
+    200041: paipu_uuids[4],  # 早乙女芽亚里
+    200043: paipu_uuids[4],  # 桃喰绮罗莉
+    200045: paipu_uuids[2],  # A-37
+    200047: paipu_uuids[1],  # 莱恩
+    200049: paipu_uuids[1],  # 泷川夏彦
+    200050: paipu_uuids[5],  # 赤木茂
+    200051: paipu_uuids[5],  # 鹫巢岩
+    200054: paipu_uuids[1],  # 夏弥尔
+    200056: paipu_uuids[1],  # 白银御行
+    200060: paipu_uuids[1],  # 泽克斯
+    200070: paipu_uuids[1],  # 鲁鲁修·兰佩洛基
+    200072: paipu_uuids[1],  # 枢木朱雀
+    200075: paipu_uuids[1],  # 凌
+    200077: paipu_uuids[6],  # 汉娜
+    200078: paipu_uuids[7],  # 穆萨
+    200081: paipu_uuids[3],  # 小黑
+    200082: paipu_uuids[1],  # 吉尔
+    200085: paipu_uuids[1],  # 袁枫
+    200090: paipu_uuids[1],  # 玖辻
 }
 
+# 输出的文件名集合, 例子: 200001_一姬.js
 outfile_names = []
 for i in range(len(avatar_ids)):
     outfile_names.append(str(charids[i]) + "_" + nicknames[i][0] + ".js")
 
+# 两个正则匹配串
 pattern_name = r"editdata\.player_datas\[\d]\.nickname = \"(.*)\";"
 pattern_id = r"editdata\.player_datas\[\d]\.avatar_id = (.*);"
 
+# 作为模版的文件, 文件名是 template.js
 infile = open("./template.js", "r")
 
-title_ids = [
+# 更改角色使用手的脚本
+change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 3, "item_id": 309997}];'
+
+
+# 直接进入回放的脚本, 可以在控制台输入
+def Replay_Script(uuid):
+    return "GameMgr.Inst.checkPaiPu(\"" + uuid + "\", 0)"
+
+# 立直棒, slot: 0
+liqibangs = [
+    305001,  # 咸鱼立直棒
+    305002,  # 大葱立直棒
+    305003,  # 狗骨头立直棒
+    305004,  # 巧克力立直棒
+    305005,  # 邪眼立直棒
+    305006,  # 翡翠立直棒
+    305010,  # 立直-苍火
+    305018,  # 猩红立直棒
+    305019,  # 24K金棒
+    305027,  # 立直棒-爆竹
+    305028,  # 立直棒-饺子
+    305041,  # 立直棒-断恶
+    305042,  # 立直棒-雪糕
+    305049,  # 立直棒-炎夏型一姬甜筒
+    305600,  # 立直棒-小恶魔蝙蝠
+    305601,  # 立直棒-魔法棒
+    305602,  # 立直棒-金龙鱼
+    305603,  # 立直棒-绯月荆棘
+    305604,  # 立直棒-乘风破浪
+    305605,  # 立直棒-应援棒
+    305606,  # 立直棒-冰糖葫芦(咸)
+    305607,  # 立直棒-仿生喵
+    305608,  # 立直棒-夹心猫团子
+    305609,  # 立直棒-虚无传送门
+    305610,  # 立直棒-喵切丸
+    305611,  # 立直棒-如意
+    305612,  # 立直棒-陨石法杖
+    305613,  # 立直棒-波子汽水
+    305614,  # 立直棒-仙境密匙
+    305615,  # 立直棒-柴犬团子
+    305616,  # 立直棒-魔法扫帚
+    305617,  # 立直棒-王者风范
+    305618,  # 立直棒-猫神剑玉
+    305619,  # 立直棒-可口喵乐
+    305620,  # 立直棒-秘传之卷
+    305621,  # 立直棒-盆栽
+    305622,  # 立直棒-包甜好瓜
+    305623,  # 立直棒-法棍面包
+    305624,  # 立直棒-学霸眼镜
+    305625,  # 立直棒-棒球英杰
+    305626,  # 立直棒-霓彩路标
+    308003,  # 立直棒-墨西哥卷饼
+    308008,  # 立直棒-生死之剑
+    308013,  # 立直棒-命悬一线
+    308018,  # 立直棒-恋之反省
+    308023,  # 立直棒-爱心便当
+    308028,  # 立直棒-骑士的钥匙
+    308033,  # 立直棒-红晖的魔杖
+    308038,  # 立直棒-大蛇比纳
+    30560001,  # 立直棒-喵星棒
+    30560002,  # 立直棒-夺笋
+    30560003,  # 立直棒-小鳄霸
+]
+
+# 和牌特效, slot: 1
+hupais = [
+    305007,  # 和牌-烈焰
+    305008,  # 和牌-旋风
+    305009,  # 和牌-樱花
+    305023,  # 和牌-黑炎
+    305029,  # 和牌-烟花
+    305034,  # 和牌-爆炎龙卷
+    305035,  # 和牌-方舟反应堆
+    305036,  # 和牌-红玫瑰
+    305039,  # 和牌-K.O.
+    305040,  # 和牌-逆鳞
+    305200,  # 和牌-幽灵嗷嗷
+    305201,  # 和牌-歌剧魅影
+    305202,  # 和牌-魔法少女
+    305203,  # 和牌-阖家欢
+    305204,  # 和牌-群星之寂
+    305205,  # 和牌-厄里斯之瞳
+    305206,  # 和牌-天降正义
+    305207,  # 和牌-黄金之蝶
+    305208,  # 和牌-海浪的馈赠
+    305209,  # 和牌-安可
+    305210,  # 和牌-鸿运开年
+    305211,  # 和牌-核心裂变
+    305212,  # 和牌-无间契印
+    305213,  # 和牌-疾月斩
+    305215,  # 和牌-剑吟虎啸
+    305216,  # 和牌-槲寄生下
+    305217,  # 和牌-金屏春色
+    305218,  # 和牌-天罚
+    305219,  # 和牌-银链飞雪
+    305220,  # 和牌-泰山鸭顶
+    305221,  # 和牌-机械哲学
+    305222,  # 和牌-天地无用
+    305223,  # 和牌-衔环结草
+    305224,  # 和牌-黑洞
+    305225,  # 和牌-收割时刻
+    305226,  # 和牌-水之道
+    308001,  # 和牌-龙卷雷霆
+    308006,  # 和牌-命运之轮
+    308011,  # 和牌-地狱低语
+    308016,  # 和牌-恋之降临
+    308021,  # 和牌-高岭之花
+    308026,  # 和牌-绝对的命令
+    308031,  # 和牌-魔力的迸发
+    308036,  # 和牌-冷血射击
+    30520001,  # 和牌-杰克的恶作剧
+    30520002,  # 和牌-虚空结界
+    30520003,  # 和牌-墨韵
+    30520004,  # 和牌-伺机而动
+    30520005,  # 和牌-喵——呜！
+    30520006,  # 和牌-落羽涅槃
+]
+
+# 立直特效, slot: 2
+liqis = [
+    305021,  # 立直-碎冰
+    305022,  # 立直-火焰
+    305032,  # 立直-幻影
+    305033,  # 立直-飞羽
+    305037,  # 立直-叮～
+    305038,  # 立直-龙腾
+    305300,  # 立直-蝙蝠桀桀
+    305301,  # 立直-非常事态
+    305302,  # 立直-魔法少女
+    305303,  # 立直-鼠生威
+    305304,  # 立直-星陨
+    305305,  # 立直-血·朗基努斯枪
+    305306,  # 立直-断罪
+    305307,  # 立直-蝶惑
+    305308,  # 立直-浪之声
+    305309,  # 立直-开场曲
+    305310,  # 立直-生财有道
+    305311,  # 立直-虚拟导航
+    305312,  # 立直-灵魂契约
+    305313,  # 立直-风华斩
+    305315,  # 立直-虎啸长风
+    305316,  # 立直-鹿雪冬至
+    305317,  # 立直-暗香梅影
+    305318,  # 立直-雷电环索
+    305319,  # 立直-蛇行诡道
+    305320,  # 立直-立直鸭
+    305321,  # 立直-量子智能
+    305322,  # 立直-毒烟玉
+    305323,  # 立直-狐缘之绊
+    305324,  # 立直-猫过留痕
+    305325,  # 立直-问心之镰
+    305326,  # 立直-滚雪球效应
+    308002,  # 立直-花天月地
+    308007,  # 立直-纸牌花火
+    308012,  # 立直-幽冥之焰
+    308017,  # 立直-恋之箭矢
+    308022,  # 立直-未来视
+    308027,  # 立直-王者的决意
+    308032,  # 立直-英灵的典仪
+    308037,  # 立直-虹色轨迹
+    30530001,  # 立直-南瓜夜行
+    30530002,  # 立直-星河入梦
+    30530003,  # 立直-挥毫
+    30530004,  # 立直-一步之遥
+    30530005,  # 立直-萌爪狂欢
+    30530006,  # 立直-有凤来仪
+]
+
+# 手的样式, slot: 3
+hands = [
+    305011,  # 橘猫爪
+    305030,  # 夜月猫爪
+    305031,  # 蓝猫爪
+    309500,  # 橘色虎爪
+    309991,  # 手-汉娜(已过期) 穆萨
+    309992,  # 手-汉娜(已过期) 汉娜
+    309993,  # 手-斗牌联动(已过期)
+    309994,  # 手-狂赌联动(已过期) 除了生志摩妄
+    309995,  # 手-深色(已过期) 藤本绮罗, 莎拉, 小黑
+    309996,  # 男性手-深色(已过期) 约瑟夫, A-37
+    309997,  # 手-默认(已过期)
+    309998,  # 男性手(已过期)
+    309999,  # 汪次郎的手(已过期)
+]
+
+# 头像框, slot: 5
+avatar_frames = [
+    305500,  # 头像框-豆芽
+    305501,  # 头像框-默认
+    305510,  # 头像框-四象战
+    305511,  # 头像框-四象战
+    305512,  # 头像框-四象战
+    305513,  # 头像框-四象战
+    305514,  # 头像框-四象战
+    305515,  # 头像框-四象战
+    305516,  # 头像框-四象战
+    305517,  # 头像框-四象战
+    305518,  # 头像框-四象战
+    305519,  # 头像框-四象战
+    305520,  # 头像框-试炼强者
+    305521,  # 头像框-试炼贤者
+    305522,  # 头像框-试炼霸者
+    305523,  # 头像框-猫咪军团的身份
+    305524,  # 头像框-四象战
+    305525,  # 双聖の眷属たち
+    305526,  # Team Championship Limited <br>Portrait Frame
+    305527,  # 头像框-四象战
+    305528,  # 头像框-四象战
+    305529,  # 头像框-秋霜切玉
+    305530,  # 头像框-四象战
+    305531,  # 头像框-四象战
+    305532,  # 头像框-四象战
+    305533,  # 双聖の眷属たち
+    305534,  # 头像框-四象战
+    305535,  # 头像框-四象战
+    305536,  # 头像框-四象战
+    305537,  # 头像框-圣堂百合
+    305538,  # 头像框-四象战
+    305539,  # 双聖の眷属たち
+    305540,  # 头像框-四象战
+    305541,  # 头像框-四象战
+    305542,  # 头像框-雪夜童话
+    305543,  # 头像框-四象战
+    305544,  # 头像框-四象战
+    305545,  # 头像框-窗外
+    305546,  # 双聖の眷属たち
+    305547,  # 头像框-四象战
+    305548,  # 头像框-四象战
+    305549,  # 头像框-四象战
+    305550,  # 头像框-四象战
+    305551,  # 头像框-丹心一寸
+    305552,  # 头像框-大小姐发带
+    305553,  # 双聖の眷属たち
+    305555,  # 头像框-豆芽测试用
+    30550001,  # 头像框-四象战
+    30550002,  # 头像框-四象战
+    30550003,  # 头像框-四象战
+    30550004,  # 头像框-四象战
+    30550005,  # 头像框-四象战
+    30550006,  # 头像框-四象战
+    30550007,  # 双聖の眷属たち
+    30550008,  # 头像框-四象战
+    30550009,  # 头像框-四象战
+    30550010,  # 头像框-四象战
+    30550011,  # 头像框-四象战
+    30550012,  # 头像框-赤丹霞羽
+]
+
+# 称号
+titles = [
     600001,  # 无称号
     600002,  # 原初之火
     600003,  # 萤火之光
@@ -471,130 +722,8 @@ title_ids = [
     600091,  # 四象战冠军
     600092,  # 四象战冠军
     600093,  # 花ノ国 戦国最強
+    600094,  # 青云之志
+    600095,  # 双聖戦優勝
+    600096,  # 820邹倚天
+    600097,  # 雀魂インビ夏王者
 ]
-
-# 更改角色使用手的脚本
-change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{\"slot\": 3, \"item_id\": 309997}];'
-
-
-# 直接进入回放的脚本, 可以在控制台输入
-def Replay_Script(uuid):
-    return "GameMgr.Inst.checkPaiPu(\"" + uuid + "\", 0)"
-
-
-def Generate_All_Avatar(player_num=4):
-    special_charids_index = 0
-
-    for index in range(len(avatar_ids)):
-        outfile = open("./output/" + outfile_names[index], "w")
-        name_count = 0
-        id_count = 0
-
-        if player_num == 4:
-            tmp_nickname = []
-            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
-                for j in [0, 1, 2, 3]:
-                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
-            if len(nicknames[index]) == 3 or len(nicknames[index]) == 4:
-                tmp_nickname.append(nicknames[index][1])
-                tmp_nickname.append(nicknames[index][0])
-                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 2])
-                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 1])
-            if len(nicknames[index]) >= 5:
-                tmp_nickname.append(nicknames[index][1])
-                for j in [-3, -2, -1]:
-                    tmp_nickname.append(nicknames[index][j])
-
-            tmp_avatar_id = []
-            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
-                for j in [0, 1, 2, 3]:
-                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
-            if len(avatar_ids[index]) == 3 or len(avatar_ids[index]) == 4:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                tmp_avatar_id.append(avatar_ids[index][0])
-                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 2])
-                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 1])
-            if len(avatar_ids[index]) >= 5:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                for j in [-3, -2, -1]:
-                    tmp_avatar_id.append(avatar_ids[index][j])
-
-            flag = False
-            if special_charids_index < len(special_charids) and charids[index] == special_charids[
-                special_charids_index]:
-                flag = True
-                special_charids_index = special_charids_index + 1
-
-            for line in infile:
-                result = re.search(pattern_name, line)
-                if name_count < 4 and result:
-                    # 匹配成功, result[0] 是全体, result[1] 是 nickname
-                    line = line.replace(result[1], tmp_nickname[name_count])
-                    name_count += 1
-                if id_count < 4 and name_count == 4:
-                    result = re.search(pattern_id, line)
-                    if result:
-                        # 匹配成功, result[0] 是全体, result[1] 是 avatar_id
-                        line = line.replace(result[1], str(tmp_avatar_id[id_count]))
-                        id_count += 1
-                outfile.write(line)
-                # if flag and id_count == 4 and name_count == 4:
-                #     outfile.write("\n" + change_hand + "\n")
-                #     flag = False
-
-        elif player_num == 3:
-            tmp_nickname = []
-            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
-                for j in [0, 1, 2]:
-                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
-            if len(nicknames[index]) == 3:
-                tmp_nickname.append(nicknames[index][1])
-                tmp_nickname.append(nicknames[index][0])
-                tmp_nickname.append(nicknames[index][2])
-            if len(nicknames[index]) >= 4:
-                tmp_nickname.append(nicknames[index][1])
-                for j in [-2, -1]:
-                    tmp_nickname.append(nicknames[index][j])
-
-            tmp_avatar_id = []
-            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
-                for j in [0, 1, 2]:
-                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
-            if len(avatar_ids[index]) == 3:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                tmp_avatar_id.append(avatar_ids[index][0])
-                tmp_avatar_id.append(avatar_ids[index][2])
-            if len(avatar_ids[index]) >= 4:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                for j in [-2, -1]:
-                    tmp_avatar_id.append(avatar_ids[index][j])
-
-            flag = False
-            if special_charids_index < len(special_charids) and charids[index] == special_charids[
-                special_charids_index]:
-                flag = True
-                special_charids_index = special_charids_index + 1
-
-            for line in infile:
-                result = re.search(pattern_name, line)
-                if name_count < 3 and result:
-                    # 匹配成功, result[0] 是全体, result[1] 是 nickname
-                    line = line.replace(result[1], tmp_nickname[name_count])
-                    name_count += 1
-                if id_count < 3 and name_count == 3:
-                    result = re.search(pattern_id, line)
-                    if result:
-                        # 匹配成功, result[0] 是全体, result[1] 是 avatar_id
-                        line = line.replace(result[1], str(tmp_avatar_id[id_count]))
-                        id_count += 1
-                outfile.write(line)
-                # if flag and id_count == 3 and name_count == 3:
-                #     outfile.write("\n" + change_hand + "\n")
-                #     flag = False
-        if charids[index] in dict_spchar_paipu:
-            outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
-        infile.seek(0)
-        outfile.close()
-
-    infile.close()
-    return

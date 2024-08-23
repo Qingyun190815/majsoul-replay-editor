@@ -1,7 +1,6 @@
 """
     会运行所有 python 脚本进行刷新操作
 """
-
 import os
 
 home = os.getcwd()

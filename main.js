@@ -345,10 +345,10 @@ var editdata = {
     'xun': [],
     'players': [],
     'config': {},
-    'player_datas': [{'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []}]
+    'player_datas': [{'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑0", 'title': 600001, 'views': []},
+        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑1", 'title': 600001, 'views': []},
+        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑2", 'title': 600001, 'views': []},
+        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑3", 'title': 600001, 'views': []}]
 };
 var lstscene;
 
@@ -465,13 +465,13 @@ function loadproject(x) {
         'player_datas': [{
             'avatar_frame': 0,
             'avatar_id': 400101,
-            'nickname': "电脑(简单)",
+            'nickname': "电脑0",
             'title': 600001,
             'views': []
         },
-            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []},
-            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []},
-            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑(简单)", 'title': 600001, 'views': []}]
+            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑1", 'title': 600001, 'views': []},
+            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑2", 'title': 600001, 'views': []},
+            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑3", 'title': 600001, 'views': []}]
     };
 }
 
@@ -3550,11 +3550,11 @@ function randompaishan(paishan, paishanback, reddora) {
     for (let i = 0; i < tls.length; i++) paishan += tls[i];
     if (paishanback != undefined) paishan += paishanback;
     if (is_chuanma() && paishan.length != 55 * 2)
-        console.warn("第 " + chang  + "第 " + ju + " 局" +juc+ " 局"+ben+ " paishan 不合规")
-    if (!is_chuanma() && config.mode.mode >= 11  && config.mode.mode <= 20 && paishan.length != 54 * 2)
-        console.warn("第 " + chang  + "第 " + ju + " 局" +juc+ " 局"+ben+ " paishan 不合规")
+        console.warn("第 " + chang + "第 " + ju + " 局" + juc + " 局" + ben + " paishan 不合规")
+    if (!is_chuanma() && config.mode.mode >= 11 && config.mode.mode <= 20 && paishan.length != 54 * 2)
+        console.warn("第 " + chang + "第 " + ju + " 局" + juc + " 局" + ben + " paishan 不合规")
     if (!is_chuanma() && config.mode.mode < 10 && paishan.length != 83 * 2)
-        console.warn("第 " + chang  + "第 " + ju + " 局" +juc+ " 局"+ben+ " paishan 不合规")
+        console.warn("第 " + chang + "第 " + ju + " 局" + juc + " 局" + ben + " paishan 不合规")
     return paishan;
 }
 

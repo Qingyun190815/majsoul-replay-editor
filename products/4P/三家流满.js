@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 // 这个其实在"所有角色报所有菜名系列"中已经有了, 在最后一局
 
@@ -34,7 +34,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 tiles0 = "22223444666888s";
 tiles1 = "2228m333557777s";

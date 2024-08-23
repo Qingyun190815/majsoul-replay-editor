@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 // 这里不考虑换三张的情况, 没有什么必要
 
@@ -37,7 +37,7 @@ editdata.config = {
             'xuezhandaodi': 1
         }
     }
-}
+};
 
 // 有人跑路, 最多几张
 // 要让一家牌河最多, 那该家最好是亲家,

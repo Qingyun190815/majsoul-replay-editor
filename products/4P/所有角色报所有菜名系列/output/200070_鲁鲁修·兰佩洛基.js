@@ -1,8 +1,8 @@
-loadproject()
+loadproject();
 
-editdata.player_datas[0].nickname = "鲁鲁修·兰佩洛基-契约";
+editdata.player_datas[0].nickname = "鲁鲁修-契约";
 editdata.player_datas[1].nickname = "鲁鲁修·兰佩洛基";
-editdata.player_datas[2].nickname = "鲁鲁修·兰佩洛基-契约";
+editdata.player_datas[2].nickname = "鲁鲁修-契约";
 editdata.player_datas[3].nickname = "棋盘晚宴";
 editdata.player_datas[0].avatar_id = 407002;
 editdata.player_datas[1].avatar_id = 407001;
@@ -32,7 +32,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 第1局: 东亲, 东起 天和, 字一色, 四暗刻单骑, 大四喜      六倍役满
 tiles0 = "11122233344477z";

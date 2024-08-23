@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "美游-契约";
 editdata.player_datas[1].nickname = "美游";
@@ -32,7 +32,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 第1局: 东亲, 东起 四暗刻单骑, 大四喜
 tiles0 = "1p1s111222333444z";
@@ -53,7 +53,7 @@ tiles2 = "1112340678999p";
 tiles3 = "1112340678999s";
 paishan = randompaishan("1z");
 roundbegin();
-qiepai()
+qiepai();
 mopai();
 hupai();
 
@@ -64,6 +64,6 @@ tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("5z");
 roundbegin();
-qiepai()
+qiepai();
 mopai();
 hupai();

@@ -1,10 +1,10 @@
-loadproject()
+loadproject();
 
 // 为了方便编辑不考虑换三张的过程
 
-editdata.player_datas[0].nickname = "鲁鲁修·兰佩洛基-契约";
+editdata.player_datas[0].nickname = "鲁鲁修-契约";
 editdata.player_datas[1].nickname = "鲁鲁修·兰佩洛基";
-editdata.player_datas[2].nickname = "鲁鲁修·兰佩洛基-契约";
+editdata.player_datas[2].nickname = "鲁鲁修-契约";
 editdata.player_datas[3].nickname = "棋盘晚宴";
 editdata.player_datas[0].avatar_id = 407002;
 editdata.player_datas[1].avatar_id = 407001;
@@ -29,7 +29,7 @@ editdata.config = {
             'xuezhandaodi': 1
         }
     }
-}
+};
 
 // 第1局: 天和, 根;  清十八罗汉, 杠上花; 清金钩钓, 杠上炮
 tiles0 = "11112222333344m";

@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "电脑0";
 editdata.player_datas[1].nickname = "电脑1";
@@ -30,7 +30,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 tiles0 = "1112378999m5z406p";
 tiles1 = "1112378999s555s";
@@ -80,5 +80,4 @@ roundbegin();
 huansanzhang("78p8s", "333z", "9p79s", "333s", 1);
 hupai(true);
 
-gameend()
-
+gameend();

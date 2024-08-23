@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 // 南起 铳三家共 2 (四单) + 3 (绿四单) + 6 (字杠骑喜) = 11 倍役满
 
@@ -34,7 +34,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 tiles0 = "11112223334446z";
 tiles1 = "1112340678999m";

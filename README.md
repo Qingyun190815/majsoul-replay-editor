@@ -10,8 +10,6 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 使用方法 (体验)
 
-(原repo提供了油猴脚本使用方法, 我对这方面不是很熟就删掉了)
-
 `git clone` 该仓库或直接下载 `main.js` 和 example 文件夹下的任一js文件
 
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 `main.js` 里面的内容全选复制到控制台中,
@@ -19,7 +17,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
-严格的说所选择的谱不是随便的: 必须和要自制回放的谱资源对应(尤其是手的样式和立直棒这种), 但如果不是自制的回放要求特别高一般不会出问题, 详细内容要看下面提到的文档了
+**严格的说所选择的谱不是随便的: 必须和要自制回放的谱资源对应(尤其是手的样式和立直棒这种), 但如果不是自制的回放要求特别高一般不会出问题, 详细内容要看下面提到的文档了**
 
 ---
 

@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "东城玄音-契约";
 editdata.player_datas[1].nickname = "东城玄音";
@@ -32,7 +32,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 第1局: 东亲, 东起 天和, 字一色, 四暗刻单骑, 大四喜      六倍役满
 tiles0 = "11122233344477z";

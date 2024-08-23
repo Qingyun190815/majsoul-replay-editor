@@ -1,3 +1,5 @@
+loadproject();
+
 editdata.player_datas[0].nickname = "电脑0";
 editdata.player_datas[1].nickname = "电脑1";
 editdata.player_datas[2].nickname = "电脑2";
@@ -29,7 +31,8 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
+
 tiles0 = "111s11125566777z";
 tiles1 = "1m222333444688s";
 tiles2 = "1m111222333p688s";

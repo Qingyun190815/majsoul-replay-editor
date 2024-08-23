@@ -1,10 +1,10 @@
-loadproject()
+loadproject();
 
 // 主要是三个小局, 前两局和最后一局
 // 第一局亲家的最长菜名(15条49番), 第二局最高番数(14条64番)
 // 最后一局子家的最长菜名(15条55番)
 
-editdata.player_datas[0].nickname = "鲁鲁修·兰佩洛基-契约";
+editdata.player_datas[0].nickname = "鲁鲁修-契约";
 editdata.player_datas[1].nickname = "鲁鲁修·兰佩洛基";
 editdata.player_datas[2].nickname = "棋盘晚宴";
 editdata.player_datas[0].avatar_id = 407002;
@@ -34,7 +34,7 @@ editdata.config = {
             'xueliu': 0
         }
     }
-}
+};
 
 // 最长菜名(15条49番)
 // 立直, 一发, 海底摸月, 门前清自摸和, 白, 发, 东, 连东, 混全带幺九,

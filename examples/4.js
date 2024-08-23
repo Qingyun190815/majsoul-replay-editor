@@ -1,4 +1,4 @@
-loadproject()
+loadproject();
 
 editdata.player_datas[0].nickname = "电脑0";
 editdata.player_datas[1].nickname = "电脑1";
@@ -28,8 +28,7 @@ editdata.config = {
             'xuezhandaodi': 0
         }
     }
-}
-gamebegin();
+};
 
 // 第1局 底和
 tiles0 = "2345678m2345678p";
