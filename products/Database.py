@@ -396,7 +396,7 @@ infile = open("./template.js", "r")
 change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 3, "item_id": 309997}];'
 
 
-# 直接进入回放的脚本, 可以在控制台输入
+# 直接进入回放的脚本, 可以在控制台输入, 这里要感谢雀魂bot"姬萌萌"的作者 Paulzzh
 def Replay_Script(uuid):
     return "GameMgr.Inst.checkPaiPu(\"" + uuid + "\", 0)"
 
