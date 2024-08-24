@@ -415,4 +415,4 @@ for (let i = 65; i >= 1; i--) {
 }
 notileliuju();
 
-GameMgr.Inst.checkPaiPu("210922-89412f45-9f47-44d8-a4d4-5756308049ad", 0)
+GameMgr.Inst.checkPaiPu("210501-efaec1a5-5ac0-4e27-892a-180f82ac9748", 0)

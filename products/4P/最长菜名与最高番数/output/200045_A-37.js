@@ -96,4 +96,4 @@ mopai();
 qiepai();
 hupai();
 
-GameMgr.Inst.checkPaiPu("211120-3d914e69-8654-4235-9748-5398f983ff18", 0)
+GameMgr.Inst.checkPaiPu("240816-a0cd14b8-4df6-49d6-b13a-f94955ab471d", 0)

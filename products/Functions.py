@@ -1,7 +1,11 @@
+"""
+    与 Database.py 对应的操作函数
+    不要直接运行这个文件, 这个文件只提供函数供其他文件调用
+"""
 from products.Database import *
 import re
 
-'''
+''' use_dict
 选择使用哪种方式来实现 使用非一般手模的角色 的牌谱
 True 表示回放牌谱时, 放映 有对应角色的真实牌谱
     会用到变量: paipu_uuids, dict_spchar_paipu
@@ -15,6 +19,7 @@ False 表示修改角色的手模为一般手模(通过修改装扮 views 里面
 use_dict = True
 
 
+# 这里 player_num 参数表示对局玩家数, 默认是四麻, 三麻填参数3就行
 def Generate_All_Avatar(player_num=4):
     special_charids_index = 0
 

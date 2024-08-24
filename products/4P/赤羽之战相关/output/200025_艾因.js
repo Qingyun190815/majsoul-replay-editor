@@ -194,4 +194,4 @@ notileliuju();
 
 gameend();
 
-GameMgr.Inst.checkPaiPu("210926-5f5adaf3-0413-4489-95c2-98c212e521c3", 0)
+GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

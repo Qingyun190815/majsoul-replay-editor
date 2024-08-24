@@ -10,10 +10,10 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 使用方法 (体验)
 
-`git clone` 该仓库或直接下载 `main.js` 和 example 文件夹下的任一js文件
+`git clone` 该仓库或直接下载 `main.js` 和 [examples](examples) 文件夹下的任一js文件
 
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 `main.js` 里面的内容全选复制到控制台中,
-然后将 [examples](examples) 文件夹下的js文件内容也复制到控制台中
+然后将 examples 文件夹下的js文件内容也复制到控制台中
 
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
@@ -27,10 +27,16 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 想看原wiki的请阅读 [majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)
 
-TODO:
-- 简要做一个英文版文档
-- 实现一个能报完所有菜名的简洁的牌谱模版(分为多小局)
-- 理解 `main.js` 文件的逻辑
+建议阅读顺序:
+
+1. [编辑每一场游戏的方法](doc/编辑每一场游戏的方法.md)
+2. [编辑每一局的方法](doc/编辑每一局的方法.md)
+3. [每一局所使用的函数(段位场部分)](doc/每一局所使用的函数（段位场部分）.md)
+4. [(可选)每一局所使用的函数(活动场部分)](doc/每一局所使用的函数（活动场部分）.md)
+5. [examples文件的解释](doc/examples文件解释.md)
+6. [注意事项](doc/注意事项.md)
+
+[字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在自制牌谱时使用
 
 (下面内容基本没有改动)
 
@@ -64,7 +70,7 @@ TODO:
 
 6.请不要在任何第三方网站下载该源代码，否则后果自负。
 
-7.允许用途：可以用于个人使用，请勿用于商业用途，谢谢配合。请不要将 example 文件夹下面的代码进行录制并宣传，谢谢。
+7.允许用途：可以用于个人使用，请勿用于商业用途，谢谢配合。请不要将 examples 文件夹下面的代码进行录制并宣传，谢谢。
 
 ## 示例代码的部分截图
 
