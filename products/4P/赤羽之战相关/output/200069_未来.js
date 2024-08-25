@@ -10,23 +10,17 @@ editdata.player_datas[0].avatar_id = 406902;
 editdata.player_datas[1].avatar_id = 406901;
 editdata.player_datas[2].avatar_id = 406902;
 editdata.player_datas[3].avatar_id = 406903;
+
 editdata.config = {
     'category': 2,
     'meta': {'mode_id': 41},
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'begin_open_mode': 0,
             'chuanma': 1,
-            'dora3_mode': 0,
-            'dora_count': 0,
-            'fanfu': 1,
-            'guyi_mode': 0,
             'huansanzhang': 0,
             'init_point': 500000,
-            'muyu_mode': 0,
-            'shiduan': 0,
-            'xuezhandaodi': 1
+            'xuezhandaodi': 1,
         }
     }
 };

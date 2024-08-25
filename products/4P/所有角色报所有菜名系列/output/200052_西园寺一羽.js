@@ -9,27 +9,13 @@ editdata.player_datas[1].avatar_id = 405201;
 editdata.player_datas[2].avatar_id = 405202;
 editdata.player_datas[3].avatar_id = 405201;
 
-settings.chuanma_points_method = 0;
 editdata.config = {
     'category': 1,
-    'meta': {'mode_id': 2},
+    'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'begin_open_mode': 0,
-            'chuanma': 0,
-            'dora3_mode': 0,
-            'dora_count': 3,
-            'fanfu': 1,
-            'guyi_mode': 0,
-            'have_zimosun': true,
-            'huansanzhang': 0,
-            'open_hand': 0,
             'init_point': 200000,
-            'muyu_mode': 0,
-            'shiduan': 1,
-            'xuezhandaodi': 0,
-            'xueliu': 0
         }
     }
 };

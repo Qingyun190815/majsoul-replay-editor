@@ -3550,11 +3550,11 @@ function randompaishan(paishan, paishanback, reddora) {
     for (let i = 0; i < tls.length; i++) paishan += tls[i];
     if (paishanback != undefined) paishan += paishanback;
     if (is_chuanma() && paishan.length != 55 * 2)
-        console.warn("第 " + chang + "第 " + ju + " 局" + juc + " 局" + ben + " paishan 不合规")
-    if (!is_chuanma() && config.mode.mode >= 11 && config.mode.mode <= 20 && paishan.length != 54 * 2)
-        console.warn("第 " + chang + "第 " + ju + " 局" + juc + " 局" + ben + " paishan 不合规")
+        console.warn("chang: " + chang + ", ju: " + ju + ", juc: " + juc + ", ben: " + ben + " paishan 不合规")
+    if (!is_chuanma() && config.mode.mode >= 10 && config.mode.mode <= 20 && paishan.length != 68 * 2)
+        console.warn("chang: " + chang + ", ju: " + ju + ", juc: " + juc + ", ben: " + ben + " paishan 不合规")
     if (!is_chuanma() && config.mode.mode < 10 && paishan.length != 83 * 2)
-        console.warn("第 " + chang + "第 " + ju + " 局" + juc + " 局" + ben + " paishan 不合规")
+        console.warn("chang: " + chang + ", ju: " + ju + ", juc: " + juc + ", ben: " + ben + " paishan 不合规")
     return paishan;
 }
 
