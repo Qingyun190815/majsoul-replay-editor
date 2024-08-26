@@ -345,10 +345,12 @@ var editdata = {
     'xun': [],
     'players': [],
     'config': {},
-    'player_datas': [{'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑0", 'title': 600001, 'views': []},
+    'player_datas': [
+        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑0", 'title': 600001, 'views': []},
         {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑1", 'title': 600001, 'views': []},
         {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑2", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑3", 'title': 600001, 'views': []}]
+        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑3", 'title': 600001, 'views': []},
+    ]
 };
 var lstscene;
 
@@ -462,13 +464,8 @@ function loadproject(x) {
         'xun': [],
         'players': null,
         'config': {},
-        'player_datas': [{
-            'avatar_frame': 0,
-            'avatar_id': 400101,
-            'nickname': "电脑0",
-            'title': 600001,
-            'views': []
-        },
+        'player_datas': [
+            {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑0", 'title': 600001, 'views': []},
             {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑1", 'title': 600001, 'views': []},
             {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑2", 'title': 600001, 'views': []},
             {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑3", 'title': 600001, 'views': []}]
@@ -724,6 +721,12 @@ function update_muyu() {
 
 function decompose(x) {
     for (let i = 0; i < x.length; i++) {
+        if (x[i] == ' ') continue;
+        if (x[i] == '.' || x[i] == 'Y' || x[i] == 'D' || x[i] == 'H' || x[i] == 'T') {
+            x = x.substring(0, i + 1) + x[i] + x.substring(i + 1);
+            i++;
+            continue;
+        }
         if (x[i] != 'm' && x[i] != 'p' && x[i] != 's' && x[i] != 'z')
             for (let j = i + 1; j < x.length; j++) {
                 if (x[j] == 'm' || x[j] == 'p' || x[j] == 's' || x[j] == 'z') {
@@ -3438,6 +3441,7 @@ function gameend(noedit) {
 
 function randompaishan(paishan, paishanback, reddora) {
     if (editdata.actions.length == 0) gamebegin();
+
     if (tiles0 == null) tiles0 = [];
     if (tiles1 == null) tiles1 = [];
     if (tiles2 == null) tiles2 = [];
@@ -3541,20 +3545,160 @@ function randompaishan(paishan, paishanback, reddora) {
     for (let i = 0; i < tiles1.length; i++) cnt[tiletoint(tiles1[i], 1)]--;
     for (let i = 0; i < tiles2.length; i++) cnt[tiletoint(tiles2[i], 1)]--;
     for (let i = 0; i < tiles3.length; i++) cnt[tiletoint(tiles3[i], 1)]--;
-    for (let i = 0; i < paishan.length; i += 2) cnt[tiletoint(paishan[i] + paishan[i + 1], 1)]--;
-    if (paishanback != undefined) for (let i = 0; i < paishanback.length; i += 2) cnt[tiletoint(paishanback[i] + paishanback[i + 1], 1)]--;
+    for (let i = 0; i < paishan.length; i += 2) {
+        if (paishan[i] != '.' && paishan[i] != 'Y' && paishan[i] != 'D' && paishan[i] != 'H' && paishan[i] != 'T') cnt[tiletoint(paishan[i] + paishan[i + 1], 1)]--;
+    }
+    if (paishanback != undefined) for (let i = 0; i < paishanback.length; i += 2) {
+        if (paishanback[i] != '.' && paishanback[i] != 'Y' && paishanback[i] != 'D' && paishanback[i] != 'H' && paishanback[i] != 'T') cnt[tiletoint(paishanback[i] + paishanback[i + 1], 1)]--;
+    }
+    // console.log(cnt);
     for (let i = 1; i <= 37; i++) {
         for (let j = 1; j <= cnt[i]; j++) tls.push(inttotile(i));
     }
     tls.sort(randomcmp);
+    paishan = paishan.split('');
+    for (let i = 0; i < paishan.length; i += 2) {
+        if (paishan[i] == 'H') { // 字牌
+            for (let j = 0; j < tls.length; j++) {
+                if (tls[j][1] == 'z') {
+                    let tmp = tls[j];
+                    tls[j] = tls[tls.length - 1];
+                    tls[tls.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishan[i] = tls[tls.length - 1][0];
+            paishan[i + 1] = tls[tls.length - 1][1];
+            tls.length--;
+        } else if (paishan[i] == 'T') { // 老头牌
+            for (let j = 0; j < tls.length; j++) {
+                if (!(tls[j][0] == '1' || tls[j][0] == '9')) {
+                    let tmp = tls[j];
+                    tls[j] = tls[tls.length - 1];
+                    tls[tls.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishan[i] = tls[tls.length - 1][0];
+            paishan[i + 1] = tls[tls.length - 1][1];
+            tls.length--;
+        }
+    }
+    for (let i = 0; i < paishan.length; i += 2) {
+        if (paishan[i] == 'Y') { // 幺九牌
+            for (let j = 0; j < tls.length; j++) {
+                if (tls[j][0] == '1' || tls[j][0] == '9' || tls[j][1] == 'z') {
+                    let tmp = tls[j];
+                    tls[j] = tls[tls.length - 1];
+                    tls[tls.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishan[i] = tls[tls.length - 1][0];
+            paishan[i + 1] = tls[tls.length - 1][1];
+            tls.length--;
+        } else if (paishan[i] == 'D') { // 中张牌
+            for (let j = 0; j < tls.length; j++) {
+                if (!(tls[j][0] == '1' || tls[j][0] == '9' || tls[j][1] == 'z')) {
+                    let tmp = tls[j];
+                    tls[j] = tls[tls.length - 1];
+                    tls[tls.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishan[i] = tls[tls.length - 1][0];
+            paishan[i + 1] = tls[tls.length - 1][1];
+            tls.length--;
+        }
+    }
+    for (let i = 0; i < paishan.length; i += 2) {
+        if (paishan[i] == '.') { // 任意其他牌
+            // console.log(tls[tls.length - 1][0], tls[tls.length - 1][1]);
+            paishan[i] = tls[tls.length - 1][0];
+            paishan[i + 1] = tls[tls.length - 1][1];
+            tls.length--;
+        }
+    }
+    paishan = paishan.join('');
+    if (paishanback != undefined) {
+        paishanback = paishanback.split('');
+        for (let i = 0; i < paishanback.length; i += 2) {
+            if (paishanback[i] == 'H') { // 字牌
+                for (let j = 0; j < tls.length; j++) {
+                    if (tls[j][1] == 'z') {
+                        let tmp = tls[j];
+                        tls[j] = tls[tls.length - 1];
+                        tls[tls.length - 1] = tmp;
+                        break;
+                    }
+                }
+                paishanback[i] = tls[tls.length - 1][0];
+                paishanback[i + 1] = tls[tls.length - 1][1];
+                tls.length--;
+            } else if (paishanback[i] == 'T') { // 老头牌
+                for (let j = 0; j < tls.length; j++) {
+                    if (!(tls[j][0] == '1' || tls[j][0] == '9')) {
+                        let tmp = tls[j];
+                        tls[j] = tls[tls.length - 1];
+                        tls[tls.length - 1] = tmp;
+                        break;
+                    }
+                }
+                paishanback[i] = tls[tls.length - 1][0];
+                paishanback[i + 1] = tls[tls.length - 1][1];
+                tls.length--;
+            }
+        }
+        for (let i = 0; i < paishanback.length; i += 2) {
+            if (paishanback[i] == 'Y') { // 幺九牌
+                for (let j = 0; j < tls.length; j++) {
+                    if (tls[j][0] == '1' || tls[j][0] == '9' || tls[j][1] == 'z') {
+                        let tmp = tls[j];
+                        tls[j] = tls[tls.length - 1];
+                        tls[tls.length - 1] = tmp;
+                        break;
+                    }
+                }
+                paishanback[i] = tls[tls.length - 1][0];
+                paishanback[i + 1] = tls[tls.length - 1][1];
+                tls.length--;
+            } else if (paishanback[i] == 'D') { // 中张牌
+                for (let j = 0; j < tls.length; j++) {
+                    if (!(tls[j][0] == '1' || tls[j][0] == '9' || tls[j][1] == 'z')) {
+                        let tmp = tls[j];
+                        tls[j] = tls[tls.length - 1];
+                        tls[tls.length - 1] = tmp;
+                        break;
+                    }
+                }
+                paishanback[i] = tls[tls.length - 1][0];
+                paishanback[i + 1] = tls[tls.length - 1][1];
+                tls.length--;
+            }
+        }
+        for (let i = 0; i < paishanback.length; i += 2) {
+            if (paishanback[i] == '.') { // 任意其他牌
+                // console.log(tls[tls.length - 1][0], tls[tls.length - 1][1]);
+                paishanback[i] = tls[tls.length - 1][0];
+                paishanback[i + 1] = tls[tls.length - 1][1];
+                tls.length--;
+            }
+        }
+        paishanback = paishanback.join('');
+        // console.log(paishan, paishanback);
+    }
     for (let i = 0; i < tls.length; i++) paishan += tls[i];
     if (paishanback != undefined) paishan += paishanback;
-    if (is_chuanma() && paishan.length != 55 * 2)
-        console.warn("chang: " + chang + ", ju: " + ju + ", juc: " + juc + ", ben: " + ben + " paishan 不合规")
-    if (!is_chuanma() && config.mode.mode >= 10 && config.mode.mode <= 20 && paishan.length != 68 * 2)
-        console.warn("chang: " + chang + ", ju: " + ju + ", juc: " + juc + ", ben: " + ben + " paishan 不合规")
-    if (!is_chuanma() && config.mode.mode < 10 && paishan.length != 83 * 2)
-        console.warn("chang: " + chang + ", ju: " + ju + ", juc: " + juc + ", ben: " + ben + " paishan 不合规")
+    for (let i = 0; i < cnt.length; i++) {
+        if (cnt[i] != undefined && cnt[i] != 0) {
+            if (is_chuanma() && paishan.length != 55 * 2)
+                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + cnt[i] + " 个 " + inttotile(cnt[i]))
+            if (!is_chuanma() && config.mode.mode >= 10 && config.mode.mode <= 19 && paishan.length != 68 * 2)
+                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + cnt[i] + " 个 " + inttotile(cnt[i]))
+            if (!is_chuanma() && config.mode.mode < 10 && config.mode.mode >= 0 && paishan.length != 83 * 2)
+                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + cnt[i] + " 个 " + inttotile(cnt[i]))
+        }
+    }
     return paishan;
 }
 
@@ -3617,3 +3761,25 @@ function loadreplay() {
     }
     gameend();
 }
+
+function transition(c_chang = chang, c_ju = ju, c_ben = ben)
+{
+    tiles0 = "129m19p19s1234567z";
+    tiles1 = "19m19p19s1234567z";
+    tiles2 = "19m19p19s1234567z";
+    tiles3 = "19m19p19s1234567z";
+    paishan = randompaishan("");
+    roundbegin();
+    liuju();
+    chang = c_chang;
+    ju = c_ju;
+    ben = c_ben;
+}
+
+function gotoju(c_chang = chang, c_ju = ju, c_ben = ben)
+{
+    chang = c_chang;
+    ju = c_ju;
+    ben = c_ben;
+}
+

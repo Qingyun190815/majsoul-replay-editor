@@ -1,6 +1,5 @@
 loadproject();
 
-// 主要是三个小局, 前两局和最后一局
 // 第一局亲家的最长菜名(15条49番), 第二局最高番数(14条64番)
 // 最后一局子家的最长菜名(15条55番)
 
@@ -28,7 +27,7 @@ editdata.config = {
 tiles0 = "789s1114z5556667z";
 tiles1 = "2222556688889p";
 tiles2 = "1111222245550s";
-paishan = randompaishan("", "7z111m6666s333377z16p651444z");
+paishan = randompaishan("", "7z.....66s333377z.6p651444z");
 roundbegin();
 for (let i = 0; i < 7; i++) {
     leimingpai();
@@ -56,7 +55,7 @@ hupai();
 tiles0 = "1999p1115556677z";
 tiles1 = "222255667777p6z";
 tiles2 = "1111222245550s";
-paishan = randompaishan("11p4z", "3333z8888p776z3p51z9p444z");
+paishan = randompaishan("..4z", "3333z8888p776z.51z9p444z");
 roundbegin();
 qiepai("1p", true);
 mopai();
@@ -79,40 +78,8 @@ mopai();
 qiepai();
 hupai();
 
-// 过渡到南1局
-// 东1
-tiles0 = "11122233345567z";
-tiles1 = "111m12345p12344s";
-tiles2 = "1112340678999p";
-paishan = randompaishan("6p", "6z");
-roundbegin();
-leimingpai();
-mopai();
-qiepai("7z");
-mopai();
-hupai();
-// 东2
-tiles1 = "11122233345567z";
-tiles2 = "111m12345p12344s";
-tiles0 = "1112340678999p";
-paishan = randompaishan("6p", "6z");
-roundbegin();
-leimingpai();
-mopai();
-qiepai("7z");
-mopai();
-hupai();
-// 东3
-tiles2 = "11122233345567z";
-tiles0 = "111m12345p12344s";
-tiles1 = "1112340678999p";
-paishan = randompaishan("6p", "6z");
-roundbegin();
-leimingpai();
-mopai();
-qiepai("7z");
-mopai();
-hupai();
+// 跳转到南一局0本场
+gotoju(1, 0, 0);
 
 // 最长菜名(15条55番)
 // 立直, 一发, 海底摸月, 门前清自摸和, 白, 发, 东, 连东, 混全带幺九,
@@ -120,7 +87,7 @@ hupai();
 tiles0 = "2222556688889p9m";
 tiles1 = "789s2225556667z";
 tiles2 = "1111222245550s";
-paishan = randompaishan("4z", "7z111m1111333377z16p652444z");
+paishan = randompaishan("4z", "7z.....11333377z.6p652444z");
 roundbegin();
 qiepai("9m");
 mopai();

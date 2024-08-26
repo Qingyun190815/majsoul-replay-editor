@@ -24,10 +24,10 @@ editdata.config = {
 // 被西家碰/吃四次
 // 24张
 tiles0 = "9999s1122334457z";
-tiles1 = "1111222266667p";
+tiles1 = "111122226666p5z";
 tiles2 = "333355509999p5z";
 tiles3 = "112233449999m5z";
-paishan = randompaishan("1234z1m1s2m1s3m1s4m1s4p2s3s4p2s3s4p2s3s4p", "5z");
+paishan = randompaishan("1234z1m1s2m1s3m1s4m1s4p2s3s4p2s3s4p2s3s4p");
 roundbegin();
 for (let i = 0; i < 4; i++) {
     qiepai("9s");

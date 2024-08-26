@@ -18,16 +18,12 @@ editdata.config = {
 tiles0 = "2222333444555p8s";
 tiles1 = "5566667777888s";
 tiles2 = "2223333444450s";
-paishan = randompaishan("111m9999m11119999p11119999s111122223333444455556666777z", "1m043p");
+paishan = randompaishan("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", "Y043p");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
 qiepai();
 for (let i = 0; i < 50; i++) {
     mopai();

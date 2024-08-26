@@ -24,6 +24,7 @@ editdata.config = {
 
 // Insert your code below
 
+/*
 tiles0 = "11112223334446z";
 tiles1 = "1112340678999m";
 tiles2 = "111333777999s6z";
@@ -38,6 +39,7 @@ qiepai();
 mopai();
 qiepai("6z", true);
 hupai();
+*/
 
 // Insert your code above
 

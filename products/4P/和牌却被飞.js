@@ -1,6 +1,6 @@
 loadproject();
 
-// 这个其实在"所有角色报所有菜名系列"中已经有了, 在最后一局
+// 要做到和牌却被飞, 那就只能是役满的包牌导致的, 下面用大三元作例子
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -19,19 +19,25 @@ editdata.config = {
     }
 };
 
-tiles0 = "22223444666888s";
-tiles1 = "2228m333557777s";
-tiles2 = "233344447777m0s";
-tiles3 = "55506666888m08p";
-paishan = randompaishan("YYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDY", "D864s");
+// 过渡
+transition();
+
+tiles0 = "238999p11z556677z";
+tiles1 = "11345678m23456p";
+tiles2 = "2223455067888m";
+tiles3 = "2223455067888s";
+paishan = randompaishan("5677z1p", "1z....");
+scores = [55000, 21000, 24000, 0];
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
-qiepai(true);
-for (let i = 65; i >= 1; i--) {
+qiepai("8p");
+for (let i = 0; i < 3; i++) {
     mopai();
     qiepai();
+    mingpai();
+    qiepai("9p");
 }
-notileliuju();
+mopai();
+qiepai();
+mopai();
+qiepai();
+hupai();

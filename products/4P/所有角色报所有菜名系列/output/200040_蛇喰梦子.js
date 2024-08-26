@@ -39,6 +39,7 @@ roundbegin();
 qiepai();
 mopai();
 hupai();
+
 // 第3局: 南亲, 东起 铳两家: 绿一色, 纯正九莲宝灯 (3s)    役满, 两倍役满
 tiles1 = "2233344666888s6z";
 tiles2 = "2223455567888p";
@@ -119,7 +120,7 @@ tiles3 = "1999p1115556677z";
 tiles0 = "222255508888m6z";
 tiles1 = "222255508888s3z";
 tiles2 = "3333444467777s";
-paishan = randompaishan("1119p", "4444z8888p776251z");
+paishan = randompaishan("1p..9p", "4444z8888p776251z");
 roundbegin();
 qiepai("1p", true);
 for (let i = 0; i < 3; i++) {
@@ -148,15 +149,15 @@ hupai();
 tiles3 = "11122233344457z";
 tiles0 = "111666m22556p88s";
 tiles1 = "340m34p23334450s";
-tiles2 = "1111589p688s555z";
-paishan = randompaishan("399s0p", "22m2422s6666z");
+tiles2 = "1111899p555777z";
+paishan = randompaishan("3sYY0p", "22m2422s..5p.");
 roundbegin();
-qiepai("5z");
+qiepai();
 mingpai();
 mopai();
 leimingpai();
 mopai();
-qiepai("5p");
+qiepai();
 mingpai();
 qiepai("6p");
 mopai();
@@ -171,12 +172,12 @@ hupai();
 
 // 第10局: (南场) 东亲, 南起 自摸, 报菜名 (33番)
 // 双立直, 门前清自摸和, 二杯口, 纯全带幺九, 清一色, 宝牌8, 宝牌10
-// 1111223378899p, 摸7p, dora 3p3p7p7p(2p2p6p6p), 6p8p1p1p(5p7p9p9p)
+// 1111223378899p, 摸7p, dora 3p3p8p8p(2p2p7p7p), 6p7p1p1p(5p6p9p9p)
 tiles0 = "11122233344457z";
 tiles1 = "1111223378899p";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999s";
-paishan = randompaishan("6661z7p", "96967252p5632z");
+paishan = randompaishan("6661z7p", "97976252p5632z");
 roundbegin();
 qiepai();
 mopai();
@@ -201,7 +202,7 @@ tiles1 = "22225550888899m";
 tiles2 = "11m22p344556677s";
 tiles3 = "3333555088889p";
 tiles0 = "2222338889999s";
-paishan = randompaishan("1111z", "3s2222z1111s9m1p9m1p1m1p5z999p");
+paishan = randompaishan("11z", "3s2222z1111s9m1p9m1p1m1p8s999p");
 roundbegin();
 qiepai();
 mopai();
@@ -230,9 +231,9 @@ hupai();
 // 12333m33350p 33333s 暗杠3s岭上摸3m, dora 3s3s3p(2s2s2p) 3s3s3m(2s2s2m)
 tiles2 = "11122233344457z";
 tiles3 = "12333m33350p333s";
-tiles0 = "1111448889999s";
+tiles0 = "55p11119999s555z";
 tiles1 = "1111666677779p";
-paishan = randompaishan("1666z3s", "2m2p2222s99p3m6z");
+paishan = randompaishan("....3s", "2m2p2222s..3m.");
 roundbegin();
 qiepai();
 mopai();
@@ -255,7 +256,7 @@ tiles3 = "11133344445557z";
 tiles0 = "123m12399p12s222z";
 tiles1 = "1112340678999m";
 tiles2 = "1112345067899p";
-paishan = randompaishan("", "12z8p3333s");
+paishan = randompaishan("", "1z.8p...3s");
 roundbegin();
 leimingpai();
 mopai();
@@ -269,51 +270,13 @@ tiles0 = "1p1112224445557z";
 tiles1 = "1222333455667p";
 tiles2 = "123456789m1p333z";
 tiles3 = "23789999p66777z";
-paishan = randompaishan("", "4p1266z");
+paishan = randompaishan("", "4p....");
 roundbegin();
 qiepai("1p");
 hupai();
 
-// 从西场过渡到北场 (南亲, 西起和牌)
-tiles1 = "11123406789999m";
-tiles2 = "123m23p23488s444z";
-tiles3 = "1112340678999s";
-tiles0 = "1112223335557z";
-paishan = randompaishan("1p");
-roundbegin();
-leimingpai();
-mopai();
-qiepai();
-mopai();
-hupai();
-// (西亲, 南起和牌)
-tiles2 = "11123406789999m";
-tiles3 = "1112340678999s";
-tiles0 = "1112223335557z";
-tiles1 = "123m23p23488s444z";
-paishan = randompaishan("991p");
-roundbegin();
-leimingpai();
-for (let i = 0; i < 3; i++) {
-    mopai();
-    qiepai();
-}
-mopai();
-hupai();
-// (北亲, 南起和牌)
-tiles3 = "11123406789999s";
-tiles0 = "1112223335557z";
-tiles1 = "123m23p23488s444z";
-tiles2 = "1112340678999m";
-paishan = randompaishan("91p");
-roundbegin();
-leimingpai();
-mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-hupai();
+// 跳转到北一局0本场
+gotoju(3, 0, 0);
 
 // 第15局: (北场) 东亲, 北起 荣 东起 (北1局)
 // 北, 连北
@@ -340,7 +303,7 @@ liuju();
 // 四杠流局
 tiles1 = "11112223334447z";
 tiles2 = "1112340678999m";
-tiles3 = "1112340678999p";
+tiles3 = "1113340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("", "5z1p32z");
 roundbegin();
@@ -387,8 +350,7 @@ tiles1 = "22223444666888s";
 tiles2 = "2228m333557777s";
 tiles3 = "233344447777m0s";
 tiles0 = "55506666888m08p";
-// 所有幺九都留山里, 所有非幺九都给亲, 非幺九还有 2-8p*4(除了0p和8p)
-paishan = randompaishan("1m9m1p3p1m9m1p3p1m9m1p3p1m9m1p3p9p1s9s4p9p1s9s4p9p1s9s4p9p1s9s4p1z2z3z5p1z2z3z5p1z2z3z5p1z2z3z7p4z5z6z6p4z5z6z6p4z5z6z6p4z5z6z6p7z", "5864s");
+paishan = randompaishan("YYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDY", "D864s");
 roundbegin();
 for (let i = 0; i < 4; i++) {
     leimingpai();

@@ -25,17 +25,15 @@ editdata.config = {
 // 三杠子, 三暗刻, 小三元, 混一色, 宝牌一大堆(13), 宝牌一大堆(13)
 tiles0 = "789s1111z5556667z";
 tiles1 = "222255088889m3s";
-tiles2 = "1111222245550s";
+tiles2 = "1122224555099s";
 tiles3 = "3333444467777p";
-paishan = randompaishan("", "7z3336666s4444773z7m65z");
+paishan = randompaishan("", "7z.....66s444477z.9s65z");
 roundbegin();
 for (let i = 0; i < 3; i++) {
     leimingpai();
     mopai();
 }
-qiepai("7m");
-mingpai();
-qiepai("3s");
+qiepai("9s");
 mingpai();
 qiepai("4s");
 for (let i = 65; i >= 5; i--) {
@@ -59,7 +57,7 @@ tiles0 = "1999p1115556677z";
 tiles1 = "222255508888m6z";
 tiles2 = "222255508888s3z";
 tiles3 = "3333444467777s";
-paishan = randompaishan("1119p", "4444z8888p776251z");
+paishan = randompaishan("...9p", "4444z8888p776z.51z");
 roundbegin();
 qiepai("1p", true);
 for (let i = 0; i < 3; i++) {
