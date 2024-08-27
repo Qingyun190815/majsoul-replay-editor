@@ -28,9 +28,9 @@ loadproject();
 // 一杯口, 三色同顺 (or 平和, 一杯口 or 平和, 一杯口, 三色同顺)
 
 editdata.player_datas[0].nickname = "一姬-契约";
-editdata.player_datas[1].nickname = "一姬-海滩派对";
-editdata.player_datas[2].nickname = "一姬-新年初诣";
-editdata.player_datas[3].nickname = "一姬-一姬当千";
+editdata.player_datas[1].nickname = "海滩派对";
+editdata.player_datas[2].nickname = "新年初诣";
+editdata.player_datas[3].nickname = "一姬当千";
 editdata.player_datas[0].avatar_id = 400102;
 editdata.player_datas[1].avatar_id = 400103;
 editdata.player_datas[2].avatar_id = 400104;
