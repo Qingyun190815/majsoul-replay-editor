@@ -392,7 +392,7 @@ pattern_id = r"editdata\.player_datas\[\d]\.avatar_id = (.*);"
 # 作为模版的文件, 文件名是 template.js
 infile = open("./template.js", "r")
 
-# 更改角色使用手的脚本
+# 更改角色使用手为默认女性手的脚本
 change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 3, "item_id": 309997}];'
 
 
@@ -400,7 +400,7 @@ change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views =
 def Replay_Script(uuid):
     return "GameMgr.Inst.checkPaiPu(\"" + uuid + "\", 0)"
 
-# 立直棒, slot: 0
+# 立直棒, "slot": 0
 liqibangs = [
     305001,  # 咸鱼立直棒
     305002,  # 大葱立直棒
@@ -456,7 +456,7 @@ liqibangs = [
     30560003,  # 立直棒-小鳄霸
 ]
 
-# 和牌特效, slot: 1
+# 和牌特效, "slot": 1
 hupais = [
     305007,  # 和牌-烈焰
     305008,  # 和牌-旋风
@@ -510,7 +510,7 @@ hupais = [
     30520006,  # 和牌-落羽涅槃
 ]
 
-# 立直特效, slot: 2
+# 立直特效, "slot": 2
 liqis = [
     305021,  # 立直-碎冰
     305022,  # 立直-火焰
@@ -560,7 +560,7 @@ liqis = [
     30530006,  # 立直-有凤来仪
 ]
 
-# 手的样式, slot: 3
+# 手的样式, "slot": 3
 hands = [
     305011,  # 橘猫爪
     305030,  # 夜月猫爪
@@ -577,7 +577,7 @@ hands = [
     309999,  # 汪次郎的手(已过期)
 ]
 
-# 头像框, slot: 5
+# 头像框, "slot": 5
 avatar_frames = [
     305500,  # 头像框-豆芽
     305501,  # 头像框-默认

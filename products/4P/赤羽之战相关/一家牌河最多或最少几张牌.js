@@ -25,7 +25,7 @@ editdata.config = {
         'detail_rule': {
             'chuanma': 1,
             'huansanzhang': 0,
-            'init_point': 100000,
+            'init_point': 200000,
             'xuezhandaodi': 1,
         }
     }
@@ -115,19 +115,58 @@ notileliuju();
 // 被亲家杠四次
 // 被北家杠四次
 // 被西家杠四次
+// 北家自己也暗杠四次
 // 赤羽不限制玩家开杠次数
-// 张
-tiles3 = "11122233344469m";
-tiles0 = "1112223334446p";
-tiles1 = "1112223334446s";
-tiles2 = "666779m6669p6669s";
-paishan = randompaishan("");
+// 4张
+tiles3 = "1112223334449m9s";
+tiles0 = "111222333444p9s";
+tiles1 = "1112223334449s";
+tiles2 = "555666p5556669s";
+paishan = randompaishan("..56p56s1m...2m...3m...4m...1p..2p..3p..4p..1s.2s.3s.4s");
 roundbegin();
-dingque("psmp");
+dingque("mpmp");
+qiepai("9m");
+mopai();
 qiepai();
-
+mopai();
+qiepai();
+mopai();
+for (let i = 0; i < 4; i++) {
+    leimingpai();
+    mopai();
+}
+qiepai();
+for (let i = 0; i < 4; i++) {
+    mingpai();
+    mopai();
+    qiepai();
+    mopai();
+    qiepai();
+    mopai();
+    qiepai();
+    mopai();
+    qiepai();
+}
+for (let i = 0; i < 4; i++) {
+    mingpai();
+    mopai();
+    qiepai();
+    mopai();
+    qiepai();
+    mopai();
+    qiepai();
+}
+for (let i = 0; i < 4; i++) {
+    mingpai();
+    mopai();
+    qiepai();
+    mopai();
+    qiepai();
+}
+for (let i = 0; i < 12; i++) {
+    mopai();
+    qiepai();
+}
+notileliuju();
 
 gameend();
-
-
-

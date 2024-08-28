@@ -30,5 +30,5 @@ paishan = randompaishan("6z");
 roundbegin();
 qiepai("0p");
 mopai();
-qiepai("6z", true);
+qiepai(true);
 hupai();

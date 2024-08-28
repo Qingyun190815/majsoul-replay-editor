@@ -3730,6 +3730,18 @@ function transition(c_chang = chang, c_ju = ju, c_ben = ben) {
     ben = c_ben;
 }
 
+function transition3P(c_chang = chang, c_ju = ju, c_ben = ben) {
+    tiles0 = "19m129p19s1234567z";
+    tiles1 = "19m19p19s1234567z";
+    tiles2 = "19m19p19s1234567z";
+    paishan = randompaishan("");
+    roundbegin();
+    liuju();
+    chang = c_chang;
+    ju = c_ju;
+    ben = c_ben;
+}
+
 function gotoju(c_chang = chang, c_ju = ju, c_ben = ben) {
     chang = c_chang;
     ju = c_ju;

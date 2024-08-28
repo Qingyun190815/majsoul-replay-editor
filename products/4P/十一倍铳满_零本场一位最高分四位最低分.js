@@ -1,6 +1,9 @@
 loadproject();
 
+// 如果不限制零本场那一位最高分和四位最低分没有限制
 // 南起 铳三家共 2 (四单) + 3 (绿四单) + 6 (字杠骑喜) = 11 倍役满
+// 一位最高分: 388000
+// 四位最低分: -448000
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -16,12 +19,12 @@ editdata.config = {
     'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
-        'detail_rule': {
-            'init_point': 500000,
-        }
     }
 };
 
+transition();
+
+scores = [100000, 0, 0, 0];
 tiles0 = "11112223334446z";
 tiles1 = "1112340678999m";
 tiles2 = "111333777999s6z";
@@ -34,5 +37,5 @@ for (let i = 0; i < 4; i++) {
 }
 qiepai();
 mopai();
-qiepai("6z", true);
+qiepai();
 hupai();
