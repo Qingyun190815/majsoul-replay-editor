@@ -23,9 +23,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 上面是简单的使用教程, 具体的修改教程要看下面的文档
 
-原repo用wiki的方式当做文档, 我这里为了维护方便就把文档放到 [doc](doc) 文件夹下面了
-
-想看原wiki的请阅读 [majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)
+原repo用wiki的方式当做文档([majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)), 我这里为了维护方便就把文档放到 [doc](doc) 文件夹下面了
 
 建议阅读顺序:
 

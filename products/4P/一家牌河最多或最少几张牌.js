@@ -27,7 +27,7 @@ tiles0 = "9999s1122334457z";
 tiles1 = "111122226666p5z";
 tiles2 = "333355509999p5z";
 tiles3 = "112233449999m5z";
-paishan = randompaishan("1234z1m1s2m1s3m1s4m1s4p2s3s4p2s3s4p2s3s4p");
+paishan = randompaishan("1234z1m.2m.3m.4m.4p..4p..4p..4p");
 roundbegin();
 for (let i = 0; i < 4; i++) {
     qiepai("9s");
@@ -72,7 +72,7 @@ tiles0 = "11122233344457z";
 tiles1 = "112233449999m5z";
 tiles2 = "112233449999p5z";
 tiles3 = "1111222266667s";
-paishan = randompaishan("33s1z33s2z44s3z44s4z55s1m5s2m0s3m7p4m7p1p2p3p4p", "5z8888p");
+paishan = randompaishan("..1z..2z..3z..4z..1m.2m.3m.4m.1p2p3p4p", "5z....");
 roundbegin();
 qiepai();
 for (let i = 0; i < 4; i++) {

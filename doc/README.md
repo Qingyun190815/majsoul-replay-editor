@@ -17,9 +17,7 @@
 
 ---
 
-原repo用wiki的方式当做文档, 我这里为了维护方便就把文档放到这个文件夹下面了
-
-想看原wiki的请阅读 [majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)
+原repo用wiki的方式当做文档([majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)), 我这里为了维护方便就把文档放到这个文件夹下面了
 
 建议阅读顺序:
 

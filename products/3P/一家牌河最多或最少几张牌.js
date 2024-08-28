@@ -26,7 +26,7 @@ editdata.config = {
 tiles0 = "9999s1122334457z";
 tiles1 = "1m566678p157s555z";
 tiles2 = "1122334469999p";
-paishan = randompaishan("1234z1pY2p.3p.4p");
+paishan = randompaishan("1234z1p.2p.3p.4p");
 roundbegin();
 qiepai();
 for (let i = 0; i < 4; i++) {

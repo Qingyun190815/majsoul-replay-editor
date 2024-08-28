@@ -54,7 +54,7 @@ for (let i = 0; i < 3; i++) {
 qiepai(true);
 hupai();
 
-// 第4局: 南亲, 东起 铳三家: 大三元, 国士无双十三面, 小四喜,  (1p)
+// 第4局: 南亲, 东起 铳三家: 大三元, 国士无双十三面, 小四喜 (1p)
 tiles1 = "23p355s555666777z";
 tiles2 = "19m19p19s1234567z";
 tiles3 = "23p11122233344z";
@@ -120,7 +120,7 @@ tiles3 = "1999p1115556677z";
 tiles0 = "222255508888m6z";
 tiles1 = "222255508888s3z";
 tiles2 = "3333444467777s";
-paishan = randompaishan("1p..9p", "4444z8888p776251z");
+paishan = randompaishan("...9p", "4444z8888p776251z");
 roundbegin();
 qiepai("1p", true);
 for (let i = 0; i < 3; i++) {
@@ -202,7 +202,7 @@ tiles1 = "22225550888899m";
 tiles2 = "11m22p344556677s";
 tiles3 = "3333555088889p";
 tiles0 = "2222338889999s";
-paishan = randompaishan("11z", "3s2222z1111s9m1p9m1p1m1p8s999p");
+paishan = randompaishan("11z", "3s....1111s9m1p9m1p1m1p8s999p");
 roundbegin();
 qiepai();
 mopai();
@@ -280,12 +280,12 @@ gotoju(3, 0, 0);
 
 // 第15局: (北场) 东亲, 北起 荣 东起 (北1局)
 // 北, 连北
-// 123m23p23488s444z, 荣和1p, dora 1z
+// 123m23p23488s444z, 荣和1p, dora 7z
 tiles0 = "1p1112223335557z";
 tiles1 = "1112340678999m";
 tiles2 = "1112340678999s";
 tiles3 = "123m23p23488s444z";
-paishan = randompaishan("", "5666z6p");
+paishan = randompaishan("", "6z....");
 roundbegin();
 qiepai("1p");
 hupai();
