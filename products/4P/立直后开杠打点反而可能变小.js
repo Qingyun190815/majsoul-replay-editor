@@ -1,0 +1,58 @@
+loadproject();
+
+// 11m77888999p123s 摸 8p 开暗杠, 荣和 7p 直接少了一杯口, 纯全带幺九总共4番
+
+editdata.player_datas[0].nickname = "一姬-契约";
+editdata.player_datas[1].nickname = "新年初诣";
+editdata.player_datas[2].nickname = "一姬当千";
+editdata.player_datas[3].nickname = "绮春歌";
+editdata.player_datas[0].avatar_id = 400102;
+editdata.player_datas[1].avatar_id = 400104;
+editdata.player_datas[2].avatar_id = 400105;
+editdata.player_datas[3].avatar_id = 400106;
+
+editdata.config = {
+    'category': 1,
+    'meta': {'mode_id': 0},
+    'mode': {
+        'mode': 1,
+    }
+};
+
+// 亲荣和, 立直, 一杯口, 纯全带幺九, 5番40符, 12000
+tiles0 = "119m77888999p237s";
+tiles1 = "222345067888m7p";
+tiles2 = "2222333346666p";
+tiles3 = "2233450677999s";
+paishan = randompaishan("1s", "11z....");
+roundbegin();
+qiepai();
+mingpai();
+qiepai("9s");
+mopai();
+qiepai("9m", true);
+mingpai();
+qiepai("7p");
+hupai();
+
+// 亲荣和, 立直nomi, 1番60符, 2900
+tiles0 = "11m77888999p2237s";
+tiles1 = "222345067888m7p";
+tiles2 = "2222333346666p";
+tiles3 = "2233450677999s";
+paishan = randompaishan("1s8p", "1111z...9m");
+roundbegin();
+qiepai();
+mingpai();
+qiepai("9s");
+mopai();
+qiepai("2s", true);
+mingpai();
+qiepai("9s");
+mopai();
+leimingpai();
+mopai();
+qiepai();
+mingpai();
+qiepai("7p");
+hupai();

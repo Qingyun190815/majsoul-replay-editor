@@ -2941,7 +2941,6 @@ function mingpai(seat, tiles) {
             }
             return;
         }
-        for (let i = 0; i < playercnt; i++) liqiinfo[i].yifa = 0;
         let lstaction = getlstaction();
         paihe[lstaction.data.seat].liujumanguan = false;
         let from = getlstaction().data.seat, lsttile = getlstaction().data.tile;
@@ -2956,6 +2955,7 @@ function mingpai(seat, tiles) {
                 'seat': lstliqi.seat
             }
         }
+        for (let i = 0; i < playercnt; i++) liqiinfo[i].yifa = 0;
         lstliqi = 0;
         let tile_states = [];
         if (is_peipaimingpai()) for (let i = 0; i < tiles.length; i++) tile_states.push(erasemingpai(tiles[i], seat));
