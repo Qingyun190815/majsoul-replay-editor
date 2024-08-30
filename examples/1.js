@@ -76,7 +76,7 @@ roundbegin();
 qiepai("1p", true);
 hupai();
 
-//第四局(诈和示范)
+// 第四局(诈和示范)
 tiles1 = "1112340678999m6z";
 tiles2 = "55p238s12556677z";
 tiles3 = "223446688s3457z";
@@ -85,7 +85,7 @@ paishan = randompaishan("3s");
 roundbegin();
 hupai();
 
-//第五局
+// 第五局
 tiles1 = "456m456p225588s66z";
 tiles2 = "1112223334447z";
 tiles3 = "1112340678999p";
@@ -101,7 +101,7 @@ mopai();
 qiepai();
 hupai();
 
-//第六局
+// 第六局
 tiles1 = "345m345p47s111555z";
 tiles2 = "111234067899m3s";
 tiles3 = "23344666888s66z";
@@ -126,7 +126,7 @@ mopai();
 leimingpai();
 hupai();
 
-//第七局
+// 第七局
 tiles1 = "224488s11223347z";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999p";
@@ -138,7 +138,7 @@ mopai();
 qiepai("4z", true);
 hupai();
 
-//第八局
+// 第八局
 tiles1 = "1112340678999m1z";
 tiles2 = "1112340678999p";
 tiles3 = "1112340678999s";
@@ -154,7 +154,7 @@ mopai();
 qiepai(true);
 liuju();
 
-//第九局
+// 第九局
 tiles1 = "1112340678999m6z";
 tiles2 = "238s55p12556677z";
 tiles3 = "223446688s3457z";
