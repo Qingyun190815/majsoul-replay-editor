@@ -380,13 +380,13 @@ dict_spchar_paipu = {
     200090: paipu_uuids[1],  # 玖辻
 }
 
-# 输出的文件名集合, 例子: 200001_一姬.js
+# 输出的文件名集合, 如: 200001_一姬.js
 outfile_names = []
 for i in range(len(avatar_ids)):
     outfile_names.append(str(charids[i]) + "_" + nicknames[i][0] + ".js")
 
 # 两个正则匹配串
-pattern_name = r"editdata\.player_datas\[\d]\.nickname = \"(.*)\";"
+pattern_name = r'editdata\.player_datas\[\d]\.nickname = "(.*)";'
 pattern_id = r"editdata\.player_datas\[\d]\.avatar_id = (.*);"
 
 # 作为模版的文件, 文件名是 template.js
@@ -398,7 +398,7 @@ change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views =
 
 # 直接进入回放的脚本, 可以在控制台输入, 这里要感谢雀魂bot"姬萌萌"的作者 Paulzzh
 def Replay_Script(uuid):
-    return "GameMgr.Inst.checkPaiPu(\"" + uuid + "\", 0)"
+    return 'GameMgr.Inst.checkPaiPu("' + uuid + '", 0)'
 
 # 立直棒, "slot": 0
 liqibangs = [

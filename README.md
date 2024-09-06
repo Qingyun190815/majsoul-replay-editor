@@ -72,6 +72,6 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 示例代码的部分截图
 
-![](./preview1.JPG)
-![](./preview2.JPG)
-![](./preview3.JPG)
+![](doc/pic/preview1.JPG)
+![](doc/pic/preview2.JPG)
+![](doc/pic/preview3.JPG)

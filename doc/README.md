@@ -64,6 +64,6 @@
 
 ## 示例代码的部分截图
 
-![](../preview1.JPG)
-![](../preview2.JPG)
-![](../preview3.JPG)
+![](pic/preview1.JPG)
+![](pic/preview2.JPG)
+![](pic/preview3.JPG)
