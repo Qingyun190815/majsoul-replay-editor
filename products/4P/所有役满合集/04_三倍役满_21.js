@@ -21,7 +21,7 @@ editdata.config = {
 };
 
 // 第1局: 东亲, 东起 天和, 纯正九莲宝灯
-tiles0 = "11123450678999m";
+tiles0 = "11123405678999m";
 tiles1 = "1112223334445z";
 tiles2 = "1112340678999p";
 tiles3 = "1112340678999s";
@@ -55,8 +55,7 @@ tiles3 = "1112340678999s";
 paishan = randompaishan("0m");
 roundbegin();
 qiepai();
-mopai();
-hupai();
+zimohu();
 
 // 第5局: 南亲, 西起 地和, 四暗刻单骑
 tiles1 = "1112340678999m7z";
@@ -66,19 +65,17 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("2z");
 roundbegin();
 qiepai();
-mopai();
-hupai();
+zimohu();
 
 // 第6局: 西亲, 北起 地和, 国士无双十三面
-tiles2 = "22234550677888m";
+tiles2 = "22234055677888m";
 tiles3 = "19m19p19s1234567z";
 tiles0 = "1112340678999p";
 tiles1 = "1112340678999s";
 paishan = randompaishan("7z");
 roundbegin();
 qiepai("7m");
-mopai();
-hupai();
+zimohu();
 
 // 第7局: 北亲, 北起 大三元, 四暗刻单骑
 tiles3 = "222p12555666777z";
@@ -88,8 +85,7 @@ tiles2 = "1112340678999s";
 paishan = randompaishan("1z");
 roundbegin();
 qiepai("2z");
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第8局: 北亲, 北起 字一色, 四暗刻单骑
@@ -100,8 +96,7 @@ tiles2 = "1112340678999s";
 paishan = randompaishan("6z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第9局: 北亲, 北起 字一色, 大四喜
@@ -112,8 +107,7 @@ tiles2 = "1112340678999s";
 paishan = randompaishan("4z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第10局: 北亲, 北起 绿一色, 四暗刻单骑
@@ -124,45 +118,37 @@ tiles2 = "1112340678999s";
 paishan = randompaishan("6z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第11局: 北亲, 北起 清老头, 四暗刻单骑
 tiles3 = "111999m111999p19s";
-tiles0 = "2223455067888m";
-tiles1 = "2223455067888p";
-tiles2 = "2223455067888s";
+tiles0 = "2223405567888m";
+tiles1 = "2223405567888p";
+tiles2 = "2223405567888s";
 paishan = randompaishan("1s");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第12局: 北亲, 北起 小四喜, 四暗刻单骑
 tiles3 = "111m11122233345z";
-tiles0 = "2223455067888m";
-tiles1 = "2223455067888p";
-tiles2 = "2223455067888s";
+tiles0 = "2223405567888m";
+tiles1 = "2223405567888p";
+tiles2 = "2223405567888s";
 paishan = randompaishan("54z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+normalmoqie(2);
 hupai();
 
 // 第13局: 北亲, 北起 四杠子, 四暗刻单骑
 tiles3 = "1111m1112223335z";
-tiles0 = "2223455067888m";
-tiles1 = "2223455067888p";
-tiles2 = "2223455067888s";
+tiles0 = "2223405567888m";
+tiles1 = "2223405567888p";
+tiles2 = "2223405567888s";
 paishan = randompaishan("", "5123z");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 hupai();

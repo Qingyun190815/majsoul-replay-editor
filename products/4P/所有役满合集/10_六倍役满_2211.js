@@ -37,18 +37,14 @@ tiles3 = "1112340678999p";
 paishan = randompaishan("7z");
 roundbegin();
 qiepai();
-mopai();
-hupai();
+zimohu();
 
 // 第3局: 南亲, 南起 字一色, 四杠子, 四暗刻单骑, 大四喜
 tiles1 = "11112223334447z";
-tiles2 = "1112340678999m5z";
+tiles2 = "1112340678999m";
 tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("", "7432z");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 hupai();

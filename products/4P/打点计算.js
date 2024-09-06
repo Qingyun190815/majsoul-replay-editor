@@ -55,8 +55,7 @@ tiles3 = "2223455567888s";
 paishan = randompaishan("1z", "7z....");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第2局, 777888999p1z 123m 荣和1z
@@ -68,12 +67,9 @@ paishan = randompaishan("1z", "7z.7z...3m");
 roundbegin();
 qiepai("2s");
 mingpai();
-mopai();
-qiepai();
-mingpai();
-qiepai("5z")
-mopai();
-qiepai();
+normalmoqie();
+mingqiepai("5z")
+normalmoqie();
 hupai();
 
 // 第3局, 123m77888999p11z 自摸7p
@@ -83,30 +79,24 @@ tiles2 = "1112340678999s";
 tiles3 = "2223455567888s";
 paishan = randompaishan("1117p", "6z....");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    qiepai();
-    mopai();
-}
-hupai();
+qiepai();
+normalmoqie(3);
+zimohu();
 
 // 第4局, 77888999p11z 123m 自摸7p
 tiles0 = "78m77888999p25s11z";
 tiles1 = "111p2223334447z";
 tiles2 = "888m3666777999s";
-tiles3 = "2223455067888s";
+tiles3 = "2223405567888s";
 paishan = randompaishan("7p", "5z.5z.6z..29m");
 roundbegin();
 qiepai("2s");
 mingpai();
-mopai();
-qiepai();
+normalmoqie();
+mingqiepai("5s");
 mingpai();
-qiepai("5s");
-mingpai();
-mopai();
-qiepai();
-mopai();
-hupai();
+normalmoqie();
+zimohu();
 
 // 第5局, 111m77888999p11z 荣和7p
 tiles0 = "111m77888999p115z";
@@ -116,8 +106,7 @@ tiles3 = "2223455567888s";
 paishan = randompaishan("7p", "2z....");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第6局, 1239m777888999p 荣和9m
@@ -128,8 +117,7 @@ tiles3 = "2223455567888s";
 paishan = randompaishan("9m", "7z....");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第7局, 9m777888999p 123m 荣和9m
@@ -141,12 +129,9 @@ paishan = randompaishan("9m", "7z.7z...3m");
 roundbegin();
 qiepai("2s");
 mingpai();
-mopai();
-qiepai();
-mingpai();
-qiepai("5z")
-mopai();
-qiepai();
+normalmoqie();
+mingqiepai("5z")
+normalmoqie();
 hupai();
 
 // 第8局, 11123m77888999p 自摸7p
@@ -156,30 +141,24 @@ tiles2 = "1112340678999s";
 tiles3 = "2223455567888s";
 paishan = randompaishan("555z7p", "6z....");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    qiepai();
-    mopai();
-}
-hupai();
+qiepai();
+normalmoqie(3);
+zimohu();
 
 // 第9局, 11m77888999p 789m 自摸7p
 tiles0 = "1178m77888999p25s";
 tiles1 = "1112223334447z";
 tiles2 = "888m3666777999s";
-tiles3 = "2223455067888s";
+tiles3 = "2223405567888s";
 paishan = randompaishan("7p", "5z.5z.6z..29m");
 roundbegin();
 qiepai("2s");
 mingpai();
-mopai();
-qiepai();
+normalmoqie();
+mingqiepai("5s");
 mingpai();
-qiepai("5s");
-mingpai();
-mopai();
-qiepai();
-mopai();
-hupai();
+normalmoqie();
+zimohu();
 
 // 第10局, 11199m77888999p 荣和7p
 tiles0 = "11199m77888999p5z";
@@ -189,18 +168,16 @@ tiles3 = "2223455567888s";
 paishan = randompaishan("7p", "2z....");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第11局, 123m123p1123344s 荣和2s
 tiles0 = "123m123p1123344s5z";
 tiles1 = "1113334446667z";
-tiles2 = "4444555066667m";
-tiles3 = "4444555066667p";
+tiles2 = "4444055566667m";
+tiles3 = "4444055566667p";
 paishan = randompaishan("2s", "2z....");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();

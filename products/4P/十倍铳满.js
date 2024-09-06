@@ -29,6 +29,5 @@ tiles3 = "222444666888s6z";
 paishan = randompaishan("6z");
 roundbegin();
 qiepai("0p");
-mopai();
-qiepai(true);
+moqieliqi();
 hupai();

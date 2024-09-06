@@ -250,21 +250,28 @@ function edit(x) {
             let ret = [];
             for (let seat = 0; seat < x.player_datas.length; seat++) {
                 ret[seat] = {
+                    'account_id': (seat + 1) * 10000,
+                    'seat': seat,
                     'nickname': x.player_datas[seat].nickname,
                     'avatar_id': x.player_datas[seat].avatar_id,
-                    'avatar_frame': x.player_datas[seat].avatar_frame,
                     'character': {
-                        'is_upgraded': true,
-                        'level': 5,
                         'charid': cfg.item_definition.skin.map_[x.player_datas[seat].avatar_id].character_id,
+                        'level': 5,
+                        "exp": 0,
                         'skin': x.player_datas[seat].avatar_id,
+                        'is_upgraded': true,
+                        'extra_emoji': [
+                            10,
+                            11,
+                            12
+                        ]
                     },
-                    'level': {'id': 10101},
-                    'level3': {'id': 20101},
-                    'charid': cfg.item_definition.skin.map_[x.player_datas[seat].avatar_id].character_id,
-                    'seat': seat,
-                    'views': x.player_datas[seat].views,
                     'title': x.player_datas[seat].title,
+                    'level': {'id': 10503, 'score': 4500},
+                    'level3': {'id': 20503, 'score': 4500},
+                    'avatar_frame': x.player_datas[seat].avatar_frame,
+                    'verified': x.player_datas[seat].verified,
+                    'views': x.player_datas[seat].views,
                 }
                 if (a[seat].account_id !== undefined) ret[seat].account_id = a[seat].account_id;
             }
@@ -336,10 +343,10 @@ let editdata = {
     'players': [],
     'config': {},
     'player_datas': [
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑0", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑1", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑2", 'title': 600001, 'views': []},
-        {'avatar_frame': 0, 'avatar_id': 400101, 'nickname': "电脑3", 'title': 600001, 'views': []},
+        {'nickname': "电脑0", 'avatar_id': 400101, 'title': 600001, 'avatar_frame': 0, 'verified': 0, 'views': []},
+        {'nickname': "电脑1", 'avatar_id': 400101, 'title': 600001, 'avatar_frame': 0, 'verified': 0, 'views': []},
+        {'nickname': "电脑2", 'avatar_id': 400101, 'title': 600001, 'avatar_frame': 0, 'verified': 0, 'views': []},
+        {'nickname': "电脑3", 'avatar_id': 400101, 'title': 600001, 'avatar_frame': 0, 'verified': 0, 'views': []},
     ]
 };
 let lstscene;
@@ -1410,7 +1417,10 @@ function calcfan(tls, seat, zimo, fangchong) {
                 'id': 10
             }); // 门风
             if (typecnt[tiletoint((chang + 1).toString() + "z")][1] === 2) ans.fans.push({'val': 1, 'id': 11}); // 场风
-            if (flag[3] === true && (is_shiduan() || !is_shiduan() && fulucnt === 0)) ans.fans.push({'val': 1, 'id': 12}); // 断幺九
+            if (flag[3] === true && (is_shiduan() || !is_shiduan() && fulucnt === 0)) ans.fans.push({
+                'val': 1,
+                'id': 12
+            }); // 断幺九
             if (beikou === 1 && fulucnt === 0) ans.fans.push({'val': 1, 'id': 13}); // 一杯口
             if (pinghu && fulucnt === 0) ans.fans.push({'val': 1, 'id': 14}); // 平和
             if (hunquandai && !chunquandai && !flag[4]) {
@@ -1748,7 +1758,6 @@ function roundbegin() {
         else addNewRound(chang, ju, ben, calcdoras(), paishan.length / 2, liqibang, md5(paishan), paishan, [].concat(scores), [].concat(tiles0), [].concat(tiles1), [].concat(tiles2), [].concat(tiles3), tingpais);
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -1819,7 +1828,7 @@ function addDealTile(doras, left_tile_count, seat, tile, liqi, tile_state) {
 }
 
 function addChiPengGang(froms, seat, tiles, type, liqi, tile_states) {
-    for (let j = 0; j < tiles.length; j++) {
+    for (let j = 0; j < tiles.length - 1; j++) {
         for (let i = 0; i < playertiles[seat].length; i++) {
             if (playertiles[seat][i] === tiles[j]) {
                 playertiles[seat][i] = playertiles[seat][playertiles[seat].length - 1];
@@ -2505,7 +2514,6 @@ function hupai(x, type) {
         if (is_chuanma() && !hupaied[0] && !hupaied[1] && !hupaied[2] && !hupaied[3]) ju = x[0];
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -2589,7 +2597,6 @@ function huansanzhang(tiles0, tiles1, tiles2, tiles3, type) {
         addChangeTile(ret, type, calcdoras());
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -2626,7 +2633,6 @@ function dingque(x) {
         addSelectGap(ret);
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -2678,7 +2684,6 @@ function calcgangpoint(type) {
         }
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -2746,7 +2751,6 @@ function mopai(seat) {
         saveproject();
         return drawcard;
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -2861,7 +2865,6 @@ function qiepai(seat, kind, is_liqi) {
             return 1;
         } else return 0;
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -2962,24 +2965,19 @@ function mingpai(seat, tiles) {
         if (is_peipaimingpai()) for (let i = 0; i < tiles.length; i++) tile_states.push(erasemingpai(tiles[i], seat));
         if (!equaltile(tiles[0], lsttile)) {
             fulu[seat].push({'type': 0, 'tile': [tiles[0], tiles[1], lsttile], 'from': from});
-            addChiPengGang([from, seat, seat], seat, [lsttile, tiles[0], tiles[1]], 0, liqi, tile_states);
+            addChiPengGang([seat, seat, from], seat, [tiles[0], tiles[1], lsttile], 0, liqi, tile_states);
         } else if (tiles.length === 3) {
             doracnt.lsttype = 1;
             if (!is_chuanma()) drawtype = 0;
             else chuanmagangs.notover.push({'from': from, 'to': seat, 'val': 2000});
             fulu[seat].push({'type': 2, 'tile': [tiles[0], tiles[1], tiles[2], lsttile], 'from': from});
-            if (from === (seat + 3) % 4) addChiPengGang([from, seat, seat, seat], seat, [lsttile, tiles[0], tiles[1], tiles[2]], 2, liqi, tile_states);
-            if (from === (seat + 2) % 4) addChiPengGang([seat, from, seat, seat], seat, [tiles[0], lsttile, tiles[1], tiles[2]], 2, liqi, tile_states);
-            if (from === (seat + 1) % 4) addChiPengGang([seat, seat, seat, from], seat, [tiles[0], tiles[1], tiles[2], lsttile], 2, liqi, tile_states);
+            addChiPengGang([seat, seat, seat, from], seat, [tiles[0], tiles[1], tiles[2], lsttile], 2, liqi, tile_states);
         } else {
             fulu[seat].push({'type': 1, 'tile': [tiles[0], tiles[1], lsttile], 'from': from});
-            if (from === (seat + 3) % 4) addChiPengGang([from, seat, seat], seat, [lsttile, tiles[0], tiles[1]], 1, liqi, tile_states);
-            if (from === (seat + 2) % 4) addChiPengGang([seat, from, seat], seat, [tiles[0], lsttile, tiles[1]], 1, liqi, tile_states);
-            if (from === (seat + 1) % 4) addChiPengGang([seat, seat, from], seat, [tiles[0], tiles[1], lsttile], 1, liqi, tile_states);
+            addChiPengGang([seat, seat, from], seat, [tiles[0], tiles[1], lsttile], 1, liqi, tile_states);
         }
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -3085,7 +3083,6 @@ function leimingpai(seat, tile, type) {
         }
         return false;
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -3240,7 +3237,6 @@ function notileliuju() {
         roundend();
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -3340,7 +3336,6 @@ function liuju() {
         roundend();
         saveproject();
     } catch (e) {
-        // loadproject(lstscene);
         throw (e);
     }
 }
@@ -3749,3 +3744,49 @@ function gotoju(c_chang = chang, c_ju = ju, c_ben = ben) {
     ben = c_ben;
 }
 
+function moqieliqi(tile) {
+    if (tile === undefined) {
+        mopai();
+        qiepai(true);
+    } else {
+        mopai();
+        qiepai(tile, true);
+    }
+}
+
+function normalmoqie(cnt = 1) {
+    for (let i = 0; i < cnt; i++) {
+        mopai();
+        qiepai();
+    }
+}
+
+function combomopai(cnt = 1) {
+    for (let i = 0; i < cnt; i++) {
+        leimingpai();
+        mopai();
+    }
+}
+
+function mingqiepai(tile = undefined, cnt = 1) {
+    if (tile === undefined) {
+        mingpai();
+        qiepai();
+    } else if (typeof (tile) == "number")
+        for (let i = 0; i < tile; i++) {
+            mingpai();
+            qiepai();
+        }
+    else if (cnt === 1) {
+        mingpai();
+        qiepai(tile);
+    } else
+        console.warn("You are not supposed to use `mingqiepai()` correctly!");
+}
+
+function zimohu(flag) {
+    if (flag === undefined)
+        flag = false;
+    mopai();
+    hupai(flag);
+}

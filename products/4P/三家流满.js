@@ -1,6 +1,6 @@
 loadproject();
 
-// 这个其实在"所有角色报所有菜名系列"中已经有了, 在最后一局
+// 这个其实在"所有报菜名合集"中已经有了, 在最后一局
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -22,16 +22,10 @@ editdata.config = {
 tiles0 = "22223444666888s";
 tiles1 = "2228m333557777s";
 tiles2 = "233344447777m0s";
-tiles3 = "55506666888m08p";
+tiles3 = "05556666888m08p";
 paishan = randompaishan("YYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDY", "D864s");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 qiepai(true);
-for (let i = 65; i >= 1; i--) {
-    mopai();
-    qiepai();
-}
+normalmoqie(65);
 notileliuju();

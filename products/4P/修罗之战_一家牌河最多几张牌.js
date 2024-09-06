@@ -35,22 +35,15 @@ roundbegin();
 qiepai();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9s");
+    normalmoqie();
+    mingqiepai("9s");
 }
-for (let i = 0; i < 63; i++) {
-    mopai();
-    qiepai();
-}
+normalmoqie(63);
 notileliuju();
 
 gameend();

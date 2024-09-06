@@ -9,8 +9,7 @@ file_name = "Generate_All_Avatar"
 run_python = "python3 " + file_name + ".py"
 path_prefix = "4P/"
 paths = [
-    "所有角色报所有菜名系列",
-    "所有角色报所有菜名系列",
+    "所有报菜名合集",
     "最长菜名与最高番数",
     "赤羽之战相关",
 ]

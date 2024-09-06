@@ -34,7 +34,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 5. [examples文件的解释](doc/examples文件解释.md)
 6. [注意事项](doc/注意事项.md)
 
-[字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在自制牌谱时使用
+[字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
 
 (下面内容基本没有改动)
 

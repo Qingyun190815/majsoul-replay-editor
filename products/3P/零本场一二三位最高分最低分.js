@@ -35,8 +35,7 @@ for (let i = 0; i < 4; i++) {
     mopai();
 }
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 gotoju(0, 0, 0);
@@ -53,10 +52,7 @@ for (let i = 0; i < 4; i++) {
     mopai();
 }
 qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+normalmoqie(2);
 hupai();
 
 gotoju(0, 0, 0);

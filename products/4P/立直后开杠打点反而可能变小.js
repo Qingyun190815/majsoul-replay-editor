@@ -21,38 +21,30 @@ editdata.config = {
 
 // 亲荣和, 立直, 一杯口, 纯全带幺九, 5番40符, 12000
 tiles0 = "119m77888999p237s";
-tiles1 = "222345067888m7p";
+tiles1 = "222340567888m7p";
 tiles2 = "2222333346666p";
-tiles3 = "2233450677999s";
+tiles3 = "2233405677999s";
 paishan = randompaishan("1s", "11z....");
 roundbegin();
 qiepai();
-mingpai();
-qiepai("9s");
-mopai();
-qiepai("9m", true);
-mingpai();
-qiepai("7p");
+mingqiepai("9s");
+moqieliqi("9m");
+mingqiepai("7p");
 hupai();
 
 // 亲荣和, 立直nomi, 1番60符, 2900
 tiles0 = "11m77888999p2237s";
-tiles1 = "222345067888m7p";
+tiles1 = "222340567888m7p";
 tiles2 = "2222333346666p";
-tiles3 = "2233450677999s";
+tiles3 = "2233405677999s";
 paishan = randompaishan("1s8p", "1111z...9m");
 roundbegin();
 qiepai();
-mingpai();
-qiepai("9s");
-mopai();
-qiepai("2s", true);
-mingpai();
-qiepai("9s");
+mingqiepai("9s");
+moqieliqi("2s");
+mingqiepai("9s");
 mopai();
 leimingpai();
-mopai();
-qiepai();
-mingpai();
-qiepai("7p");
+normalmoqie();
+mingqiepai("7p");
 hupai();

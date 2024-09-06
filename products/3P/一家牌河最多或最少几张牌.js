@@ -30,27 +30,16 @@ paishan = randompaishan("1234z1p.2p.3p.4p");
 roundbegin();
 qiepai();
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9s");
+    normalmoqie();
+    mingqiepai("9s");
 }
-mopai();
-qiepai();
-mingpai();
-qiepai("9p");
+normalmoqie();
+mingqiepai("9p");
 for (let i = 0; i < 3; i++) {
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9p");
+    normalmoqie(2);
+    mingqiepai("9p");
 }
-for (let i = 0; i < 43; i++) {
-    mopai();
-    qiepai();
-}
+normalmoqie(43);
 notileliuju();
 
 // 要让一家牌河最少, 那该家最好是西家
@@ -64,30 +53,17 @@ tiles1 = "1122334469999p";
 tiles2 = "9m135666p147s555z";
 paishan = randompaishan(".1z.2z.3z.6z.1234p", "7666z");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
+    normalmoqie();
     mingpai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
+    normalmoqie(2);
 }
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9p");
+    normalmoqie();
+    mingqiepai("9p");
 }
-for (let i = 0; i < 33; i++) {
-    mopai();
-    qiepai();
-}
+normalmoqie(33);
 notileliuju();

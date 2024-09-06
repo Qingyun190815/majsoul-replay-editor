@@ -35,15 +35,9 @@ tiles2 = "1112340678999m";
 tiles3 = "111333777999s6z";
 paishan = randompaishan("76z", "7z864s");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+normalmoqie(2);
 hupai();
 
 gotoju(0, 0, 0);
@@ -56,15 +50,9 @@ tiles2 = "1112340678999m";
 tiles3 = "111333777999s6z";
 paishan = randompaishan("76z", "7z864s");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+normalmoqie(2);
 hupai();
 
 gotoju(0, 0, 0);

@@ -38,20 +38,18 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("6z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第3局: 南亲, 南起 国士无双十三面
 tiles1 = "139m19p19s1234567z";
-tiles2 = "2223455067888m";
+tiles2 = "2223405567888m";
 tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
 paishan = randompaishan("1z");
 roundbegin();
 qiepai("3m");
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第4局: 南亲, 南起 大四喜
@@ -62,8 +60,5 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("54z");
 roundbegin();
 qiepai();
-mopai();
-qiepai();
-mopai();
-qiepai();
+normalmoqie(2);
 hupai();

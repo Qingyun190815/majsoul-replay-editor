@@ -32,26 +32,20 @@ tiles2 = "66778999m99p689s";
 tiles3 = "1122334457777s";
 paishan = randompaishan("12346p2134s9m5s");
 roundbegin();
-dingque("pspm")
+dingque("pspm");
 hupai();
 
 mopai();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 hupai();
 
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("7s");
+    normalmoqie();
+    mingqiepai("7s");
 }
 mopai();
 leimingpai();
-mopai();
-qiepai();
+normalmoqie();
 hupai(true);
 
 
@@ -63,26 +57,19 @@ tiles2 = "3344455p568999s";
 tiles3 = "111222p1112224s";
 paishan = randompaishan("49m12p1234s");
 roundbegin();
-dingque("pspm")
+dingque("pspm");
 qiepai();
-mopai();
+zimohu();
+
+normalmoqie();
 hupai();
 
-mopai();
-qiepai();
-hupai();
-
-mopai();
-qiepai();
+normalmoqie();
 mingpai();
 mopai();
-for (let i = 0; i < 3; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(3);
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai(true);
 
 
@@ -94,20 +81,17 @@ tiles3 = "1112223338999s"; // m
 tiles0 = "2334455667788m"; // p
 paishan = randompaishan("2m7s9m");
 roundbegin();
-dingque("pspm")
+dingque("pspm");
 qiepai();
-mingpai();
-qiepai("2m");
+mingqiepai("2m");
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 mopai();
 leimingpai();
 hupai();
 
-mopai();
-hupai(true);
+zimohu(true);
 
 
 
@@ -118,24 +102,19 @@ tiles2 = "113344m1139999s";
 tiles3 = "1112223334445p";
 paishan = randompaishan("5s5p134m13s");
 roundbegin();
-dingque("pspm")
+dingque("pspm");
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9s")
+    normalmoqie();
+    mingqiepai("9s")
 }
-mopai();
-qiepai();
+normalmoqie();
 hupai(true);
 
 
@@ -147,18 +126,15 @@ tiles2 = "1112345678999p";
 tiles3 = "223344p2233445s";
 paishan = randompaishan("15s5p");
 roundbegin();
-dingque("pssm")
+dingque("pssm");
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 hupai(true);
 
 
@@ -170,18 +146,13 @@ tiles2 = "1112467999m112p";
 tiles3 = "1555678p123456s";
 paishan = randompaishan("3s", "1p");
 roundbegin();
-dingque("pssm")
+dingque("pssm");
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
-mopai();
-for (let i = 0; i < 53; i++) {
-    qiepai();
-    mopai();
-}
-hupai();
+normalmoqie(53);
+zimohu();
 notileliuju();
 
 

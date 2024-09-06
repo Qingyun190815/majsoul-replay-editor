@@ -24,20 +24,15 @@ transition();
 
 tiles0 = "238999p11z556677z";
 tiles1 = "11345678m23456p";
-tiles2 = "2223455067888m";
-tiles3 = "2223455067888s";
+tiles2 = "2223405567888m";
+tiles3 = "2223405567888s";
 paishan = randompaishan("5677z1p", "1z....");
 scores = [55000, 21000, 24000, 0];
 roundbegin();
 qiepai("8p");
 for (let i = 0; i < 3; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9p");
+    normalmoqie();
+    mingqiepai("9p");
 }
-mopai();
-qiepai();
-mopai();
-qiepai();
+normalmoqie(2);
 hupai();

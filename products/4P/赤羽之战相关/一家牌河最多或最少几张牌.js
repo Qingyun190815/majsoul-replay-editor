@@ -42,26 +42,19 @@ tiles2 = "1111222233334s";
 tiles3 = "1111222233334p";
 paishan = randompaishan("4s81234m");
 roundbegin();
-dingque("pspm")
+dingque("pspm");
 qiepai();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
-mopai();
-qiepai();
+normalmoqie();
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9m");
+    normalmoqie();
+    mingqiepai("9m");
 }
-for (let i = 0; i < 49; i++) {
-    mopai();
-    qiepai();
-}
+normalmoqie(49);
 notileliuju();
 
 // 无人跑路, 最多几张
@@ -80,33 +73,20 @@ roundbegin();
 dingque("mspp");
 qiepai();
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9m");
+    normalmoqie();
+    mingqiepai("9m");
 }
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9s");
-    mopai();
-    qiepai();
+    normalmoqie();
+    mingqiepai("9s");
+    normalmoqie();
 }
 for (let i = 0; i < 4; i++) {
-    mopai();
-    qiepai();
-    mingpai();
-    qiepai("9p");
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
+    normalmoqie();
+    mingqiepai("9p");
+    normalmoqie(2);
 }
-for (let i = 0; i < 31; i++) {
-    mopai();
-    qiepai();
-}
+normalmoqie(31);
 notileliuju();
 
 // 无人跑路, 最少几张
@@ -126,47 +106,23 @@ paishan = randompaishan("..56p56s1m...2m...3m...4m...1p..2p..3p..4p..1s.2s.3s.4s
 roundbegin();
 dingque("mpmp");
 qiepai("9m");
+normalmoqie(2);
 mopai();
-qiepai();
-mopai();
-qiepai();
-mopai();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 qiepai();
 for (let i = 0; i < 4; i++) {
     mingpai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
+    normalmoqie(4);
 }
 for (let i = 0; i < 4; i++) {
     mingpai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
+    normalmoqie(3);
 }
 for (let i = 0; i < 4; i++) {
     mingpai();
-    mopai();
-    qiepai();
-    mopai();
-    qiepai();
+    normalmoqie(2);
 }
-for (let i = 0; i < 12; i++) {
-    mopai();
-    qiepai();
-}
+normalmoqie(12);
 notileliuju();
 
 gameend();

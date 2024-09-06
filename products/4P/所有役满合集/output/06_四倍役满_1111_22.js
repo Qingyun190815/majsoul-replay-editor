@@ -22,34 +22,31 @@ editdata.config = {
 
 // 第1局: 东亲, 东起 四暗刻单骑, 大四喜
 tiles0 = "1p1s111222333444z";
-tiles1 = "2223455067888m";
-tiles2 = "2223455067888p";
-tiles3 = "2223455067888s";
+tiles1 = "2223405567888m";
+tiles2 = "2223405567888p";
+tiles3 = "2223405567888s";
 paishan = randompaishan("1s");
 roundbegin();
 qiepai("1p")
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 // 第2局: 东亲, 南起 地和, 大三元, 四暗刻, 字一色
-tiles0 = "1112340678999p3z";
+tiles0 = "1112340678999s3z";
 tiles1 = "1122555666777z";
-tiles2 = "1112340678999p";
-tiles3 = "1112340678999s";
+tiles2 = "1112340678999m";
+tiles3 = "1112340678999p";
 paishan = randompaishan("1z");
 roundbegin();
 qiepai();
-mopai();
-hupai();
+zimohu();
 
 // 第3局: 南亲, 西起 地和, 四暗刻, 字一色, 小四喜
-tiles1 = "1112340678999p7z";
+tiles1 = "1112340678999s7z";
 tiles2 = "1112223334455z";
-tiles3 = "1112340678999p";
-tiles0 = "1112340678999s";
+tiles3 = "1112340678999m";
+tiles0 = "1112340678999p";
 paishan = randompaishan("5z");
 roundbegin();
 qiepai();
-mopai();
-hupai();
+zimohu();

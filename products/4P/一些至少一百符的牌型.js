@@ -25,7 +25,7 @@ loadproject();
 //    如南场南家: 234s2z 1111m 11111z 33333z 自摸2z
 //    20+32*2+16+4+2+2=108-->110
 //
-// *. 非役满牌型的最高符数是 20+10+32*3+4+2+2=134-->140符, 如南场南家 11m22z 99999p 99999s 33333z 荣和1m
+// *. 非役满牌型的最高符数是 20+10+32*3+4+4=134-->140符, 如南场南家 11m22z 99999p 99999s 33333z 荣和1m
 //     三杠子,对对和,三暗刻,混老头 8番140符 倍满
 // *. 理论最高符数是 20+10+32*4+4+2=164-->170符, 但这已经至少是三倍役满(四暗杠单骑)
 
@@ -56,15 +56,10 @@ tiles2 = "1112340678999p";
 tiles3 = "1133334678999s";
 paishan = randompaishan("1z", "5z.5z.5z..1s4z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
-mingpai();
-qiepai("3s");
-mopai();
-hupai();
+mingqiepai("3s");
+zimohu();
 
 // 1番门清荣和最高符数: 110
 tiles0 = "234m11s113333444z";
@@ -73,13 +68,9 @@ tiles2 = "1112340678999p";
 tiles3 = "1333346678999s";
 paishan = randompaishan("", "656565z..6s4z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai(true);
-mingpai();
-qiepai("1s");
+mingqiepai("1s");
 hupai();
 
 // 1番副露自摸最高符数: 100
@@ -89,19 +80,12 @@ tiles2 = "1112340678999p";
 tiles3 = "1333446778899s";
 paishan = randompaishan("1z", "5z.5z.5z..9s4z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
-mingpai();
-qiepai("1s");
-mingpai();
-qiepai("8s");
-mingpai();
-qiepai("6s");
-mopai();
-hupai();
+mingqiepai("1s");
+mingqiepai("8s");
+mingqiepai("6s");
+zimohu();
 
 // 2番门清自摸最高符数: 100
 tiles0 = "234m567p13333444z";
@@ -110,53 +94,37 @@ tiles2 = "1112340678999p";
 tiles3 = "1133334678999s";
 paishan = randompaishan("1z", "656565z..1s4z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai(true);
-mingpai();
-qiepai("3s");
-mopai();
-hupai();
+mingqiepai("3s");
+zimohu();
 
 // 2番门清荣和最高符数: 110
 tiles0 = "111p234s13333444z";
 tiles1 = "1112340678999m";
-tiles2 = "2223455067888p";
+tiles2 = "2223405567888p";
 tiles3 = "113334678999s1z";
 paishan = randompaishan("", "5z.5z.5z..1s4z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
-mingpai();
-qiepai("1z");
+mingqiepai("1z");
 hupai();
 
 // 2番副露自摸最高符数: 110
 tiles0 = "111p234s13333444z";
 tiles1 = "1112340678999m";
-tiles2 = "2223455067888p";
+tiles2 = "2223405567888p";
 tiles3 = "1p113334688999s";
 paishan = randompaishan("1z", "5z.5z.5z.5z.81s4z");
 roundbegin();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
+mingqiepai("1p");
 mingpai();
-qiepai("1p");
-mingpai();
-mopai();
-qiepai();
-mingpai();
-qiepai("6s");
-mopai();
-hupai();
+normalmoqie();
+mingqiepai("6s");
+zimohu();
 
 // 以下是子家的牌, 前六个和亲家一样
 gotoju(1, 0, 0);
@@ -169,15 +137,10 @@ paishan = randompaishan("32z", "5z.5z.5z..1s4z");
 roundbegin();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
-mingpai();
-qiepai("3s");
-mopai();
-hupai();
+mingqiepai("3s");
+zimohu();
 
 gotoju(1, 0, 0);
 // 1番门清荣和最高符数: 110
@@ -189,13 +152,9 @@ paishan = randompaishan("3z", "656565z..6s4z");
 roundbegin();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai(true);
-mingpai();
-qiepai("1s");
+mingqiepai("1s");
 hupai();
 
 gotoju(1, 0, 0);
@@ -208,19 +167,12 @@ paishan = randompaishan("32z", "5z.5z.5z..9s4z");
 roundbegin();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
-mingpai();
-qiepai("1s");
-mingpai();
-qiepai("8s");
-mingpai();
-qiepai("6s");
-mopai();
-hupai();
+mingqiepai("1s");
+mingqiepai("8s");
+mingqiepai("6s");
+zimohu();
 
 gotoju(1, 0, 0);
 // 2番门清自摸最高符数: 100
@@ -232,33 +184,24 @@ paishan = randompaishan("32z", "656565z..1s4z");
 roundbegin();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai(true);
-mingpai();
-qiepai("3s");
-mopai();
-hupai();
+mingqiepai("3s");
+zimohu();
 
 gotoju(1, 0, 0);
 // 2番门清荣和最高符数: 110
 tiles0 = "113334678999s27z";
 tiles1 = "111p234s2333444z";
 tiles2 = "1112340678999m";
-tiles3 = "2223455067888p";
+tiles3 = "2223405567888p";
 paishan = randompaishan("3z", "5z.5z.5z..1s4z");
 roundbegin();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
-mingpai();
-qiepai("2z");
+mingqiepai("2z");
 hupai();
 
 gotoju(1, 0, 0);
@@ -266,60 +209,45 @@ gotoju(1, 0, 0);
 tiles0 = "1p113334688999s7z";
 tiles1 = "111p234s2333444z";
 tiles2 = "1112340678999m";
-tiles3 = "2223455067888p";
+tiles3 = "2223405567888p";
 paishan = randompaishan("32z", "5z.5z.5z.5z.81s4z");
 roundbegin();
 qiepai();
 mopai();
-leimingpai();
-mopai();
-leimingpai();
-mopai();
+combomopai(2);
 qiepai();
+mingqiepai("1p");
 mingpai();
-qiepai("1p");
-mingpai();
-mopai();
-qiepai();
-mingpai();
-qiepai("6s");
-mopai();
-hupai();
+normalmoqie();
+mingqiepai("6s");
+zimohu();
 
 gotoju(1, 0, 0);
 // 8番140符
-tiles0 = "2223455067888s7z";
+tiles0 = "2223405567888s7z";
 tiles1 = "11m111999s22333z";
-tiles2 = "2223455067888m";
-tiles3 = "2223455067888p";
+tiles2 = "2223405567888m";
+tiles3 = "2223405567888p";
 paishan = randompaishan("3z1m", "5z.5z.5z.5z.7z91s");
 roundbegin();
 qiepai();
 mopai();
-for (let i = 0; i < 3; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(3);
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
 
 gotoju(1, 0, 0);
 // 最高符数170符, 三倍役满(四暗杠单骑)
-tiles0 = "2223455067888s7z";
+tiles0 = "2223405567888s7z";
 tiles1 = "111m111999s2333z";
-tiles2 = "2223455067888m";
-tiles3 = "2223455067888p";
+tiles2 = "2223405567888m";
+tiles3 = "2223405567888p";
 paishan = randompaishan("3z2z", "6z.5z.5z.5z.5z7z91s1m");
 roundbegin();
 qiepai();
 mopai();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
+combomopai(4);
 qiepai();
-mopai();
-qiepai();
+normalmoqie();
 hupai();
