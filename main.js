@@ -3000,8 +3000,8 @@ function leimingpai(seat, tile, type) {
         if (tile === undefined) {
             if (leimingpai("4z", "babei")) return true;
             if (leimingpai("3z", "babei")) return true;
-            for (let i = 1; i <= 34; i++) if (leimingpai(inttotile(i), "angang")) return true;
-            for (let i = 1; i <= 34; i++) if (leimingpai(inttotile(i), "jiagang")) return true;
+            for (let i = 1; i <= 37; i++) if (leimingpai(inttotile(i), "angang")) return true;
+            for (let i = 1; i <= 37; i++) if (leimingpai(inttotile(i), "jiagang")) return true;
             return false;
         }
         if (seat === undefined) {
@@ -3009,6 +3009,16 @@ function leimingpai(seat, tile, type) {
             if (lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile") seat = ju;
             else seat = lstaction.data.seat;
         }
+
+        let has_tile = false;
+        for (let i = 0; i < playertiles[seat].length; i++)
+            if (tile === playertiles[seat][i]) {
+                has_tile = true;
+                break;
+            }
+        if (!has_tile)
+            return false;
+
         if (doracnt.lsttype === 1) {
             doracnt.lsttype = 0;
             doracnt.cnt++;
@@ -3025,7 +3035,6 @@ function leimingpai(seat, tile, type) {
             saveproject();
             return true;
         }
-        for (let i = 0; i < fulu[seat].length; i++) if (equaltile(fulu[seat][i].tile[0], tile) && fulu[seat][i].type === 1) jiagangflag = true;
         if (tilecnt >= 4 && (type === undefined || type === "angang")) {
             for (let i = 0; i < playercnt; i++) if (liqiinfo[i].yifa === 1) liqiinfo[i].yifa = 2;
             doracnt.lsttype = 2;
@@ -3052,6 +3061,11 @@ function leimingpai(seat, tile, type) {
             saveproject();
             return true;
         }
+        for (let i = 0; i < fulu[seat].length; i++)
+            if (equaltile(fulu[seat][i].tile[0], tile) && fulu[seat][i].type === 1) {
+                jiagangflag = true;
+                break;
+            }
         if (jiagangflag && tilecnt >= 1 && (type === undefined || type === "jiagang")) {
             for (let i = 0; i < playercnt; i++) if (liqiinfo[i].yifa === 1) liqiinfo[i].yifa = 2;
             doracnt.lsttype = 1;
@@ -3060,7 +3074,7 @@ function leimingpai(seat, tile, type) {
                     fulu[seat][i].type = 2;
                     for (let j = 0; j < playertiles[seat].length; j++) {
                         if (equaltile(tile, playertiles[seat][j])) {
-                            if (is_peipaimingpai()) tile_states.push(erasemingpai(playertiles[seat][i], seat));
+                            if (is_peipaimingpai()) tile_states.push(erasemingpai(playertiles[seat][j], seat));
                             fulu[seat][i].tile.push(playertiles[seat][j]);
                         }
                     }

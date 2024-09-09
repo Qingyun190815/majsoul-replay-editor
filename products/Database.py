@@ -138,7 +138,7 @@ avatar_ids = [
     [403401, 403402, 403403, 403404],  # 宫永咲
     [403501, 403502, 403503, 403504],  # 原村和
     [403601, 403602, 403603, 403604],  # 天江衣
-    [403702, 403702, 403703, 403704],  # 宫永照
+    [403701, 403702, 403703, 403704],  # 宫永照
     [403801, 403802, 403803, 403804, 403805],  # 福姬
     [403901, 403902, 403903, 403904],  # 七夕
     [404001, 404002, 404003],  # 蛇喰梦子
@@ -389,12 +389,31 @@ for i in range(len(avatar_ids)):
 pattern_name = r'editdata\.player_datas\[\d]\.nickname = "(.*)";'
 pattern_id = r"editdata\.player_datas\[\d]\.avatar_id = (.*);"
 
-# 作为模版的文件, 文件名是 template.js
-infile = open("./template.js", "r")
 
 # 更改角色使用手为默认女性手的脚本
 change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 3, "item_id": 309997}];'
 
+# 四个贵人对应id
+four_guiren_ids = [
+    200052,  # 西园寺一羽
+    200061,  # 北原莉莉
+    200076,  # 东城玄音
+    200095,  # 南枫花
+]
+
+# 四个贵人对应的装扮
+four_guiren_views_1 = [
+    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305529;',
+    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305537;',
+    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305551;',
+    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 30550012;',
+]
+four_guiren_views_2 = [
+    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305215}, {"slot": 2, "item_id": 305315}, {"slot": 5, "item_id": 305529}];',
+    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305219}, {"slot": 2, "item_id": 305319}, {"slot": 5, "item_id": 305537}];',
+    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];',
+    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 30520006}, {"slot": 2, "item_id": 30530006}, {"slot": 5, "item_id": 30550012}];',
+]
 
 # 直接进入回放的脚本, 可以在控制台输入, 这里要感谢雀魂bot"姬萌萌"的作者 Paulzzh
 def Replay_Script(uuid):

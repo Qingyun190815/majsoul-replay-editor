@@ -5,7 +5,7 @@ editdata.player_datas[1].nickname = "宫永照";
 editdata.player_datas[2].nickname = "凛然花开";
 editdata.player_datas[3].nickname = "兔耳派对";
 editdata.player_datas[0].avatar_id = 403702;
-editdata.player_datas[1].avatar_id = 403702;
+editdata.player_datas[1].avatar_id = 403701;
 editdata.player_datas[2].avatar_id = 403703;
 editdata.player_datas[3].avatar_id = 403704;
 

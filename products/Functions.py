@@ -5,23 +5,27 @@
 from products.Database import *
 import re
 
-''' use_dict
-选择使用哪种方式来实现 使用非一般手模的角色 的牌谱
-True 表示回放牌谱时, 放映 有对应角色的真实牌谱
-    会用到变量: paipu_uuids, dict_spchar_paipu
-    和函数: Replay_Script(uuid)
-    为使用方便, 用这种方法在控制台输完之后会自动放映牌谱, 而不用手动找牌谱了
-False 表示修改角色的手模为一般手模(通过修改装扮 views 里面 "slot": 3 手的样式 的方式)
-    这种方法更简单但还原不是很完美, 某些角色使用女角色手模可能会有点怪
-    会用到变量: change_hand
-考虑再三, 在这里使用第一种方法
-'''
-use_dict = True
-
 
 # 这里 player_num 参数表示对局玩家数, 默认是四麻, 三麻参数填3就行
 def Generate_All_Avatar(player_num=4):
+    """ use_dict
+    选择使用哪种方式来实现 使用非一般手模的角色 的牌谱
+    True 表示回放牌谱时, 放映 有对应角色的真实牌谱
+        会用到变量: paipu_uuids, dict_spchar_paipu
+        和函数: Replay_Script(uuid)
+        为使用方便, 用这种方法在控制台输完之后会自动放映牌谱, 而不用手动找牌谱了
+    False 表示修改角色的手模为一般手模(通过修改装扮 views 里面 "slot": 3 手的样式 的方式)
+        这种方法更简单但还原不是很完美, 某些角色使用女角色手模可能会有点怪
+        会用到变量: change_hand
+    考虑再三, 在这里使用第一种方法
+    """
+    use_dict = True
+
     special_charids_index = 0
+    four_guiren_index = 0
+
+    # 作为模版的文件, 文件名是 template.js
+    infile = open("./template.js", "r")
 
     for index in range(len(avatar_ids)):
         outfile = open("./output/" + outfile_names[index], "w")
@@ -76,6 +80,11 @@ def Generate_All_Avatar(player_num=4):
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
+                if four_guiren_index < len(four_guiren_ids) and charids[index] == four_guiren_ids[
+                    four_guiren_index] and id_count == 4 and name_count == 4:
+                    outfile.write("\n" + four_guiren_views_1[four_guiren_index])
+                    outfile.write("\n" + four_guiren_views_2[four_guiren_index] + "\n")
+                    four_guiren_index += 1
                 if not use_dict:
                     if flag and id_count == 4 and name_count == 4:
                         outfile.write("\n" + change_hand + "\n")
@@ -127,6 +136,11 @@ def Generate_All_Avatar(player_num=4):
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
+                if four_guiren_index < len(four_guiren_ids) and charids[index] == four_guiren_ids[
+                    four_guiren_index] and id_count == 3 and name_count == 3:
+                    outfile.write("\n" + four_guiren_views_1[four_guiren_index])
+                    outfile.write("\n" + four_guiren_views_2[four_guiren_index] + "\n")
+                    four_guiren_index += 1
                 if not use_dict:
                     if flag and id_count == 3 and name_count == 3:
                         outfile.write("\n" + change_hand + "\n")
