@@ -62,6 +62,6 @@ scores = [105000, 0, 0];
 tiles0 = "11122233344466z";
 tiles1 = "1112340678999p";
 tiles2 = "1112340678999s";
-paishan = randompaishan("");
+paishan = randompaishan();
 roundbegin();
 hupai();

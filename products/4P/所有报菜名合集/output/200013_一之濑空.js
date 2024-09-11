@@ -25,7 +25,7 @@ tiles0 = "11122233344477z";
 tiles1 = "1112340678999m";
 tiles2 = "1112340678999p";
 tiles3 = "1112340678999s";
-paishan = randompaishan("");
+paishan = randompaishan();
 roundbegin();
 hupai();
 
@@ -86,7 +86,7 @@ tiles1 = "1112340678999m7z";
 tiles2 = "1112340678999p";
 tiles3 = "1112340678999s";
 tiles0 = "1112223334447z";
-paishan = randompaishan("");
+paishan = randompaishan();
 roundbegin();
 qiepai();
 hupai();
@@ -268,7 +268,7 @@ tiles1 = "19m19p19s12345677z";
 tiles2 = "1112340678999m";
 tiles3 = "1112340678999p";
 tiles0 = "1112340678999s";
-paishan = randompaishan("");
+paishan = randompaishan();
 roundbegin();
 liuju();
 

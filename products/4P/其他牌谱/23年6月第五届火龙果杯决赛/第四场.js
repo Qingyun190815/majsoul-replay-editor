@@ -4,10 +4,10 @@ editdata.player_datas[0] = {
     'nickname': "北雨听海",
     'avatar_id': 402602, // 雏桃-契约
     'title': 600006, // 魂之契约者-中阶
-    'level': { 'id': 10302, 'score': 700 },
+    'level': {'id': 10302, 'score': 700},
     'views': [
-        { "slot": 1, "item_id": 305209 }, // 和牌-安可
-        { "slot": 2, "item_id": 305320 }, // 立直-立直鸭
+        {"slot": 1, "item_id": 305209}, // 和牌-安可
+        {"slot": 2, "item_id": 305320}, // 立直-立直鸭
     ]
 };
 editdata.player_datas[1] = {
@@ -15,20 +15,20 @@ editdata.player_datas[1] = {
     'avatar_id': 400102, // 一姬-契约
     'title': 600045, // 一姬当千
     'avatar_frame': 305500, // 头像框-豆芽
-    'level': { 'id': 10401, 'score': 1400 },
+    'level': {'id': 10401, 'score': 1400},
     'views': [
-        { "slot": 1, "item_id": 308026 }, // 和牌-绝对的命令
-        { "slot": 2, "item_id": 308017 }, // 立直-恋之箭矢
-        { "slot": 5, "item_id": 305500 }, // 头像框-豆芽
+        {"slot": 1, "item_id": 308026}, // 和牌-绝对的命令
+        {"slot": 2, "item_id": 308017}, // 立直-恋之箭矢
+        {"slot": 5, "item_id": 305500}, // 头像框-豆芽
     ]
 };
 editdata.player_datas[2] = {
     'nickname': "114231",
     'avatar_id': 405001, // 雏桃-契约
-    'level': { 'id': 10501, 'score': 2000 },
+    'level': {'id': 10501, 'score': 2000},
     'views': [
-        { "slot": 1, "item_id": 305034 }, // 和牌-爆炎龙卷
-        { "slot": 2, "item_id": 305038 }, // 立直-龙腾
+        {"slot": 1, "item_id": 305034}, // 和牌-爆炎龙卷
+        {"slot": 2, "item_id": 305038}, // 立直-龙腾
     ]
 };
 editdata.player_datas[3] = {
@@ -36,17 +36,17 @@ editdata.player_datas[3] = {
     'avatar_id': 402202, // 约瑟夫-契约
     'title': 600038, // 神社贵宾, 牌谱问题这个修改无效
     'avatar_frame': 305523, // 头像框-猫咪军团的身份
-    'level': { 'id': 10501, 'score': 2000 },
+    'level': {'id': 10501, 'score': 2000},
     'views': [
-        { "slot": 1, "item_id": 308021 }, // 和牌-高岭之花
-        { "slot": 2, "item_id": 308022 }, // 立直-未来视
-        { "slot": 5, "item_id": 305523 }, // 头像框-猫咪军团的身份
+        {"slot": 1, "item_id": 308021}, // 和牌-高岭之花
+        {"slot": 2, "item_id": 308022}, // 立直-未来视
+        {"slot": 5, "item_id": 305523}, // 头像框-猫咪军团的身份
     ]
 };
 
 editdata.config = {
     'category': 4,
-    'meta': { 'mode_id': 0 },
+    'meta': {'mode_id': 0},
     'mode': {
         'mode': 2,
     }
@@ -143,7 +143,7 @@ paishan = randompaishan("4m1z4s3s2z7s6m1m8s7s9s9p9s4s2p2s9p1z1s1p7m7z6z6p3p6s5m1
 discardtiles = ["1z7z3z9s9p4p3p5z6p7p", "1z7z4z2s1z7z9m5m7s6z", "7z9s9s2p7m6z1s4z3s1s", "7s3s3m2p2s3z6p3z2s1z"];
 roundbegin();
 qiepai();
-normalmoqie(31); 
+normalmoqie(31);
 moqieliqi();
 normalmoqie(5);
 moqieliqi();

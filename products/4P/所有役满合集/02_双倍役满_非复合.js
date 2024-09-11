@@ -25,7 +25,7 @@ tiles0 = "0m123456789p1114z";
 tiles1 = "1112345678999m";
 tiles2 = "1112340678999p";
 tiles3 = "1112340678999s";
-paishan = randompaishan("");
+paishan = randompaishan();
 roundbegin();
 qiepai("0m");
 hupai();

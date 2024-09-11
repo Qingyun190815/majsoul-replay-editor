@@ -27,8 +27,8 @@ editdata.player_datas[2] = {
     'level': {'id': 10501, 'score': 2000},
     'views': [
         {"slot": 1, "item_id": 308021}, // 和牌-高岭之花
-        { "slot": 2, "item_id": 308022 }, // 立直-未来视
-        { "slot": 5, "item_id": 305523}, // 头像框-猫咪军团的身份
+        {"slot": 2, "item_id": 308022}, // 立直-未来视
+        {"slot": 5, "item_id": 305523}, // 头像框-猫咪军团的身份
     ]
 };
 editdata.player_datas[3] = {
