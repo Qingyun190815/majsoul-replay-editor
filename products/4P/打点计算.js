@@ -1,6 +1,7 @@
 loadproject();
 
 // 这个主要是在算点的时候有歧义的选择(即选择最大的)
+// 在熟悉番种的情况下, 打点计算上出难题基本围绕 符数的计算 和 役种的选择 两方面, 下面都是后者
 
 // 第1局, 123m777888999p1z 荣和1z
 // 一杯口, 混全 (or 三暗刻)
@@ -24,7 +25,7 @@ loadproject();
 // 第10局, 11199m77888999p 荣和7p
 // 对对和, 三暗刻 (or 一杯口, 纯全)
 
-// 第11局, 123m123p1123344s 荣和2s
+// 第11局, 123m123p1123344s 荣和2s; 和 第12局, 123m123p1122334s 荣和4s
 // 一杯口, 三色同顺 (or 平和, 一杯口 or 平和, 一杯口, 三色同顺)
 
 editdata.player_datas[0].nickname = "一姬-契约";
@@ -177,6 +178,17 @@ tiles1 = "1113334446667z";
 tiles2 = "4444055566667m";
 tiles3 = "4444055566667p";
 paishan = randompaishan("2s", "2z....");
+roundbegin();
+qiepai();
+normalmoqie();
+hupai();
+
+// 第12局, 123m123p1123344s 荣和4s
+tiles0 = "123m123p1122334s5z";
+tiles1 = "1113334446667z";
+tiles2 = "4444055566667m";
+tiles3 = "4444055566667p";
+paishan = randompaishan("4s", "2z....");
 roundbegin();
 qiepai();
 normalmoqie();

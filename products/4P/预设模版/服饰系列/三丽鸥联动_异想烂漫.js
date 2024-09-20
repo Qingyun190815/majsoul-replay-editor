@@ -5,6 +5,7 @@ loadproject();
 // 酷洛米: 泽尼娅
 // 大耳狗: 八木唯
 // 美乐蒂: 相原舞
+// 2024/9/20: 因为还未实装所以目前只是占位
 
 editdata.player_datas[0].nickname = "相原舞";
 editdata.player_datas[1].nickname = "八木唯";
