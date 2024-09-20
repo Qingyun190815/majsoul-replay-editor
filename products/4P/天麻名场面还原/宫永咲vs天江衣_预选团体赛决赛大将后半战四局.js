@@ -18,6 +18,10 @@ editdata.player_datas[1].avatar_id = 403601;
 editdata.player_datas[2].avatar_id = 403401;
 editdata.player_datas[3].avatar_id = 401901;
 
+editdata.player_datas[0].views = [{"slot": 1, "item_id": 305206}, {"slot": 2, "item_id": 305324}]; // 和牌-天降正义 和 立直-猫过留痕
+editdata.player_datas[1].views = [{"slot": 1, "item_id": 308001}]; // 和牌-龙卷雷霆
+editdata.player_datas[2].views = [{"slot": 1, "item_id": 308021}]; // 和牌-高岭之花
+
 editdata.config = {
     'category': 4,
     'meta': {'mode_id': 0},
@@ -115,24 +119,25 @@ zimohu();
 
 // 南4局0本场
 // 岭上清一色对对三暗刻三杠子红宝1 累计役满
-// 由于 main.js 中没有实现杠包牌, 这里的点数变动结果不对, 修改函数来"偷梁换柱"表面上看没问题, 但会造成前面几局结果不对, 目前解决方案是将最后一局分到另一个文件, 我这里就不做了
 gotoju(1, 3, 0);
-// nansi = function (){
-//     function endHule(HuleInfo, old_scores, delta_scores, scores, baopai) {
-//         delta_scores = [0, -32000, 32000, 0];
-//         actions.push({
-//             'name': "RecordHule",
-//             'data': {
-//                 'delta_scores': [].concat(delta_scores),
-//                 'gameend': {},
-//                 'hules': HuleInfo,
-//                 'old_scores': [].concat(old_scores),
-//                 'scores': [].concat(scores),
-//                 'baopai': baopai
-//             }
-//         });
-//         edit_online();
-//     }
+
+// 由于 main.js 中没有实现杠包牌, 这里通过修改函数来"偷梁换柱"了一下使得表面上看没问题
+new_endHule = function (HuleInfo, old_scores, delta_scores, scores, baopai) {
+    actions.push({
+        'name': "RecordHule", 'data': {
+            'delta_scores': [].concat([0, -32000, 32000, 0]),
+            'gameend': {},
+            'hules': HuleInfo,
+            'old_scores': [].concat(old_scores),
+            'scores': [].concat(scores),
+            'baopai': baopai
+        }
+    });
+    edit_online();
+}
+origin_endHule = endHule;
+endHule = new_endHule;
+
 scores = [35800, 168200, 105700, 90300];
 tiles3 = "19m7999p19s234567z";
 tiles0 = "225779s2588m788p";
@@ -145,10 +150,10 @@ qiepai();
 normalmoqie(30);
 mingpai();
 mopai();
-// baopai[2] = {'seat': 1, 'val': 1};
+baopai[2] = {'seat': 1, 'val': 1};
 combomopai(2);
 hupai();
-// }
-// nansi();
-// scores = [35800, 136200, 137700, 90300];
-// gameend();
+scores = [35800, 136200, 137700, 90300];
+gameend();
+
+endHule = origin_endHule;

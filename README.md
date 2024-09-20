@@ -36,6 +36,19 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 [字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
 
+TODO(欢迎contribute):
+- 实现特殊活动场的规则
+  - 明镜之战
+  - 暗夜之战
+  - 幻境传说
+  - 占星之战
+  - 天命之战
+  - 咏唱之战
+  - 魂之一击
+- 四杠子包牌的实现
+- 包杠的实现(即大明杠后岭上开花算被杠家放铳, 比如天麻中比赛的规则)
+- 振听的判断
+
 (下面内容基本没有改动)
 
 ## 注意事项
