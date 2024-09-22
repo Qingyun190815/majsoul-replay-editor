@@ -34,7 +34,7 @@ for (let i = 0; i < 4; i++) {
     normalmoqie();
     mingpai();
 }
-qiepai("7z"); // 亲目前只有 5z
+qiepai("7z");
 for (let i = 0; i < 4; i++) {
     normalmoqie();
     mingqiepai("9m");

@@ -1,6 +1,6 @@
 loadproject();
 
-// 这里认为, 拔的北不算牌河里面的, 因为牌河的是不要的牌, 丢弃的牌, 而拔的北不属于
+// 这里认为, 拔的北不算牌河里面的, 因为牌河的特征是不要的牌, 丢弃的牌, 而拔的北不属于
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "一姬当千";

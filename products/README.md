@@ -45,6 +45,7 @@
   - [立直后开杠打点反而可能变小](4P/立直后开杠打点反而可能变小.js)
   - [荣和只有一番自摸却有满贯的牌型](4P/荣和只有一番自摸却有满贯的牌型.js)
   - [零本场二三位最高分最低分](4P/零本场二三位最高分最低分.js)
+  - [十八倍铳满_一个真实存在的测试对局](4P/十八倍铳满_一个真实存在的测试对局)
   - 天麻名场面还原
     - [两番七十符_宫永咲初出茅庐正负零](4P/天麻名场面还原/两番七十符_宫永咲初出茅庐正负零.js)
     - [照姐铳倍满_阿知贺篇全国半决赛先锋后半战最后一局](4P/天麻名场面还原/照姐铳倍满_阿知贺篇全国半决赛先锋后半战最后一局.js)
@@ -81,9 +82,9 @@
 - [Functions.py](Functions.py)
 - [Refresh_All.py](Refresh_All.py)
 
-## 牌谱信息文件 [paipu_record.json](paipu_record.json)
+## 牌谱信息文件 [paipu_record.json](paipu_record.json) 及 获取脚本 [GetPaipuJSON.js](GetPaipuJSON.js)
 
-这个文件是在仓库 [misc-code](https://github.com/Fat-pig-Cui/misc-code/tree/main/paipu) 中的示例牌谱信息文件, 这里用于查看对局所包含的玩家信息
+这个文件是在仓库 [misc-code](https://github.com/Fat-pig-Cui/misc-code/tree/main/paipu) 中的示例牌谱信息文件及获取所用的脚本, 这里用于查看对局所包含的玩家信息
 
 比如 `views` 的格式, 详情可阅读那个仓库里面的 doc: [牌谱里面到底记载了什么](https://github.com/Fat-pig-Cui/misc-code/tree/main/doc/%E7%89%8C%E8%B0%B1%E9%87%8C%E9%9D%A2%E5%88%B0%E5%BA%95%E8%AE%B0%E8%BD%BD%E4%BA%86%E4%BB%80%E4%B9%88)
 
