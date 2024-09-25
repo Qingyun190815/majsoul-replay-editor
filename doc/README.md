@@ -2,11 +2,15 @@
 
 ## 免责声明: 由于这属于第三方脚本, 猫粮可能发威封号, 使用时请用小号登录实验, 个人对任何因封号等导致的损失概不负责
 
+PS: 经验证, 雀魂日服及美服也支持该仓库, 悠星(Yostar)代理的管控应该没有国际中文服那么严, 美服还支持繁体中文, 在外服账号存活率可能会更高一点
+
+[日服官网](https://mahjongsoul.com/), [美服官网](https://mahjongsoul.yo-star.com) (都需要梯子)
+
 ## 功能: 自定义雀魂牌谱回放
 
 ## 使用方法 (体验)
 
-`git clone` 该仓库或直接下载 main.js 和 [examples](../examples) 文件夹下的任一js文件
+`git clone` 该仓库或直接下载 main.js 和 [examples](../examples) 文件夹或 [products](../products) 文件夹下的任一牌谱回放js文件(除了 GetPaipuJSON.js)
 
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 main.js 里面的内容全选复制到控制台中,
 然后将 examples 文件夹下的js文件内容也复制到控制台中

@@ -22,12 +22,12 @@ editdata.config = {
 // 过渡
 transition();
 
+scores = [55000, 21000, 24000, 0];
 tiles0 = "238999p11z556677z";
 tiles1 = "11345678m23456p";
 tiles2 = "2223405567888m";
 tiles3 = "2223405567888s";
 paishan = randompaishan("5677z1p", "1z....");
-scores = [55000, 21000, 24000, 0];
 roundbegin();
 qiepai("8p");
 for (let i = 0; i < 3; i++) {

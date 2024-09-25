@@ -4,11 +4,11 @@ loadproject();
 // 最后一局子家的最长菜名(15条55番)
 
 editdata.player_datas[0].nickname = "相原舞-契约";
-editdata.player_datas[1].nickname = "禁锢之地";
-editdata.player_datas[2].nickname = "温存韶光";
+editdata.player_datas[1].nickname = "温存韶光";
+editdata.player_datas[2].nickname = "异想烂漫";
 editdata.player_datas[0].avatar_id = 400502;
-editdata.player_datas[1].avatar_id = 400505;
-editdata.player_datas[2].avatar_id = 400506;
+editdata.player_datas[1].avatar_id = 400506;
+editdata.player_datas[2].avatar_id = 400507;
 
 editdata.config = {
     'category': 1,

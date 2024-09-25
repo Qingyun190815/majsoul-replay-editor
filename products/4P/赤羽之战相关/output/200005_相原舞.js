@@ -3,13 +3,13 @@ loadproject();
 // 为了方便编辑不考虑换三张的过程
 
 editdata.player_datas[0].nickname = "相原舞-契约";
-editdata.player_datas[1].nickname = "昭华年";
-editdata.player_datas[2].nickname = "禁锢之地";
-editdata.player_datas[3].nickname = "温存韶光";
+editdata.player_datas[1].nickname = "禁锢之地";
+editdata.player_datas[2].nickname = "温存韶光";
+editdata.player_datas[3].nickname = "异想烂漫";
 editdata.player_datas[0].avatar_id = 400502;
-editdata.player_datas[1].avatar_id = 400504;
-editdata.player_datas[2].avatar_id = 400505;
-editdata.player_datas[3].avatar_id = 400506;
+editdata.player_datas[1].avatar_id = 400505;
+editdata.player_datas[2].avatar_id = 400506;
+editdata.player_datas[3].avatar_id = 400507;
 
 editdata.config = {
     'category': 2,
