@@ -26,13 +26,14 @@ editdata.config = {
 // 且 亲家前两次出的牌分别铳了北家和西家
 // 然后碰了南家四次
 // 38张
-tiles0 = "9999s1122334457z";
-tiles1 = "4578m135778s555z";
-tiles2 = "2345699m123456p";
-tiles3 = "223344m234678p7z";
+tiles0 = "9m16p9999s1233457z";
+tiles1 = "457m28p3577s5557z";
+tiles2 = "234569m2345p124z";
+tiles3 = "2233448m3467p18s";
 paishan = randompaishan("1m1s1234z");
 roundbegin();
-qiepai();
+huansanzhang("9m16p", "28p7z", "124z", "8m18s", 1);
+qiepai("7z");
 hupai();
 
 normalmoqie();

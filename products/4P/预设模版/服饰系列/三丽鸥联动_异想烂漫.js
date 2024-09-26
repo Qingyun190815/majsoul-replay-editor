@@ -7,6 +7,7 @@ loadproject();
 // 美乐蒂: 相原舞
 
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 30550014; // 头像框-肉桂卷定位器
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 30550014}];
 
 editdata.player_datas[0].nickname = "相原舞";
 editdata.player_datas[1].nickname = "八木唯";

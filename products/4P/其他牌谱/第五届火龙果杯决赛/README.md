@@ -1,12 +1,14 @@
 # 第五届火龙果杯常规赛决赛
 
-某位群友参加的大规模比赛2023年6月27号晚上的决赛, 直播回放有主播 [姜姜QAQ](https://space.bilibili.com/10048536) 的 [录播](https://www.bilibili.com/video/BV18h411K7EP?p=19) 和 [夜影未寒](https://space.bilibili.com/393646456) 的 [火龙果录播](https://www.bilibili.com/video/BV1im4y1a75i)
+某位群友参加的大规模比赛2023年6月27号晚上的决赛, 直播回放有主播 [姜姜QAQ](https://space.bilibili.com/10048536)
+的 [录播](https://www.bilibili.com/video/BV18h411K7EP?p=19) 和 [夜影未寒](https://space.bilibili.com/393646456)
+的 [火龙果录播](https://www.bilibili.com/video/BV1im4y1a75i)
 
 **由于该群友的表现过于"忍俊不禁"(不要笑挑战), 加上我没搞到真实牌谱, 于是根据录播进行自制来存档**
 
 PS: 这种情况自制牌谱的工作量是最大的, 想完美还原真实牌谱非常费时间
 
-参赛选手最终成绩: 
+参赛选手最终成绩:
 
 1. **冠军: 领取好运**
 2. **亚军: 114231**

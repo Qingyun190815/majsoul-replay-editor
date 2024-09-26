@@ -2,26 +2,30 @@
 
 ## 免责声明: 由于这属于第三方脚本, 猫粮可能发威封号, 使用时请用小号登录实验, 个人对任何因封号等导致的损失概不负责
 
-PS: 经验证, 雀魂日服及美服也支持该仓库, 悠星(Yostar)代理的管控应该没有国际中文服那么严, 美服还支持繁体中文, 在外服账号存活率可能会更高一点
+PS: 经验证, 雀魂日服及美服也支持该仓库, 悠星(Yostar)代理的管控应该没有国际中文服那么严, 美服还支持繁体中文,
+在外服账号存活率可能会更高一点
 
-[日服官网](https://mahjongsoul.com/), [美服官网](https://mahjongsoul.yo-star.com) (都需要梯子)
+[日服官网](https://mahjongsoul.com/), [美服官网](https://mahjongsoul.yo-star.com) (登录都需要梯子, 美服虽然不挂也能访问但页面会卡住)
 
 ## 功能: 自定义雀魂牌谱回放
 
 ## 使用方法 (体验)
 
-`git clone` 该仓库或直接下载 main.js 和 [examples](../examples) 文件夹或 [products](../products) 文件夹下的任一牌谱回放js文件(除了 GetPaipuJSON.js)
+`git clone` 该仓库或直接下载 main.js 和 [examples](../examples) 文件夹或 [products](../products)
+文件夹下的任一牌谱回放js文件(除了 GetPaipuJSON.js)
 
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 main.js 里面的内容全选复制到控制台中,
 然后将 examples 文件夹下的js文件内容也复制到控制台中
 
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
-**严格的说所选择的谱不是随便的: 必须和要自制回放的谱资源对应(尤其是手的样式和立直棒这种), 但如果不是自制的回放要求特别高一般不会出问题, 详细内容要看这个文件夹里面的文档了**
+**严格的说所选择的谱不是随便的: 必须和要自制回放的谱资源对应(尤其是手的样式和立直棒这种), 但如果不是自制的回放要求特别高一般不会出问题,
+详细内容要看这个文件夹里面的文档了**
 
 ---
 
-原repo用wiki的方式当做文档([majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)), 我这里为了维护方便就把文档放到这个文件夹下面了
+原repo用wiki的方式当做文档([majsoul-replay-editor.wiki](https://github.com/GrandDawn/majsoul-replay-editor/wiki)),
+我这里为了维护方便就把文档放到这个文件夹下面了
 
 建议阅读顺序:
 
@@ -35,14 +39,15 @@ PS: 经验证, 雀魂日服及美服也支持该仓库, 悠星(Yostar)代理的�
 [字典](字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
 
 TODO(欢迎contribute):
+
 - 实现特殊活动场的规则
-  - 明镜之战
-  - 暗夜之战
-  - 幻境传说
-  - 占星之战
-  - 天命之战
-  - 咏唱之战
-  - 魂之一击
+    - 明镜之战
+    - 暗夜之战
+    - 幻境传说
+    - 占星之战
+    - 天命之战
+    - 咏唱之战
+    - 魂之一击
 - 四杠子包牌的实现
 - 包杠的实现(即大明杠后岭上开花算被杠家放铳, 比如天麻中比赛的规则)
 - 振听的判断
@@ -50,7 +55,8 @@ TODO(欢迎contribute):
 
 ## 注意事项
 
-1.规则目前支持截止2021.7.10之前雀魂的所有规则和血流成河模式及二人麻将(二人麻将需要输入 add_function.js, 性能原因载入这个文件后放映牌谱会很卡)
+1.规则目前支持截止2021.7.10之前雀魂的所有规则和血流成河模式及二人麻将(二人麻将需要输入 add_function.js,
+性能原因载入这个文件后放映牌谱会很卡)
 
 2.对于不符合要求的填写, 可能出现页面崩溃的问题(一般页面会卡住, 控制台会报错)
 
@@ -68,13 +74,16 @@ TODO(欢迎contribute):
 
 1.md5加密源自[百度百科](https://baike.baidu.com/item/MD5)
 
-2.更改回放的方法参考了B站[一般通过彳亍人](https://space.bilibili.com/23019265)的[BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)
+2.更改回放的方法参考了B站[一般通过彳亍人](https://space.bilibili.com/23019265)
+的[BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)
 
-3.血流成河的实现方式中的使牌颜色变淡参考了greasyfork [2938137849](https://greasyfork.org/zh-CN/users/749724-2938137849)的[雀魂麻将脚本](https://greasyfork.org/zh-CN/scripts/423689-%E9%9B%80%E9%AD%82%E9%BA%BB%E5%B0%86%E8%84%9A%E6%9C%AC)
+3.血流成河的实现方式中的使牌颜色变淡参考了greasyfork [2938137849](https://greasyfork.org/zh-CN/users/749724-2938137849)
+的[雀魂麻将脚本](https://greasyfork.org/zh-CN/scripts/423689-%E9%9B%80%E9%AD%82%E9%BA%BB%E5%B0%86%E8%84%9A%E6%9C%AC)
 
 4.有少部分代码来自于雀魂源码
 
-5.其他部分均由本人编写, 版权归原作者[GrandDawn](https://github.com/GrandDawn)所有, 未经原作者允许不得转载本文内容, 否则将视为侵权, 对于不遵守此声明或者其他违法使用本文内容者, 本人依法保留追究权等
+5.其他部分均由本人编写, 版权归原作者[GrandDawn](https://github.com/GrandDawn)所有, 未经原作者允许不得转载本文内容,
+否则将视为侵权, 对于不遵守此声明或者其他违法使用本文内容者, 本人依法保留追究权等
 
 6.请不要在任何第三方网站下载该源代码, 否则后果自负
 

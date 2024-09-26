@@ -4,9 +4,12 @@ loadproject();
 // 111999m5556677z 6z
 // 1112233778899m 1m
 
-// 无宝断幺最高三倍满
+// 非清一色无宝断幺最高三倍满
 // 88m88p 22222m 22222p 22222s 8m  12番
 // 68m88p 22222m 22222p 22222s 7m  11番
+
+// 大车轮: 无论怎么和都一定有 平和, 两杯口, 断幺, 清一色, 加上 立直 和 自摸, 刚好13番
+// 22334455667788p
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -78,4 +81,17 @@ mingqiepai("9p");
 normalmoqie(61);
 moqieliqi();
 normalmoqie(3);
+zimohu();
+
+// 立直, 自摸, 平和, 两杯口, 断幺, 清一色  13番
+tiles0 = "1m2233445667788p";
+tiles1 = "1112340678999p";
+tiles2 = "1112340678999s";
+tiles3 = "1122306678999m";
+paishan = randompaishan("2m5p", "11z....");
+roundbegin();
+qiepai("1m");
+mingqiepai("3m");
+moqieliqi();
+mingqiepai("6m");
 zimohu();

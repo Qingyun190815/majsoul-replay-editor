@@ -2289,7 +2289,8 @@ function hupai(x, type) {
                 }
             }
         }
-        if (x.length === 0) return;
+        if (x.length === 0) // 没给参数 seat 的情况下, 无人能正常和牌
+            console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", hupai 没给 seat 参数无人能正常和牌");
         if (!is_xuezhandaodi() && !is_chuanma() && !is_xueliu()) {
             let ret = [], baopait = 0;
             for (let i = 0; i < x.length; i++) ret.push(hupaioneplayer(x[i]));

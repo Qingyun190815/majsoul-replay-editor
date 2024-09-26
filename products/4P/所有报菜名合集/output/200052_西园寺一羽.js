@@ -131,7 +131,7 @@ hupai();
 tiles3 = "11122233344457z";
 tiles0 = "111666m22556p88s";
 tiles1 = "340m34p23334405s";
-tiles2 = "111129p1555777z";
+tiles2 = "11112p88s555777z";
 paishan = randompaishan("3s..0p", "44p2422s..52p");
 roundbegin();
 qiepai();

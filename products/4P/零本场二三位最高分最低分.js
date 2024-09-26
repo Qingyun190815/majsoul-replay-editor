@@ -38,7 +38,7 @@ roundbegin();
 combomopai(4);
 qiepai();
 normalmoqie(2);
-hupai();
+hupai([0, 1]);
 
 gotoju(0, 0, 0);
 
