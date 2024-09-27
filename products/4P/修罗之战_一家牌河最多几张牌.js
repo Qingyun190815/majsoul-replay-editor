@@ -1,7 +1,5 @@
 loadproject();
 
-// 编辑方便不考虑换三张的情况
-
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
 editdata.player_datas[2].nickname = "一姬当千";
@@ -22,7 +20,7 @@ editdata.config = {
     }
 };
 
-// 要让一家牌河最多, 那该家最好是亲
+// 要让一家牌河最多, 那该家最好是亲家
 // 且 亲家前两次出的牌分别铳了北家和西家
 // 然后碰了南家四次
 // 38张
