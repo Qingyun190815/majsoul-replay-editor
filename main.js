@@ -710,8 +710,7 @@ let doranxt = [0, 2, 3, 4, 5, 6, 7, 8, 9, 1, 11, 12, 13, 14, 15, 16, 17, 18, 10,
 function equaltile(x, y) {
     if (x[1] === y[1] && x[0] === '0' && y[0] === '5') return true;
     if (x[1] === y[1] && x[0] === '5' && y[0] === '0') return true;
-    if (x === y) return true;
-    return false;
+    return x === y;
 }
 
 function tiletoint(tile, type) {

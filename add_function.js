@@ -1,3 +1,5 @@
+"use strict";
+
 function editfunction() {
     !function (t) {
         t.ActionDiscardTile = function (e) {
