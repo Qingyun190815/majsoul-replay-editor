@@ -9,6 +9,11 @@ editdata.player_datas[1].avatar_id = 400506;
 editdata.player_datas[2].avatar_id = 402705;
 editdata.player_datas[3].avatar_id = 402805;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 305221}, // 和牌-机械哲学
+    {"slot": 2, "item_id": 305321}, // 立直-量子智能
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -39,3 +44,4 @@ qiepai("6z", true);
 hupai();
 */
 
+GameMgr.Inst.checkPaiPu("231127-e18887d1-d8eb-4e13-9ac0-5fb4f1a17426", 0)

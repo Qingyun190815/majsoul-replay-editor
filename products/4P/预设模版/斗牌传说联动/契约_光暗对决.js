@@ -9,7 +9,10 @@ editdata.player_datas[1].avatar_id = 405102;
 editdata.player_datas[2].avatar_id = 405003;
 editdata.player_datas[3].avatar_id = 405103;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308011}, {"slot": 2, "item_id": 308012}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 308011}, // 和牌-地狱低语
+    {"slot": 2, "item_id": 308012}, // 立直-幽冥之焰
+];
 
 editdata.config = {
     'category': 1,

@@ -5,22 +5,8 @@
 from products.Database import *
 import re
 
-
 # 这里 player_num 参数表示对局玩家数, 默认是四麻, 三麻参数填3就行
 def Generate_All_Avatar(player_num=4):
-    """ use_dict
-    选择使用哪种方式来实现 使用非一般手模的角色 的牌谱
-    True 表示回放牌谱时, 放映 有对应角色的真实牌谱
-        会用到变量: paipu_uuids, dict_spchar_paipu
-        和函数: Replay_Script(uuid)
-        为使用方便, 用这种方法在控制台输完之后会自动放映牌谱, 而不用手动找牌谱了
-    False 表示修改角色的手模为一般手模(通过修改装扮 views 里面 "slot": 3 手的样式 的方式)
-        这种方法更简单但还原不是很完美, 某些角色使用女角色手模可能会有点怪
-        会用到变量: change_hand
-    考虑再三, 在这里使用第一种方法
-    """
-    use_dict = True
-
     special_charids_index = 0
     four_guiren_index = 0
 

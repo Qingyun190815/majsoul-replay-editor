@@ -9,7 +9,10 @@ editdata.player_datas[1].avatar_id = 408003;
 editdata.player_datas[2].avatar_id = 408103;
 editdata.player_datas[3].avatar_id = 408203;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 308031}, // 和牌-魔力的迸发
+    {"slot": 2, "item_id": 308032}, // 立直-英灵的典仪
+];
 
 editdata.config = {
     'category': 1,

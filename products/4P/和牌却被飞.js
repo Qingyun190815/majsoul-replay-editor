@@ -1,6 +1,6 @@
 loadproject();
 
-// 要做到和牌却被飞, 那就只能是役满的包牌导致的, 下面分别用大三元和大四喜作为例子
+// 要做到和牌却被飞, 那就只能是役满的包牌和一炮多响导致的, 下面分别用大三元和大四喜作为例子
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";

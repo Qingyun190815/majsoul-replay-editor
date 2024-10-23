@@ -9,7 +9,10 @@ editdata.player_datas[1].avatar_id = 407102;
 editdata.player_datas[2].avatar_id = 407202;
 editdata.player_datas[3].avatar_id = 407302;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 308026}, // 和牌-绝对的命令
+    {"slot": 2, "item_id": 308027}, // 立直-王者的决意
+];
 
 editdata.config = {
     'category': 1,

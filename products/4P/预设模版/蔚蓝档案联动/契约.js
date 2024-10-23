@@ -9,7 +9,10 @@ editdata.player_datas[1].avatar_id = 408702;
 editdata.player_datas[2].avatar_id = 408802;
 editdata.player_datas[3].avatar_id = 408902;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 308036}, // 和牌-冷血射击
+    {"slot": 2, "item_id": 308037}, // 立直-虹色轨迹
+];
 
 editdata.config = {
     'category': 1,

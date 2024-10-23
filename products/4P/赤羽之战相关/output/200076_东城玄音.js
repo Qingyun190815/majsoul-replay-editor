@@ -15,8 +15,8 @@ editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = 
 editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];
 
 editdata.config = {
-    'category': 2,
-    'meta': {'mode_id': 41},
+    'category': 1,
+    'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {
@@ -77,11 +77,11 @@ hupai(true);
 
 
 
-// 第3局: 清七对;    清幺九, 枪杠;        龙七对
-tiles1 = "7788999m445566p7s"; // s
-tiles2 = "2m123445677889s"; // p
-tiles3 = "1112223338999s"; // m
-tiles0 = "2334455667788m"; // p
+// 第3局: 清七对;    清幺九, 抢杠;        龙七对
+tiles1 = "7788999m445566p7s";
+tiles2 = "2m123445677889s";
+tiles3 = "1112223338999s";
+tiles0 = "2334455667788m";
 paishan = randompaishan("2m7s9m");
 roundbegin();
 dingque("pspm");

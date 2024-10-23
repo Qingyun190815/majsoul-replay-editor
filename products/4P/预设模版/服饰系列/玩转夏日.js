@@ -9,6 +9,14 @@ editdata.player_datas[1].avatar_id = 403304;
 editdata.player_datas[2].avatar_id = 405905;
 editdata.player_datas[3].avatar_id = 407503;
 
+// 称号-青云之志
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = editdata.player_datas[3].title = 600094;
+// 和牌-喵——呜！ 和 立直-萌爪狂欢
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 30520005}, // 和牌-喵——呜！
+    {"slot": 2, "item_id": 30530005}, // 立直-萌爪狂欢
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -39,3 +47,4 @@ qiepai("6z", true);
 hupai();
 */
 
+GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

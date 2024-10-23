@@ -9,6 +9,13 @@ editdata.player_datas[1].avatar_id = 401404;
 editdata.player_datas[2].avatar_id = 401707;
 editdata.player_datas[3].avatar_id = 402503;
 
+// 称号-一姬当千
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = editdata.player_datas[3].title = 600045;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 305213}, // 和牌-疾月斩
+    {"slot": 2, "item_id": 305313}, // 立直-风华斩
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -39,3 +46,4 @@ qiepai("6z", true);
 hupai();
 */
 
+GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

@@ -5,15 +5,15 @@ loadproject();
 editdata.player_datas[0].nickname = "岚星-契约";
 editdata.player_datas[1].nickname = "岚星";
 editdata.player_datas[2].nickname = "岚星-契约";
-editdata.player_datas[3].nickname = "岚星";
+editdata.player_datas[3].nickname = "不寐之绊";
 editdata.player_datas[0].avatar_id = 407402;
 editdata.player_datas[1].avatar_id = 407401;
 editdata.player_datas[2].avatar_id = 407402;
-editdata.player_datas[3].avatar_id = 407401;
+editdata.player_datas[3].avatar_id = 407403;
 
 editdata.config = {
-    'category': 2,
-    'meta': {'mode_id': 41},
+    'category': 1,
+    'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {
@@ -74,11 +74,11 @@ hupai(true);
 
 
 
-// 第3局: 清七对;    清幺九, 枪杠;        龙七对
-tiles1 = "7788999m445566p7s"; // s
-tiles2 = "2m123445677889s"; // p
-tiles3 = "1112223338999s"; // m
-tiles0 = "2334455667788m"; // p
+// 第3局: 清七对;    清幺九, 抢杠;        龙七对
+tiles1 = "7788999m445566p7s";
+tiles2 = "2m123445677889s";
+tiles3 = "1112223338999s";
+tiles0 = "2334455667788m";
 paishan = randompaishan("2m7s9m");
 roundbegin();
 dingque("pspm");

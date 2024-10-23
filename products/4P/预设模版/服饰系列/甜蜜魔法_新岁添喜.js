@@ -9,6 +9,10 @@ editdata.player_datas[1].avatar_id = 403804;
 editdata.player_datas[2].avatar_id = 404603;
 editdata.player_datas[3].avatar_id = 404703;
 
+// 头像框-雪夜童话
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305542;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 305542}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -39,3 +43,4 @@ qiepai("6z", true);
 hupai();
 */
 
+GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

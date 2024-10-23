@@ -9,6 +9,10 @@ editdata.player_datas[1].avatar_id = 400503;
 editdata.player_datas[2].avatar_id = 400603;
 editdata.player_datas[3].avatar_id = 400803;
 
+// 头像框-豆芽
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305500;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 305500}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

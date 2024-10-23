@@ -18,8 +18,8 @@ editdata.player_datas[2].avatar_id = 400105;
 editdata.player_datas[3].avatar_id = 400106;
 
 editdata.config = {
-    'category': 2,
-    'meta': {'mode_id': 41},
+    'category': 1,
+    'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {
@@ -62,7 +62,7 @@ notileliuju();
 // 且 南家出的牌
 // 被亲家碰四次
 // 被北家碰四次
-// 被西家碰/吃四次
+// 被西家碰四次
 // 20张
 tiles3 = "1122334469999m8s";
 tiles0 = "6667m6667p46667s";

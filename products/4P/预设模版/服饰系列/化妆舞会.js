@@ -39,3 +39,4 @@ qiepai("6z", true);
 hupai();
 */
 
+GameMgr.Inst.checkPaiPu("240824-43fd37aa-7de0-405f-8ba8-9d2cd541b4d5", 0)

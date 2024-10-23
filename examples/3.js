@@ -9,8 +9,8 @@ editdata.player_datas[1].avatar_id = 400101;
 editdata.player_datas[2].avatar_id = 400101;
 editdata.player_datas[3].avatar_id = 400101;
 editdata.config = {
-    'category': 2,
-    'meta': {'mode_id': 40},
+    'category': 1,
+    'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {

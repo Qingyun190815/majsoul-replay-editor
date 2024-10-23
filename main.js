@@ -851,12 +851,18 @@ function calcsudian(x, type) {
     if (type === undefined) type = 0;
     let val = 0;
     for (let i = 0; i < x.fans.length; i++) val = val + x.fans[i].val;
-    if (x.yiman === true) return 8000 * val + type * val + type * x.fu / 5 * 0.01; else if (val < fanfu()) return -2000; else if (val === 5) return 2000 + type * val + type * x.fu / 5 * 0.01; else if (val === 6 || val === 7) return 3000 + type * val + type * x.fu / 5 * 0.01; else if (val >= 8 && val <= 10) return 4000 + type * val + type * x.fu / 5 * 0.01; else if (val === 11 || val === 12) return 6000 + type * val + type * x.fu / 5 * 0.01; else if (val >= 13) return 8000 + type * val + type * x.fu / 5 * 0.01; else return Math.min(Math.pow(2, val + 2) * x.fu, 2000) + type * val + type * x.fu / 5 * 0.01;
+    if (x.yiman === true) return 8000 * val + type * val + type * x.fu / 5 * 0.01;
+    else if (val < fanfu()) return -2000;
+    else if (val === 5) return 2000 + type * val + type * x.fu / 5 * 0.01;
+    else if (val === 6 || val === 7) return 3000 + type * val + type * x.fu / 5 * 0.01;
+    else if (val >= 8 && val <= 10) return 4000 + type * val + type * x.fu / 5 * 0.01;
+    else if (val === 11 || val === 12) return 6000 + type * val + type * x.fu / 5 * 0.01;
+    else if (val >= 13) return 8000 + type * val + type * x.fu / 5 * 0.01;
+    else return Math.min(Math.pow(2, val + 2) * x.fu, 2000) + type * val + type * x.fu / 5 * 0.01;
 }
 
-// 0: 副露的顺子   1: 副露的刻子  2: 明杠
-// 3: 暗杠         4: 拔北宝牌    5: 未副露的顺子
-// 6: 未副露的刻子 7: 对子
+// 0: 明顺    1: 明刻   2: 明杠   3: 暗杠
+// 4: 拔的北   5: 暗顺   6: 暗刻   7: 对子
 
 // 1~64
 // 自摸   立直   抢杠     岭上   海底   河底   白     发     中     门风
@@ -1515,7 +1521,7 @@ function calcdoras() {
 
 function gamebegin() {
     if (editdata.config === undefined) editdata.config = {
-        'category': 2, 'meta': {'mode_id': 5}, 'mode': {
+        'category': 1, 'meta': {'mode_id': 0}, 'mode': {
             'mode': 1,
         }
     }
@@ -3370,11 +3376,11 @@ function randompaishan(paishan = "", paishanback = "", reddora) {
     for (let i = 0; i < cnt.length; i++) {
         if (cnt[i] !== undefined && cnt[i] < 0) {
             if (is_chuanma() && paishan.length !== 55 * 2)
-                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + (4-cnt[i]) + " 个 " + inttotile(i));
+                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + (4 - cnt[i]) + " 个 " + inttotile(i));
             if (!is_chuanma() && config.mode.mode >= 10 && config.mode.mode <= 19 && paishan.length !== 68 * 2)
-                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + (4-cnt[i]) + " 个 " + inttotile(i));
+                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + (4 - cnt[i]) + " 个 " + inttotile(i));
             if (!is_chuanma() && config.mode.mode < 10 && config.mode.mode >= 0 && paishan.length !== 83 * 2)
-                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + (4-cnt[i]) + " 个 " + inttotile(i));
+                console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: i = " + i + ", " + (4 - cnt[i]) + " 个 " + inttotile(i));
         }
     }
     return paishan;

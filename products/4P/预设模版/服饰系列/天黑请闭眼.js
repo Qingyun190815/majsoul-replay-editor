@@ -9,6 +9,11 @@ editdata.player_datas[1].avatar_id = 402504;
 editdata.player_datas[2].avatar_id = 403205;
 editdata.player_datas[3].avatar_id = 404704;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 30520001}, // 和牌-杰克的恶作剧
+    {"slot": 2, "item_id": 30530001}, // 立直-南瓜夜行
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -39,3 +44,4 @@ qiepai("6z", true);
 hupai();
 */
 
+GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

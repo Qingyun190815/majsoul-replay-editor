@@ -1,5 +1,7 @@
 loadproject();
 
+// 客户端的装扮预览界面的虚假的对局(虚假是因为有些地方不符合规则逻辑)
+
 editdata.player_datas[1].nickname = editdata.player_datas[2].nickname = editdata.player_datas[3].nickname = "电脑(简单)";
 editdata.player_datas[0] = {
     'nickname': "$nickname$",

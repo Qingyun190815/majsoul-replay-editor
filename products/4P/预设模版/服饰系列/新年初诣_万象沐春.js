@@ -9,6 +9,11 @@ editdata.player_datas[1].avatar_id = 400206;
 editdata.player_datas[2].avatar_id = 401603;
 editdata.player_datas[3].avatar_id = 401706;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 305201}, // 和牌-歌剧魅影 (还有一个和牌是 305202 和牌-魔法少女)
+    {"slot": 2, "item_id": 305301}, // 立直-非常事态 (还有一个立直是 305302 立直-魔法少女)
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

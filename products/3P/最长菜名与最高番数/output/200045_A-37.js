@@ -4,11 +4,11 @@ loadproject();
 // 最后一局子家的最长菜名(15条55番)
 
 editdata.player_datas[0].nickname = "A-37-契约";
-editdata.player_datas[1].nickname = "花火之约";
-editdata.player_datas[2].nickname = "醇香初夏";
+editdata.player_datas[1].nickname = "醇香初夏";
+editdata.player_datas[2].nickname = "不寐之绊";
 editdata.player_datas[0].avatar_id = 404502;
-editdata.player_datas[1].avatar_id = 404503;
-editdata.player_datas[2].avatar_id = 404504;
+editdata.player_datas[1].avatar_id = 404504;
+editdata.player_datas[2].avatar_id = 404505;
 
 editdata.config = {
     'category': 1,
