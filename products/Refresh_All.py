@@ -18,6 +18,7 @@ file_name_3P = "Generate_All_Avatar_3P"
 run_python_3P = "python3 " + file_name_3P + ".py"
 path_prefix_3P = "3P/"
 paths_3P = [
+    "对局操作语音合集",
     "最长菜名与最高番数",
 ]
 
