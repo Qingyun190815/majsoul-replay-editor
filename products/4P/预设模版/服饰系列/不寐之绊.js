@@ -9,6 +9,10 @@ editdata.player_datas[1].avatar_id = 404505;
 editdata.player_datas[2].avatar_id = 404805;
 editdata.player_datas[3].avatar_id = 407403;
 
+// 头像框-一汪打尽
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 30550017;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 30550017}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -39,4 +43,4 @@ qiepai("6z", true);
 hupai();
 */
 
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)
+GameMgr.Inst.checkPaiPu("240824-069a7e45-a8cb-49d8-be75-594a207f9c1e", 0)
