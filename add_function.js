@@ -1,5 +1,6 @@
 "use strict";
 
+// code.js 文件 129157 行
 function editfunction() {
     !function (t) {
         t.ActionDiscardTile = function (e) {
@@ -43,6 +44,8 @@ function editfunction() {
                     a = mjcore.MJPai.Create(e.tile),
                     r = !(null === e.is_liqi || void 0 === e.is_liqi || !e.is_liqi),
                     s = !1;
+
+
                 if (e.is_kailiqi) {
                     if (e.seat !== view.DesktopMgr.Inst.seat) {
                         for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand.length; i++) view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand[i].DoAnim_FullDown();
@@ -58,6 +61,8 @@ function editfunction() {
                       for (o = 0; o < h; o++) view.DesktopMgr.Inst.players[0]._hand3d[o].DoAnim_FullDown();
                     }*/
                 }
+
+
                 if (e.tile_state && e.tile_state > 0 && (s = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !0), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddQiPai(a, r, e.moqie), r && (e.is_wliqi ? t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].PlaySound("act_drich") : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].PlaySound("act_rich"), uiscript.UI_DesktopInfo.Inst.changeHeadEmo(n, "emoji_9", 2e3)), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(a, s, !1, e.moqie) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].recordDiscardTile(a, e.moqie, s, !1), e.tingpais && t.DesktopMgr.Inst.setTingpai(e.seat, e.tingpais), t.DesktopMgr.Inst.mode === t.EMJMode.live_broadcast && uiscript.UI_Live_Broadcast.Inst.during_play && e.operations)
                     for (var o = 0; o < e.operations.length; o++) t.ActionOperation.ob(e.operations[o], i, 450);
                 return 500
@@ -67,6 +72,8 @@ function editfunction() {
                     a = mjcore.MJPai.Create(e.tile),
                     r = !(null === e.is_liqi || void 0 === e.is_liqi || !e.is_liqi),
                     s = !1;
+
+
                 if (e.is_kailiqi) {
                     if (e.seat !== view.DesktopMgr.Inst.seat) {
                         for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand.length; i++) view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand[i].DoAnim_FullDown();
@@ -82,6 +89,8 @@ function editfunction() {
                       for (o = 0; o < h; o++)view.DesktopMgr.Inst.players[0]._hand3d[o].FullDown();
                     }*/
                 }
+
+
                 if (e.tile_state && e.tile_state > 0 && (s = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !1), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddQiPai(a, r, e.moqie, !1), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(a, s, !0, e.moqie) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].recordDiscardTile(a, e.moqie, s, !0), e.tingpais && t.DesktopMgr.Inst.setTingpai(e.seat, e.tingpais), t.DesktopMgr.Inst.mode === t.EMJMode.live_broadcast && uiscript.UI_Live_Broadcast.Inst.during_play && i >= 0 && e.operations)
                     for (var o = 0; o < e.operations.length; o++) t.ActionOperation.ob(e.operations[o], i, 450)
             }, i
@@ -565,6 +574,7 @@ function editfunction() {
     }
 }
 
+// code.js 文件 167319 行
 function editfunction2() {
     uiscript.UI_Replay.Inst.page_paishan.setInfo = function () {
         if (!this.noinfo) {

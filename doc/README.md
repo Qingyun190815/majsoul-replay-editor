@@ -2,21 +2,18 @@
 
 Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majsoul-replay-editor), 版权归原作者所有
 
-自定义雀魂牌谱回放的注入脚本和一些自制牌谱回放文件
+自定义雀魂牌谱回放的注入脚本和一些自制牌谱回放文件, 支持国际中文服, 日服, 美服
+
+[中文服官网](https://www.maj-soul.com), [日服官网](https://mahjongsoul.com), [美服官网](https://mahjongsoul.yo-star.com)
 
 ## 免责声明: 由于这属于第三方脚本, 猫粮可能发威封号, 使用时请用小号登录实验, 个人对任何因封号等导致的损失概不负责
-
-PS: 经验证, 雀魂日服及美服也支持该仓库, 悠星(Yostar)代理的管控应该没有国际中文服那么严, 美服还支持繁体中文,
-在外服账号存活率可能会更高一点
-
-[日服官网](https://mahjongsoul.com/), [美服官网](https://mahjongsoul.yo-star.com) (登录都需要梯子,
-美服虽然不挂也能访问但页面会卡住)
 
 ## 使用方法
 
 ### 查看样例
 
-打开 [main.js](../main.js) 和 [examples](../examples) 文件夹或 [products](../products) 文件夹下的任一牌谱回放js文件(如 [demo.js](../examples/demo.js))
+打开 [main.js](../main.js) 和 [examples](../examples) 文件夹或 [products](../products) 文件夹下的任一牌谱回放js文件(
+如 [demo.js](../examples/demo.js))
 
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 main.js 里面的内容全选复制输入到控制台中,
 然后将牌谱回放js文件内容也输入到控制台中
@@ -41,7 +38,8 @@ PS: 经验证, 雀魂日服及美服也支持该仓库, 悠星(Yostar)代理的�
 
 [字典](字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
 
-至于 [code.js](../code.js) , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25 版本, 不要轻易打开), 
+至于 [code.js](../code.js) , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25
+版本, 不要轻易打开),
 解混淆的方法见另一个仓库: [misc-code](https://github.com/Fat-pig-Cui/misc-code)
 
 ## 注意事项
@@ -72,6 +70,7 @@ TODO(欢迎contribute):
     - 天命之战
     - 咏唱之战
     - 魂之一击
+    - 万象修罗
 - 包杠的实现(即大明杠后岭上开花算被杠家放铳, 比如天麻中比赛的规则)
 - 振听的判断
 - 真实牌谱的json文件与自制牌谱的js文件相互转化

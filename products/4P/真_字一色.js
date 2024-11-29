@@ -22,13 +22,14 @@ editdata.config = {
     }
 };
 
-tiles0 = "11112223334447z";
+tiles0 = "9s1112223334447z";
 tiles1 = "1112340678999m";
 tiles2 = "1112340678999p";
 tiles3 = "1112223345599s";
-paishan = randompaishan("7z", "7565656567z9s432z");
+paishan = randompaishan("1z", "7565656567z7432z");
 roundbegin();
-combomopai(4);
-qiepai(true);
+qiepai("9s", true);
 mingqiepai("4s")
-zimohu();
+mopai();
+combomopai(4);
+hupai();
