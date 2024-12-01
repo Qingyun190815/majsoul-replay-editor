@@ -15,20 +15,20 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'begin_open_mode': 0,
-            'chuanma': 0,
-            'dora3_mode': 0,
+            'begin_open_mode': false,
+            'chuanma': false,
+            'dora3_mode': false,
             'dora_count': 3,
             'fanfu': 1,
-            'guyi_mode': 0,
+            'guyi_mode': false,
             'have_zimosun': true,
-            'huansanzhang': 0,
-            'open_hand': 0,
+            'huansanzhang': false,
+            'open_hand': false,
             'init_point': 25000,
-            'muyu_mode': 0,
-            'shiduan': 1,
-            'xuezhandaodi': 0,
-            'xueliu': 0
+            'muyu_mode': false,
+            'shiduan': true,
+            'xuezhandaodi': false,
+            'xueliu': false
         }
     }
 };

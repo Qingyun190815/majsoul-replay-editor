@@ -20,6 +20,10 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
+**注意: 当前 main.js 正在进行改进优化, 所以可能有bug**, 如果存在不符合预期的情况,
+可以使用老版本 [main_old.js](main_old.js), 也可以提 issue,
+或在B站联系我: [肥pig崔的B站空间](https://space.bilibili.com/372365985)
+
 ### 自制教程
 
 上面是简单的使用教程, 具体的修改教程要看下面的文档

@@ -1,9 +1,9 @@
 loadproject();
 
-// 客户端的装扮预览界面的虚假的对局(虚假是因为有些地方不符合规则逻辑)
+// 客户端的装扮预览界面的虚假的对局(虚假是因为有些地方不符合规则逻辑, 比如作为主视角的南家比亲家先摸牌)
 
-editdata.player_datas[1].nickname = editdata.player_datas[2].nickname = editdata.player_datas[3].nickname = "电脑(简单)";
-editdata.player_datas[0] = {
+editdata.player_datas[0].nickname = editdata.player_datas[2].nickname = editdata.player_datas[3].nickname = "电脑(简单)";
+editdata.player_datas[1] = {
     'nickname': "$nickname$",
     'avatar_id': 400102, // 一姬-契约
     'title': 600045, // 称号也可以看, 不过称号不属于严格意义上的装扮, 这里用 一姬当千 举例
@@ -32,27 +32,31 @@ editdata.config = {
 };
 
 // 东1局0本场, 和牌特效
-tiles0 = "123456789m11223z";
-tiles1 = "1234056789p122z";
-tiles2 = "1234056789s566z";
-tiles3 = "1234056789m566z";
-paishan = randompaishan("1m1p1s3z2m2p2s3z3m3p3s4z4m4p4s4z5m5p5s4z6m6p6s7z7m7p7s7z8m8p8s7z9m9p9s1z", "5z....");
-discardtiles = ["333444777z", "123456789m", "123456789p", "123456789s"];
+tiles0 = "1s1234056789m566z";
+tiles1 = "123456789m1122z";
+tiles2 = "1234056789p122z";
+tiles3 = "1234056789s566z";
+paishan = randompaishan("3z1m1p2s3z2m2p3s3z3m3p4s4z4m4p5s4z5m5p6s4z6m6p7s7z7m7p8s7z8m8p9s7z9m9p1z", "5z....");
+discardtiles = ["123456789s", "333444777z", "123456789m", "123456789p"];
 roundbegin();
 qiepai();
 normalmoqie(35);
-zimohu();
+mopai(1);
+hupai();
 
-// 东1局1本场, 立直特效
-tiles0 = "123456789m11223z";
-tiles1 = "1234056789p122z";
-tiles2 = "1234056789s566z";
-tiles3 = "1234056789m566z";
-paishan = randompaishan("1m1p1s3z2m2p2s3z3m3p3s4z4m4p4s4z5m5p5s4z6m6p6s7z7m7p7s7z8m8p8s7z9m9p9s5z", "15z....");
-discardtiles = ["333444777z", "123456789m", "123456789p", "123456789s"];
+gotoju(0, 0, 0);
+scores = [25000, 25000, 25000, 25000];
+
+// 立直特效
+tiles0 = "1s1234056789m566z";
+tiles1 = "123456789m1122z";
+tiles2 = "1234056789p122z";
+tiles3 = "1234056789s566z";
+paishan = randompaishan("3z1m1p2s3z2m2p3s3z3m3p4s4z4m4p5s4z5m5p6s4z6m6p7s7z7m7p8s7z8m8p9s7z9m9p5z", "5z....");
+discardtiles = ["123456789s", "333444777z", "123456789m", "123456789p"];
 roundbegin();
 qiepai();
 normalmoqie(35);
-moqieliqi();
-normalmoqie(33);
+mopai(1);
+qiepai(true);
 notileliuju();

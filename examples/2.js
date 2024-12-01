@@ -13,20 +13,20 @@ editdata.config = {
     'mode': {
         'mode': 11,
         'detail_rule': {
-            'begin_open_mode': 0,
-            'chuanma': 0,
-            'dora3_mode': 0,
+            'begin_open_mode': false,
+            'chuanma': false,
+            'dora3_mode': false,
             'dora_count': 2,
             'fanfu': 1,
-            'guyi_mode': 0,
+            'guyi_mode': false,
             'have_zimosun': false,
-            'huansanzhang': 0,
-            'open_hand': 0,
+            'huansanzhang': false,
+            'open_hand': false,
             'init_point': 100000,
-            'muyu_mode': 0,
-            'shiduan': 1,
-            'xuezhandaodi': 0,
-            'xueliu': 0
+            'muyu_mode': false,
+            'shiduan': true,
+            'xuezhandaodi': false,
+            'xueliu': false
         }
     }
 };
@@ -56,7 +56,7 @@ qiepai();
 hupai();
 
 tiles0 = "1122334567899s4z";
-tiles1 = "1m444555667789s";
+tiles1 = "1m444055667789s";
 tiles2 = "1m111222333p688s";
 paishan = randompaishan("", "9s");
 roundbegin();
@@ -78,39 +78,54 @@ qiepai("8s", true);
     let tingpais = tingpai(1);
 
     function hule(t, tingpais) {
-        for (let i = 0; i < tingpais.length; i++) if (tingpais[i].tile == t) return true;
+        for (let i = 0; i < tingpais.length; i++) if (tingpais[i].tile === t)
+            return true;
         return false;
     }
 
     try {
         mopai();
-        if (getlstaction().data.tile != "4z") qiepai(true);
-        else leimingpai();
-        if (hule(getlstaction().data.tile, tingpais)) hupai();
+        if (getlstaction().data.tile !== "4z")
+            qiepai(true);
+        else
+            leimingpai();
+        if (hule(getlstaction().data.tile, tingpais))
+            hupai();
         else {
-            if (getlstaction().name == "RecordBaBei") {
+            if (getlstaction().name === "RecordBaBei") {
                 mopai();
-                if (getlstaction().data.tile != "4z") qiepai(true);
-                else leimingpai();
-                if (hule(getlstaction().data.tile, tingpais)) hupai();
-                if (getlstaction().name == "RecordBaBei") {
+                if (getlstaction().data.tile !== "4z")
+                    qiepai(true);
+                else
+                    leimingpai();
+                if (hule(getlstaction().data.tile, tingpais))
+                    hupai();
+                if (getlstaction().name === "RecordBaBei") {
                     mopai();
-                    if (getlstaction().data.tile != "4z") qiepai(true);
-                    else leimingpai();
-                    if (hule(getlstaction().data.tile, tingpais)) hupai();
+                    if (getlstaction().data.tile !== "4z")
+                        qiepai(true);
+                    else
+                        leimingpai();
+                    if (hule(getlstaction().data.tile, tingpais))
+                        hupai();
                 }
             } else {
                 while (getlstaction(2).data.left_tile_count >= 1) {
                     mopai();
                     let seat = getlstaction().data.seat, tile = getlstaction().data.tile;
                     if (hule(tile, tingpais)) {
-                        if (seat != 1 && tile != "4z") qiepai();
-                        else if (tile != 1) leimingpai();
+                        if (seat !== 1 && tile !== "4z")
+                            qiepai();
+                        else if (seat !== 1)
+                            leimingpai();
                         hupai();
                         break;
-                    } else if (tile == "4z") leimingpai();
-                    else qiepai();
-                    if (getlstaction(2).data.left_tile_count == 0) {
+                    }
+                    else if (tile === "4z")
+                        leimingpai();
+                    else
+                        qiepai();
+                    if (getlstaction(2).data.left_tile_count === 0) {
                         notileliuju();
                         break;
                     }
@@ -120,3 +135,5 @@ qiepai("8s", true);
     } catch (e) {
     }
 }
+
+gameend();

@@ -16,17 +16,17 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'begin_open_mode': 0,
-            'chuanma': 1,
-            'dora3_mode': 0,
+            'begin_open_mode': false,
+            'chuanma': true,
+            'dora3_mode': false,
             'dora_count': 3,
             'fanfu': 1,
-            'guyi_mode': 0,
-            'huansanzhang': 0,
+            'guyi_mode': false,
+            'huansanzhang': false,
             'init_point': 250000,
-            'muyu_mode': 0,
-            'shiduan': 1,
-            'xuezhandaodi': 0
+            'muyu_mode': false,
+            'shiduan': true,
+            'xuezhandaodi': false
         }
     }
 };

@@ -17,10 +17,10 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'chuanma': 1,
-            'huansanzhang': 1,
+            'chuanma': true,
+            'huansanzhang': true,
             'init_point': 100000,
-            'xuezhandaodi': 1,
+            'xuezhandaodi': true,
         }
     }
 };

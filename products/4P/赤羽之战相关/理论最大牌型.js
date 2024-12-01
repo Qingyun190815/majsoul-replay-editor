@@ -1,7 +1,6 @@
 loadproject();
 
 // 川麻的理论最大牌型是 花天月地清十八罗汉
-// BUG: main.js 中的未听返杠逻辑有点问题, 导致最终点数不对
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -18,9 +17,9 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'chuanma': 1,
-            'huansanzhang': 1,
-            'xuezhandaodi': 1,
+            'chuanma': true,
+            'huansanzhang': true,
+            'xuezhandaodi': true,
         }
     }
 };
