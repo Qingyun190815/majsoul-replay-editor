@@ -30,6 +30,7 @@ editdata.config = {
         'detail_rule': {
             'dora_count': 4,
             'init_point': 100000,
+            'baogang': true
         }
     }
 };
@@ -121,23 +122,6 @@ zimohu();
 // 岭上清一色对对三暗刻三杠子红宝1 累计役满
 gotoju(1, 3, 0);
 
-// 由于 main.js 中没有实现杠包牌, 这里通过修改函数来"偷梁换柱"了一下使得表面上看没问题
-new_endHule = function (HuleInfo, old_scores, delta_scores, scores, baopai) {
-    actions.push({
-        'name': "RecordHule", 'data': {
-            'delta_scores': [].concat([0, -32000, 32000, 0]),
-            'gameend': {},
-            'hules': HuleInfo,
-            'old_scores': [].concat(old_scores),
-            'scores': [].concat(scores),
-            'baopai': baopai
-        }
-    });
-    edit_online();
-}
-origin_endHule = endHule;
-endHule = new_endHule;
-
 scores = [35800, 168200, 105700, 90300];
 tiles3 = "19m7999p19s234567z";
 tiles0 = "225779s2588m788p";
@@ -150,10 +134,6 @@ qiepai();
 normalmoqie(30);
 mingpai();
 mopai();
-baopai[2] = {'seat': 1, 'val': 1};
 combomopai(2);
 hupai();
-scores = [35800, 136200, 137700, 90300];
 gameend();
-
-endHule = origin_endHule;
