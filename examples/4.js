@@ -25,7 +25,7 @@ editdata.config = {
             'huansanzhang': false,
             'init_point': 250000,
             'muyu_mode': false,
-            'shiduan': true,
+            'no_shiduan': false,
             'xuezhandaodi': false
         }
     }

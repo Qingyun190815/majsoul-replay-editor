@@ -19,12 +19,12 @@ editdata.config = {
             'dora_count': 2,
             'fanfu': 1,
             'guyi_mode': false,
-            'have_zimosun': false,
+            'no_zimosun': true,
             'huansanzhang': false,
             'open_hand': false,
             'init_point': 100000,
             'muyu_mode': false,
-            'shiduan': true,
+            'no_shiduan': false,
             'xuezhandaodi': false,
             'xueliu': false
         }
