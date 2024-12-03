@@ -136,4 +136,3 @@ mingpai();
 mopai();
 combomopai(2);
 hupai();
-gameend();

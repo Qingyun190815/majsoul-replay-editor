@@ -21,7 +21,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
 **注意: 当前 main.js 正在进行改进优化, 所以可能有bug**, 如果存在不符合预期的情况,
-可以使用老版本 [main_old.js](../main_old.js), 也可以提 issue, 
+可以使用老版本 [main_old.js](../main_old.js), 也可以提 issue,
 或在B站联系我: [肥pig崔的B站空间](https://space.bilibili.com/372365985)
 
 ### 自制教程
@@ -62,6 +62,8 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 番缚
         - 有无自摸损(三麻)
     - 其他规则:
+        - **有无振听**
+        - 无役诈和
         - 无大三元大四喜包牌
         - 包杠
         - 四杠子包牌
@@ -92,14 +94,11 @@ TODO(欢迎contribute):
     - 魂之一击
     - 万象修罗
 - 实现"三家和了流局"
-- 振听的判断
 - 真实牌谱的json文件与自制牌谱的js文件相互转化
 
 ## 已知BUG
 
-1. 龙之目玉模式需要先开一个龙之目玉回放并退出, 否则目玉上的数字会消失
-
-2. 关于振听荣和的诈和判断(已列入 TODO)
+龙之目玉模式需要先开一个龙之目玉回放并退出, 否则目玉上的数字会消失
 
 欢迎反馈更多BUG
 

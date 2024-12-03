@@ -16,14 +16,14 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
+            'init_point': 250000,
+            'dora_count': 3, // 川麻这个参数无用
+            'fanfu': 1, // 川麻这个参数无用
             'begin_open_mode': false,
             'chuanma': true,
             'dora3_mode': false,
-            'dora_count': 3,
-            'fanfu': 1,
             'guyi_mode': false,
             'huansanzhang': false,
-            'init_point': 250000,
             'muyu_mode': false,
             'no_shiduan': false,
             'xuezhandaodi': false
