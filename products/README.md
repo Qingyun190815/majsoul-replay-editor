@@ -87,6 +87,8 @@
 - 3P
     - 最长菜名与最高番数
         - [Generate_All_Avatar_3P.py](3P/最长菜名与最高番数/Generate_All_Avatar_3P.py)
+    - 对局操作语音合集
+        - [Generate_All_Avatar_3P.py](3P/对局操作语音合集/Generate_All_Avatar_3P.py)
 - [Database.py](Database.py)
 - [Functions.py](Functions.py)
 - [Refresh_All.py](Refresh_All.py)
