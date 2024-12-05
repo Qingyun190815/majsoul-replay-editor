@@ -312,48 +312,6 @@ charids = [
     20000103,  # 市川雏菜
 ]
 
-# 使用非一般手模的角色的 id
-special_charids = [
-    200011,  # 四宫夏生
-    200012,  # 汪次郎
-    200013,  # 一之濑空
-    200014,  # 明智英树
-    200016,  # 莎拉
-    200022,  # 约瑟夫
-    200023,  # 斋藤治
-    200025,  # 艾因
-    200027,  # 月见山
-    200028,  # 藤本绮罗
-    200030,  # 如月莲
-    200031,  # 石原碓海
-    200039,  # 七夕
-    200040,  # 蛇喰梦子
-    200041,  # 早乙女芽亚里
-    200043,  # 桃喰绮罗莉
-    200045,  # A-37
-    200047,  # 莱恩
-    200049,  # 泷川夏彦
-    200050,  # 赤木茂
-    200051,  # 鹫巢岩
-    200054,  # 夏弥尔
-    200056,  # 白银御行
-    200060,  # 泽克斯
-    200070,  # 鲁鲁修·兰佩洛基
-    200072,  # 枢木朱雀
-    200075,  # 凌
-    200077,  # 汉娜
-    200078,  # 穆萨
-    200081,  # 小黑
-    200082,  # 吉尔
-    200085,  # 袁枫
-    200090,  # 玖辻
-    200092,  # 局
-    20000100,  # 浅仓透
-    20000101,  # 樋口圆香
-    20000102,  # 福丸小糸
-    20000103,  # 市川雏菜
-]
-
 # 含有使用非一般手模的牌谱
 paipu_uuids = [
     "210501-efaec1a5-5ac0-4e27-892a-180f82ac9748",  # 0 汪次郎的手
@@ -419,30 +377,168 @@ pattern_name = r'editdata\.player_datas\[\d]\.nickname = "(.*)";'
 pattern_id = r"editdata\.player_datas\[\d]\.avatar_id = (.*);"
 
 # 更改角色使用手为默认女性手的脚本
-change_hand = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 3, "item_id": 309997}];'
+change_hand = ('editdata.player_datas[0].views.push({"slot": 3, "item_id": 309997});\n'
+               'editdata.player_datas[1].views.push({"slot": 3, "item_id": 309997});\n'
+               'editdata.player_datas[2].views.push({"slot": 3, "item_id": 309997});\n'
+               'editdata.player_datas[3].views.push({"slot": 3, "item_id": 309997});\n')
 
-# 四个贵人对应id
-four_guiren_ids = [
-    200052,  # 西园寺一羽
-    200061,  # 北原莉莉
-    200076,  # 东城玄音
-    200095,  # 南枫花
-]
+template_avatar_frame = 'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = '
+template_views = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = '
+template_avatar_frame_3P = 'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = '
+template_views_3P = 'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = '
 
-# 四个贵人对应的装扮
-four_guiren_views_1 = [
-    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305529;',
-    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305537;',
-    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305551;',
-    'editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 30550012;',
-]
-four_guiren_views_2 = [
-    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305215}, {"slot": 2, "item_id": 305315}, {"slot": 5, "item_id": 305529}];',
-    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305219}, {"slot": 2, "item_id": 305319}, {"slot": 5, "item_id": 305537}];',
-    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];',
-    'editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 30520006}, {"slot": 2, "item_id": 30530006}, {"slot": 5, "item_id": 30550012}];',
-]
+# 角色专属装扮
+char_unique_views = {
+    ### 四贵人
+    # 西园寺一羽: 和牌-剑吟虎啸; 立直-虎啸长风; 头像框-秋霜切玉
+    200052: template_avatar_frame + '305529;\n' +
+            template_views + '[{"slot": 1, "item_id": 305215}, {"slot": 2, "item_id": 305315}, {"slot": 5, "item_id": 305529}];',
+    # 北原莉莉: 和牌-银链飞雪; 立直-蛇行诡道; 头像框-圣堂百合
+    200061: template_avatar_frame + '305537;\n' +
+            template_views + '[{"slot": 1, "item_id": 305219}, {"slot": 2, "item_id": 305319}, {"slot": 5, "item_id": 305537}];',
+    # 东城玄音: 和牌-衔环结草; 立直-狐缘之绊; 头像框-丹心一寸
+    200076: template_avatar_frame + '305551;\n' +
+            template_views + '[{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];',
+    # 南枫花: 和牌-落羽涅槃; 立直-有凤来仪; 头像框-赤丹霞羽
+    200095: template_avatar_frame + '30550012;\n' +
+            template_views + '[{"slot": 1, "item_id": 30520006}, {"slot": 2, "item_id": 30530006}, {"slot": 5, "item_id": 30550012}];',
 
+    ### 联动角色
+    # 轻库娘: 和牌-海浪的馈赠; 立直-浪之声
+    200015: template_views + '[{"slot": 1, "item_id": 305208}, {"slot": 2, "item_id": 305308}];',
+    # 宫永照, 原村和, 天江衣, 宫永照: 和牌-龙卷雷霆; 立直-花天月地 (天江衣还有"头像框-大小姐发带")
+    200034: template_views + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    200035: template_views + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    200036: template_avatar_frame + '305552;\n' +
+            template_views + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}, {"slot": 5, "item_id": 305552}];',
+    200037: template_views + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    # 蛇喰梦子, 早乙女芽亚里, 生志摩妄, 桃喰绮罗莉: 和牌-命运之轮; 立直-纸牌花火
+    200040: template_views + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    200041: template_views + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    200042: template_views + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    200043: template_views + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    # 赤木茂, 鹫巢岩: 和牌-地狱低语, 立直-幽冥之焰
+    200050: template_views + '[{"slot": 1, "item_id": 308011}, {"slot": 2, "item_id": 308012}];',
+    200051: template_views + '[{"slot": 1, "item_id": 308011}, {"slot": 2, "item_id": 308012}];',
+    # 四宫辉夜, 白银御行, 早坂爱, 白银圭: 和牌-恋之降临; 立直-恋之箭矢
+    200055: template_views + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    200056: template_views + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    200057: template_views + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    200058: template_views + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    # 竹井久, 福路美穗子, 新子憧, 园城寺怜: 和牌-高岭之花; 立直-未来视
+    200062: template_views + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    200063: template_views + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    200064: template_views + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    200065: template_views + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    # 鲁鲁修·兰佩洛基, C.C., 枢木朱雀, 红月卡莲: 和牌-绝对的命令; 立直-王者的决意
+    200070: template_views + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    200071: template_views + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    200072: template_views + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    200073: template_views + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    # 伊莉雅, 美游, 小黑, 吉尔: 和牌-魔力的迸发; 立直-英灵的典仪
+    200079: template_views + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    200080: template_views + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    200081: template_views + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    200082: template_views + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    # 砂狼白子, 小鸟游星野, 陆八魔爱露, 浅黄睦月: 和牌-冷血射击; 立直-虹色轨迹
+    200086: template_views + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    200087: template_views + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    200088: template_views + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    200089: template_views + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    # 浅仓透, 樋口圆香, 福丸小糸, 市川雏菜: 和牌-涟漪之空; 立直-水漾星光
+    20000100: template_views + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+    20000101: template_views + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+    20000102: template_views + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+    20000103: template_views + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+
+    ### 常驻角色
+    # 一姬: 和牌-疾月斩; 立直-猫过留痕
+    200001: template_views + '[{"slot": 1, "item_id": 305213}, {"slot": 2, "item_id": 305324}];',
+    # 三上千织: 头像框-大小姐发带
+    200004: template_avatar_frame + '305552;\n' + template_views + '[{"slot": 5, "item_id": 305552}];',
+    # 二之宫花: 头像框-豆芽
+    200017: template_avatar_frame + '305500;\n' + template_views + '[{"slot": 5, "item_id": 305500}];',
+    # 五十岚阳菜: 头像框-猫咪军团的身份
+    200020: template_avatar_frame + '305523;\n' + template_views + '[{"slot": 5, "item_id": 305523}];',
+    # 岚星: 和牌-天地无用; 立直-毒烟玉
+    200074: template_views + '[{"slot": 1, "item_id": 305222}, {"slot": 2, "item_id": 305322}];',
+}
+
+# 三麻部分
+char_unique_views_3P = {
+    ### 四贵人
+    # 西园寺一羽: 和牌-剑吟虎啸; 立直-虎啸长风; 头像框-秋霜切玉
+    200052: template_avatar_frame_3P + '305529;\n' +
+            template_views_3P + '[{"slot": 1, "item_id": 305215}, {"slot": 2, "item_id": 305315}, {"slot": 5, "item_id": 305529}];',
+    # 北原莉莉: 和牌-银链飞雪; 立直-蛇行诡道; 头像框-圣堂百合
+    200061: template_avatar_frame_3P + '305537;\n' +
+            template_views_3P + '[{"slot": 1, "item_id": 305219}, {"slot": 2, "item_id": 305319}, {"slot": 5, "item_id": 305537}];',
+    # 东城玄音: 和牌-衔环结草; 立直-狐缘之绊; 头像框-丹心一寸
+    200076: template_avatar_frame_3P + '305551;\n' +
+            template_views_3P + '[{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];',
+    # 南枫花: 和牌-落羽涅槃; 立直-有凤来仪; 头像框-赤丹霞羽
+    200095: template_avatar_frame_3P + '30550012;\n' +
+            template_views_3P + '[{"slot": 1, "item_id": 30520006}, {"slot": 2, "item_id": 30530006}, {"slot": 5, "item_id": 30550012}];',
+
+    ### 联动角色
+    # 轻库娘: 和牌-海浪的馈赠; 立直-浪之声
+    200015: template_views_3P + '[{"slot": 1, "item_id": 305208}, {"slot": 2, "item_id": 305308}];',
+    # 宫永照, 原村和, 天江衣, 宫永照: 和牌-龙卷雷霆; 立直-花天月地
+    200034: template_views_3P + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    200035: template_views_3P + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    200036: template_views_3P + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    200037: template_views_3P + '[{"slot": 1, "item_id": 308001}, {"slot": 2, "item_id": 308002}];',
+    # 蛇喰梦子, 早乙女芽亚里, 生志摩妄, 桃喰绮罗莉: 和牌-命运之轮; 立直-纸牌花火
+    200040: template_views_3P + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    200041: template_views_3P + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    200042: template_views_3P + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    200043: template_views_3P + '[{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];',
+    # 赤木茂, 鹫巢岩: 和牌-地狱低语, 立直-幽冥之焰
+    200050: template_views_3P + '[{"slot": 1, "item_id": 308011}, {"slot": 2, "item_id": 308012}];',
+    200051: template_views_3P + '[{"slot": 1, "item_id": 308011}, {"slot": 2, "item_id": 308012}];',
+    # 四宫辉夜, 白银御行, 早坂爱, 白银圭: 和牌-恋之降临; 立直-恋之箭矢
+    200055: template_views_3P + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    200056: template_views_3P + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    200057: template_views_3P + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    200058: template_views_3P + '[{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];',
+    # 竹井久, 福路美穗子, 新子憧, 园城寺怜: 和牌-高岭之花; 立直-未来视
+    200062: template_views_3P + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    200063: template_views_3P + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    200064: template_views_3P + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    200065: template_views_3P + '[{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];',
+    # 鲁鲁修·兰佩洛基, C.C., 枢木朱雀, 红月卡莲: 和牌-绝对的命令; 立直-王者的决意
+    200070: template_views_3P + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    200071: template_views_3P + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    200072: template_views_3P + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    200073: template_views_3P + '[{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];',
+    # 伊莉雅, 美游, 小黑, 吉尔: 和牌-魔力的迸发; 立直-英灵的典仪
+    200079: template_views_3P + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    200080: template_views_3P + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    200081: template_views_3P + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    200082: template_views_3P + '[{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];',
+    # 砂狼白子, 小鸟游星野, 陆八魔爱露, 浅黄睦月: 和牌-冷血射击; 立直-虹色轨迹
+    200086: template_views_3P + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    200087: template_views_3P + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    200088: template_views_3P + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    200089: template_views_3P + '[{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];',
+    # 浅仓透, 樋口圆香, 福丸小糸, 市川雏菜: 和牌-涟漪之空; 立直-水漾星光
+    20000100: template_views_3P + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+    20000101: template_views_3P + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+    20000102: template_views_3P + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+    20000103: template_views_3P + '[{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];',
+
+    ### 常驻角色
+    # 一姬: 和牌-疾月斩; 立直-猫过留痕
+    200001: template_views_3P + '[{"slot": 1, "item_id": 305213}, {"slot": 2, "item_id": 305324}];',
+    # 三上千织: 头像框-大小姐发带
+    200004: template_avatar_frame_3P + '305552;\n' + template_views_3P + '[{"slot": 5, "item_id": 305552}];',
+    # 二之宫花: 头像框-豆芽
+    200017: template_avatar_frame_3P + '305500;\n' + template_views_3P + '[{"slot": 5, "item_id": 305500}];',
+    # 五十岚阳菜: 头像框-猫咪军团的身份
+    200020: template_avatar_frame_3P + '305523;\n' + template_views_3P + '[{"slot": 5, "item_id": 305523}];',
+    # 岚星: 和牌-天地无用; 立直-毒烟玉
+    200074: template_views_3P + '[{"slot": 1, "item_id": 305222}, {"slot": 2, "item_id": 305322}];',
+}
 
 # 直接进入回放的脚本, 可以在控制台输入, 这里要感谢雀魂bot"姬萌萌"的作者 Paulzzh
 def Replay_Script(uuid):

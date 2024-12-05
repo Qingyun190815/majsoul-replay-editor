@@ -1,13 +1,13 @@
 loadproject();
 
-editdata.player_datas[0].nickname = "藤本绮罗-契约";
-editdata.player_datas[1].nickname = "瑞雪迎新";
-editdata.player_datas[2].nickname = "满分假期";
-editdata.player_datas[3].nickname = "温存韶光";
-editdata.player_datas[0].avatar_id = 402802;
-editdata.player_datas[1].avatar_id = 402803;
-editdata.player_datas[2].avatar_id = 402804;
-editdata.player_datas[3].avatar_id = 402805;
+editdata.player_datas[0].nickname = "一姬-契约";
+editdata.player_datas[1].nickname = "新年初诣";
+editdata.player_datas[2].nickname = "一姬当千";
+editdata.player_datas[3].nickname = "绮春歌";
+editdata.player_datas[0].avatar_id = 400102;
+editdata.player_datas[1].avatar_id = 400104;
+editdata.player_datas[2].avatar_id = 400105;
+editdata.player_datas[3].avatar_id = 400106;
 
 editdata.config = {
     'category': 1,

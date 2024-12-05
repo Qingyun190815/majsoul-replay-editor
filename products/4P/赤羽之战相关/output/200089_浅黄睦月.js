@@ -11,16 +11,18 @@ editdata.player_datas[1].avatar_id = 408901;
 editdata.player_datas[2].avatar_id = 408902;
 editdata.player_datas[3].avatar_id = 408903;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'chuanma': 1,
-            'huansanzhang': 0,
+            'chuanma': true,
+            'huansanzhang': false,
             'init_point': 500000,
-            'xuezhandaodi': 1,
+            'xuezhandaodi': true,
         }
     }
 };

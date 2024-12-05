@@ -10,8 +10,8 @@ editdata.player_datas[0].avatar_id = 407602;
 editdata.player_datas[1].avatar_id = 407601;
 editdata.player_datas[2].avatar_id = 407602;
 
-editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305551;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = 305551;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 1, "item_id": 305223}, {"slot": 2, "item_id": 305323}, {"slot": 5, "item_id": 305551}];
 
 editdata.config = {
     'category': 1,

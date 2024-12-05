@@ -1,13 +1,13 @@
 loadproject();
 
-editdata.player_datas[0].nickname = "如月莲-契约";
-editdata.player_datas[1].nickname = "如月莲";
-editdata.player_datas[2].nickname = "暗夜法则";
-editdata.player_datas[3].nickname = "新岁景明";
-editdata.player_datas[0].avatar_id = 403002;
-editdata.player_datas[1].avatar_id = 403001;
-editdata.player_datas[2].avatar_id = 403003;
-editdata.player_datas[3].avatar_id = 403004;
+editdata.player_datas[0].nickname = "一姬-契约";
+editdata.player_datas[1].nickname = "新年初诣";
+editdata.player_datas[2].nickname = "一姬当千";
+editdata.player_datas[3].nickname = "绮春歌";
+editdata.player_datas[0].avatar_id = 400102;
+editdata.player_datas[1].avatar_id = 400104;
+editdata.player_datas[2].avatar_id = 400105;
+editdata.player_datas[3].avatar_id = 400106;
 
 editdata.config = {
     'category': 1,

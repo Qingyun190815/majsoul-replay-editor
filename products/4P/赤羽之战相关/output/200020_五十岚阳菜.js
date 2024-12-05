@@ -11,16 +11,19 @@ editdata.player_datas[1].avatar_id = 402004;
 editdata.player_datas[2].avatar_id = 402005;
 editdata.player_datas[3].avatar_id = 402006;
 
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305523;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 305523}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'chuanma': 1,
-            'huansanzhang': 0,
+            'chuanma': true,
+            'huansanzhang': false,
             'init_point': 500000,
-            'xuezhandaodi': 1,
+            'xuezhandaodi': true,
         }
     }
 };

@@ -1,13 +1,13 @@
 loadproject();
 
-editdata.player_datas[0].nickname = "四宫冬实-契约";
-editdata.player_datas[1].nickname = "馥郁满室";
-editdata.player_datas[2].nickname = "暖冬邂逅";
-editdata.player_datas[3].nickname = "奇遇星光";
-editdata.player_datas[0].avatar_id = 406602;
-editdata.player_datas[1].avatar_id = 406603;
-editdata.player_datas[2].avatar_id = 406604;
-editdata.player_datas[3].avatar_id = 406605;
+editdata.player_datas[0].nickname = "一姬-契约";
+editdata.player_datas[1].nickname = "新年初诣";
+editdata.player_datas[2].nickname = "一姬当千";
+editdata.player_datas[3].nickname = "绮春歌";
+editdata.player_datas[0].avatar_id = 400102;
+editdata.player_datas[1].avatar_id = 400104;
+editdata.player_datas[2].avatar_id = 400105;
+editdata.player_datas[3].avatar_id = 400106;
 
 editdata.config = {
     'category': 1,

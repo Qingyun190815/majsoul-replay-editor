@@ -33,15 +33,13 @@ def Generate_Avatar():
     for file_name in file_names:
         infile = open("./" + file_name, "r")
 
-        special_charids_index = 0
-        four_guiren_index = 0
-
+        tmp_nickname = []
+        tmp_avatar_id = []
         for index in range(len(avatar_ids)):
             outfile = open("./output/" + outfile_dirname[index] + "/" + file_name, "w")
-            name_count = 0
-            id_count = 0
+            flag_hand = flag_views = True
+            name_count = id_count = 0
 
-            tmp_nickname = []
             if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
                 for j in [0, 1, 2, 3]:
                     tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
@@ -55,7 +53,6 @@ def Generate_Avatar():
                 for j in [-3, -2, -1]:
                     tmp_nickname.append(nicknames[index][j])
 
-            tmp_avatar_id = []
             if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
                 for j in [0, 1, 2, 3]:
                     tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
@@ -69,12 +66,6 @@ def Generate_Avatar():
                 for j in [-3, -2, -1]:
                     tmp_avatar_id.append(avatar_ids[index][j])
 
-            flag = False
-            if special_charids_index < len(special_charids) and charids[index] == special_charids[
-                special_charids_index]:
-                flag = True
-                special_charids_index = special_charids_index + 1
-
             for line in infile:
                 result = re.search(pattern_name, line)
                 if name_count < 4 and result:
@@ -86,15 +77,12 @@ def Generate_Avatar():
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if four_guiren_index < len(four_guiren_ids) and charids[index] == four_guiren_ids[
-                    four_guiren_index] and id_count == 4 and name_count == 4:
-                    outfile.write("\n" + four_guiren_views_1[four_guiren_index])
-                    outfile.write("\n" + four_guiren_views_2[four_guiren_index] + "\n")
-                    four_guiren_index += 1
+                if charids[index] in char_unique_views and id_count == 4 and name_count == 4:
+                    outfile.write("\n" + char_unique_views[charids[index]] + "\n")
                 if not use_dict:
-                    if flag and id_count == 4 and name_count == 4:
+                    if flag_hand and id_count == 4 and name_count == 4:
                         outfile.write("\n" + change_hand + "\n")
-                        flag = False
+                        flag_hand = False
 
             if use_dict:
                 if charids[index] in dict_spchar_paipu:

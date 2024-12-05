@@ -9,6 +9,9 @@ editdata.player_datas[1].avatar_id = 400404;
 editdata.player_datas[2].avatar_id = 400405;
 editdata.player_datas[3].avatar_id = 400406;
 
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305552;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 305552}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

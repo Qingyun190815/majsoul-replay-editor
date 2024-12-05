@@ -7,16 +7,13 @@ import re
 
 # 这里 player_num 参数表示对局玩家数, 默认是四麻, 三麻参数填3就行
 def Generate_All_Avatar(player_num=4):
-    special_charids_index = 0
-    four_guiren_index = 0
-
     # 作为模版的文件, 文件名是 template.js
     infile = open("./template.js", "r")
 
     for index in range(len(avatar_ids)):
         outfile = open("./output/" + outfile_names[index], "w")
-        name_count = 0
-        id_count = 0
+        flag_hand = flag_views = True
+        name_count = id_count = 0
 
         """ tmp_nickname: 一桌角色所用的皮肤
         东起用的是契约皮肤, 其他三/两个用的是最近的三/两个皮肤, 没有皮肤用原皮顶上, 简单的说就是
@@ -31,8 +28,9 @@ def Generate_All_Avatar(player_num=4):
             若总共只有一个皮肤, 则按照 "契约, 原皮, 契约" 排列
         名称方面原皮用角色名称, 契约皮用"角色名-契约"的形式, 氪金皮用皮肤名称(如一姬的"绮春歌")
         """
+        tmp_nickname = []
+        tmp_avatar_id = []
         if player_num == 4:
-            tmp_nickname = []
             if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
                 for j in [0, 1, 2, 3]:
                     tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
@@ -46,7 +44,6 @@ def Generate_All_Avatar(player_num=4):
                 for j in [-3, -2, -1]:
                     tmp_nickname.append(nicknames[index][j])
 
-            tmp_avatar_id = []
             if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
                 for j in [0, 1, 2, 3]:
                     tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
@@ -59,12 +56,6 @@ def Generate_All_Avatar(player_num=4):
                 tmp_avatar_id.append(avatar_ids[index][1])
                 for j in [-3, -2, -1]:
                     tmp_avatar_id.append(avatar_ids[index][j])
-
-            flag = False
-            if special_charids_index < len(special_charids) and charids[index] == special_charids[
-                special_charids_index]:
-                flag = True
-                special_charids_index = special_charids_index + 1
 
             for line in infile:
                 result = re.search(pattern_name, line)
@@ -79,18 +70,15 @@ def Generate_All_Avatar(player_num=4):
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if four_guiren_index < len(four_guiren_ids) and charids[index] == four_guiren_ids[
-                    four_guiren_index] and id_count == 4 and name_count == 4:
-                    outfile.write("\n" + four_guiren_views_1[four_guiren_index])
-                    outfile.write("\n" + four_guiren_views_2[four_guiren_index] + "\n")
-                    four_guiren_index += 1
+                if flag_views and charids[index] in char_unique_views and id_count == 4 and name_count == 4:
+                    outfile.write("\n" + char_unique_views[charids[index]] + "\n")
+                    flag_views = False
                 if not use_dict:
-                    if flag and id_count == 4 and name_count == 4:
+                    if flag_hand and id_count == 4 and name_count == 4:
                         outfile.write("\n" + change_hand + "\n")
-                        flag = False
+                        flag_hand = False
 
         elif player_num == 3:
-            tmp_nickname = []
             if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
                 for j in [0, 1, 2]:
                     tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
@@ -103,7 +91,6 @@ def Generate_All_Avatar(player_num=4):
                 for j in [-2, -1]:
                     tmp_nickname.append(nicknames[index][j])
 
-            tmp_avatar_id = []
             if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
                 for j in [0, 1, 2]:
                     tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
@@ -115,12 +102,6 @@ def Generate_All_Avatar(player_num=4):
                 tmp_avatar_id.append(avatar_ids[index][1])
                 for j in [-2, -1]:
                     tmp_avatar_id.append(avatar_ids[index][j])
-
-            flag = False
-            if special_charids_index < len(special_charids) and charids[index] == special_charids[
-                special_charids_index]:
-                flag = True
-                special_charids_index = special_charids_index + 1
 
             for line in infile:
                 result = re.search(pattern_name, line)
@@ -135,15 +116,13 @@ def Generate_All_Avatar(player_num=4):
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if four_guiren_index < len(four_guiren_ids) and charids[index] == four_guiren_ids[
-                    four_guiren_index] and id_count == 3 and name_count == 3:
-                    outfile.write("\n" + four_guiren_views_1[four_guiren_index])
-                    outfile.write("\n" + four_guiren_views_2[four_guiren_index] + "\n")
-                    four_guiren_index += 1
+                if flag_views and charids[index] in char_unique_views_3P and id_count == 3 and name_count == 3:
+                    outfile.write("\n" + char_unique_views_3P[charids[index]] + "\n")
+                    flag_views = False
                 if not use_dict:
-                    if flag and id_count == 3 and name_count == 3:
+                    if flag_hand and id_count == 3 and name_count == 3:
                         outfile.write("\n" + change_hand + "\n")
-                        flag = False
+                        flag_hand = False
         if use_dict:
             if charids[index] in dict_spchar_paipu:
                 outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")

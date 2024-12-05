@@ -7,6 +7,8 @@ editdata.player_datas[0].avatar_id = 407402;
 editdata.player_datas[1].avatar_id = 407401;
 editdata.player_datas[2].avatar_id = 407403;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 1, "item_id": 305222}, {"slot": 2, "item_id": 305322}];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
