@@ -1,5 +1,67 @@
 "use strict";
 
+// 自定义役种: 役种名称的汉字需要在已有的里面选, 否则不会显示
+// 9000: 诈和, 因为"诈"字无法显示, 名称改为"振和"
+// 9001: 天地创造: 因为"创造"二字无法显示, 名称改为"天地大白"
+// 9002: 万物生长: 因为"万生长"三字无法显示, 名称改为"龙发杠载"
+cfg.fan.fan.map_[9000] = {
+    "id": 9000,
+    "name_chs": "振和",
+    "name_chs_t": "振和",
+    "name_jp": "振和",
+    "name_en": "Fake winning", // 诈和
+    "name_kr": "振和",
+    "xuanshang": 0,
+    "yiman": 1,
+    "fan_menqing": 5,
+    "fan_fulu": 5,
+    "show_index": 5,
+    "sound": "",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9001] = {
+    "id": 9001,
+    "name_chs": "天地大白",
+    "name_chs_t": "天地大白",
+    "name_jp": "天地大白",
+    "name_en": "Beginning of the Cosmos", // 天地创造
+    "name_kr": "天地大白",
+    "xuanshang": 0,
+    "yiman": 6,
+    "fan_menqing": 78,
+    "fan_fulu": 78,
+    "show_index": 6,
+    "sound": "",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9002] = {
+    "id": 9002,
+    "name_chs": "龙发杠载",
+    "name_chs_t": "龙发杠载",
+    "name_jp": "龙发杠载",
+    "name_en": "Sprout of the Earth", // 万物生长
+    "name_kr": "龙发杠载",
+    "xuanshang": 0,
+    "yiman": 6,
+    "fan_menqing": 78,
+    "fan_fulu": 78,
+    "show_index": 7,
+    "sound": "",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
 // md5 计算函数, 与牌谱回放关系不大
 function md5(string) {
     function md5_RotateLeft(lValue, iShiftBits) {
@@ -750,6 +812,11 @@ function is_sanxiangliuju() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.sanxiangliuju)
 }
 
+function is_qingtianjing() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.qingtianjing)
+}
+
+
 function fanfu() {
     if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.fanfu !== undefined))
         return config.mode.detail_rule.fanfu;
@@ -1041,6 +1108,8 @@ function calcsudian(x, type = 0) {
     let val = 0;
     for (let i = 0; i < x.fans.length; i++)
         val = val + x.fans[i].val;
+    if (is_qingtianjing())
+        return x.fu * Math.pow(2, val + 2);
     if (x.yiman)
         return 8000 * val + type * val + type * x.fu / 5 * 0.01;
 
@@ -1434,7 +1503,8 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
 
             let tianhu = false;
             let menqing = fulucnt === 0;
-            let ans = {'yiman': true, 'fans': [], 'fu': 0};
+            // 无青天井情况下默认为 true, 之后再否定
+            let ans = {'yiman': !is_qingtianjing(), 'fans': [], 'fu': 0};
             // ----------------------------------------------
             // typecnt[i] 的 0-7 下标分别对应对应划分种类的数量
             // 0: 明顺    1: 明刻   2: 明杠   3: 暗杠
@@ -1667,90 +1737,173 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             // ------------------------------------
             // ------------------------------------
             // ------------------------------------
+            // 自己添加的役种
+            if (typecnt[32][2] === 1 && typecnt[32][7] === 1 && typecnt[32][3] === 3) {
+                if (!is_qingtianjing()) {
+                    ans.fans.push({'val': 6, 'id': 9001}); // 天地创造, 实际显示"天地大白"
+                    return ans;
+                } else
+                    ans.fans.push({'val': 0, 'id': 9001}); // 设为0是防止重复计数
+            }
+            if (typecnt[33][3] === 4 && typecnt[33][7] === 1) {
+                if (!is_qingtianjing()) {
+                    ans.fans.push({'val': 6, 'id': 9002}); // 万物生长, 实际显示"龙发杠载"
+                    return ans;
+                } else
+                    ans.fans.push({'val': 0, 'id': 9002}); // 设为0是防止重复计数
+            }
+            // ------------------------------------
+            // ------------------------------------
+            // ------------------------------------
             if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat === ju && zimo) {
                 tianhu = true;
-                ans.fans.push({'val': 1, 'id': 35}); // 天和
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 35}); // 天和
+                else
+                    ans.fans.push({'val': 13, 'id': 35}); // 天和
             }
-            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo)
-                ans.fans.push({'val': 1, 'id': 36}); // 地和
-            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && is_guyi())
-                ans.fans.push({'val': 1, 'id': 59}); // 人和
+            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 36}); // 地和
+                else
+                    ans.fans.push({'val': 13, 'id': 36}); // 地和
+            }
+            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && is_guyi()) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 59}); // 人和
+                else
+                    ans.fans.push({'val': 13, 'id': 59}); // 人和
+            }
 
             if (kezi[32] >= 1 && kezi[33] >= 1 && kezi[34] >= 1) {
-                ans.fans.push({'val': 1, 'id': 37}); // 大三元
-                if (!is_xuezhandaodi() && !no_normalbaopai() && !debug) {
-                    let fulusanyuancnt = 0;
-                    for (let i = 0; i < fulu[seat].length; i++) {
-                        let type = fulu[seat][i].type, tile = tiletoint(fulu[seat][i].tile[0]);
-                        if ((type === 1 || type === 2 || type === 3) && (tile === 32 || tile === 33 || tile === 34)) {
-                            fulusanyuancnt++;
-                            if (fulusanyuancnt === 3 && fulu[seat][i].from !== undefined)
-                                baopai[seat].push({'seat': fulu[seat][i].from, 'val': 1});
+                if (!is_qingtianjing()) {
+                    ans.fans.push({'val': 1, 'id': 37}); // 大三元
+                    if (!is_xuezhandaodi() && !no_normalbaopai() && !debug) {
+                        let fulusanyuancnt = 0;
+                        for (let i = 0; i < fulu[seat].length; i++) {
+                            let type = fulu[seat][i].type, tile = tiletoint(fulu[seat][i].tile[0]);
+                            if ((type === 1 || type === 2 || type === 3) && (tile === 32 || tile === 33 || tile === 34)) {
+                                fulusanyuancnt++;
+                                if (fulusanyuancnt === 3 && fulu[seat][i].from !== undefined)
+                                    baopai[seat].push({'seat': fulu[seat][i].from, 'val': 1});
+                            }
                         }
                     }
-                }
+                } else
+                    ans.fans.push({'val': 13, 'id': 37}); // 大三元
             }
-            if (menqing && anke_num === 4 && anke[tiletoint(lastile)] - gangzi[tiletoint(lastile)] >= 1 && !tianhu)
-                ans.fans.push({'val': 1, 'id': 38}); // 四暗刻
-            if (flag_ziyise)
-                ans.fans.push({'val': 1, 'id': 39}); // 字一色
-            if (flag_lvyise)
-                ans.fans.push({'val': 1, 'id': 40}); // 绿一色
-            if (flag_qinglaotou)
-                ans.fans.push({'val': 1, 'id': 41}); // 清老头
+            if (menqing && anke_num === 4 && anke[tiletoint(lastile)] - gangzi[tiletoint(lastile)] >= 1 && !tianhu) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 38}); // 四暗刻
+                else
+                    ans.fans.push({'val': 13, 'id': 38}); // 四暗刻
+            }
+            if (flag_ziyise) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 39}); // 字一色
+                else
+                    ans.fans.push({'val': 13, 'id': 39}); // 字一色
+            }
+            if (flag_lvyise) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 40}); // 绿一色
+                else
+                    ans.fans.push({'val': 13, 'id': 40}); // 绿一色
+            }
+            if (flag_qinglaotou) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 41}); // 清老头
+                else
+                    ans.fans.push({'val': 13, 'id': 41}); // 清老头
+            }
 
-            if (xiaosixi)
-                ans.fans.push({'val': 1, 'id': 43}); // 小四喜
+            if (xiaosixi) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 43}); // 小四喜
+                else
+                    ans.fans.push({'val': 13, 'id': 43}); // 小四喜
+            }
 
             if (gangzi_num === 4) {
-                ans.fans.push({'val': 1, 'id': 44}); // 四杠子
-                if (!is_xuezhandaodi() && sigangbaopai() && !debug) {
-                    let fulugangzi = 0;
-                    for (let i = 0; i < fulu[seat].length; i++) {
-                        let type = fulu[seat][i].type;
-                        if (type === 2 || type === 3) {
-                            fulugangzi++;
-                            if (fulugangzi === 4 && fulu[seat][i].from !== undefined)
-                                baopai[seat].push({'seat': fulu[seat][i].from, 'val': 1});
+                if (!is_qingtianjing()) {
+                    ans.fans.push({'val': 1, 'id': 44}); // 四杠子
+                    if (!is_xuezhandaodi() && sigangbaopai() && !debug) {
+                        let fulugangzi = 0;
+                        for (let i = 0; i < fulu[seat].length; i++) {
+                            let type = fulu[seat][i].type;
+                            if (type === 2 || type === 3) {
+                                fulugangzi++;
+                                if (fulugangzi === 4 && fulu[seat][i].from !== undefined)
+                                    baopai[seat].push({'seat': fulu[seat][i].from, 'val': 1});
+                            }
                         }
                     }
-                }
+                } else
+                    ans.fans.push({'val': 13, 'id': 44}); // 四杠子
             }
 
-            if (menqing && jiulian[0] && !equaltile(lastile, jiulian[1]) && !tianhu)
-                ans.fans.push({'val': 1, 'id': 45}); // 九莲宝灯
+            if (menqing && jiulian[0] && !equaltile(lastile, jiulian[1]) && !tianhu) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': 1, 'id': 45}); // 九莲宝灯
+                else
+                    ans.fans.push({'val': 13, 'id': 45}); // 九莲宝灯
+            }
 
-            if (menqing && jiulian[0] && (equaltile(lastile, jiulian[1]) || tianhu))
-                ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 47}); // 纯正九莲宝灯
+            if (menqing && jiulian[0] && (equaltile(lastile, jiulian[1]) || tianhu)) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 47}); // 纯正九莲宝灯
+                else
+                    ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 47}); // 纯正九莲宝灯
+            }
 
-            if (menqing && anke_num === 4 && (typecnt[tiletoint(lastile)][7] === 1 || tianhu))
-                ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 48}); // 四暗刻单骑
+            if (menqing && anke_num === 4 && (typecnt[tiletoint(lastile)][7] === 1 || tianhu)) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 48}); // 四暗刻单骑
+                else
+                    ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 48}); // 四暗刻单骑
+            }
 
             if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1) {
-                ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 50}); // 大四喜
-                if (!is_xuezhandaodi() && !no_normalbaopai() && !debug) {
-                    let fulusixicnt = 0;
-                    for (let i = 0; i < fulu[seat].length; i++) {
-                        let type = fulu[seat][i].type, tile = tiletoint(fulu[seat][i].tile[0]);
-                        if ((type === 1 || type === 2 || type === 3) && (tile === 28 || tile === 29 || tile === 30 || tile === 31)) {
-                            fulusixicnt++;
-                            if (fulusixicnt === 4 && fulu[seat][i].from !== undefined)
-                                baopai[seat].push({'seat': fulu[seat][i].from, 'val': no_wyakuman() ? 1 : 2});
+                if (!is_qingtianjing()) {
+                    ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 50}); // 大四喜
+                    if (!is_xuezhandaodi() && !no_normalbaopai() && !debug) {
+                        let fulusixicnt = 0;
+                        for (let i = 0; i < fulu[seat].length; i++) {
+                            let type = fulu[seat][i].type, tile = tiletoint(fulu[seat][i].tile[0]);
+                            if ((type === 1 || type === 2 || type === 3) && (tile === 28 || tile === 29 || tile === 30 || tile === 31)) {
+                                fulusixicnt++;
+                                if (fulusixicnt === 4 && fulu[seat][i].from !== undefined)
+                                    baopai[seat].push({'seat': fulu[seat][i].from, 'val': no_wyakuman() ? 1 : 2});
+                            }
                         }
                     }
-                }
+                } else
+                    ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 50}); // 大四喜
             }
             if (is_guyi()) {
                 if (qingyise && duizi_num === 7 && flag_duanyao) {
-                    if (cnt2[2] > 0) ans.fans.push({'val': 1, 'id': 62}); // 大数邻
-                    if (cnt2[11] > 0) ans.fans.push({'val': 1, 'id': 60}); // 大车轮
-                    if (cnt2[20] > 0) ans.fans.push({'val': 1, 'id': 61}); // 大竹林
+                    if (!is_qingtianjing()) {
+                        if (cnt2[2] > 0) ans.fans.push({'val': 1, 'id': 62}); // 大数邻
+                        if (cnt2[11] > 0) ans.fans.push({'val': 1, 'id': 60}); // 大车轮
+                        if (cnt2[20] > 0) ans.fans.push({'val': 1, 'id': 61}); // 大竹林
+                    } else {
+                        if (cnt2[2] > 0) ans.fans.push({'val': 13, 'id': 62}); // 大数邻
+                        if (cnt2[11] > 0) ans.fans.push({'val': 13, 'id': 60}); // 大车轮
+                        if (cnt2[20] > 0) ans.fans.push({'val': 13, 'id': 61}); // 大竹林
+                    }
                 }
-                if (liqiinfo[seat].liqi === 2 && (zimo && paishan.length / 2 - 14 === 0 && lstdrawtype === 1 || !zimo && paishan.length / 2 - 14 === 0))
-                    ans.fans.push({'val': 1, 'id': 63}); // 石上三年
-                if (flag_ziyise && duizi_num === 7) {
+                if (liqiinfo[seat].liqi === 2 && (zimo && paishan.length / 2 - 14 === 0 && lstdrawtype === 1 || !zimo && paishan.length / 2 - 14 === 0)) {
+                    if (!is_qingtianjing())
+                        ans.fans.push({'val': 1, 'id': 63}); // 石上三年
+                    else
+                        ans.fans.push({'val': 13, 'id': 63}); // 石上三年
+                }
+                if (flag_ziyise && duizi_num === 7 && !no_wyakuman()) {
                     ans = deletefan(ans, 39); // 删除字一色
-                    ans.fans.push({'val': 2, 'id': 64}); // 大七星
+                    if (!is_qingtianjing())
+                        ans.fans.push({'val': 2, 'id': 64}); // 大七星
+                    else
+                        ans.fans.push({'val': 26, 'id': 64}); // 大七星
                 }
             }
             if (liqiinfo[seat].kai && !zimo && liqiinfo[fangchong].liqi === 0) {
@@ -1759,7 +1912,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                 if (liqiinfo[seat].liqi === 1)
                     ans.fans.push({'val': 1, 'id': 2});
             }
-            if (ans.fans.length !== 0)
+            if (ans.fans.length !== 0 && !is_qingtianjing())
                 return ans;
             // ------------------------------------
             ans.yiman = false;
@@ -1996,19 +2149,38 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
     if (calchupai(tiles) === 3) {
         let menqing = fulucnt === 0;
         let tianhu = false;
-        let ans = {'yiman': true, 'fans': [], 'fu': 0};
+        let ans = {'yiman': !is_qingtianjing(), 'fans': [], 'fu': 25};
         if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat === ju && zimo) {
-            ans.fans.push({'val': 1, 'id': 35});
             tianhu = true;
+            if (!is_qingtianjing())
+                ans.fans.push({'val': 1, 'id': 35});
+            else
+                ans.fans.push({'val': 13, 'id': 35});
         } // 天和
-        if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo)
-            ans.fans.push({'val': 1, 'id': 36}); // 地和
-        if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && is_guyi())
-            ans.fans.push({'val': 1, 'id': 59}); // 人和
-        if (menqing && cnt[tiletoint(lastile)] === 1 && !tianhu)
-            ans.fans.push({'val': 1, 'id': 42}); // 国士无双
-        if (menqing && (cnt[tiletoint(lastile)] === 2 || tianhu))
-            ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 49}); // 国士无双十三面
+        if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo) {
+            if (!is_qingtianjing())
+                ans.fans.push({'val': 1, 'id': 36}); // 地和
+            else
+                ans.fans.push({'val': 13, 'id': 36}); // 地和
+        }
+        if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && is_guyi()) {
+            if (!is_qingtianjing())
+                ans.fans.push({'val': 1, 'id': 59}); // 人和
+            else
+                ans.fans.push({'val': 13, 'id': 59}); // 人和
+        }
+        if (menqing && cnt[tiletoint(lastile)] === 1 && !tianhu) {
+            if (!is_qingtianjing())
+                ans.fans.push({'val': 1, 'id': 42}); // 国士无双
+            else
+                ans.fans.push({'val': 13, 'id': 42}); // 国士无双
+        }
+        if (menqing && (cnt[tiletoint(lastile)] === 2 || tianhu)) {
+            if (!is_qingtianjing())
+                ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 49}); // 国士无双十三面
+            else
+                ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 49}); // 国士无双十三面
+        }
         updateret(ans);
     }
     return ret;
@@ -2463,8 +2635,8 @@ function hupaioneplayer_chuanma(seat) {
             'doras': [],
             'li_doras': [],
             'dadian': -delta_scores[seat],
-            'fans': [],
-            'fu': 20,
+            'fans': [{'val': 6, 'id': 9000}],
+            'fu': 25,
             'hand': hand,
             'hu_tile': hu_tile,
             'ming': ming,
@@ -2562,18 +2734,20 @@ function hupaioneplayer(seat) {
     let val = 0, title_id = 0;
     for (let i = 0; i < points.fans.length; i++)
         val = val + points.fans[i].val;
-    if (!points.yiman && val === 5 || calcsudian(points) === 2000)
-        title_id = 1;
-    if (!points.yiman && (val === 6 || val === 7))
-        title_id = 2;
-    if (!points.yiman && (val === 8 || val === 9 || val === 10))
-        title_id = 3;
-    if (!points.yiman && (val === 11 || val === 12 || (val >= 13 && no_leijiyiman())))
-        title_id = 4;
-    if (!points.yiman && val >= 13)
-        title_id = 11;
-    if (points.yiman)
-        title_id = val + 4;
+    if (!is_qingtianjing()) {
+        if (!points.yiman && val === 5 || calcsudian(points) === 2000)
+            title_id = 1;
+        if (!points.yiman && (val === 6 || val === 7))
+            title_id = 2;
+        if (!points.yiman && (val === 8 || val === 9 || val === 10))
+            title_id = 3;
+        if (!points.yiman && (val === 11 || val === 12 || (val >= 13 && no_leijiyiman())))
+            title_id = 4;
+        if (!points.yiman && val >= 13)
+            title_id = 11;
+        if (points.yiman)
+            title_id = val + 4;
+    }
     // -------------------------------------------
     let sudian = calcsudian(points);
     let zhahu = false;
@@ -2699,8 +2873,8 @@ function hupaioneplayer(seat) {
             'count': 0,
             'doras': doras0,
             'li_doras': li_doras0,
-            'fans': [],
-            'fu': 0,
+            'fans': [{'val': 1, 'id': 9000}],
+            'fu': 25,
             'hand': hand,
             'hu_tile': hu_tile,
             'liqi': liqi,
@@ -2712,7 +2886,7 @@ function hupaioneplayer(seat) {
             'qinjia': qinjia,
             'seat': seat,
             'title_id': 1,
-            'yiman': false,
+            'yiman': true,
             'zimo': zimo,
         }
         playertiles[seat].length--;
@@ -2778,7 +2952,7 @@ function hupaioneplayer(seat) {
                         }
                     }
 
-            } else if (!hupaied[baogangseat]){ // 有包牌存在包杠, 则看成包杠放铳
+            } else if (!hupaied[baogangseat]) { // 有包牌存在包杠, 则看成包杠放铳
                 if (qinjia) {
                     for (let j = 0; j < baopai[seat].length; j++) {
                         delta_scores[baopai[seat][j].seat] -= baopai[seat][j].val * 24000 * muyutimes[baogangseat] * muyutimes[seat];

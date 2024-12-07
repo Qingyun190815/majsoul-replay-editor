@@ -64,6 +64,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
     - 其他规则:
         - **有无振听**
         - 无役诈和
+        - 青天井模式(谨慎使用, 高打点时很容易崩溃)
         - 无大三元大四喜包牌
         - 包杠
         - 四杠子包牌
