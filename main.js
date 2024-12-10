@@ -1076,7 +1076,7 @@ function calchupai(tiles) {
         if (cnt[i] === 2)
             duizi++;
         // 本来只要判断 cnt[i] === 4 就行, 我这个扩展成大于四张牌的情况
-        if (cnt[i] >= 4 && (cnt[i] % 2 === 0) && is_chuanma())
+        if (cnt[i] >= 4 && (cnt[i] % 2 === 0) && (is_chuanma()||is_guobiao()))
             duizi += cnt[i] / 2;
     }
     if (duizi === 7)
@@ -1095,7 +1095,7 @@ function calchupai(tiles) {
         return 3;
     if (is_guobiao() && tiles.length === 14) { // 国标的全不靠和七星不靠
         let quanbukao = true;
-        duizi_num = 0;
+        let duizi_num = 0;
         for (let i = 0; i <= 34; i++) {
             if (cnt[i] == 2)
                 duizi_num++;
@@ -2025,16 +2025,16 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             if (!zimo && paishan.length / 2 - 14 === 0)
                 ans.fans.push({'val': 1, 'id': 6}); // 河底捞鱼
 
-            for (let i = 0; i < kezi[32]; i++)
-                ans.fans.push({'val': 1, 'id': 7}); // 白
-            for (let i = 0; i < kezi[33]; i++)
-                ans.fans.push({'val': 1, 'id': 8}); // 发
-            for (let i = 0; i < kezi[34]; i++)
-                ans.fans.push({'val': 1, 'id': 9}); // 中
-            for (let i = 0; i < kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")]; i++)
-                ans.fans.push({'val': 1, 'id': 10}); // 自风
-            for (let i = 0; i < kezi[tiletoint((chang + 1).toString() + "z")]; i++)
-                ans.fans.push({'val': 1, 'id': 11}); // 场风
+            if (kezi[32]>=1)
+                ans.fans.push({'val': kezi[32], 'id': 7}); // 白
+            if (kezi[33]>=1)
+                ans.fans.push({'val': kezi[33], 'id': 8}); // 发
+            if (kezi[34]>=1)
+                ans.fans.push({'val': kezi[34], 'id': 9}); // 中
+            if (kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")]>=1)
+                ans.fans.push({'val': kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")], 'id': 10}); // 自风
+            if (kezi[tiletoint((chang + 1).toString() + "z")]>=1)
+                ans.fans.push({'val': kezi[tiletoint((chang + 1).toString() + "z")], 'id': 11}); // 场风
 
             if (flag_duanyao && (!no_shiduan() || no_shiduan() && menqing))
                 ans.fans.push({'val': 1, 'id': 12}); // 断幺九
@@ -3778,6 +3778,8 @@ function qiepai(seat, kind, is_liqi) {
     }
 
     function intiles(x, tile) {
+        if (x === "moqie")
+            return true;
         let cnt = [];
         for (let i = 1; i <= 37; i++)
             cnt[i] = 0;

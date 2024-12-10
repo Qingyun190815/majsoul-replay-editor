@@ -82,7 +82,10 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
       有仓库原作者的视频参考: [【雀魂】（自制回放）假设雀魂有了血流成河（快速版）](https://www.bilibili.com/video/BV1dB4y1F78x)
     - 二人麻将
 
-3. 对于不符合要求的填写, 可能出现页面崩溃的问题(一般页面会卡住, 控制台会报错)
+3. 另外增加了国标模式, 但本人对国标不是很熟, 可能有很多bug, 如需使用请把 [guobiao.js](guobiao.js) 里面的内容也加载, 
+并在 `detail_rule` 中注明 `guobiao: true`, 详细说明请参照 products 文件夹下的 [README.md](products/国标麻将/README.md)
+
+4. 对于不符合要求的填写, 可能出现页面崩溃的问题(一般页面会卡住, 控制台会报错)
 
 TODO(欢迎contribute):
 
