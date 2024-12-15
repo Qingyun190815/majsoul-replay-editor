@@ -15,7 +15,7 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'muyu_mode': true,
+            'yongchang_mode': true,
         }
     }
 };
@@ -25,7 +25,6 @@ tiles1 = "1111340678999m";
 tiles2 = "1111330678999p";
 tiles3 = "1111340678999s";
 paishan = randompaishan("", "77m....22223333z7m3p2s2p");
-muyuseats = "1230";
 roundbegin();
 combomopai(3);
 qiepai();

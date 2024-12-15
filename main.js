@@ -411,13 +411,9 @@ let muyu = {'count': 5, 'seat': 0, 'id': 0}, muyutimes = [1, 1, 1, 1], muyuseats
 // juc: 赤羽之战模式的第几局, gaps: 玩家的定缺, chuanmagangs: 川麻的开杠
 let juc = -1, gaps = [], chuanmagangs = {'over': [], 'notover': []};
 // 魂之一击模式中各家相关信息
-let hunzhiyiji_info = [{
-    "liqi": false,
-    "yifa": false,
-    "cnt": 0,
-    "overload": false,
-    "is_push": false
-}, {}, {}, {}]
+let hunzhiyiji_info = [{}, {}, {}, {}];
+// 咏唱之战所有玩家手摸切, max_Len 各家第1位是摸切最大长度, 第2位是手切最大长度
+let shoumoqie = [[], [], [], []], shoumoqiemaxlen = [[0, 0], [0, 0], [0, 0], [0, 0]];
 
 // -----振听-----
 // 造成振听的因素
@@ -516,6 +512,9 @@ function saveproject() {
     tmp.lizhizhenting = JSON.parse(JSON.stringify(lizhizhenting));
     tmp.zhenting = JSON.parse(JSON.stringify(zhenting));
     tmp.sigangbao = JSON.parse(JSON.stringify(sigangbao));
+    tmp.hunzhiyiji_info = JSON.parse(JSON.stringify(hunzhiyiji_info));
+    tmp.shoumoqie = JSON.parse(JSON.stringify(shoumoqie));
+    tmp.shoumoqiemaxlen = JSON.parse(JSON.stringify(shoumoqiemaxlen));
     lastscene = tmp;
 }
 
@@ -570,6 +569,9 @@ function loadproject(x) {
         lizhizhenting = JSON.parse(JSON.stringify(x.lizhizhenting));
         zhenting = JSON.parse(JSON.stringify(x.zhenting));
         sigangbao = JSON.parse(JSON.stringify(x.sigangbao));
+        hunzhiyiji_info = JSON.parse(JSON.stringify(x.hunzhiyiji_info));
+        shoumoqie = JSON.parse(JSON.stringify(x.shoumoqie));
+        shoumoqiemaxlen = JSON.parse(JSON.stringify(x.shoumoqiemaxlen));
         return;
     }
     scores = [25000, 25000, 25000, 25000];
@@ -587,6 +589,14 @@ function loadproject(x) {
     shezhangzhenting = pretongxunzhenting = prelizhizhenting = [false, false, false, false];
     tongxunzhenting = lizhizhenting = zhenting = [false, false, false, false];
     sigangbao = [false, false, false, false];
+    hunzhiyiji_info = [
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+    ];
+    shoumoqie = [[], [], [], []];
+    shoumoqiemaxlen = [[0, 0], [0, 0], [0, 0], [0, 0]];
     editdata = {
         'actions': [],
         'xun': [],
@@ -648,6 +658,14 @@ function init() {
     shezhangzhenting = pretongxunzhenting = prelizhizhenting = [false, false, false, false];
     tongxunzhenting = lizhizhenting = zhenting = [false, false, false, false];
     sigangbao = [false, false, false, false];
+    hunzhiyiji_info = [
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+        {"liqi": 0, "yifa": false, "cnt": 0, "overload": false, "is_push": false},
+    ];
+    shoumoqie = [[], [], [], []];
+    shoumoqiemaxlen = [[0, 0], [0, 0], [0, 0], [0, 0]];
     if (tiles0 === [] && tiles1 === [] && tiles2 === [] && tiles3 === []) { // 没有给定起手, 则模仿现实中摸牌
         if (paishan === [])
             paishan = randompaishan();
@@ -875,6 +893,10 @@ function is_hunzhiyiji() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.hunzhiyiji_mode)
 }
 
+function is_yongchang() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yongchang_mode)
+}
+
 function is_guobiao() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guobiao)
 }
@@ -954,6 +976,52 @@ function getlstaction(x) {
         return actions[ret];
     } else
         return editdata.actions[editdata.actions.length - 1][editdata.actions[editdata.actions.length - 1].length - 1];
+}
+
+// 咏唱之战使用, 计算最大长度
+function longest_length(arr, val) {
+    let len = 0;
+    for (let i = 0; i < arr.length; i++)
+        if (arr[i] === val) {
+            let tmp_len = 1, j = i + 1;
+            while (arr[j] === val && j < arr.length)
+                j++;
+            tmp_len = j - i;
+            len = tmp_len > len ? tmp_len : len;
+            i = j + 1;
+        }
+    return len;
+}
+
+// 咏唱之战使用, 计算奖励番
+function calbonus(val, type) {
+    if (!type) { // 摸切
+        if (val < 3)
+            return 0;
+        else if (val < 5)
+            return 1;
+        else if (val < 7)
+            return 2;
+        else if (val < 9)
+            return 3;
+        else if (val < 12)
+            return 5;
+        else
+            return 12;
+    } else { // 手切
+        if (val < 3)
+            return 0;
+        else if (val < 6)
+            return 1;
+        else if (val < 9)
+            return 2;
+        else if (val < 12)
+            return 3;
+        else if (val < 18)
+            return 5;
+        else
+            return 12;
+    }
 }
 
 // nxt2 表示顺子中比它大的牌, 如果不存在则直接指向 35 和 36
@@ -1082,7 +1150,7 @@ function calchupai(tiles, type = true) {
     if (is_wanxiangxiuluo() && cnt[tiletoint("bd")] === 1 && type) {
         cnt[tiletoint("bd")]--;
         let tmp_tiles = [], origin_tiles = [];
-        for (let i = 0;i < tiles.length;i++){
+        for (let i = 0; i < tiles.length; i++) {
             origin_tiles.push(tiles[i]);
 
             if (tiles[i] === "bd")
@@ -1100,7 +1168,7 @@ function calchupai(tiles, type = true) {
 
             tiles.length--;
             cnt[i]--;
-            if (result !== 0){
+            if (result !== 0) {
                 tiles = origin_tiles;
                 return result;
             }
@@ -1114,10 +1182,10 @@ function calchupai(tiles, type = true) {
         for (let i = 1; i <= 34; i++)
             if (cnt[i] > 4)
                 return 0;
-    else
-        for (let i = 1; i <= 34; i++)
-            if (cnt[i] > 5)
-                return 0;
+            else
+                for (let i = 1; i <= 34; i++)
+                    if (cnt[i] > 5)
+                        return 0;
 
 
     for (let i = 1; i <= 34; i++) {
@@ -2137,7 +2205,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                     ans.fans.push({'val': 2, 'id': 804}); // 立直
                 if (hunzhiyiji_info[seat].liqi === 2)
                     ans.fans.push({'val': 3, 'id': 805}); // 双立直
-                if (!hunzhiyiji_info[seat].overload)
+                if (hunzhiyiji_info[seat].liqi !== 0 && !hunzhiyiji_info[seat].overload)
                     ans.fans.push({'val': 1, 'id': 30}); // 一发
             } else {
                 if (liqiinfo[seat].liqi === 1)
@@ -2266,6 +2334,14 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                 ans.fans.push({'val': alldoras[2], 'id': 34}); // 北宝牌
             if (liqiinfo[seat].liqi !== 0)
                 ans.fans.push({'val': alldoras[3], 'id': 33}); // 里宝牌
+            if (is_yongchang()) {
+                let moqie_bonus = calbonus(shoumoqiemaxlen[seat][0], false);
+                let shouqie_bonus = calbonus(shoumoqiemaxlen[seat][1], true);
+                if (moqie_bonus !== 0)
+                    ans.fans.push({'val': moqie_bonus, 'id': 801}); // 绯
+                if (shouqie_bonus !== 0)
+                    ans.fans.push({'val': shouqie_bonus, 'id': 802}); // 苍
+            }
             // --------------------------------------------------
             // --------------------------------------------------
             // --------------------------------------------------
@@ -2356,7 +2432,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                 partition.push({'type': 7, 'tile': [inttotile(now), inttotile(now)]});
             else if (k === 2)
                 partition.push({'type': 6, 'tile': [inttotile(now), inttotile(now), inttotile(now)]});
-            else if (k === 3){
+            else if (k === 3) {
                 partition.push({'type': 6, 'tile': [inttotile(now), inttotile(now), inttotile(now)]});
                 partition.push({'type': 7, 'tile': [inttotile(now), inttotile(now)]});
             }
@@ -2380,6 +2456,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             cnt[now] += whatever[k];
         }
     }
+
     if (!is_wanxiangxiuluo()) {
         dfs(1);
         if (calchupai(tiles) === 3) {
@@ -2422,10 +2499,10 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
     } else if (cnt[tiletoint("bd")] === 1) {
         cnt[tiletoint("bd")]--;
         let tmp_tiles = [], origin_tiles = [];
-        for (let i = 0;i < tiles.length;i++){
+        for (let i = 0; i < tiles.length; i++) {
             origin_tiles.push(tiles[i]);
 
-            if (tiles[i]==="bd")
+            if (tiles[i] === "bd")
                 continue;
             tmp_tiles.push(tiles[i]);
         }
@@ -2729,6 +2806,15 @@ function addDiscardTile(is_liqi, is_wliqi, doras, moqie, seat, tile, tingpais, t
             "continue_deal_count": 6,
             "overload": false
         };
+    if (is_yongchang()) {
+        ret.data.yongchang = {
+            "seat": seat,
+            "moqie_count": shoumoqiemaxlen[seat][0],
+            "moqie_bonus": calbonus(shoumoqiemaxlen[seat][0], false),
+            "shouqie_count": shoumoqiemaxlen[seat][1],
+            "shouqie_bonus": calbonus(shoumoqiemaxlen[seat][1], true)
+        }
+    }
 
     if (is_muyu()) {
         if (seat === muyu.seat)
@@ -2771,7 +2857,7 @@ function addDealTile(doras, left_tile_count, seat, tile, liqi, tile_state) {
             "overload": false
         };
     let lstseat = getlstaction().data.seat;
-    if (is_hunzhiyiji() && hunzhiyiji_info[lstseat].liqi && hunzhiyiji_info[lstseat].overload && !hunzhiyiji_info[lstseat].is_push){
+    if (is_hunzhiyiji() && hunzhiyiji_info[lstseat].liqi && hunzhiyiji_info[lstseat].overload && !hunzhiyiji_info[lstseat].is_push) {
         ret.data.hun_zhi_yi_ji_info = {
             "seat": getlstaction().seat,
             "continue_deal_count": hunzhiyiji_info[getlstaction().seat].cnt,
@@ -2817,15 +2903,25 @@ function addChiPengGang(froms, seat, tiles, type, liqi, tile_states) {
             'type': type
         }
     };
+    let from = froms[froms.length - 1];
     if (liqi != null)
         ret.data.liqi = liqi;
-    if (is_hunzhiyiji() && hunzhiyiji_info[froms[0]].liqi && !hunzhiyiji_info[froms[0]].is_push){
+    if (is_hunzhiyiji() && hunzhiyiji_info[from].liqi && !hunzhiyiji_info[from].is_push) {
         ret.data.hun_zhi_yi_ji_info = {
-            "seat": froms[0],
-            "continue_deal_count": hunzhiyiji_info[froms[0]].cnt,
+            "seat": from,
+            "continue_deal_count": hunzhiyiji_info[from].cnt,
             "overload": true
         };
         hunzhiyiji_info[from].is_push = true;
+    }
+    if (is_yongchang()) {
+        ret.data.yongchang = {
+            "seat": from,
+            "moqie_count": shoumoqiemaxlen[from][0],
+            "moqie_bonus": calbonus(shoumoqiemaxlen[from][0], false),
+            "shouqie_count": shoumoqiemaxlen[from][1],
+            "shouqie_bonus": calbonus(shoumoqiemaxlen[from][1], true)
+        }
     }
 
     if (tile_states !== undefined && tile_states !== [])
@@ -4088,6 +4184,17 @@ function qiepai(seat, kind, is_liqi) {
         return cnt[tiletoint(tile, true)] >= 1;
     }
 
+    // 咏唱之战相关
+    if (is_yongchang()) {
+        if (kind === "moqie")
+            shoumoqie[seat].push(false);
+        else
+            shoumoqie[seat].push(true);
+        let moqiemaxlen = longest_length(shoumoqie[seat], false);
+        let shouqiemaxlen = longest_length(shoumoqie[seat], true);
+        shoumoqiemaxlen[seat] = [moqiemaxlen, shouqiemaxlen];
+    }
+
     for (let i = playertiles[seat].length - 1; i >= 0; i--) {
         tile = playertiles[seat][i];
         if (intiles(kind, tile)) {
@@ -4381,9 +4488,17 @@ function mingpai(seat, tiles) {
     paihe[lstaction.data.seat].liujumanguan = false;
     let from = getlstaction().data.seat, lastile = getlstaction().data.tile;
 
+    // 魂之一击模式
     if (is_hunzhiyiji() && hunzhiyiji_info[from].liqi) {
         hunzhiyiji_info.yifa = false;
         hunzhiyiji_info.overload = true;
+    }
+    // 咏唱之战模式
+    if (is_yongchang()) {
+        shoumoqie[from].length--;
+        let moqiemaxlen = longest_length(shoumoqie[from], false);
+        let shouqiemaxlen = longest_length(shoumoqie[from], true);
+        shoumoqiemaxlen[from] = [moqiemaxlen, shouqiemaxlen];
     }
 
     let liqi = null;
@@ -4845,7 +4960,7 @@ function notileliuju() {
     endNoTile(false, ret, ret2);
     if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !is_chuanma())
         ben++;
-    if ((!ret[ju].tingpai || is_xuezhandaodi()|| is_wanxiangxiuluo()) && !is_chuanma())
+    if ((!ret[ju].tingpai || is_xuezhandaodi() || is_wanxiangxiuluo()) && !is_chuanma())
         ju++;
     roundend();
     saveproject();
