@@ -897,6 +897,10 @@ function is_yongchang() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yongchang_mode)
 }
 
+function is_tianming() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.tianming_mode)
+}
+
 function is_guobiao() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guobiao)
 }
@@ -943,10 +947,17 @@ function decompose(x) {
         if (x[i] !== 'm' && x[i] !== 'p' && x[i] !== 's' && x[i] !== 'z')
             for (let j = i + 1; j < x.length; j++) {
                 if (x[j] === 'm' || x[j] === 'p' || x[j] === 's' || x[j] === 'z') {
-                    if (j !== i + 1)
-                        x = x.substring(0, i + 1) + x[j] + x.substring(i + 1);
-                    i++;
-                    break;
+                    if (j + 1 < x.length && x[j + 1] === 't') {
+                        if (j !== i + 1)
+                            x = x.substring(0, i + 1) + x[j] + x[j + 1] + x.substring(i + 1);
+                        i += 2;
+                        break;
+                    } else {
+                        if (j !== i + 1)
+                            x = x.substring(0, i + 1) + x[j] + x.substring(i + 1);
+                        i++;
+                        break;
+                    }
                 }
             }
     }
@@ -957,8 +968,18 @@ function separatetile(x) {
     x = decompose(x);
     let ret = [];
     while (x.length > 0) {
-        ret.push(x.substring(0, 2));
-        x = x.substring(2);
+        if (is_tianming()) {
+            if (x[2] === 't') { // 第3位是't', 则是天命牌
+                ret.push(x.substring(0, 3));
+                x = x.substring(3);
+            } else {
+                ret.push(x.substring(0, 2));
+                x = x.substring(2);
+            }
+        } else {
+            ret.push(x.substring(0, 2));
+            x = x.substring(2);
+        }
     }
     return ret;
 }
@@ -1035,19 +1056,19 @@ function equaltile(x, y) {
         return true;
     if (x[1] === y[1] && x[0] === '5' && y[0] === '0')
         return true;
-    return x === y;
+    return x[0] === y[0] && x[1] === y[1];
 }
 
 // type 表示是否区分红宝牌, false 表示不区分, true 表示区分
 function tiletoint(tile, type = false) {
     if (tile === "bd") // 万象修罗百搭牌
         return 0;
-    if (type) {
-        if (tile === "0m")
+    if (type && tile[0] === "0") {
+        if (tile[1] === "m")
             return 35;
-        if (tile === "0p")
+        if (tile[1] === "p")
             return 36;
-        if (tile === "0s")
+        if (tile[1] === "s")
             return 37;
     }
     if (tile[0] === '0')
@@ -2587,7 +2608,7 @@ function gamebegin() {
             'mode': {
                 'mode': 1,
             }
-        }
+        };
     if (settings.chuanma_points_method === undefined)
         settings.chuanma_points_method = 0;
     if (editdata.player_datas === undefined)
@@ -2682,7 +2703,7 @@ function addNewRound(chang, ju, ben, doras, left_tile_count, liqibang, md5, pais
         ret.data.operations = [{
             'operation_list': [{
                 'change_tile_states': [0, 0, 0],
-                'change_tiles': tiles0.slice(0, 3), // [tiles0[0], tiles0[1], tiles0[2]],
+                'change_tiles': tiles0.slice(0, 3),
                 'type': 12
             }],
             'seat': 0
@@ -4195,18 +4216,6 @@ function qiepai(seat, kind, is_liqi) {
         shoumoqiemaxlen[seat] = [moqiemaxlen, shouqiemaxlen];
     }
 
-    for (let i = playertiles[seat].length - 1; i >= 0; i--) {
-        tile = playertiles[seat][i];
-        if (intiles(kind, tile)) {
-            swap(i);
-            break;
-        }
-        if (i === 0 && kind !== "moqie") { // 要切的牌不在手牌中, 则报错
-            console.error("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", seat: " + seat + " 手牌不存在要切的牌: " + kind);
-            return false;
-        }
-    }
-
     // 魂之一击相关
     if (is_hunzhiyiji() && lstliqi !== null)
         hunzhiyiji_info[seat] = {
@@ -4218,6 +4227,18 @@ function qiepai(seat, kind, is_liqi) {
         };
     if (is_hunzhiyiji() && hunzhiyiji_info[seat].cnt <= 0)
         hunzhiyiji_info[seat].yifa = false;
+
+    for (let i = playertiles[seat].length - 1; i >= 0; i--) {
+        tile = playertiles[seat][i];
+        if (intiles(kind, tile)) {
+            swap(i);
+            break;
+        }
+        if (i === 0 && kind !== "moqie") { // 要切的牌不在手牌中, 则报错
+            console.error("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", seat: " + seat + " 手牌不存在要切的牌: " + kind);
+            return false;
+        }
+    }
 
     let lstactionname = getlstaction().name;
     let tile_state;
