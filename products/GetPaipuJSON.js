@@ -1,6 +1,8 @@
 function paipu(uuid = "") {
-    if (!uuid) uuid = prompt("Please Enter a UUID.");
-    if (!uuid) return;
+    if (uuid === "")
+        uuid = prompt("Please Enter a UUID.");
+    if (uuid === "")
+        return;
     uuid = uuid.replace(/^.*=(.*)_a.*$/, '$1');
     const pbWrapper = net.ProtobufManager.lookupType(".lq.Wrapper");
     const pbGameDetailRecords = net.ProtobufManager.lookupType(".lq.GameDetailRecords");
@@ -23,7 +25,8 @@ function paipu(uuid = "") {
                         json.actions[i].result = {name: record.name, data: data};
                     }
                 }
-            } else throw ("Unknown version: " + gameDetailRecords.version);
+            } else
+                throw ("Unknown version: " + gameDetailRecords.version);
         } catch (e) {
             console.log(e);
         }
@@ -53,7 +56,8 @@ function paipu(uuid = "") {
         "fetchGameRecord",
         {game_uuid: uuid, client_version_string: GameMgr.Inst.getClientVersion()},
         async function (error, gameRecord) {
-            if (gameRecord.data === "") gameRecord.data = await fetchData(gameRecord.data_url);
+            if (gameRecord.data === "")
+                gameRecord.data = await fetchData(gameRecord.data_url);
             const gameDetailRecordsWrapper = pbWrapper.decode(gameRecord.data);
             const gameDetailRecords = pbGameDetailRecords.decode(gameDetailRecordsWrapper.data);
             let gameDetailRecordsJson = JSON.parse(JSON.stringify(gameDetailRecords));

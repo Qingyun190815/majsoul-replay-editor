@@ -46,12 +46,12 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 版本, 不要轻易打开),
 解混淆的方法见另一个仓库: [misc-code](https://github.com/Fat-pig-Cui/misc-code)
 
-## 注意事项
+## 功能概述
 
-1. 规则目前支持截止2021.7.10之前雀魂的所有规则, 包括:
+1. 目前支持以下规则:
     - 段位场三四麻规则
     - 宝牌狂热
-    - 配牌明牌(明镜之战)
+    - 配牌明牌
     - 龙之目玉
     - 修罗之战
     - 赤羽之战(川麻)
@@ -76,20 +76,22 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 有无双倍役满(天凤规则: 大四喜, 四单, 纯九, 十三面算单倍役满, 但复合役满仍有效)
         - 有无累计役满(即最高三倍满)
 
-2. 在 [add_function.js](add_function.js) 文件中还提供了以下两种雀魂没有的模式, 但性能原因载入这个文件后放映牌谱会很卡,
+2. 在 [add_function.js](../add_function.js) 文件中还提供了以下两种雀魂没有的模式, 但性能原因载入这个文件后放映牌谱会很卡,
    目前不建议使用
     - 血流成河,
       有仓库原作者的视频参考: [【雀魂】（自制回放）假设雀魂有了血流成河（快速版）](https://www.bilibili.com/video/BV1dB4y1F78x)
     - 二人麻将
 
-3. 另外增加了国标模式, 但本人对国标不是很熟, 可能有很多bug, 如需使用请把 [guobiao.js](../guobiao.js) 里面的内容也加载, 
-并在 `detail_rule` 中注明 `guobiao: true`, 详细说明请参照 products 文件夹下的 [README.md](../products/国标麻将/README.md)
+3. 另外增加了国标模式, 但本人对国标不是很熟, 可能有很多bug, 如需使用请把 [guobiao.js](../guobiao.js) 里面的内容也输入到控制台,
+   并在 `'detail_rule'` 中注明 `'guobiao': true`, 详细说明请参照 products
+   文件夹下的 [README.md](../products/国标麻将/README.md)
 
 4. 对于不符合要求的填写, 可能出现页面崩溃的问题(一般页面会卡住, 控制台会报错)
 
-TODO(欢迎contribute):
+## TODO(欢迎contribute)
 
-- 实现2021.7.10以后的特殊活动场的规则
+- 实现以下特殊活动场的规则
+    - 明镜之战
     - 暗夜之战
     - 幻境传说
     - 占星之战
@@ -98,13 +100,8 @@ TODO(欢迎contribute):
     - 魂之一击
     - 万象修罗
 - 实现"三家和了流局"
+- 测试国标麻将所有番种
 - 真实牌谱的json文件与自制牌谱的js文件相互转化
-
-## 已知BUG
-
-龙之目玉模式需要先开一个龙之目玉回放并退出, 否则目玉上的数字会消失
-
-欢迎反馈更多BUG
 
 ## 版权声明
 
