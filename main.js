@@ -3678,17 +3678,19 @@ function hupai(x, type) {
     }
     if (typeof (x) == "number")
         x = [x];
-    if (x === undefined) {
+    let zimo = true;
+    if (x === undefined || x.length === 0) {
         let lstaction = getlstaction();
         if (lstaction.name === "RecordDealTile")
             x = [lstaction.data.seat];
         else if (lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile")
             x = [ju];
         else { // 荣和
+            zimo = false;
             x = [];
-            for (let i = getlstaction().data.seat; i < playercnt + getlstaction().data.seat; i++) {
+            for (let i = lstaction.data.seat; i < playercnt + lstaction.data.seat; i++) {
                 const seat = i % playercnt;
-                if (seat === getlstaction().data.seat || hupaied[seat])
+                if (seat === lstaction.data.seat || hupaied[seat])
                     continue;
                 if (lstaction.name === "RecordDiscardTile")
                     playertiles[seat].push(lstaction.data.tile);
@@ -3711,14 +3713,24 @@ function hupai(x, type) {
                 playertiles[seat].length = playertiles[seat].length - 1;
             }
         }
+        if (x.length === 0) // 没给参数 seat 的情况下, 无人能正常和牌
+            console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", hupai 没给 seat 参数无人能正常和牌");
     }
-    if (x.length === 0) // 没给参数 seat 的情况下, 无人能正常和牌
-        console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", hupai 没给 seat 参数无人能正常和牌");
-    // 三家和了, 暂时实现不了
-    // if (x.length === 3 && !is_chuanma() && is_sanxiangliuju()) {
-    //     liuju(true);
-    //     return;
-    // }
+    if (is_toutiao() && x.length >= 2) { // 有头跳且参数给了至少两家和牌的情况, 则取头跳家
+        let lstaction = getlstaction();
+        if (!(lstaction.name === "RecordDealTile" || lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile")) {
+            let fangchong = lstaction.data.seat;
+            let hupai_seat = [false, false, false, false];
+            for (let i = 0; i < x.length; i++)
+                hupai_seat[x[i]] = true;
+            for (let j = 1; j < 3; j++)
+                if (hupai_seat[(fangchong + j) % playercnt]) {
+                    x = [(fangchong + j) % playercnt];
+                    break;
+                }
+        }
+    }
+
     if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !is_chuanma() && !is_xueliu()) {
         if (!is_guobiao()) {
             let ret = [], baopait = 0;

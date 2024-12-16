@@ -42,7 +42,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 [字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
 
-至于 [code.js](code.js) , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25 版本
+至于 [code.js](code.js) , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25 版本,
 不要轻易打开),
 解混淆的方法见另一个仓库: [misc-code](https://github.com/Fat-pig-Cui/misc-code)
 

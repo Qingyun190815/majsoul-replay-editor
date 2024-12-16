@@ -1,9 +1,14 @@
-function paipu(uuid = "") {
-    if (uuid === "")
-        uuid = prompt("Please Enter a UUID.");
-    if (uuid === "")
+function GetPaipuJSON(paipulink = "") {
+    if (paipulink === "")
+        paipulink = prompt("Please Enter a Paipu Link or Paipu UUID.");
+    if (paipulink === "")
         return;
-    uuid = uuid.replace(/^.*=(.*)_a.*$/, '$1');
+    paipulink = paipulink.split('=');
+    paipulink = paipulink[paipulink.length - 1].split('_');
+    let uuid = paipulink[0];
+    if (paipulink.length > 2 && parseInt(paipulink[2]) === 2)
+        uuid = game.Tools.DecodePaipuUUID(uuid);
+
     const pbWrapper = net.ProtobufManager.lookupType(".lq.Wrapper");
     const pbGameDetailRecords = net.ProtobufManager.lookupType(".lq.GameDetailRecords");
 
@@ -69,4 +74,4 @@ function paipu(uuid = "") {
         });
 }
 
-paipu();
+GetPaipuJSON();
