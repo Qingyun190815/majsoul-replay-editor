@@ -1435,13 +1435,16 @@ function calcsudian(x, type = 0) {
 // 清老头 国士   小四喜   四杠   九莲   八连庄 纯九   四单   十三面 带四喜
 // 燕返   杠振   十二落抬 五门齐 三连刻 三同顺 1p摸月 9p捞鱼 人和   带车轮
 // 大竹林 大数邻 石上     带七星
-function calcfan_chuanma(tiles, seat, zimo, type) {
+
+// type 为 false 表示正常和牌, true 表示查大叫的情况
+function calcfan_chuanma(tiles, seat, zimo, type = false) {
+    // 手牌少一张, 表示查大叫的情况
     if (tiles.length % 3 === 1) {
         let tingpais = tingpai(seat), ret = [];
         for (let i = 0; i < tingpais.length; i++) {
             tiles.push(tingpais[i].tile);
-            let tmp = calcfan_chuanma([].concat(tiles), seat, zimo, 1);
-            if (calcsudian_chuanma(tmp, 1) > calcsudian_chuanma(ret, 1))
+            let tmp = calcfan_chuanma([].concat(tiles), seat, zimo, true);
+            if (calcsudian_chuanma(tmp, 1) > calcsudian_chuanma(ret, true))
                 ret = tmp;
             tiles.length--;
         }
@@ -1478,7 +1481,7 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
     let lastile = tiles[tiles.length - 1], fulucnt = 0;
     let ret = [];
     let cnt = [];
-    for (let i = 0; i <= 27; i++)
+    for (let i = 0; i < nxt2.length; i++)
         cnt[i] = 0;
     for (let i = 0; i < tiles.length; i++)
         cnt[tiletoint(tiles[i])]++;
@@ -1495,20 +1498,20 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
 
     function calc() {
         let cnt2 = [];
-        for (let i = 0; i <= 29; i++)
+        for (let i = 0; i < nxt2.length; i++)
             cnt2[i] = 0;
         let partitiontmp = [].concat(partition);
         for (let i = partitiontmp.length - 1; i >= 0; i--) {
-            let tiles = partitiontmp[i].tile;
+            let tmp_tiles = partitiontmp[i].tile;
             if (partitiontmp[i].type === 0 || partitiontmp[i].type === 5)
                 for (let j = 0; j <= 2; j++)
-                    cnt2[tiletoint(tiles[j])]++;
+                    cnt2[tiletoint(tmp_tiles[j])]++;
             else if (partitiontmp[i].type === 1 || partitiontmp[i].type === 6)
-                cnt2[tiletoint(tiles[0])] += 3;
+                cnt2[tiletoint(tmp_tiles[0])] += 3;
             else if (partitiontmp[i].type === 2 || partitiontmp[i].type === 3)
-                cnt2[tiletoint(tiles[0])] += 4;
+                cnt2[tiletoint(tmp_tiles[0])] += 4;
             else if (partitiontmp[i].type === 7)
-                cnt2[tiletoint(tiles[0])] += 2;
+                cnt2[tiletoint(tmp_tiles[0])] += 2;
         }
 
         function calc0() {
@@ -1523,7 +1526,8 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                 kezi[i] = gangzi[i] = shunzi[i] = 0;
             }
             for (let i = 0; i < partitiontmp.length; i++) {
-                switch (type) {
+                let tmp_type = partitiontmp[i].type;
+                switch (tmp_type) {
                     case 1:
                         kezi[tiletoint(partitiontmp[i].tile[0])]++;
                         break;
@@ -1543,10 +1547,10 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                         shunzi[(tiletoint(partitiontmp[i].tile[0]) + tiletoint(partitiontmp[i].tile[1]) + tiletoint(partitiontmp[i].tile[2])) / 3]++;
                         break;
                 }
-                if (type === 1 || type === 2 || type === 3 || type === 6 || type === 7)
-                    typecnt[tiletoint(partitiontmp[i].tile[0])][type]++;
-                if (type === 0 || type === 5)
-                    typecnt[(tiletoint(partitiontmp[i].tile[0]) + tiletoint(partitiontmp[i].tile[1]) + tiletoint(partitiontmp[i].tile[2])) / 3][type]++;
+                if (tmp_type === 1 || tmp_type === 2 || tmp_type === 3 || tmp_type === 6 || tmp_type === 7)
+                    typecnt[tiletoint(partitiontmp[i].tile[0])][tmp_type]++;
+                if (tmp_type === 0 || tmp_type === 5)
+                    typecnt[(tiletoint(partitiontmp[i].tile[0]) + tiletoint(partitiontmp[i].tile[1]) + tiletoint(partitiontmp[i].tile[2])) / 3][tmp_type]++;
             }
             for (let i = 1; i <= 27; i++) {
                 gangzi_num += gangzi[i];
@@ -1589,11 +1593,11 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                         ans[1].val++;
                 if (ans[1].val === 0)
                     ans.length--;
-                if (type !== 1 && zimo && getlstaction(2) !== undefined && (getlstaction(2).name === "RecordAnGangAddGang" || getlstaction(2).name === "RecordChiPengGang"))
+                if (!type && zimo && getlstaction(2) !== undefined && (getlstaction(2).name === "RecordAnGangAddGang" || getlstaction(2).name === "RecordChiPengGang"))
                     ans.push({'val': 1, 'id': 1001}); // 杠上花
-                if (type !== 1 && !zimo && getlstaction().name !== "RecordAnGangAddGang" && getlstaction(3) !== undefined && (getlstaction(3).name === "RecordAnGangAddGang" || getlstaction(3).name === "RecordChiPengGang"))
+                if (!type && !zimo && getlstaction().name !== "RecordAnGangAddGang" && getlstaction(3) !== undefined && (getlstaction(3).name === "RecordAnGangAddGang" || getlstaction(3).name === "RecordChiPengGang"))
                     ans.push({'val': 1, 'id': 1002}); // 杠上炮
-                if (type !== 1 && getlstaction().name === "RecordAnGangAddGang")
+                if (!type && getlstaction().name === "RecordAnGangAddGang")
                     ans.push({'val': 1, 'id': 1004}); // 抢杠
                 if (kezi_num === 4)
                     ans.push({'val': 1, 'id': 1005}); // 对对和
@@ -1611,20 +1615,19 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                     ans.push({'val': 5, 'id': 1018}); // 天和
                 if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo)
                     ans.push({'val': 5, 'id': 1019}); // 地和
-                if (type !== 1 && paishan.length / 2 === 0)
+                if (!type && paishan.length / 2 === 0)
                     ans.push({'val': 1, 'id': 1021}); // 海底捞月
                 return ans;
-
             } else {
                 ans[1000] = 0;
                 for (let i = 1; i <= 27; i++)
-                    ans[1000] += cnt2[i] / 4; // 根
-                if (type !== 1 && zimo && getlstaction(2) !== undefined && (getlstaction(2).name === "RecordAnGangAddGang" || getlstaction(2).name === "RecordChiPengGang"))
+                    ans[1000] += Math.floor(cnt2[i] / 4); // 根
+                if (!type && zimo && getlstaction(2) !== undefined && (getlstaction(2).name === "RecordAnGangAddGang" || getlstaction(2).name === "RecordChiPengGang"))
                     ans[1001] = 1; // 杠上花
-                if (type !== 1 && !zimo && getlstaction().name !== "RecordAnGangAddGang" && getlstaction(3) !== undefined && (getlstaction(3).name === "RecordAnGangAddGang" || getlstaction(3).name === "RecordChiPengGang"))
+                if (!type && !zimo && getlstaction().name !== "RecordAnGangAddGang" && getlstaction(3) !== undefined && (getlstaction(3).name === "RecordAnGangAddGang" || getlstaction(3).name === "RecordChiPengGang"))
                     ans[1002] = 1; // 杠上炮
                 ans[1003] = 1;
-                if (type !== 1 && getlstaction().name === "RecordAnGangAddGang")
+                if (!type && getlstaction().name === "RecordAnGangAddGang")
                     ans[1004] = 1; // 抢杠
                 if (kezi_num === 4)
                     ans[1005] = 2; // 对对和
@@ -1662,15 +1665,15 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                     ans[1019] = 6; // 地和
                 if (qingyise && quandai)
                     ans[1020] = 5; // 清幺九
-                if (type !== 1 && paishan.length / 2 === 0)
+                if (!type && paishan.length / 2 === 0)
                     ans[1021] = 1; // 海底捞月
                 return tofan(ans);
             }
         }
 
         for (let i = partitiontmp.length - 1; i >= 0; i--) {
-            let tile = partitiontmp[i].tile, type = partitiontmp[i].type;
-            if (type === 5 && (equaltile(tile[0], lastile) || equaltile(tile[1], lastile) || equaltile(tile[2], lastile))) {
+            let tile = partitiontmp[i].tile, tmp_type = partitiontmp[i].type;
+            if (tmp_type === 5 && (equaltile(tile[0], lastile) || equaltile(tile[1], lastile) || equaltile(tile[2], lastile))) {
                 if (!zimo)
                     partitiontmp[i].type = 0;
                 let midtile = inttotile((tiletoint(tile[0]) + tiletoint(tile[1]) + tiletoint(tile[2])) / 3);
@@ -1684,20 +1687,21 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                     updateret(calc0());
                 partitiontmp[i].type = 5;
             }
-            if (type === 6 && equaltile(tile[0], lastile)) {
+            if (tmp_type === 6 && equaltile(tile[0], lastile)) {
                 if (!zimo)
                     partitiontmp[i].type = 1;
                 updateret(calc0());
                 partitiontmp[i].type = 6;
             }
-            if (type === 7 && equaltile(tile[0], lastile))
+            if (tmp_type === 7 && equaltile(tile[0], lastile))
                 updateret(calc0());
         }
     }
 
     function dfs(now) {
-        if (now === 35) {
-            if (partition.length === 7 || partition.length === 5) calc();
+        if (now === 28) {
+            if (partition.length === 7 || partition.length === 5)
+                calc();
             return;
         }
         if (cnt[now] === 0) {
@@ -1728,13 +1732,14 @@ function calcfan_chuanma(tiles, seat, zimo, type) {
                 cnt[now] += cnt0;
                 cnt[nxt2[now]] += cnt0;
                 cnt[nxt2[nxt2[now]]] += cnt0;
-                for (let i = 1; i <= cnt0; i++) partition.length = partition.length - 1;
+                for (let i = 1; i <= cnt0; i++)
+                    partition.length = partition.length - 1;
             }
-            if (k === 1 || k === 2) partition.length = partition.length - 1;
+            if (k === 1 || k === 2)
+                partition.length = partition.length - 1;
             cnt[now] += whatever[k];
         }
     }
-
     dfs(1);
     return ret;
 }
@@ -1744,7 +1749,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
     let lastile = tiles[tiles.length - 1], fulucnt = 0;
     let ret = {'yiman': false, 'fans': [], 'fu': 0};
     let cnt = [];
-    for (let i = 0; i <= 36; i++)
+    for (let i = 0; i < nxt2.length; i++)
         cnt[i] = 0;
     for (let i = 0; i < tiles.length; i++)
         cnt[tiletoint(tiles[i])]++;
@@ -1764,7 +1769,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
 
     function calc() {
         let cnt2 = [];
-        for (let i = 0; i <= 36; i++)
+        for (let i = 0; i < nxt2.length; i++)
             cnt2[i] = 0;
         let partitiontmp = [].concat(partition);
         for (let i = partitiontmp.length - 1; i >= 0; i--) {

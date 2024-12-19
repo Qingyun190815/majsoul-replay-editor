@@ -1,11 +1,11 @@
 loadproject();
 
 editdata.player_datas[0].nickname = "雏桃-契约";
-editdata.player_datas[1].nickname = "昭华年";
-editdata.player_datas[2].nickname = "醇香初夏";
+editdata.player_datas[1].nickname = "醇香初夏";
+editdata.player_datas[2].nickname = "冬日心愿簿";
 editdata.player_datas[0].avatar_id = 402602;
-editdata.player_datas[1].avatar_id = 402603;
-editdata.player_datas[2].avatar_id = 402604;
+editdata.player_datas[1].avatar_id = 402604;
+editdata.player_datas[2].avatar_id = 402605;
 
 editdata.config = {
     'category': 1,

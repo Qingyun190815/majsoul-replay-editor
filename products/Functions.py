@@ -73,7 +73,7 @@ def Generate_All_Avatar(player_num=4):
                 if flag_views and charids[index] in char_unique_views and id_count == 4 and name_count == 4:
                     outfile.write("\n" + char_unique_views[charids[index]] + "\n")
                     flag_views = False
-                if not use_dict:
+                if not use_dict and use_views:
                     if flag_hand and id_count == 4 and name_count == 4:
                         outfile.write("\n" + change_hand + "\n")
                         flag_hand = False
@@ -119,11 +119,11 @@ def Generate_All_Avatar(player_num=4):
                 if flag_views and charids[index] in char_unique_views_3P and id_count == 3 and name_count == 3:
                     outfile.write("\n" + char_unique_views_3P[charids[index]] + "\n")
                     flag_views = False
-                if not use_dict:
+                if not use_dict and use_views:
                     if flag_hand and id_count == 3 and name_count == 3:
                         outfile.write("\n" + change_hand + "\n")
                         flag_hand = False
-        if use_dict:
+        if use_dict and not use_views:
             if charids[index] in dict_spchar_paipu:
                 outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
         infile.seek(0)
