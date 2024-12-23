@@ -75,7 +75,7 @@ qiepai(true);
 mopai();
 qiepai("8s", true);
 {
-    let tingpais = tingpai(1);
+    let tingpais = calctingpai(1);
 
     function hule(t, tingpais) {
         for (let i = 0; i < tingpais.length; i++) if (tingpais[i].tile === t)

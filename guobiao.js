@@ -1,3 +1,8 @@
+"use strict"
+
+// 为了美观, 将点数提升的倍数
+let scale_points = 100;
+
 // 国标麻将番种
 cfg.fan.fan.map_[8000] = {
     "id": 8000,
@@ -1304,6 +1309,7 @@ cfg.fan.fan.map_[8085] = {
 };
 
 
+
 function hupai_guobiao(seat) {
     let lstaction = getlstaction(), zimo = false;
     if (lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile")
@@ -1346,17 +1352,19 @@ function hupai_guobiao(seat) {
     // -------------------------------------------
     let sudian = calcsudian_guobiao(points);
     let zhahu = false;
-    if (calchupai(playertiles[seat]) === 0 || sudian < 800)
+    if (calchupai(playertiles[seat]) === 0 || sudian < 8 * scale_points)
+        zhahu = true;
+    if (!is_guobiao_no_8fanfu() && sudian < 8 * scale_points)
         zhahu = true;
     if (lstaction.name === "RecordAnGangAddGang" && lstaction.data.type === 3)
         zhahu = true;
 
-    if (zhahu) { // 诈和, 错和赔三家各 24*100 点
+    if (zhahu) { // 诈和, 错和赔三家各 24 * scale_points 点
         for (let i = 0; i < playercnt; i++) {
             if (i === seat)
                 continue;
-            delta_scores[i] += 2400;
-            delta_scores[seat] -= 2400;
+            delta_scores[i] += 24 * scale_points;
+            delta_scores[seat] -= 24 * scale_points;
         }
         let ret = {
             'count': 0,
@@ -1368,10 +1376,10 @@ function hupai_guobiao(seat) {
             'hu_tile': hu_tile,
             'liqi': false,
             'ming': ming,
-            'point_rong': 7200,
-            'point_sum': 7200,
-            'point_zimo_qin': 7200,
-            'point_zimo_xian': 7200,
+            'point_rong': 72 * scale_points,
+            'point_sum': 72 * scale_points,
+            'point_zimo_qin': 72 * scale_points,
+            'point_zimo_xian': 72 * scale_points,
             'qinjia': qinjia,
             'seat': seat,
             'title_id': 0,
@@ -1384,18 +1392,18 @@ function hupai_guobiao(seat) {
         for (let i = 0; i < playercnt; i++) {
             if (i === seat)
                 continue;
-            delta_scores[i] -= sudian + 800;
-            delta_scores[seat] += sudian + 800;
+            delta_scores[i] -= sudian + 8 * scale_points;
+            delta_scores[seat] += sudian + 8 * scale_points;
         }
     } else {
-        delta_scores[fangchong] -= sudian + 800;
-        delta_scores[seat] += sudian + 800;
+        delta_scores[fangchong] -= sudian + 8 * scale_points;
+        delta_scores[seat] += sudian + 8 * scale_points;
 
         for (let i = 0; i < playercnt; i++) {
             if (i === seat || i === fangchong)
                 continue;
-            delta_scores[i] -= 800;
-            delta_scores[seat] += 800;
+            delta_scores[i] -= 8 * scale_points;
+            delta_scores[seat] += 8 * scale_points;
         }
     }
     // ---------------------------------------------------
@@ -1409,14 +1417,14 @@ function hupai_guobiao(seat) {
         'hu_tile': hu_tile,
         'liqi': false,
         'ming': ming,
-        'point_rong': sudian + 2400,
+        'point_rong': sudian + 24 * scale_points,
         'point_sum': delta_scores[seat],
         'point_zimo_qin': delta_scores[seat] / 3,
         'point_zimo_xian': delta_scores[seat] / 3,
         'qinjia': qinjia,
         'seat': seat,
         'title_id': 0,
-        'yiman': points.yiman,
+        'yiman': false,
         'zimo': zimo,
     }
     playertiles[seat].length--;
@@ -1427,7 +1435,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
     let lastile = tiles[tiles.length - 1], fulucnt = 0;
     let ret = {'yiman': false, 'fans': [], 'fu': 0};
     let cnt = [];
-    for (let i = 0; i <= 36; i++)
+    for (let i = 0; i < nxt2.length; i++)
         cnt[i] = 0;
     for (let i = 0; i < tiles.length; i++)
         cnt[tiletoint(tiles[i])]++;
@@ -1441,13 +1449,13 @@ function calcfan_guobiao(tiles, seat, zimo) {
     }
 
     function updateret(x) {
-        if (x !== undefined && calcsudian_guobiao(x, 1) > calcsudian_guobiao(ret, 1))
+        if (x !== undefined && calcsudian_guobiao(x) > calcsudian_guobiao(ret))
             ret = x;
     }
 
     function calc() {
         let cnt2 = [];
-        for (let i = 0; i <= 36; i++)
+        for (let i = 0; i < nxt2.length; i++)
             cnt2[i] = 0;
         let partitiontmp = [].concat(partition);
         for (let i = partitiontmp.length - 1; i >= 0; i--) {
@@ -1696,8 +1704,12 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 for (let i = 2; i <= 5; i++)
                     if (shunzi[j * 9 + i] >= 1 && shunzi[j * 9 + i + 3] >= 1)
                         lianliu_num++;
-            if (lianliu_num >= 1)
-                ans.fans.push({'val': lianliu_num, 'id': 8072}); // 连六
+            if (lianliu_num >= 1){
+                if (ersetongshun_num >= 2) // 有2个喜相逢的情况下连六最多只会算1个
+                    ans.fans.push({'val': 1, 'id': 8072});
+                else
+                    ans.fans.push({'val': lianliu_num, 'id': 8072}); // 连六
+            }
 
             let laoshaofu_num = 0;
             for (let j = 0; j <= 2; j++)
@@ -1720,8 +1732,8 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 ans.fans.push({'val': 1, 'id': 8075}); // 明杠
 
             let queyimen = false;
-            let havewanzi = false, havebingzi = true, havesuozi = true;
-            for (let i = 0; i <= 9; i++) {
+            let havewanzi = false, havebingzi = false, havesuozi = false;
+            for (let i = 1; i <= 9; i++) {
                 if (cnt2[i] >= 1)
                     havewanzi = true;
                 if (cnt2[i + 9] >= 1)
@@ -1733,7 +1745,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 queyimen = true;
             if (havewanzi && !havebingzi && havesuozi)
                 queyimen = true;
-            if (!havewanzi && havebingzi && !havesuozi)
+            if (!havewanzi && havebingzi && havesuozi)
                 queyimen = true;
             if (queyimen)
                 ans.fans.push({'val': 1, 'id': 8076}); // 缺一门
@@ -1753,7 +1765,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (bianzhang) {
                 cnt[tiletoint(lastile)]--;
                 tiles.length--;
-                if (tingpai(seat).length === 1) // 严格独听
+                if (calctingpai(seat).length === 1) // 严格独听
                     ans.fans.push({'val': 1, 'id': 8078}); // 边张
                 tiles.push(lastile);
                 cnt[tiletoint(lastile)]++;
@@ -1763,7 +1775,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (kanzhang && !bianzhang) {
                 cnt[tiletoint(lastile)]--;
                 tiles.length--;
-                if (tingpai(seat).length === 1) // 严格独听
+                if (calctingpai(seat).length === 1) // 严格独听
                     ans.fans.push({'val': 1, 'id': 8079}); // 坎张
                 tiles.push(lastile);
                 cnt[tiletoint(lastile)]++;
@@ -1793,7 +1805,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (dandiaojiang && !kanzhang && !bianzhang) {
                 cnt[tiletoint(lastile)]--;
                 tiles.length--;
-                if (tingpai(seat).length === 1) // 严格独听
+                if (calctingpai(seat).length === 1) // 严格独听
                     ans.fans.push({'val': 1, 'id': 8080}); // 单钓将
                 tiles.push(lastile);
                 cnt[tiletoint(lastile)]++;
@@ -2524,15 +2536,17 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 cnt[now] += cnt0;
                 cnt[nxt2[now]] += cnt0;
                 cnt[nxt2[nxt2[now]]] += cnt0;
-                for (let i = 1; i <= cnt0; i++) partition.length = partition.length - 1;
+                for (let i = 1; i <= cnt0; i++)
+                    partition.length = partition.length - 1;
             }
-            if (k === 1 || k === 2) partition.length = partition.length - 1;
+            if (k === 1 || k === 2)
+                partition.length = partition.length - 1;
             cnt[now] += whatever[k];
         }
     }
 
     dfs(1);
-    for (let i = 0; i <= 36; i++)
+    for (let i = 0; i < nxt2.length; i++)
         cnt[i] = 0;
     for (let i = 0; i < tiles.length; i++)
         cnt[tiletoint(tiles[i])]++;
@@ -2551,7 +2565,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (cnt[i] === 0)
                 qixingbukao = false;
 
-        let ans = [];
+        let ans = {'yiman': false, 'fans': [], 'fu': 25};
         if (qixingbukao)
             ans.fans.push({'val': 24, 'id': 8019}); // 七星不靠
         else if (result === 5) { // 有组合龙
@@ -2562,6 +2576,10 @@ function calcfan_guobiao(tiles, seat, zimo) {
         updateret(ans);
     }
     if (result >= 6 && result <= 11) { // 一般组合龙
+        let row = result - 6;
+        let origin_tiles = [];
+        for (let i = 0; i<tiles.length; i++)
+            origin_tiles[i] = tiles[i];
         let condition = [
             [1, 4, 7, 11, 14, 17, 21, 24, 27],
             [1, 4, 7, 12, 15, 18, 20, 23, 26],
@@ -2571,12 +2589,13 @@ function calcfan_guobiao(tiles, seat, zimo) {
             [3, 6, 9, 11, 14, 17, 19, 22, 25],
         ];
         for (let i = 0; i < 3; i++) {
-            let new_shunzi = [inttotile(condition[result - 6][3 * i]), inttotile(condition[result - 6][3 * i + 1]), inttotile(condition[result - 6][3 * i + 2])];
+            let new_shunzi = [inttotile(condition[row][3 * i]), inttotile(condition[row][3 * i + 1]), inttotile(condition[row][3 * i + 2])];
             partition.push({'type': 9, 'tile': new_shunzi});
         }
-        for (let i = 0; i < condition[result - 6].length; i++)
-            tiles = deletetile(tiles, condition[result - 6][i]);
+        for (let i = 0; i < condition[row].length; i++)
+            tiles = deletetile(tiles, condition[row][i]);
         dfs(1);
+        tiles = origin_tiles;
     }
 
     function deletetile(tiles, int) {
@@ -2594,9 +2613,9 @@ function calcfan_guobiao(tiles, seat, zimo) {
     return ret;
 }
 
-function calcsudian_guobiao(x, type = 0) {
+function calcsudian_guobiao(x) {
     let val = 0;
     for (let i = 0; i < x.fans.length; i++)
         val = val + x.fans[i].val;
-    return val * 100 + 0.1 * type;
+    return val * scale_points;
 }
