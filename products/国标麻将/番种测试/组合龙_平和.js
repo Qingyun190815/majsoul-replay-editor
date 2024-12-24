@@ -22,12 +22,12 @@ editdata.config = {
     }
 };
 
-tiles0 = "147m258p369s12344z";
-tiles1 = "5555555555555z";
-tiles2 = "5555555555555z";
-tiles3 = "5555555555555z";
-paishan = randompaishan("6z");
+tiles0 = "147m258p2333469s1z";
+tiles1 = "2223334445556z";
+tiles2 = "1122336678999p";
+tiles3 = "1122445678999s";
+paishan = randompaishan("3s");
 roundbegin();
 qiepai();
 normalmoqie();
-hupai(0);
+hupai();

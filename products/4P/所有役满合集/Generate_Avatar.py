@@ -19,6 +19,9 @@ file_names = [
     "10_六倍役满_2211.js",
 ]
 
+if not os.path.exists("./output"):
+    os.makedirs("./output")
+
 outfile_dirname = []
 for i in range(len(charids)):
     if charids[i] == 200071:  # 因为文件夹不能以句点结尾, 故 C.C. 舍弃两个句点变成 CC

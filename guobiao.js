@@ -621,7 +621,7 @@ cfg.fan.fan.map_[8040] = {
     "fan_menqing": 8,
     "fan_fulu": 8,
     "show_index": 8040,
-    "sound": "",
+    "sound": "fan_sansetongshun",
     "show_range_1": 0,
     "show_range_2": "",
     "merge_id": 0
@@ -999,7 +999,7 @@ cfg.fan.fan.map_[8065] = {
     "fan_menqing": 2,
     "fan_fulu": 2,
     "show_index": 8065,
-    "sound": "",
+    "sound": "scfan_gen",
     "show_range_1": 0,
     "show_range_2": "",
     "merge_id": 0
@@ -1272,7 +1272,7 @@ cfg.fan.fan.map_[8083] = {
     "fan_menqing": 8,
     "fan_fulu": 8,
     "show_index": 8083,
-    "sound": "",
+    "sound": "fan_tianhu",
     "show_range_1": 0,
     "show_range_2": "",
     "merge_id": 0
@@ -1287,7 +1287,7 @@ cfg.fan.fan.map_[8084] = {
     "fan_menqing": 6,
     "fan_fulu": 6,
     "show_index": 8084,
-    "sound": "",
+    "sound": "fan_dihu",
     "show_range_1": 0,
     "show_range_2": "",
     "merge_id": 0
@@ -1307,7 +1307,6 @@ cfg.fan.fan.map_[8085] = {
     "show_range_2": "",
     "merge_id": 0
 };
-
 
 
 function hupai_guobiao(seat) {
@@ -1352,7 +1351,7 @@ function hupai_guobiao(seat) {
     // -------------------------------------------
     let sudian = calcsudian_guobiao(points);
     let zhahu = false;
-    if (calchupai(playertiles[seat]) === 0 || sudian < 8 * scale_points)
+    if (calchupai(playertiles[seat]) === 0)
         zhahu = true;
     if (!is_guobiao_no_8fanfu() && sudian < 8 * scale_points)
         zhahu = true;
@@ -1370,20 +1369,20 @@ function hupai_guobiao(seat) {
             'count': 0,
             'doras': [],
             'li_doras': [],
-            'fans': [{'val': 1, 'id': 9000}],
-            'fu': 25,
+            'fans': [{'val': 0, 'id': 9000}],
+            'fu': 0,
             'hand': hand,
             'hu_tile': hu_tile,
             'liqi': false,
             'ming': ming,
-            'point_rong': 72 * scale_points,
-            'point_sum': 72 * scale_points,
-            'point_zimo_qin': 72 * scale_points,
-            'point_zimo_xian': 72 * scale_points,
+            'point_rong': 24 * scale_points,
+            'point_sum': 24 * scale_points,
+            'point_zimo_qin': 24 * scale_points,
+            'point_zimo_xian': 24 * scale_points,
             'qinjia': qinjia,
             'seat': seat,
             'title_id': 0,
-            'yiman': true,
+            'yiman': false,
             'zimo': zimo,
         }
         playertiles[seat].length--;
@@ -1484,6 +1483,13 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 if (flag)
                     ans.fans.length = ans.fans.length - 1;
                 return ans;
+            }
+            function existfan(ans, x) {
+                for (let i = 0; i < ans.fans.length; i++)
+                    if (ans.fans[i].id === x)
+                        return true;
+
+                return false;
             }
 
             let lstaction = getlstaction();
@@ -1695,17 +1701,19 @@ function calcfan_guobiao(tiles, seat, zimo) {
             // 1 番
             if (beikou >= 1)
                 ans.fans.push({'val': beikou, 'id': 8070}); // 一般高
-            if (ersetongshun_num === 1 && !sansetongshun)
-                ans.fans.push({'val': 1, 'id': 8071}); // 喜相逢
-            if (ersetongshun_num === 2)
-                ans.fans.push({'val': 2, 'id': 8071}); // 喜相逢
+            if (ersetongshun_num >= 1 && !sansetongshun) {
+                if (beikou >= 2)
+                    ans.fans.push({'val': 1, 'id': 8071}); // 有2个一般高的情况下喜相逢最多只会算1个
+                else
+                    ans.fans.push({'val': ersetongshun_num, 'id': 8071}); // 喜相逢
+            }
             let lianliu_num = 0;
             for (let j = 0; j <= 2; j++)
                 for (let i = 2; i <= 5; i++)
                     if (shunzi[j * 9 + i] >= 1 && shunzi[j * 9 + i + 3] >= 1)
                         lianliu_num++;
-            if (lianliu_num >= 1){
-                if (ersetongshun_num >= 2) // 有2个喜相逢的情况下连六最多只会算1个
+            if (lianliu_num >= 1) {
+                if (beikou >= 2 || ersetongshun_num >= 2) // 有2个一般高, 喜相逢的情况下连六最多只会算1个
                     ans.fans.push({'val': 1, 'id': 8072});
                 else
                     ans.fans.push({'val': lianliu_num, 'id': 8072}); // 连六
@@ -1719,8 +1727,12 @@ function calcfan_guobiao(tiles, seat, zimo) {
                     else
                         laoshaofu_num++;
                 }
-            if (laoshaofu_num >= 1)
-                ans.fans.push({'val': laoshaofu_num, 'id': 8073}); // 老少副
+            if (laoshaofu_num >= 1) {
+                if (beikou >= 2 || ersetongshun_num >= 2) // 有2个一般高, 喜相逢的情况下老少副最多只会算1个
+                    ans.fans.push({'val': 1, 'id': 8073});
+                else
+                    ans.fans.push({'val': laoshaofu_num, 'id': 8073}); // 老少副
+            }
 
             let yaojiuke_num = 0;
             yaojiuke_num += kezi[1] + kezi[9] + kezi[10] + kezi[18] + kezi[19] + kezi[27];
@@ -1728,7 +1740,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (yaojiuke_num >= 1)
                 ans.fans.push({'val': yaojiuke_num, 'id': 8074}); // 幺九刻
 
-            if (minggang_num === 1)
+            if (minggang_num === 1 && gangzi_num === 1)
                 ans.fans.push({'val': 1, 'id': 8075}); // 明杠
 
             let queyimen = false;
@@ -1757,55 +1769,44 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (wuzi)
                 ans.fans.push({'val': 1, 'id': 8077}); // 无字
 
+            let cnt_tiles = [];
+            for (let i = 0; i<nxt2.length;i++)
+                cnt_tiles[i] = 0;
+            for (let i = 0; i<tiles.length;i++)
+                cnt_tiles[tiletoint(tiles[i])]++;
+
             let bianzhang = false;
-            if ((tiletoint(lastile) - 1) % 9 + 1 === 3 && typecnt[tiletoint(lastile) - 1][5] >= 1)
+            if ((tiletoint(lastile) - 1) % 9 + 1 === 3 && cnt_tiles[tiletoint(lastile) - 1] >= 1 && cnt_tiles[tiletoint(lastile) - 2] >= 1)
                 bianzhang = true;
-            if ((tiletoint(lastile) - 1) % 9 + 1 === 7 && typecnt[tiletoint(lastile) + 1][5] >= 1)
+            if ((tiletoint(lastile) - 1) % 9 + 1 === 7 && cnt_tiles[tiletoint(lastile) + 1] >= 1 && cnt_tiles[tiletoint(lastile) + 2] >= 1)
                 bianzhang = true;
             if (bianzhang) {
                 cnt[tiletoint(lastile)]--;
                 tiles.length--;
-                if (calctingpai(seat).length === 1) // 严格独听
+                if (calctingpai(seat, true).length === 1) // 严格独听
                     ans.fans.push({'val': 1, 'id': 8078}); // 边张
                 tiles.push(lastile);
                 cnt[tiletoint(lastile)]++;
             }
 
-            let kanzhang = typecnt[tiletoint(lastile)][5] >= 1;
+            let kanzhang = cnt_tiles[tiletoint(lastile) - 1] >= 1 && cnt_tiles[tiletoint(lastile) + 1] >= 1;
             if (kanzhang && !bianzhang) {
                 cnt[tiletoint(lastile)]--;
                 tiles.length--;
-                if (calctingpai(seat).length === 1) // 严格独听
+                if (calctingpai(seat, true).length === 1) // 严格独听
                     ans.fans.push({'val': 1, 'id': 8079}); // 坎张
                 tiles.push(lastile);
                 cnt[tiletoint(lastile)]++;
             }
 
             let dandiaojiang = true;
-            let numtile = tiletoint(lastile);
-
-            if (typecnt[numtile][7] !== 1)
-                dandiaojiang = false;
-            // 周围没有顺子
-            if ((numtile - 1) % 9 + 1 === 1 && (shunzi[numtile + 1] >= 1 || shunzi[numtile + 2] >= 1))
-                dandiaojiang = false;
-            else if ((numtile - 1) % 9 + 1 === 2 && (shunzi[numtile + 1] >= 1 || shunzi[numtile + 2] >= 1))
-                dandiaojiang = false;
-            else if ((numtile - 1) % 9 + 1 === 3 && (shunzi[numtile + 1] >= 1 || shunzi[numtile + 2] >= 1))
-                dandiaojiang = false;
-            else if ((numtile - 1) % 9 + 1 === 7 && (shunzi[numtile - 2] >= 1 || shunzi[numtile - 1] >= 1))
-                dandiaojiang = false;
-            else if ((numtile - 1) % 9 + 1 === 8 && (shunzi[numtile - 2] >= 1 || shunzi[numtile - 1] >= 1))
-                dandiaojiang = false;
-            else if ((numtile - 1) % 9 + 1 === 9 && (shunzi[numtile - 2] >= 1 || shunzi[numtile - 1] >= 1))
-                dandiaojiang = false;
-            else if (shunzi[numtile - 2] >= 1 || shunzi[numtile - 1] >= 1 || shunzi[numtile + 1] >= 1 || shunzi[numtile + 2] >= 1)
+            if (typecnt[tiletoint(lastile)][7] !== 1)
                 dandiaojiang = false;
 
             if (dandiaojiang && !kanzhang && !bianzhang) {
                 cnt[tiletoint(lastile)]--;
                 tiles.length--;
-                if (calctingpai(seat).length === 1) // 严格独听
+                if (calctingpai(seat, true).length === 1) // 严格独听
                     ans.fans.push({'val': 1, 'id': 8080}); // 单钓将
                 tiles.push(lastile);
                 cnt[tiletoint(lastile)]++;
@@ -1839,7 +1840,6 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 ans.fans.push({'val': 2, 'id': 8059}); // 箭刻 发
             }
             for (let i = 0; i < kezi[34]; i++) {
-                // 这副刻子不计幺九刻
                 for (let i = 0; i < ans.fans.length; i++)
                     if (ans.fans[i].id === 8074) { // 去除幺九刻
                         if (ans.fans[i].val >= 2)
@@ -1851,10 +1851,28 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 ans.fans.push({'val': 2, 'id': 8060}); // 箭刻 中
             }
 
-            for (let i = 0; i < kezi[tiletoint((chang + 1).toString() + "z")]; i++)
+            for (let i = 0; i < kezi[tiletoint((chang + 1).toString() + "z")]; i++){
+                for (let i = 0; i < ans.fans.length; i++)
+                    if (ans.fans[i].id === 8074) { // 去除幺九刻
+                        if (ans.fans[i].val >= 2)
+                            ans.fans[i].val -= 1;
+                        else
+                            deletefan(ans, 8074);
+                        break;
+                    }
                 ans.fans.push({'val': 2, 'id': 8061}); // 圈风刻
-            for (let i = 0; i < kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")]; i++)
+            }
+            for (let i = 0; i < kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")]; i++){
+                for (let i = 0; i < ans.fans.length; i++)
+                    if (ans.fans[i].id === 8074) { // 去除幺九刻
+                        if (ans.fans[i].val >= 2)
+                            ans.fans[i].val -= 1;
+                        else
+                            deletefan(ans, 8074);
+                        break;
+                    }
                 ans.fans.push({'val': 2, 'id': 8062}); // 门风刻
+            }
 
             if (menqing && !zimo)
                 ans.fans.push({'val': 2, 'id': 8063}); // 门前清
@@ -1877,7 +1895,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
 
             if (anke_num === 2)
                 ans.fans.push({'val': 2, 'id': 8067}); // 双暗刻
-            if (angang_num === 1)
+            if (angang_num === 1 && gangzi_num === 1)
                 ans.fans.push({'val': 2, 'id': 8068}); // 暗杠
             if (flag_duanyao) {
                 // 不计 无字
@@ -1894,18 +1912,21 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 ans.fans.push({'val': 4, 'id': 8055}); // 不求人
             }
 
-            if (minggang_num === 2)
+            if (minggang_num === 2 && gangzi_num === 2)
                 ans.fans.push({'val': 4, 'id': 8056}); // 双明杠
 
             let lastile_num = 0;
             for (let i = 0; i < playercnt; i++) {
-                for (let j = 0; j < paihe[i].tiles.length; j++) // 查牌河
+                for (let j = 0; j < paihe[i].tiles.length; j++) // 查牌河, 注意被鸣走的牌还在 paihe 中
                     if (equaltile(lastile, paihe[i].tiles[j]))
                         lastile_num++;
-                for (let j = 0; j < fulu[i].length; j++) // 查副露
-                    for (let k = 0; k < fulu[i][j].tile.length; k++)
-                        if (equaltile(lastile, fulu[i][j].tile[k]))
-                            lastile_num++;
+                for (let j = 0; j < fulu[i].length; j++) { // 查副露
+                    if (fulu[i][j].from !== undefined) {
+                        for (let k = 0; k < fulu[i][j].tile.length - 1; k++) // -1 是要剔除掉被鸣走的牌
+                            if (equaltile(lastile, fulu[i][j].tile[k]))
+                                lastile_num++;
+                    }
+                }
             }
             if (lastile_num === 4)
                 ans.fans.push({'val': 4, 'id': 8057}); // 和绝张
@@ -1986,9 +2007,11 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (shunzi[8] >= 1 && shunzi[14] >= 1 && shunzi[20] >= 1)
                 hualong = true;
             if (hualong) {
-                // 和 喜相逢, 连六同时出现删除连六
-                if (ersetongshun_num >= 1 && lianliu_num >= 1)
+                // 还有喜相逢时, 删除连六和老少副
+                if (ersetongshun_num >= 1) {
                     deletefan(ans, 8072);
+                    deletefan(ans, 8073);
+                }
                 ans.fans.push({'val': 8, 'id': 8038}); // 花龙
             }
 
@@ -2029,13 +2052,19 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (sansesanjiegao)
                 ans.fans.push({'val': 8, 'id': 8041}); // 三色三节高
             if (paishan.length === 0) {
-                if (zimo)
+                if (zimo){
+                    // 不计 自摸
+                    deletefan(ans, 8081);
                     ans.fans.push({'val': 8, 'id': 8043}); // 妙手回春
+                }
                 else
                     ans.fans.push({'val': 8, 'id': 8044}); // 海底捞月
             }
-            if (zimo && lstdrawtype === 0)
+            if (zimo && lstdrawtype === 0){
+                // 不计 自摸
+                deletefan(ans, 8081);
                 ans.fans.push({'val': 8, 'id': 8045}); // 杠上开花
+            }
             if (lstaction.name === "RecordAnGangAddGang") {
                 // 不计 和绝张
                 deletefan(ans, 8057);
@@ -2046,9 +2075,10 @@ function calcfan_guobiao(tiles, seat, zimo) {
             // 全不靠和组合龙放到最后
             let dayuwu = true, xiaoyuwu = true;
             for (let i = 1; i <= 27; i++) {
-                if ((i - 1) % 9 + 1 >= 6 && (i - 1) % 9 + 1 <= 9 && cnt2[i] >= 1)
+                let num = (i - 1) % 9 + 1;
+                if (num <= 5 && cnt2[i] >= 1)
                     dayuwu = false;
-                if ((i - 1) % 9 + 1 >= 1 && (i - 1) % 9 + 1 <= 4 && cnt2[i] >= 1)
+                if (num >= 5 && cnt2[i] >= 1)
                     xiaoyuwu = false;
             }
             for (let i = 28; i <= 34; i++)
@@ -2064,7 +2094,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (xiaoyuwu) {
                 // 不计 无字
                 deletefan(ans, 8077);
-                ans.fans.push({'val': 12, 'id': 8036}); // 大于五
+                ans.fans.push({'val': 12, 'id': 8036}); // 小于五
             }
             let sanfengke = false;
             if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1)
@@ -2076,6 +2106,19 @@ function calcfan_guobiao(tiles, seat, zimo) {
             if (kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1)
                 sanfengke = true;
             if (sanfengke && !xiaosixi) {
+                for (let i = 0; i < ans.fans.length; i++)
+                    if (ans.fans[i].id === 8074) { // 去除幺九刻
+                        if (existfan(ans, 8061)) // 圈风和门风的幺九刻加回去
+                            ans.fans[i].val++;
+                        if (existfan(ans, 8062))
+                            ans.fans[i].val++;
+
+                        if (ans.fans[i].val >= 4)
+                            ans.fans[i].val -= 3;
+                        else
+                            deletefan(ans, 8074);
+                        break;
+                    }
                 ans.fans.push({'val': 12, 'id': 8037}); // 三风刻
             }
             // ---------------------------
@@ -2110,7 +2153,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
                     if (shunzi[j * 9 + 2 + i] >= 1 && shunzi[j * 9 + 4 + i] >= 1 && shunzi[j * 9 + 6 + i] >= 1)
                         sanbugao = true;
             }
-            if (sanbugao && !sibugao)
+            if (sanbugao)
                 ans.fans.push({'val': 16, 'id': 8029}); // 一色三步高
             let quandaiwu = true;
             for (let i = 1; i <= 34; i++) {
@@ -2170,7 +2213,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 for (let i = 1; i <= 7; i++)
                     if (kezi[j * 9 + i] >= 1 && kezi[j * 9 + i + 1] >= 1 && kezi[j * 9 + i + 2] >= 1)
                         sanjiegao = true;
-            if (sanjiegao && !sijiegao) {
+            if (sanjiegao) {
                 // 不计一色三同顺
                 // deletefan(ans, 8022);
                 ans.fans.push({'val': 24, 'id': 8023}); // 一色三节高
@@ -2184,19 +2227,24 @@ function calcfan_guobiao(tiles, seat, zimo) {
             }
 
             let quanda = true, quanzhong = true, quanxiao = true;
-            for (let i = 1; i <= 34; i++) {
-                if (i !== 7 && i !== 8 && i !== 9 && i !== 16 && i !== 17 && i !== 18 && i !== 25 && i !== 26 && i !== 27)
-                    if (cnt2[i] >= 1)
-                        quanda = false;
-                if (i !== 4 && i !== 5 && i !== 6 && i !== 13 && i !== 14 && i !== 15 && i !== 22 && i !== 23 && i !== 24)
-                    if (cnt2[i] >= 1)
-                        quanzhong = false;
-                if (i !== 1 && i !== 2 && i !== 3 && i !== 10 && i !== 11 && i !== 12 && i !== 19 && i !== 20 && i !== 21)
-                    if (cnt2[i] >= 1)
-                        quanxiao = false;
+            for (let i = 1; i <= 27; i++) {
+                let num = (i - 1) % 9 + 1;
+                if (num <= 6 && cnt2[i] >= 1)
+                    quanda = false;
+                if ((num <= 2 || num >= 7) && cnt2[i] >= 1)
+                    quanzhong = false;
+                if (num >= 4 && cnt2[i] >= 1)
+                    quanxiao = false;
             }
+            for (let i = 28; i <= 34; i++)
+                if (cnt2[i] >= 1) {
+                    quanda = false;
+                    quanzhong = false;
+                    quanxiao = false;
+                }
             if (quanda) {
-                // 不计 无字
+                // 不计 大于五, 无字
+                deletefan(ans, 8035);
                 deletefan(ans, 8077);
                 ans.fans.push({'val': 24, 'id': 8024}); // 全大
             }
@@ -2206,7 +2254,8 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 ans.fans.push({'val': 24, 'id': 8025}); // 全中
             }
             if (quanxiao) {
-                // 不计 无字
+                // 不计 小于五, 无字
+                deletefan(ans, 8036);
                 deletefan(ans, 8077);
                 ans.fans.push({'val': 24, 'id': 8026}); // 全小
             }
@@ -2291,13 +2340,16 @@ function calcfan_guobiao(tiles, seat, zimo) {
             }
             if (flag_ziyise) {
                 // 不计 混幺九, 碰碰和, 全带幺, 幺九刻
+                // 此外删除判断漏洞的混一色
                 deletefan(ans, 8017);
                 deletefan(ans, 8047);
                 deletefan(ans, 8054);
                 deletefan(ans, 8074);
+
+                deletefan(ans, 8048);
                 ans.fans.push({'val': 64, 'id': 8010}); // 字一色
             }
-            if (anke_num === 4 && anke[tiletoint(lastile)] - gangzi[tiletoint(lastile)] >= 1) {
+            if (anke_num === 4) {
                 // 不计 碰碰和, 不求人, 门前清
                 deletefan(ans, 8047);
                 deletefan(ans, 8055);
@@ -2406,8 +2458,14 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 ans.fans.push({'val': 5, 'id': 8082}); // 明暗杠
             // ---------------------------
             // 天地人和
-            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat === ju && zimo)
+            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat === ju && zimo){
+                // 不计 不求人, 边张, 坎张, 单调将
+                deletefan(ans, 8055);
+                deletefan(ans, 8078);
+                deletefan(ans, 8079);
+                deletefan(ans, 8080);
                 ans.fans.push({'val': 8, 'id': 8083}); // 天和
+            }
 
             let first_tile = true;
             for (let i = 0; i < playercnt; i++) {
@@ -2416,14 +2474,23 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 if (!(liqiinfo[i].yifa !== 0 && liqiinfo[i].liqi === 0))
                     first_tile = false;
             }
-            if (first_tile && seat !== ju && !zimo)
+            if (first_tile && seat !== ju && !zimo){
+                // 不计 门前清
+                deletefan(ans, 8063);
                 ans.fans.push({'val': 8, 'id': 8084}); // 地和
+            }
 
             // 在立直麻将中人和的基础上添加亲家的下一家没有一发(因为国标没有立直, 所以任何情况下切牌后都没有一发)
-            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo)
+            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo){
+                // 不计 不求人
+                deletefan(ans, 8055);
                 ans.fans.push({'val': 8, 'id': 8085}); // 人和
-            else if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && liqiinfo[(ju + 1) % playercnt].yifa === 0)
+            }
+            else if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && liqiinfo[(ju + 1) % playercnt].yifa === 0){
+                // 不计 门前清
+                deletefan(ans, 8063);
                 ans.fans.push({'val': 8, 'id': 8085}); // 人和
+            }
             // ---------------------------
             // ---------------------------
             // ---------------------------
@@ -2553,7 +2620,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
 
     let result = calchupai(tiles);
     if (result === 3) {
-        let ans = {'yiman': false, 'fans': [], 'fu': 0};
+        let ans = {'yiman': false, 'fans': [], 'fu': 25};
         // 国标麻将十三幺不能枪暗杠, 至于优先头跳, 这里没有实现
         // 至于会不会计门前清等其他番种, 萌娘百科上没有说明, 这里就不计了
         ans.fans.push({'val': 88, 'id': 8006}); // 十三幺
@@ -2578,7 +2645,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
     if (result >= 6 && result <= 11) { // 一般组合龙
         let row = result - 6;
         let origin_tiles = [];
-        for (let i = 0; i<tiles.length; i++)
+        for (let i = 0; i < tiles.length; i++)
             origin_tiles[i] = tiles[i];
         let condition = [
             [1, 4, 7, 11, 14, 17, 21, 24, 27],
@@ -2594,7 +2661,14 @@ function calcfan_guobiao(tiles, seat, zimo) {
         }
         for (let i = 0; i < condition[row].length; i++)
             tiles = deletetile(tiles, condition[row][i]);
+
+        for (let i = 0; i < nxt2.length; i++)
+            cnt[i] = 0;
+        for (let i = 0; i < tiles.length; i++)
+            cnt[tiletoint(tiles[i])]++;
         dfs(1);
+        ret.fans.push({'val': 12, 'id': 8034}); // 组合龙
+        ret.fu = 25;
         tiles = origin_tiles;
     }
 

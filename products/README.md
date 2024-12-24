@@ -22,6 +22,7 @@
     - [修罗之战相关](4P/修罗之战相关)
         - [一家牌河最多几张牌_最高巡目](4P/修罗之战相关/一家牌河最多几张牌_最高巡目.js)
         - [天和破地和](4P/修罗之战相关/天和破地和.js)
+    - [纯享版报菜名](4P/纯享版报菜名)
     - [一些无宝累满或三倍满的牌型](4P/一些无宝累满或三倍满的牌型.js)
     - [一些至少一百符的牌型](4P/一些至少一百符的牌型.js)
     - [一家最高或最低巡目](4P/一家最高或最低巡目.js)
@@ -96,6 +97,8 @@
         - [Generate_All_Avatar.py](4P/所有报菜名合集/Generate_All_Avatar.py)
     - 最长菜名与最高番数
         - [Generate_All_Avatar.py](4P/最长菜名与最高番数/Generate_All_Avatar.py)
+    - 纯享版报菜名
+        - [Generate_All_Avatar.py](4P/纯享版报菜名/template.js)
     - 赤羽之战相关
         - [Generate_All_Avatar.py](4P/赤羽之战相关/Generate_All_Avatar.py)
 - 3P
