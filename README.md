@@ -55,6 +55,8 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
     - 龙之目玉
     - 修罗之战
     - 赤羽之战(川麻)
+    - 明镜之战
+    - 天命之战
     - 咏唱之战
     - 魂之一击
     - 万象修罗
@@ -94,14 +96,11 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 ## TODO(欢迎contribute)
 
 - 实现以下特殊活动场的规则
-    - 明镜之战
     - 暗夜之战
     - 幻境传说
     - 占星之战
-    - 天命之战
 - 实现"三家和了流局"
 - 维护二人麻将和血流成河模式
-- 测试国标麻将所有番种
 - 真实牌谱的json文件与自制牌谱的js文件相互转化
 
 ## 版权声明

@@ -15,25 +15,27 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'huansanzhang': true,
-            'wanxiangxiuluo_mode': true,
+            'jiuchao_mode': true,
         }
     }
 };
 
-tiles0 = "b145678m22349p19s";
-tiles1 = "b23p237s1236666z";
-tiles2 = "b19m14569p23688s";
-tiles3 = "b1p17s112233444z";
-paishan = randompaishan("7s7s", "7z....");
+tiles0 = "11122233344457zt";
+tiles1 = "111666mt225pt5p6pt8st8s";
+tiles2 = "345mt34pt23334455st";
+tiles3 = "1p1112pt88st55zt5z77zt7z";
+paishan = randompaishan("3s..5pt", "44pt242st2s..5pt2p");
 roundbegin();
-huansanzhang("9p19s", "123z", "19m1p", "1p17s", 1);
+qiepai();
+mingpai();
+mopai();
+combomopai();
+qiepai();
+mingqiepai("6pt");
+moqieliqi("2st");
+normalmoqie(2);
+mopai();
+leimingpai();
 hupai();
 
-zimohu();
-
-zimohu(true);
-
-gameend();
-
-GameMgr.Inst.checkPaiPu("241214-cb67bca2-b108-4006-bc61-777b255d0a63", 0)
+GameMgr.Inst.checkPaiPu("211110-68c66157-07ad-48b7-91ac-7641581edf32", 0)

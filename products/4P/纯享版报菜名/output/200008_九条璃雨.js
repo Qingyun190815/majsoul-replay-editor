@@ -41,6 +41,7 @@ hupaioneplayer = function (seat) {
         {'val': 1, 'id': 8},
         {'val': 1, 'id': 9},
     ];
+    playertiles[seat].length--;
     delta_scores = [48000, -16000, -16000, -16000];
     return {
         'count': 64,
@@ -90,6 +91,7 @@ hupaioneplayer = function (seat) {
         {'val': 3, 'id': 27},
         {'val': 6, 'id': 29},
     ];
+    playertiles[seat].length--;
     delta_scores = [48300, -16100, -16100, -16100];
     return {
         'count': 64,
@@ -139,6 +141,7 @@ hupaioneplayer = function (seat) {
             {'val': 14, 'id': 33},
             {'val': 15, 'id': 33},
         ];
+    playertiles[seat].length--;
     delta_scores = [48600, -16200, -16200, -16200];
     return {
         'count': 64,
@@ -181,7 +184,7 @@ hupaioneplayer = function (seat) {
         {'val': 1, 'id': 41},
         {'val': 1, 'id': 42},
     ];
-
+    playertiles[seat].length--;
     delta_scores = [288900, -96300, -96300, -96300];
     return {
         'count': 6,
@@ -224,6 +227,7 @@ hupaioneplayer = function (seat) {
         {'val': 2, 'id': 49},
         {'val': 2, 'id': 50},
     ];
+    playertiles[seat].length--;
     delta_scores = [289200, -96400, -96400, -96400];
     return {
         'count': 6,
@@ -235,10 +239,10 @@ hupaioneplayer = function (seat) {
         'hu_tile': playertiles[seat][playertiles[seat].length - 1],
         'liqi': false,
         'ming': [],
-        'point_rong': 48000,
-        'point_sum': 48000,
-        'point_zimo_qin': 16000,
-        'point_zimo_xian': 16000,
+        'point_rong': 288000,
+        'point_sum': 288000,
+        'point_zimo_qin': 96000,
+        'point_zimo_xian': 96000,
         'qinjia': true,
         'seat': seat,
         'title_id': 10,
@@ -269,7 +273,7 @@ hupaioneplayer = function (seat) {
         {'val': 5, 'id': 1020},
         {'val': 1, 'id': 1021},
     ];
-
+    playertiles[seat].length--;
     delta_scores = [49500, -16500, -16500, -16500];
     return {
         'count': 64,
@@ -314,7 +318,7 @@ hupaioneplayer = function (seat) {
         {'val': 1, 'id': 1000},
         {'val': 1, 'id': 1002},
     ];
-
+    playertiles[seat].length--;
     delta_scores = [49800, -16600, -16600, -16600];
     return {
         'count': 64,
