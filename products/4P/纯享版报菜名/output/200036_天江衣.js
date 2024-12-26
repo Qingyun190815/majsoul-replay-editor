@@ -51,7 +51,7 @@ hupaioneplayer = function (seat) {
         'doras': [doras[0]],
         'li_doras': li_doras,
         'fans': fans,
-        'fu': 160,
+        'fu': 170,
         'hand': [].concat(playertiles[seat]),
         'hu_tile': playertiles[seat][playertiles[seat].length - 1],
         'liqi': false,

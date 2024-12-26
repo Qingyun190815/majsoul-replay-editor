@@ -1017,7 +1017,7 @@ function paishan_len() {
     for (let i = 0; i < paishan.length; i++)
         if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z')
             cnt++;
-    return n;
+    return cnt;
 }
 
 
@@ -4206,19 +4206,21 @@ function mopai(seat) {
     if (drawtype === 1) {
         if (playercnt === 2)
             addDealTile(calcdoras(), paishan_len() - 19, seat, firstn_tile(1), liqi, tile_state);
-        else if (!is_chuanma())
+        else if (!is_chuanma() || !is_guobiao())
             addDealTile(calcdoras(), paishan_len() - 15, seat, firstn_tile(1), liqi, tile_state);
         else
             addDealTile(calcdoras(), paishan_len() - 1, seat, firstn_tile(1), liqi, tile_state);
         drawcard = pop_firstile();
         lstdrawtype = 1;
     } else {
-        if (playercnt === 2)
-            addDealTile(calcdoras(), paishan_len() - 19, seat, firstn_tile(1), liqi, tile_state);
-        else
-            addDealTile(calcdoras(), paishan_len() - 15, seat, lastn_tile(1), liqi, tile_state);
         drawcard = pop_lastile();
         lstdrawtype = 0;
+        if (playercnt === 2)
+            addDealTile(calcdoras(), paishan_len() - 19, seat, firstn_tile(1), liqi, tile_state);
+        else if (!is_guobiao())
+            addDealTile(calcdoras(), paishan_len() - 15, seat, lastn_tile(1), liqi, tile_state);
+        else
+            addDealTile(calcdoras(), paishan_len() - 1, seat, firstn_tile(1), liqi, tile_state);
     }
     drawtype = 1;
     saveproject();
