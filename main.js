@@ -4206,21 +4206,21 @@ function mopai(seat) {
     if (drawtype === 1) {
         if (playercnt === 2)
             addDealTile(calcdoras(), paishan_len() - 19, seat, firstn_tile(1), liqi, tile_state);
-        else if (!is_chuanma() || !is_guobiao())
+        else if (!is_chuanma() && !is_guobiao())
             addDealTile(calcdoras(), paishan_len() - 15, seat, firstn_tile(1), liqi, tile_state);
         else
             addDealTile(calcdoras(), paishan_len() - 1, seat, firstn_tile(1), liqi, tile_state);
         drawcard = pop_firstile();
         lstdrawtype = 1;
     } else {
-        drawcard = pop_lastile();
-        lstdrawtype = 0;
         if (playercnt === 2)
-            addDealTile(calcdoras(), paishan_len() - 19, seat, firstn_tile(1), liqi, tile_state);
+            addDealTile(calcdoras(), paishan_len() - 19, seat, lastn_tile(1), liqi, tile_state);
         else if (!is_guobiao())
             addDealTile(calcdoras(), paishan_len() - 15, seat, lastn_tile(1), liqi, tile_state);
         else
-            addDealTile(calcdoras(), paishan_len() - 1, seat, firstn_tile(1), liqi, tile_state);
+            addDealTile(calcdoras(), paishan_len() - 1, seat, lastn_tile(1), liqi, tile_state);
+        drawcard = pop_lastile();
+        lstdrawtype = 0;
     }
     drawtype = 1;
     saveproject();
@@ -5368,7 +5368,7 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
     for (let i = 0; i < playercnt; i++) {
         let all_tiles = [tiles0, tiles1, tiles2, tiles3];
         let tiles_len = all_tiles[i].length;
-        if ((i === ju) && !is_chuanma()) {
+        if ((i === ju % 4) && !is_chuanma()) {
             if (tiles_len !== 14)
                 console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", tiles" + i + " 长度不对: " + tiles_len);
         } else if (tiles_len !== 13 && !is_chuanma())
