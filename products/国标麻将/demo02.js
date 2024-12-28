@@ -15,7 +15,8 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'guobiao': true
+            'guobiao': true,
+            'guobiao_lianzhuang': true
         }
     }
 };

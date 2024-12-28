@@ -812,6 +812,10 @@ function is_guobiao_no_8fanfu() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guobiao_no_8fanfu)
 }
 
+function is_guobiao_lianzhuang() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guobiao_lianzhuang)
+}
+
 function fanfu() {
     if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.fanfu !== undefined))
         return config.mode.detail_rule.fanfu;
@@ -3856,7 +3860,8 @@ function hupai(x, type) {
                 scores[i] = scores[i] + delta_scores[i];
             endHule(ret, [].concat(old_scores), [].concat(delta_scores), [].concat(scores), 0);
             delta_scores = [0, 0, 0, 0];
-            if (hupaied[ju])
+            // 国标正常情况下不连庄, 除了设置了 'guobiao_lianzhuang'
+            if (hupaied[ju] && is_guobiao_lianzhuang())
                 ben++;
             else {
                 ju++;
@@ -5165,7 +5170,7 @@ function notileliuju() {
     endNoTile(false, ret, ret2);
     if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !is_chuanma())
         ben++;
-    if ((!ret[ju].tingpai || is_xuezhandaodi() || is_wanxiangxiuluo()) && !is_chuanma())
+    if ((!ret[ju].tingpai || is_xuezhandaodi() || is_wanxiangxiuluo() || (is_guobiao() && !is_guobiao_lianzhuang())) && !is_chuanma())
         ju++;
     roundend();
     saveproject();
@@ -5899,8 +5904,8 @@ cfg.fan.fan.map_[9001] = {
 cfg.fan.fan.map_[9002] = {
     "id": 9002,
     "name_chs": "龙发杠载",
-    "name_chs_t": "龙发杠载",
-    "name_jp": "龙发杠载",
+    "name_chs_t": "龍發槓載",
+    "name_jp": "龍發槓載",
     "name_en": "Sprout of the Earth", // 万物生长
     "name_kr": "龙发杠载",
     "xuanshang": 0,
