@@ -17,7 +17,6 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'init_point': 30000,
             'guobiao': true,
             'guobiao_no_8fanfu': true,
             'guobiao_lianzhuang': true

@@ -851,7 +851,8 @@ function decompose(x) {
             continue;
         }
         if (x[i] === 'b') { // 万象修罗的百搭牌
-            x = x.substring(0, i + 1) + 'd' + x.substring(i + 1);
+            if (i + 1 < x.length && x[i + 1] !== 'd')
+                x = x.substring(0, i + 1) + 'd' + x.substring(i + 1);
             i++;
             continue;
         }
@@ -1024,6 +1025,20 @@ function paishan_len() {
     return cnt;
 }
 
+// 消除 seat 号玩家的一个 discardtiles
+function pop_discardtiles(seat) {
+    if (discardtiles[seat].length > 2 && discardtiles[seat][2] === tile_suf) {
+        let tile = discardtiles[seat].substring(0, 3);
+        discardtiles[seat] = discardtiles[seat].substring(3);
+        return tile;
+    } else if (discardtiles[seat].length >= 2) {
+        let tile = discardtiles[seat].substring(0, 2);
+        discardtiles[seat] = discardtiles[seat].substring(2);
+        return tile;
+    }
+    console.warn("Illegal input at pop_discardtiles()");
+    return "..";
+}
 
 // nxt2 表示顺子中比它大的牌, 如果不存在则直接指向 35 和 36
 // 即 j, nxt2[j], nxt2[nxt2[j]] 构成递增的顺子
@@ -1064,7 +1079,7 @@ function tiletoint(tile, type = false, special_tile = false) {
             return 18 + parseInt(tile);
         if (tile[1] === 'z')
             return 27 + parseInt(tile);
-    } else if (tile[2] === 't'){
+    } else if (tile[2] === 't') {
         if (type && tile[0] === "0") {
             if (tile[1] === "m")
                 return 35 + OFFSET;
@@ -1188,6 +1203,11 @@ function calchupai(tiles, type = true) {
     for (let i = 0; i < tiles.length; i++)
         cnt[tiletoint(tiles[i])]++;
 
+    // if (is_guobiao()) { // 有花牌
+    //     for (let i = 0; i < tiles.length; i++)
+    //         if (tiles[i] === '4zt')
+    //             return [];
+    // }
 
     if (is_wanxiangxiuluo() && cnt[tiletoint("bd")] === 1 && type) {
         cnt[tiletoint("bd")]--;
@@ -1356,9 +1376,15 @@ function calctingpai(seat, type = false) {
     let cnt = [];
     for (let i = 0; i < nxt2.length; i++)
         cnt[i] = 0;
-
     for (let i = 0; i < tiles.length; i++)
         cnt[tiletoint(tiles[i])]++;
+
+    // if (is_guobiao()) { // 有花牌
+    //     for (let i = 0; i < tiles.length; i++)
+    //         if (tiles[i] === '4zt')
+    //             return [];
+    // }
+
     let res = [];
 
     for (let i = 1; i <= 34; i++) { // 试所有牌作为听牌, 检查是否为和牌型
@@ -2123,7 +2149,14 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                 } else
                     ans.fans.push({'val': 13, 'id': 37}); // 大三元
             }
-            if (menqing && anke_num === 4 && anke[tiletoint(lastile)] - gangzi[tiletoint(lastile)] >= 1 && !tianhu) {
+
+            if (menqing && anke_num === 4 && (typecnt[tiletoint(lastile)][7] === 1 || tianhu)) {
+                if (!is_qingtianjing())
+                    ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 48}); // 四暗刻单骑
+                else
+                    ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 48}); // 四暗刻单骑
+            }
+            else if (menqing && anke_num === 4 && anke[tiletoint(lastile)] - gangzi[tiletoint(lastile)] >= 1 && !tianhu) {
                 if (!is_qingtianjing())
                     ans.fans.push({'val': 1, 'id': 38}); // 四暗刻
                 else
@@ -2173,13 +2206,6 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                     ans.fans.push({'val': 13, 'id': 44}); // 四杠子
             }
 
-            if (menqing && jiulian[0] && !equaltile(lastile, jiulian[1]) && !tianhu) {
-                if (!is_qingtianjing())
-                    ans.fans.push({'val': 1, 'id': 45}); // 九莲宝灯
-                else
-                    ans.fans.push({'val': 13, 'id': 45}); // 九莲宝灯
-            }
-
             if (menqing && jiulian[0] && (equaltile(lastile, jiulian[1]) || tianhu)) {
                 if (!is_qingtianjing())
                     ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 47}); // 纯正九莲宝灯
@@ -2187,11 +2213,11 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                     ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 47}); // 纯正九莲宝灯
             }
 
-            if (menqing && anke_num === 4 && (typecnt[tiletoint(lastile)][7] === 1 || tianhu)) {
+            if (menqing && jiulian[0] && !equaltile(lastile, jiulian[1]) && !tianhu) {
                 if (!is_qingtianjing())
-                    ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 48}); // 四暗刻单骑
+                    ans.fans.push({'val': 1, 'id': 45}); // 九莲宝灯
                 else
-                    ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 48}); // 四暗刻单骑
+                    ans.fans.push({'val': 13, 'id': 45}); // 九莲宝灯
             }
 
             if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1) {
@@ -2250,11 +2276,11 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                         ans.fans.push({'val': 26, 'id': 64}); // 大七星
                 }
             }
-            if (liqiinfo[seat].kai && !zimo && liqiinfo[fangchong].liqi === 0) {
+            if (liqiinfo[seat].kai && !zimo && liqiinfo[fangchong].liqi === 0) { // 开立直
                 if (liqiinfo[seat].liqi === 2)
-                    ans.fans.push({'val': 1, 'id': 18});
+                    ans.fans.push({'val': 1, 'id': 9004});
                 if (liqiinfo[seat].liqi === 1)
-                    ans.fans.push({'val': 1, 'id': 2});
+                    ans.fans.push({'val': 1, 'id': 9003});
             }
             if (ans.fans.length !== 0 && !is_qingtianjing())
                 return ans;
@@ -2270,12 +2296,17 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                 if (hunzhiyiji_info[seat].liqi !== 0 && !hunzhiyiji_info[seat].overload)
                     ans.fans.push({'val': 1, 'id': 30}); // 一发
             } else {
-                if (liqiinfo[seat].liqi === 1)
-                    ans.fans.push({'val': 1, 'id': 2}); // 立直
-                if (liqiinfo[seat].liqi === 2)
-                    ans.fans.push({'val': 2, 'id': 18}); // 双立直
-                if (liqiinfo[seat].kai)
-                    ans.fans[0].val++;
+                if (liqiinfo[seat].kai) { // 开立直非役满情况
+                    if (liqiinfo[seat].liqi === 1)
+                        ans.fans.push({'val': 2, 'id': 9005}); // 开立直
+                    if (liqiinfo[seat].liqi === 2)
+                        ans.fans.push({'val': 3, 'id': 9006}); // 开两立直
+                } else {
+                    if (liqiinfo[seat].liqi === 1)
+                        ans.fans.push({'val': 1, 'id': 2}); // 立直
+                    if (liqiinfo[seat].liqi === 2)
+                        ans.fans.push({'val': 2, 'id': 18}); // 两立直
+                }
                 if (liqiinfo[seat].liqi !== 0 && liqiinfo[seat].yifa !== 0)
                     ans.fans.push({'val': 1, 'id': 30}); // 一发
             }
@@ -3643,24 +3674,24 @@ function hupaioneplayer(seat) {
     return ret;
 }
 
-function calc_tianming(seat, zimo, hu_tile){
+function calc_tianming(seat, zimo, hu_tile) {
     let sum = 1;
     // 查手牌
-    for (let i = 0; i < playertiles[seat].length; i++){
+    for (let i = 0; i < playertiles[seat].length; i++) {
         if (!zimo && i === playertiles[seat].length - 1) // 不是自摸, 则最后一张牌不考虑
             break;
         if (playertiles[seat][i].length >= 2 && playertiles[seat][i][2] === tile_suf)
             sum++;
     }
     // 查副露
-    for (let i = 0; i< fulu[seat].length; i++)
-        for (let j = 0; j < fulu[seat][i].length; j++){
+    for (let i = 0; i < fulu[seat].length; i++)
+        for (let j = 0; j < fulu[seat][i].length; j++) {
             if (fulu[seat][i].type !== 3 && j === fulu[seat][i].length - 1) { // 不是暗杠, 则最后一张牌不考虑
                 break;
-            if (fulu[seat][i][j].length >= 2 && fulu[seat][i][j][2] === tile_suf)
-                sum++;
+                if (fulu[seat][i][j].length >= 2 && fulu[seat][i][j][2] === tile_suf)
+                    sum++;
+            }
         }
-    }
     return sum
 }
 
@@ -3721,7 +3752,8 @@ function addHuleXueLiu(HuleInfo, old_scores, delta_scores, scores) {
             'delta_scores': [].concat(delta_scores),
             'hules': HuleInfo,
             'old_scores': [].concat(old_scores),
-            'scores': [].concat(scores)
+            'scores': [].concat(scores),
+            'baopai': 0
         }
     });
     edit_online();
@@ -3747,7 +3779,8 @@ function addHuleXueLiuEnd(HuleInfo, old_scores, delta_scores, scores, hules_hist
             'hules_history': hules_history,
             'old_scores': [].concat(old_scores),
             'scores': [].concat(scores),
-            'allplayertiles': allplayertiles
+            'allplayertiles': allplayertiles,
+            'baopai': 0
         }
     });
     edit_online();
@@ -4035,6 +4068,8 @@ function huansanzhang(tiles0, tiles1, tiles2, tiles3, type) {
         });
 
     addChangeTile(ret, type, calcdoras());
+    for (let i = 0; i < playercnt; i++)
+        playertiles[i].sort(cmp);
     saveproject();
 }
 
@@ -4243,7 +4278,7 @@ function qiepai(seat, kind, is_liqi) {
         is_liqi = kind;
         kind = undefined;
     }
-    if (seat !== 0 && seat !== 1 && seat !== 2 && seat !== playercnt - 1 && seat !== undefined) {
+    if (typeof (seat) != "number") {
         kind = seat;
         seat = undefined;
     }
@@ -4256,8 +4291,7 @@ function qiepai(seat, kind, is_liqi) {
     }
     if (kind === undefined) {
         if (discardtiles[seat].length !== 0) {
-            kind = discardtiles[seat].substring(0, 2);
-            discardtiles[seat] = discardtiles[seat].substring(2);
+            kind = pop_discardtiles(seat);
             if (kind === "..")
                 kind = "moqie";
         } else
@@ -4265,10 +4299,8 @@ function qiepai(seat, kind, is_liqi) {
     }
     if (is_liqi === undefined)
         is_liqi = false;
-    if (is_liqi)
-        is_liqi = "liqi";
     let is_wliqi = false, is_kailiqi = false;
-    if (is_liqi && liqiinfo[seat].yifa !== 0)
+    if (!!is_liqi && liqiinfo[seat].yifa !== 0)
         is_wliqi = true;
     if (is_liqi === "liqi") {
         is_liqi = true;
@@ -4360,7 +4392,7 @@ function qiepai(seat, kind, is_liqi) {
             paihe[seat].liujumanguan = false;
         liqiinfo[seat].yifa = 0;
         if (playertiles[seat][playertiles[seat].length - 1] === kind && lstactionname !== "RecordNewRound" && lstactionname !== "RecordChiPengGang")
-            addDiscardTile(is_liqi, is_wliqi, calcdoras(), true, seat, kind, calctingpai(seat), tile_state);
+            addDiscardTile(is_liqi, is_wliqi, calcdoras(), true, seat, kind, calctingpai(seat), tile_state, is_kailiqi);
         else
             addDiscardTile(is_liqi, is_wliqi, calcdoras(), false, seat, kind, calctingpai(seat), tile_state, is_kailiqi);
 
@@ -4786,6 +4818,8 @@ function leimingpai(seat, tile, type) {
             seat = lstaction.data.seat;
     }
     if (tile === undefined) {
+        if (is_guobiao() && leimingpai("4zt", "babei"))
+            return true;
         if (leimingpai("4zt", "babei") || leimingpai("4z", "babei"))
             return true;
         if (leimingpai("3zt", "babei") || leimingpai("3z", "babei"))
@@ -4937,6 +4971,16 @@ function leimingpai(seat, tile, type) {
         saveproject();
         return true;
     }
+
+    // // 国标补花
+    // if (is_guobiao() && tile === "4zt" && type === "babei") {
+    //     fulu[seat].push({'type': 4, 'tile': [tile]});
+    //     drawtype = 0;
+    //     addBaBei(calcdoras(), seat, tile, tile_states);
+    //     saveproject();
+    //     return true;
+    // }
+
     for (let i = 0; i < fulu[seat].length; i++)
         if (equaltile(fulu[seat][i].tile[0], tile) && fulu[seat][i].type === 1) {
             jiagangflag = true;
@@ -5487,12 +5531,11 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
     let all_paishan = [paishanfront, paishanback];
     for (let j = 0; j < all_paishan.length; j++) {
         for (let i = 0; i < all_paishan[j].length; i++)
-            if (all_paishan[j][i] !== '.' && all_paishan[j][i] !== 'Y' && all_paishan[j][i] !== 'D' && all_paishan[j][i] !== 'H' && all_paishan[j][i] !== 'T'){
-                if (i + 2 < all_paishan[j].length && all_paishan[j][i+2] === tile_suf) {
+            if (all_paishan[j][i] !== '.' && all_paishan[j][i] !== 'Y' && all_paishan[j][i] !== 'D' && all_paishan[j][i] !== 'H' && all_paishan[j][i] !== 'T') {
+                if (i + 2 < all_paishan[j].length && all_paishan[j][i + 2] === tile_suf) {
                     cnt2[tiletoint(all_paishan[j][i] + all_paishan[j][i + 1] + tile_suf, true)]--;
                     i++;
-                }
-                else
+                } else
                     cnt[tiletoint(all_paishan[j][i] + all_paishan[j][i + 1], true)]--;
                 i++;
             }
@@ -5863,6 +5906,10 @@ function zimohu(flag = false) {
 // 9000: 诈和, 因为"诈"字无法显示, 名称改为"振和"
 // 9001: 天地创造: 因为"创造"二字无法显示, 名称改为"天地大白"
 // 9002: 万物生长: 因为"万生长"三字无法显示, 名称改为"龙发杠载"
+// 9003: 役满 开立直: 对应语音是对局中的宣言立直
+// 9004: 役满 开两立直: 对应语音是对局中的宣言两立直
+// 9005: 开立直(2番)
+// 9006: 开两立直(3番)
 cfg.fan.fan.map_[9000] = {
     "id": 9000,
     "name_chs": "振和",
@@ -5914,6 +5961,1287 @@ cfg.fan.fan.map_[9002] = {
     "fan_fulu": 78,
     "show_index": 7,
     "sound": "",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9003] = {
+    "id": 9003,
+    "name_chs": "开立直",
+    "name_chs_t": "开立直",
+    "name_jp": "开立直",
+    "name_en": "Open Reach",
+    "name_kr": "开立直",
+    "xuanshang": 0,
+    "yiman": 1,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 0,
+    "sound": "act_rich",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9004] = {
+    "id": 9004,
+    "name_chs": "开两立直",
+    "name_chs_t": "开两立直",
+    "name_jp": "开两立直",
+    "name_en": "Open Double Reach",
+    "name_kr": "开两立直",
+    "xuanshang": 0,
+    "yiman": 1,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 0,
+    "sound": "act_drich",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9005] = {
+    "id": 9005,
+    "name_chs": "开立直",
+    "name_chs_t": "开立直",
+    "name_jp": "开立直",
+    "name_en": "Open Reach",
+    "name_kr": "开立直",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 2,
+    "fan_fulu": 2,
+    "show_index": 0,
+    "sound": "fan_liqi",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9006] = {
+    "id": 9006,
+    "name_chs": "开两立直",
+    "name_chs_t": "开两立直",
+    "name_jp": "开两立直",
+    "name_en": "Open Double Reach",
+    "name_kr": "开两立直",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 3,
+    "fan_fulu": 3,
+    "show_index": 0,
+    "sound": "fan_dliqi",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
+// 以下是流局满贯和自风场风役种分化
+// 9100: 流局满贯, 这里设计成役满
+// 9101: 东
+// 9102: 双东
+// 9103: 南
+// 9104: 双南
+// 9105: 西: "西"字显示不出来
+// 9106: 双西
+// 9107: 北
+// 9108: 双北
+cfg.fan.fan.map_[9100] = {
+    "id": 9100,
+    "name_chs": "流局满贯",
+    "name_chs_t": "流局滿貫",
+    "name_jp": "流局滿貫",
+    "name_en": "Sprout of the Earth",
+    "name_kr": "流局满贯",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 5,
+    "fan_fulu": 5,
+    "show_index": 2000,
+    "sound": "fan_liujumanguan",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9101] = {
+    "id": 9101,
+    "name_chs": "役牌 东",
+    "name_chs_t": "役牌 東",
+    "name_jp": "役牌 東",
+    "name_en": "East Wind",
+    "name_kr": "役牌 东",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 150,
+    "sound": "fan_dong",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9102] = {
+    "id": 9102,
+    "name_chs": "役牌 连东",
+    "name_chs_t": "役牌 連東",
+    "name_jp": "役牌 連東",
+    "name_en": "Double East Wind",
+    "name_kr": "役牌 连东",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 150,
+    "sound": "fan_doubledong",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9103] = {
+    "id": 9103,
+    "name_chs": "役牌 南",
+    "name_chs_t": "役牌 南",
+    "name_jp": "役牌 南",
+    "name_en": "South Wind",
+    "name_kr": "役牌 南",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 150,
+    "sound": "fan_nan",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9104] = {
+    "id": 9104,
+    "name_chs": "役牌 连南",
+    "name_chs_t": "役牌 連南",
+    "name_jp": "役牌 連南",
+    "name_en": "Double South Wind",
+    "name_kr": "役牌 连南",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 150,
+    "sound": "fan_doublenan",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9105] = {
+    "id": 9105,
+    "name_chs": "役牌 西",
+    "name_chs_t": "役牌 西",
+    "name_jp": "役牌 西",
+    "name_en": "West Wind",
+    "name_kr": "役牌 西",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 150,
+    "sound": "fan_xi",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9106] = {
+    "id": 9106,
+    "name_chs": "役牌 连西",
+    "name_chs_t": "役牌 連西",
+    "name_jp": "役牌 連西",
+    "name_en": "Double West Wind",
+    "name_kr": "役牌 连西",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 150,
+    "sound": "fan_doublexi",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9107] = {
+    "id": 9107,
+    "name_chs": "役牌 北",
+    "name_chs_t": "役牌 北",
+    "name_jp": "役牌 北",
+    "name_en": "North Wind",
+    "name_kr": "役牌 北",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 160,
+    "sound": "fan_bei",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9108] = {
+    "id": 9107,
+    "name_chs": "役牌 连北",
+    "name_chs_t": "役牌 連北",
+    "name_jp": "役牌 連北",
+    "name_en": "Double North Wind",
+    "name_kr": "役牌 连北",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 160,
+    "sound": "fan_doublebei",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
+// 对局操作语音, "荣"显示不出来, 中间会有较长时间的停顿
+// 9200: 立直
+// 9201: 两立直
+// 9202: 吃
+// 9203: 碰
+// 9204: 杠
+// 9205: 拔北
+// 9206: 荣
+// 9207: 自摸
+cfg.fan.fan.map_[9200] = {
+    "id": 9200,
+    "name_chs": "立直",
+    "name_chs_t": "立直",
+    "name_jp": "立直",
+    "name_en": "Reach",
+    "name_kr": "立直",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_rich",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9201] = {
+    "id": 9200,
+    "name_chs": "双立直",
+    "name_chs_t": "双立直",
+    "name_jp": "双立直",
+    "name_en": "Double Reach",
+    "name_kr": "双立直",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_drich",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9202] = {
+    "id": 9202,
+    "name_chs": "吃",
+    "name_chs_t": "吃",
+    "name_jp": "吃",
+    "name_en": "Chi",
+    "name_kr": "吃",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_chi",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9203] = {
+    "id": 9203,
+    "name_chs": "碰",
+    "name_chs_t": "碰",
+    "name_jp": "碰",
+    "name_en": "Pon",
+    "name_kr": "碰",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_pon",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9204] = {
+    "id": 9204,
+    "name_chs": "杠",
+    "name_chs_t": "杠",
+    "name_jp": "杠",
+    "name_en": "Kan",
+    "name_kr": "杠",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_kan",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9205] = {
+    "id": 9205,
+    "name_chs": "拔北",
+    "name_chs_t": "拔北",
+    "name_jp": "拔北",
+    "name_en": "Babei",
+    "name_kr": "拔北",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_babei",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9206] = {
+    "id": 9206,
+    "name_chs": "点和",
+    "name_chs_t": "点和",
+    "name_jp": "点和",
+    "name_en": "Ron",
+    "name_kr": "点和",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_ron",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9207] = {
+    "id": 9207,
+    "name_chs": "自摸",
+    "name_chs_t": "自摸",
+    "name_jp": "自摸",
+    "name_en": "Tsumo",
+    "name_kr": "自摸",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "act_tumo",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+// 9208: 终局一位语音(天地无双指一姬的)
+cfg.fan.fan.map_[9208] = {
+    "id": 9208,
+    "name_chs": "天地无双",
+    "name_chs_t": "天地无双",
+    "name_jp": "天地无双",
+    "name_en": "tianxiawushuangmiao",
+    "name_kr": "天地无双",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 9999,
+    "sound": "game_top",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
+// 满贯及以上和听牌语音, "倍"和"累计"显示不出来
+// 9300: 满贯
+// 9301: 跳满
+// 9302: 倍满
+// 9303: 三倍满
+// 9304: 役满
+// 9305: 双倍役满
+// 9306: 三倍役满
+// 9307: 四倍役满
+// 9308: 五倍役满
+// 9309: 六倍役满
+// 9310: 累计役满
+// 9311: 听牌
+// 9312: 未听牌
+cfg.fan.fan.map_[9300] = {
+    "id": 9300,
+    "name_chs": "满贯",
+    "name_chs_t": "满贯",
+    "name_jp": "满贯",
+    "name_en": "mangan",
+    "name_kr": "满贯",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_manguan",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9301] = {
+    "id": 9301,
+    "name_chs": "一点五满贯",
+    "name_chs_t": "一点五满贯",
+    "name_jp": "一点五满贯",
+    "name_en": "tiaoman",
+    "name_kr": "一点五满贯",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_tiaoman",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9302] = {
+    "id": 9302,
+    "name_chs": "两满贯",
+    "name_chs_t": "两满贯",
+    "name_jp": "两满贯",
+    "name_en": "beiman",
+    "name_kr": "两满贯",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_beiman",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9303] = {
+    "id": 9303,
+    "name_chs": "三满贯",
+    "name_chs_t": "三满贯",
+    "name_jp": "三满贯",
+    "name_en": "sanbeiman",
+    "name_kr": "三满贯",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_sanbeiman",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9304] = {
+    "id": 9304,
+    "name_chs": "役满",
+    "name_chs_t": "役满",
+    "name_jp": "役满",
+    "name_en": "yakuman",
+    "name_kr": "役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_yiman1",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9305] = {
+    "id": 9305,
+    "name_chs": "两役满",
+    "name_chs_t": "两役满",
+    "name_jp": "两役满",
+    "name_en": "Double Yakuman",
+    "name_kr": "两役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_yiman2",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9306] = {
+    "id": 9306,
+    "name_chs": "三役满",
+    "name_chs_t": "三役满",
+    "name_jp": "三役满",
+    "name_en": "Triple Yakuman",
+    "name_kr": "三役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_yiman3",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9307] = {
+    "id": 9307,
+    "name_chs": "四役满",
+    "name_chs_t": "四役满",
+    "name_jp": "四役满",
+    "name_en": "Yakumans",
+    "name_kr": "四役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_yiman4",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9308] = {
+    "id": 9308,
+    "name_chs": "五役满",
+    "name_chs_t": "五役满",
+    "name_jp": "五役满",
+    "name_en": "Yakumans",
+    "name_kr": "五役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_yiman5",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9309] = {
+    "id": 9309,
+    "name_chs": "六役满",
+    "name_chs_t": "六役满",
+    "name_jp": "六役满",
+    "name_en": "Yakumans",
+    "name_kr": "六役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_yiman6",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9310] = {
+    "id": 9310,
+    "name_chs": "数役满",
+    "name_chs_t": "数役满",
+    "name_jp": "数役满",
+    "name_en": "Yakumans",
+    "name_kr": "数役满",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_leijiyiman",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9311] = {
+    "id": 9311,
+    "name_chs": "听牌",
+    "name_chs_t": "听牌",
+    "name_jp": "听牌",
+    "name_en": "tingpai",
+    "name_kr": "听牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 2000,
+    "sound": "gameend_tingpai",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9312] = {
+    "id": 9310,
+    "name_chs": "无听牌",
+    "name_chs_t": "无听牌",
+    "name_jp": "无听牌",
+    "name_en": "noting",
+    "name_kr": "无听牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 2000,
+    "sound": "gameend_noting",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
+// 流局语音, 这里可以穿插到川麻的番种中
+// 9400: 四风连打
+// 9400: 四杠散了
+// 9400: 九种九牌
+cfg.fan.fan.map_[9400] = {
+    "id": 9400,
+    "name_chs": "四风连打",
+    "name_chs_t": "四风连打",
+    "name_jp": "四风连打",
+    "name_en": "sifenglianda",
+    "name_kr": "四风连打",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_sifenglianda",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9401] = {
+    "id": 9401,
+    "name_chs": "四杠流局",
+    "name_chs_t": "四杠流局",
+    "name_jp": "四杠流局",
+    "name_en": "sigangsanle",
+    "name_kr": "四杠流局",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_sigangliuju",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9402] = {
+    "id": 9402,
+    "name_chs": "九九牌",
+    "name_chs_t": "九九牌",
+    "name_jp": "九九牌",
+    "name_en": "jiuzhongjiupai",
+    "name_kr": "九九牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "gameend_jiuzhongjiupai",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
+// 大厅交互语音
+cfg.fan.fan.map_[9500] = {
+    "id": 9500,
+    "name_chs": "自我介绍",
+    "name_chs_t": "自我介绍",
+    "name_jp": "自我介绍",
+    "name_en": "selfintro",
+    "name_kr": "自我介绍",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_selfintro",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9501] = {
+    "id": 9501,
+    "name_chs": "登录语音1",
+    "name_chs_t": "登录语音1",
+    "name_jp": "登录语音1",
+    "name_en": "playerlogin",
+    "name_kr": "登录语音1",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_playerlogin",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9502] = {
+    "id": 9502,
+    "name_chs": "登录语音2",
+    "name_chs_t": "登录语音2",
+    "name_jp": "登录语音2",
+    "name_en": "playerlogin_max",
+    "name_kr": "登录语音2",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_playerlogin",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9503] = {
+    "id": 9503,
+    "name_chs": "大厅交互语音1",
+    "name_chs_t": "大厅交互语音1",
+    "name_jp": "大厅交互语音1",
+    "name_en": "lobby_normal1",
+    "name_kr": "大厅交互语音1",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9504] = {
+    "id": 9504,
+    "name_chs": "大厅交互语音2",
+    "name_chs_t": "大厅交互语音2",
+    "name_jp": "大厅交互语音2",
+    "name_en": "lobby_normal2",
+    "name_kr": "大厅交互语音2",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9505] = {
+    "id": 9505,
+    "name_chs": "大厅交互语音3",
+    "name_chs_t": "大厅交互语音3",
+    "name_jp": "大厅交互语音3",
+    "name_en": "lobby_normal3",
+    "name_kr": "大厅交互语音3",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9506] = {
+    "id": 9506,
+    "name_chs": "大厅交互语音4",
+    "name_chs_t": "大厅交互语音4",
+    "name_jp": "大厅交互语音4",
+    "name_en": "lobby_normal4",
+    "name_kr": "大厅交互语音4",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9507] = {
+    "id": 9507,
+    "name_chs": "大厅交互语音5",
+    "name_chs_t": "大厅交互语音5",
+    "name_jp": "大厅交互语音5",
+    "name_en": "lobby_normal5",
+    "name_kr": "大厅交互语音5",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9508] = {
+    "id": 9508,
+    "name_chs": "大厅交互语音6",
+    "name_chs_t": "大厅交互语音6",
+    "name_jp": "大厅交互语音6",
+    "name_en": "lobby_normal6",
+    "name_kr": "大厅交互语音6",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9509] = {
+    "id": 9509,
+    "name_chs": "大厅交互语音7",
+    "name_chs_t": "大厅交互语音7",
+    "name_jp": "大厅交互语音7",
+    "name_en": "lobby_normal7",
+    "name_kr": "大厅交互语音7",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9510] = {
+    "id": 9510,
+    "name_chs": "大厅交互语音8",
+    "name_chs_t": "大厅交互语音8",
+    "name_jp": "大厅交互语音8",
+    "name_en": "lobby_normal8",
+    "name_kr": "大厅交互语音8",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_normal",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9511] = {
+    "id": 9511,
+    "name_chs": "送礼物语音普通",
+    "name_chs_t": "送礼物语音普通",
+    "name_jp": "送礼物语音普通",
+    "name_en": "lobby_gift",
+    "name_kr": "送礼物语音普通",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_gift",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9512] = {
+    "id": 9512,
+    "name_chs": "送礼物语音喜好",
+    "name_chs_t": "送礼物语音喜好",
+    "name_jp": "送礼物语音喜好",
+    "name_en": "lobby_gift_favor",
+    "name_kr": "送礼物语音喜好",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_gift_favor",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9513] = {
+    "id": 9513,
+    "name_chs": "好感度升级语音1",
+    "name_chs_t": "好感度升级语音1",
+    "name_jp": "好感度升级语音1",
+    "name_en": "lobby_levelup1",
+    "name_kr": "好感度升级语音1",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_levelup1",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9514] = {
+    "id": 9514,
+    "name_chs": "好感度升级语音2",
+    "name_chs_t": "好感度升级语音2",
+    "name_jp": "好感度升级语音2",
+    "name_en": "lobby_levelup2",
+    "name_kr": "好感度升级语音2",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_levelup2",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9515] = {
+    "id": 9515,
+    "name_chs": "好感度升级语音3",
+    "name_chs_t": "好感度升级语音3",
+    "name_jp": "好感度升级语音3",
+    "name_en": "lobby_levelup3",
+    "name_kr": "好感度升级语音3",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_levelup3",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9516] = {
+    "id": 9516,
+    "name_chs": "好感度升级语音4",
+    "name_chs_t": "好感度升级语音4",
+    "name_jp": "好感度升级语音4",
+    "name_en": "lobby_levelup4",
+    "name_kr": "好感度升级语音4",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_levelup4",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9517] = {
+    "id": 9517,
+    "name_chs": "好感度升级语音5",
+    "name_chs_t": "好感度升级语音5",
+    "name_jp": "好感度升级语音5",
+    "name_en": "lobby_levelmax",
+    "name_kr": "好感度升级语音5",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_levelmax",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9517] = {
+    "id": 9517,
+    "name_chs": "好感度升级语音5",
+    "name_chs_t": "好感度升级语音5",
+    "name_jp": "好感度升级语音5",
+    "name_en": "lobby_manjiban",
+    "name_kr": "好感度升级语音5",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_manjiban",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9518] = {
+    "id": 9518,
+    "name_chs": "契约语音",
+    "name_chs_t": "契约语音",
+    "name_jp": "契约语音",
+    "name_en": "lobby_qiyue",
+    "name_kr": "契约语音",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_qiyue",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9519] = {
+    "id": 9519,
+    "name_chs": "新年语音",
+    "name_chs_t": "新年语音",
+    "name_jp": "新年语音",
+    "name_en": "lobby_newyear",
+    "name_kr": "新年语音",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_newyear",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9520] = {
+    "id": 9520,
+    "name_chs": "情人节语音",
+    "name_chs_t": "情人节语音",
+    "name_jp": "情人节语音",
+    "name_en": "lobby_valentine",
+    "name_kr": "情人节语音",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "lobby_valentine",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
+// 对局契约特殊语音
+cfg.fan.fan.map_[9600] = {
+    "id": 9600,
+    "name_chs": "连续打出多张相同牌",
+    "name_chs_t": "连续打出多张相同牌",
+    "name_jp": "连续打出多张相同牌",
+    "name_en": "ingame_lianda",
+    "name_kr": "连续打出多张相同牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "ingame_lianda",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9601] = {
+    "id": 9601,
+    "name_chs": "打出宝牌",
+    "name_chs_t": "打出宝牌",
+    "name_jp": "打出宝牌",
+    "name_en": "ingame_baopai",
+    "name_kr": "打出宝牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "ingame_baopai",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9602] = {
+    "id": 9602,
+    "name_chs": "余牌少于10",
+    "name_chs_t": "余牌少于10",
+    "name_jp": "余牌少于10",
+    "name_en": "ingame_remain10",
+    "name_kr": "余牌少于10",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "ingame_remain10",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9603] = {
+    "id": 9603,
+    "name_chs": "役满听牌",
+    "name_chs_t": "役满听牌",
+    "name_jp": "役满听牌",
+    "name_en": "ingame_yiman",
+    "name_kr": "役满听牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "ingame_yiman",
+    "is_guyi": 0,
+    "rarity": 0,
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[9604] = {
+    "id": 9604,
+    "name_chs": "倍满/三倍满听牌",
+    "name_chs_t": "倍满/三倍满听牌",
+    "name_jp": "倍满/三倍满听牌",
+    "name_en": "ingame_beiman",
+    "name_kr": "倍满/三倍满听牌",
+    "xuanshang": 0,
+    "yiman": 0,
+    "fan_menqing": 0,
+    "fan_fulu": 0,
+    "show_index": 0,
+    "sound": "ingame_beiman",
     "is_guyi": 0,
     "rarity": 0,
     "show_range_1": 0,

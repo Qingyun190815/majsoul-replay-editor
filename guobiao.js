@@ -1472,28 +1472,23 @@ function calcfan_guobiao(tiles, seat, zimo) {
         }
 
         function calc0(tingpaifu) {
-            function deletefan(ans, x) {
-                let flag = false;
-                for (let i = 0; i < ans.fans.length; i++) {
-                    if (flag)
-                        ans.fans[i - 1] = ans.fans[i];
-                    if (ans.fans[i].id === x)
-                        flag = true;
-                }
-                if (flag)
-                    ans.fans.length = ans.fans.length - 1;
-                return ans;
+            function banfan(x) {
+                ban_num[x - 8000] = true;
             }
-            function existfan(ans, x) {
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === x)
-                        return true;
 
-                return false;
+            function is_banned(x) {
+                return ban_num[x - 8000];
             }
 
             let lstaction = getlstaction();
             let menqing = fulucnt === 0;
+            // 不计列表
+            let ban_num = [];
+            for (let i = 0; i < 100; i++)
+                ban_num[i] = false;
+            // 指定数量的不计幺九刻计数
+            let ban_yaojiuke_num = 0;
+
             let ans = {'yiman': false, 'fans': [], 'fu': 0};
             // 0: 明顺    1: 明刻   2: 明杠   3: 暗杠
             // 4: 北宝    5: 暗顺   6: 暗刻   7: 对子
@@ -1662,7 +1657,6 @@ function calcfan_guobiao(tiles, seat, zimo) {
                     hunquandai = false;
 
             }
-
             // --------------------------
             let pinghu = true;
             if (duizi_num === 7)
@@ -1695,733 +1689,89 @@ function calcfan_guobiao(tiles, seat, zimo) {
                         ersetongshun_num++;
                 }
             }
+            // ---------------------------
+            // ---------------------------
+            // ---------------------------
+            if (angang_num === 1 && gangzi_num === 2)
+                ans.fans.push({'val': 5, 'id': 8082}); // 明暗杠
             // --------------------------
-            // --------------------------
-            // ---------------------------
-            // 1 番
-            if (beikou >= 1)
-                ans.fans.push({'val': beikou, 'id': 8070}); // 一般高
-            if (ersetongshun_num >= 1 && !sansetongshun) {
-                if (beikou >= 2)
-                    ans.fans.push({'val': 1, 'id': 8071}); // 有2个一般高的情况下喜相逢最多只会算1个
-                else
-                    ans.fans.push({'val': ersetongshun_num, 'id': 8071}); // 喜相逢
-            }
-            let lianliu_num = 0;
-            for (let j = 0; j <= 2; j++)
-                for (let i = 2; i <= 5; i++)
-                    if (shunzi[j * 9 + i] >= 1 && shunzi[j * 9 + i + 3] >= 1)
-                        lianliu_num++;
-            if (lianliu_num >= 1) {
-                if (beikou >= 2 || ersetongshun_num >= 2) // 有2个一般高, 喜相逢的情况下连六最多只会算1个
-                    ans.fans.push({'val': 1, 'id': 8072});
-                else
-                    ans.fans.push({'val': lianliu_num, 'id': 8072}); // 连六
+            // 天地人和
+            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat === ju && zimo) {
+                ans.fans.push({'val': 8, 'id': 8083}); // 天和
+                // 不计 不求人, 自摸, 边张, 坎张, 单调将
+                banfan(8055);
+                banfan(8081);
+                banfan(8078);
+                banfan(8079);
+                banfan(8080);
             }
 
-            let laoshaofu_num = 0;
-            for (let j = 0; j <= 2; j++)
-                if (shunzi[j * 9 + 2] >= 1 && shunzi[j * 9 + 8] >= 1) {
-                    if (shunzi[j * 9 + 2] >= 2 && shunzi[j * 9 + 8] >= 2)
-                        laoshaofu_num += 2;
-                    else
-                        laoshaofu_num++;
-                }
-            if (laoshaofu_num >= 1) {
-                if (beikou >= 2 || ersetongshun_num >= 2) // 有2个一般高, 喜相逢的情况下老少副最多只会算1个
-                    ans.fans.push({'val': 1, 'id': 8073});
-                else
-                    ans.fans.push({'val': laoshaofu_num, 'id': 8073}); // 老少副
-            }
-
-            let yaojiuke_num = 0;
-            yaojiuke_num += kezi[1] + kezi[9] + kezi[10] + kezi[18] + kezi[19] + kezi[27];
-            yaojiuke_num += kezi[28] + kezi[29] + kezi[30] + kezi[31] + kezi[32] + kezi[33] + kezi[34];
-            if (yaojiuke_num >= 1)
-                ans.fans.push({'val': yaojiuke_num, 'id': 8074}); // 幺九刻
-
-            if (minggang_num === 1 && gangzi_num === 1)
-                ans.fans.push({'val': 1, 'id': 8075}); // 明杠
-
-            let queyimen = false;
-            let havewanzi = false, havebingzi = false, havesuozi = false;
-            for (let i = 1; i <= 9; i++) {
-                if (cnt2[i] >= 1)
-                    havewanzi = true;
-                if (cnt2[i + 9] >= 1)
-                    havebingzi = true;
-                if (cnt2[i + 18] >= 1)
-                    havesuozi = true;
-            }
-            if (havewanzi && havebingzi && !havesuozi)
-                queyimen = true;
-            if (havewanzi && !havebingzi && havesuozi)
-                queyimen = true;
-            if (!havewanzi && havebingzi && havesuozi)
-                queyimen = true;
-            if (queyimen)
-                ans.fans.push({'val': 1, 'id': 8076}); // 缺一门
-
-            let wuzi = true;
-            for (let i = 28; i <= 34; i++)
-                if (cnt2[i] >= 1)
-                    wuzi = false;
-            if (wuzi)
-                ans.fans.push({'val': 1, 'id': 8077}); // 无字
-
-            let cnt_tiles = [];
-            for (let i = 0; i<nxt2.length;i++)
-                cnt_tiles[i] = 0;
-            for (let i = 0; i<tiles.length;i++)
-                cnt_tiles[tiletoint(tiles[i])]++;
-
-            let bianzhang = false;
-            if ((tiletoint(lastile) - 1) % 9 + 1 === 3 && cnt_tiles[tiletoint(lastile) - 1] >= 1 && cnt_tiles[tiletoint(lastile) - 2] >= 1)
-                bianzhang = true;
-            if ((tiletoint(lastile) - 1) % 9 + 1 === 7 && cnt_tiles[tiletoint(lastile) + 1] >= 1 && cnt_tiles[tiletoint(lastile) + 2] >= 1)
-                bianzhang = true;
-            if (bianzhang) {
-                cnt[tiletoint(lastile)]--;
-                tiles.length--;
-                if (calctingpai(seat, true).length === 1) // 严格独听
-                    ans.fans.push({'val': 1, 'id': 8078}); // 边张
-                tiles.push(lastile);
-                cnt[tiletoint(lastile)]++;
-            }
-
-            let kanzhang = cnt_tiles[tiletoint(lastile) - 1] >= 1 && cnt_tiles[tiletoint(lastile) + 1] >= 1;
-            if (kanzhang && !bianzhang) {
-                cnt[tiletoint(lastile)]--;
-                tiles.length--;
-                if (calctingpai(seat, true).length === 1) // 严格独听
-                    ans.fans.push({'val': 1, 'id': 8079}); // 坎张
-                tiles.push(lastile);
-                cnt[tiletoint(lastile)]++;
-            }
-
-            let dandiaojiang = true;
-            if (typecnt[tiletoint(lastile)][7] !== 1)
-                dandiaojiang = false;
-
-            if (dandiaojiang && !kanzhang && !bianzhang) {
-                cnt[tiletoint(lastile)]--;
-                tiles.length--;
-                if (calctingpai(seat, true).length === 1) // 严格独听
-                    ans.fans.push({'val': 1, 'id': 8080}); // 单钓将
-                tiles.push(lastile);
-                cnt[tiletoint(lastile)]++;
-            }
-
-            if (zimo)
-                ans.fans.push({'val': 1, 'id': 8081}); // 自摸
-
-            // ---------------------------
-            // 2 番
-            for (let i = 0; i < kezi[32]; i++) {
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除幺九刻
-                        if (ans.fans[i].val >= 2)
-                            ans.fans[i].val -= 1;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
-                ans.fans.push({'val': 2, 'id': 8058}); // 箭刻 白
-            }
-            for (let i = 0; i < kezi[33]; i++) {
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除幺九刻
-                        if (ans.fans[i].val >= 2)
-                            ans.fans[i].val -= 1;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
-                ans.fans.push({'val': 2, 'id': 8059}); // 箭刻 发
-            }
-            for (let i = 0; i < kezi[34]; i++) {
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除幺九刻
-                        if (ans.fans[i].val >= 2)
-                            ans.fans[i].val -= 1;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
-                ans.fans.push({'val': 2, 'id': 8060}); // 箭刻 中
-            }
-
-            for (let i = 0; i < kezi[tiletoint((chang + 1).toString() + "z")]; i++){
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除幺九刻
-                        if (ans.fans[i].val >= 2)
-                            ans.fans[i].val -= 1;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
-                ans.fans.push({'val': 2, 'id': 8061}); // 圈风刻
-            }
-            for (let i = 0; i < kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")]; i++){
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除幺九刻
-                        if (ans.fans[i].val >= 2)
-                            ans.fans[i].val -= 1;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
-                ans.fans.push({'val': 2, 'id': 8062}); // 门风刻
-            }
-
-            if (menqing && !zimo)
-                ans.fans.push({'val': 2, 'id': 8063}); // 门前清
-
-            if (pinghu) {
-                // 不计 无字
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 2, 'id': 8064}); // 平和
-            }
-
-            let siguiyi_num = 0;
-            for (let i = 1; i <= 34; i++)
-                if (cnt2[i] === 4 && typecnt[i][2] === 0 && typecnt[i][3] === 0)
-                    siguiyi_num++;
-            if (siguiyi_num >= 1)
-                ans.fans.push({'val': 2 * siguiyi_num, 'id': 8065}); // 四归一
-
-            if (shuangtongke)
-                ans.fans.push({'val': 2, 'id': 8066}); // 双同刻
-
-            if (anke_num === 2)
-                ans.fans.push({'val': 2, 'id': 8067}); // 双暗刻
-            if (angang_num === 1 && gangzi_num === 1)
-                ans.fans.push({'val': 2, 'id': 8068}); // 暗杠
-            if (flag_duanyao) {
-                // 不计 无字
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 2, 'id': 8069}); // 断幺
-            }
-            // ---------------------------
-            // 4 番
-            if (hunquandai)
-                ans.fans.push({'val': 4, 'id': 8054}); // 全带幺
-            if (menqing && zimo) {
-                // 不计 自摸
-                deletefan(ans, 8081);
-                ans.fans.push({'val': 4, 'id': 8055}); // 不求人
-            }
-
-            if (minggang_num === 2 && gangzi_num === 2)
-                ans.fans.push({'val': 4, 'id': 8056}); // 双明杠
-
-            let lastile_num = 0;
+            let first_tile = true;
             for (let i = 0; i < playercnt; i++) {
-                for (let j = 0; j < paihe[i].tiles.length; j++) // 查牌河, 注意被鸣走的牌还在 paihe 中
-                    if (equaltile(lastile, paihe[i].tiles[j]))
-                        lastile_num++;
-                for (let j = 0; j < fulu[i].length; j++) { // 查副露
-                    if (fulu[i][j].from !== undefined) {
-                        for (let k = 0; k < fulu[i][j].tile.length - 1; k++) // -1 是要剔除掉被鸣走的牌
-                            if (equaltile(lastile, fulu[i][j].tile[k]))
-                                lastile_num++;
-                    }
-                }
+                if (i === ju)
+                    continue;
+                if (!(liqiinfo[i].yifa !== 0 && liqiinfo[i].liqi === 0))
+                    first_tile = false;
             }
-            if (lastile_num === 4)
-                ans.fans.push({'val': 4, 'id': 8057}); // 和绝张
-            // ---------------------------
-            // 6 番
-            if (kezi_num === 4)
-                ans.fans.push({'val': 6, 'id': 8047}); // 碰碰和
-            if (hunyise && !qingyise)
-                ans.fans.push({'val': 6, 'id': 8048}); // 混一色
-            let sansesanbugao = false;
-            for (let i = 2; i <= 8; i++) {
-                if (i <= 6 && shunzi[i] >= 1 && shunzi[i + 9 + 1] >= 1 && shunzi[i + 18 + 2] >= 1)
-                    sansesanbugao = true;
-                if (i <= 6 && shunzi[i] >= 1 && shunzi[i + 9 + 2] >= 1 && shunzi[i + 18 + 1] >= 1)
-                    sansesanbugao = true;
-                if (i !== 2 && i !== 8 && shunzi[i] >= 1 && shunzi[i + 9 - 1] >= 1 && shunzi[i + 18 + 1] >= 1)
-                    sansesanbugao = true;
-                if (i !== 2 && i !== 8 && shunzi[i] >= 1 && shunzi[i + 9 + 1] >= 1 && shunzi[i + 18 - 1] >= 1)
-                    sansesanbugao = true;
-                if (i >= 4 && shunzi[i] >= 1 && shunzi[i + 9 - 2] >= 1 && shunzi[i + 18 - 1] >= 1)
-                    sansesanbugao = true;
-                if (i >= 4 && shunzi[i] >= 1 && shunzi[i + 9 - 1] >= 1 && shunzi[i + 18 - 2] >= 1)
-                    sansesanbugao = true;
-            }
-            if (sansesanbugao)
-                ans.fans.push({'val': 6, 'id': 8049}); // 三色三步高
-            if (wumenqi)
-                ans.fans.push({'val': 6, 'id': 8050}); // 五门齐
-            let quanqiuren = true;
-            if (zimo)
-                quanqiuren = false;
-            if (fulu[seat].length !== 4)
-                quanqiuren = false;
-            else
-                for (let i = 0; i < 4; i++)
-                    if (fulu[seat][i].type === 3)
-                        quanqiuren = false;
-
-            if (quanqiuren) {
-                // 不计 单钓将
-                deletefan(ans, 8080);
-                ans.fans.push({'val': 6, 'id': 8051}); // 全求人
-            }
-            if (angang_num === 2) {
-                // 不计 双暗刻
-                deletefan(ans, 8067);
-                ans.fans.push({'val': 6, 'id': 8052}); // 双暗杠
+            if (first_tile && seat !== ju && !zimo) {
+                ans.fans.push({'val': 8, 'id': 8084}); // 地和
+                // 不计 门前清
+                banfan(8063);
             }
 
-            let shuangjianke = false;
-            if (kezi[32] >= 1 && kezi[33] >= 1)
-                shuangjianke = true;
-            if (kezi[32] >= 1 && kezi[34] >= 1)
-                shuangjianke = true;
-            if (kezi[33] >= 1 && kezi[34] >= 1)
-                shuangjianke = true;
-            if (shuangjianke) {
-                // 不计箭刻, 组成双箭刻的两副刻子不计幺九刻
-                deletefan(ans, 8058);
-                deletefan(ans, 8059);
-                deletefan(ans, 8060);
-                ans.fans.push({'val': 6, 'id': 8053}); // 双箭刻
+            // 在立直麻将中人和的基础上添加亲家的下一家没有一发(因为国标没有立直, 所以任何情况下切牌后都没有一发)
+            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo) {
+                ans.fans.push({'val': 8, 'id': 8085}); // 人和
+                // 不计 不求人, 自摸
+                banfan(8055);
+                banfan(8081);
+            } else if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && liqiinfo[(ju + 1) % playercnt].yifa === 0) {
+                ans.fans.push({'val': 8, 'id': 8085}); // 人和
+                // 不计 门前清
+                banfan(8063);
             }
-
-            // ---------------------------
-            // 8 番, 无番和放到最后
-            let hualong = false;
-            if (shunzi[2] >= 1 && shunzi[14] >= 1 && shunzi[26] >= 1)
-                hualong = true;
-            if (shunzi[2] >= 1 && shunzi[17] >= 1 && shunzi[23] >= 1)
-                hualong = true;
-            if (shunzi[5] >= 1 && shunzi[11] >= 1 && shunzi[26] >= 1)
-                hualong = true;
-            if (shunzi[5] >= 1 && shunzi[17] >= 1 && shunzi[20] >= 1)
-                hualong = true;
-            if (shunzi[8] >= 1 && shunzi[11] >= 1 && shunzi[23] >= 1)
-                hualong = true;
-            if (shunzi[8] >= 1 && shunzi[14] >= 1 && shunzi[20] >= 1)
-                hualong = true;
-            if (hualong) {
-                // 还有喜相逢时, 删除连六和老少副
-                if (ersetongshun_num >= 1) {
-                    deletefan(ans, 8072);
-                    deletefan(ans, 8073);
-                }
-                ans.fans.push({'val': 8, 'id': 8038}); // 花龙
-            }
-
-            let tuibudao = true;
-            for (let i = 0; i <= 34; i++)
-                if (i !== 10 && i !== 11 && i !== 12 && i !== 13 && i !== 14 && i !== 17 && i !== 18)
-                    if (i !== 20 && i !== 22 && i !== 23 && i !== 24 && i !== 26 && i !== 27)
-                        if (i !== 32 && cnt2[i] >= 1) {
-                            tuibudao = false;
-                            break;
-                        }
-            if (tuibudao) {
-                // 不计 缺一门
-                deletefan(ans, 8076);
-                ans.fans.push({'val': 8, 'id': 8039}); // 推不倒
-            }
-
-            if (sansetongshun) {
-                // 不计 喜相逢
-                deletefan(ans, 8071);
-                ans.fans.push({'val': 8, 'id': 8040}); // 三色三同顺
-            }
-            let sansesanjiegao = false;
-            for (let i = 1; i <= 9; i++) {
-                if (i <= 7 && kezi[i] >= 1 && kezi[i + 9 + 1] >= 1 && kezi[i + 18 + 2] >= 1)
-                    sansesanjiegao = true;
-                if (i <= 7 && kezi[i] >= 1 && kezi[i + 9 + 2] >= 1 && kezi[i + 18 + 1] >= 1)
-                    sansesanjiegao = true;
-                if (i !== 1 && i !== 9 && kezi[i] >= 1 && kezi[i + 9 - 1] >= 1 && kezi[i + 18 + 1] >= 1)
-                    sansesanjiegao = true;
-                if (i !== 1 && i !== 9 && kezi[i] >= 1 && kezi[i + 9 + 1] >= 1 && kezi[i + 18 - 1] >= 1)
-                    sansesanjiegao = true;
-                if (i >= 3 && kezi[i] >= 1 && kezi[i + 9 - 2] >= 1 && kezi[i + 18 - 1] >= 1)
-                    sansesanjiegao = true;
-                if (i >= 3 && kezi[i] >= 1 && kezi[i + 9 - 1] >= 1 && kezi[i + 18 - 2] >= 1)
-                    sansesanjiegao = true;
-            }
-            if (sansesanjiegao)
-                ans.fans.push({'val': 8, 'id': 8041}); // 三色三节高
-            if (paishan.length === 0) {
-                if (zimo){
-                    // 不计 自摸
-                    deletefan(ans, 8081);
-                    ans.fans.push({'val': 8, 'id': 8043}); // 妙手回春
-                }
-                else
-                    ans.fans.push({'val': 8, 'id': 8044}); // 海底捞月
-            }
-            if (zimo && lstdrawtype === 0){
-                // 不计 自摸
-                deletefan(ans, 8081);
-                ans.fans.push({'val': 8, 'id': 8045}); // 杠上开花
-            }
-            if (lstaction.name === "RecordAnGangAddGang") {
-                // 不计 和绝张
-                deletefan(ans, 8057);
-                ans.fans.push({'val': 8, 'id': 8046}); // 抢杠和
-            }
-            // ---------------------------
-            // 12 番
-            // 全不靠和组合龙放到最后
-            let dayuwu = true, xiaoyuwu = true;
-            for (let i = 1; i <= 27; i++) {
-                let num = (i - 1) % 9 + 1;
-                if (num <= 5 && cnt2[i] >= 1)
-                    dayuwu = false;
-                if (num >= 5 && cnt2[i] >= 1)
-                    xiaoyuwu = false;
-            }
-            for (let i = 28; i <= 34; i++)
-                if (cnt2[i] >= 1) {
-                    dayuwu = false;
-                    xiaoyuwu = false;
-                }
-            if (dayuwu) {
-                // 不计 无字
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 12, 'id': 8035}); // 大于五
-            }
-            if (xiaoyuwu) {
-                // 不计 无字
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 12, 'id': 8036}); // 小于五
-            }
-            let sanfengke = false;
-            if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1)
-                sanfengke = true;
-            if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[31] >= 1)
-                sanfengke = true;
-            if (kezi[28] >= 1 && kezi[30] >= 1 && kezi[31] >= 1)
-                sanfengke = true;
-            if (kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1)
-                sanfengke = true;
-            if (sanfengke && !xiaosixi) {
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除幺九刻
-                        if (existfan(ans, 8061)) // 圈风和门风的幺九刻加回去
-                            ans.fans[i].val++;
-                        if (existfan(ans, 8062))
-                            ans.fans[i].val++;
-
-                        if (ans.fans[i].val >= 4)
-                            ans.fans[i].val -= 3;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
-                ans.fans.push({'val': 12, 'id': 8037}); // 三风刻
-            }
-            // ---------------------------
-            // 16 番
-            if (yiqi) {
-                // 不计 连六, 老少副
-                deletefan(ans, 8072);
-                deletefan(ans, 8073);
-                ans.fans.push({'val': 16, 'id': 8027}); // 清龙
-            }
-            let sanseshuanglonghui = false;
-            if (shunzi[2] >= 1 && shunzi[8] >= 1 && shunzi[11] >= 1 && shunzi[17] >= 1 && typecnt[23][7] >= 1)
-                sanseshuanglonghui = true;
-            if (shunzi[2] >= 1 && shunzi[8] >= 1 && typecnt[14][7] >= 1 && shunzi[20] >= 1 && shunzi[26] >= 1)
-                sanseshuanglonghui = true;
-            if (typecnt[5][7] >= 1 && shunzi[11] >= 1 && shunzi[17] >= 1 && shunzi[20] >= 1 && shunzi[26] >= 1)
-                sanseshuanglonghui = true;
-            if (sanseshuanglonghui) {
-                // 不计 喜相逢、老少副、无字、平和
-                deletefan(ans, 8071);
-                deletefan(ans, 8073);
-                deletefan(ans, 8077);
-                deletefan(ans, 8064);
-                ans.fans.push({'val': 16, 'id': 8028}); // 三色双龙会
-            }
-            let sanbugao = false;
-            for (let j = 0; j <= 2; j++) {
-                for (let i = 2; i <= 6; i++)
-                    if (shunzi[j * 9 + i] >= 1 && shunzi[j * 9 + i + 1] >= 1 && shunzi[j * 9 + i + 2] >= 1)
-                        sanbugao = true;
-                for (let i = 0; i <= 2; i++)
-                    if (shunzi[j * 9 + 2 + i] >= 1 && shunzi[j * 9 + 4 + i] >= 1 && shunzi[j * 9 + 6 + i] >= 1)
-                        sanbugao = true;
-            }
-            if (sanbugao)
-                ans.fans.push({'val': 16, 'id': 8029}); // 一色三步高
-            let quandaiwu = true;
-            for (let i = 1; i <= 34; i++) {
-                if (!(i >= 4 && i <= 6) && !(i >= 13 && i <= 15) && !(i >= 22 && i <= 24) && shunzi[i] >= 1)
-                    quandaiwu = false;
-                if (i !== 5 && i !== 14 && i !== 23) {
-                    if (kezi[i] >= 1 || typecnt[i][7] >= 1)
-                        quandaiwu = false;
-                }
-            }
-            if (quandaiwu) {
-                // 不计 断幺, 无字
-                deletefan(ans, 8069);
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 16, 'id': 8030}); // 全带五
-            }
-
-            if (santongke) {
-                // 不计 双同刻
-                deletefan(ans, 8066);
-                ans.fans.push({'val': 16, 'id': 8031}); // 三同刻
-            }
-            if (anke_num === 3)
-                ans.fans.push({'val': 16, 'id': 8032}); // 三暗刻
-            // ---------------------------
-            // 24 番
-            // 七星不靠放到最后
-            if (duizi_num === 7) {
-                // 不计 不求人、门前清、单钓将
-                deletefan(ans, 8055);
-                deletefan(ans, 8063);
-                deletefan(ans, 8080);
-                ans.fans.push({'val': 24, 'id': 8018}); // 七对
-            }
-            let quanshuangke = true;
-            for (let i = 1; i <= 34; i++)
-                if (i !== 2 && i !== 4 && i !== 6 && i !== 8 && i !== 11 && i !== 13 && i !== 15 && i !== 17 && i !== 20 && i !== 22 && i !== 24 && i !== 26)
-                    if (cnt2[i] >= 1)
-                        quanshuangke = false;
-            if (duizi_num >= 2) // 不能是七对
-                quanshuangke = false;
-            if (quanshuangke) {
-                // 不计 碰碰和、断幺、无字
-                deletefan(ans, 8047);
-                deletefan(ans, 8069);
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 24, 'id': 8020}); // 全双刻
-            }
-            if (qingyise) {
-                // 不计 无字
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 24, 'id': 8021}); // 清一色
-            }
-
-            let sanjiegao = false;
-            for (let j = 0; j <= 2; j++)
-                for (let i = 1; i <= 7; i++)
-                    if (kezi[j * 9 + i] >= 1 && kezi[j * 9 + i + 1] >= 1 && kezi[j * 9 + i + 2] >= 1)
-                        sanjiegao = true;
-            if (sanjiegao) {
-                // 不计一色三同顺
-                // deletefan(ans, 8022);
-                ans.fans.push({'val': 24, 'id': 8023}); // 一色三节高
-            }
-
-            if (santongshun) {
-                // 不计 一色三节高、一般高
-                deletefan(ans, 8023);
-                deletefan(ans, 8070);
-                ans.fans.push({'val': 24, 'id': 8022}); // 一色三同顺
-            }
-
-            let quanda = true, quanzhong = true, quanxiao = true;
-            for (let i = 1; i <= 27; i++) {
-                let num = (i - 1) % 9 + 1;
-                if (num <= 6 && cnt2[i] >= 1)
-                    quanda = false;
-                if ((num <= 2 || num >= 7) && cnt2[i] >= 1)
-                    quanzhong = false;
-                if (num >= 4 && cnt2[i] >= 1)
-                    quanxiao = false;
-            }
-            for (let i = 28; i <= 34; i++)
-                if (cnt2[i] >= 1) {
-                    quanda = false;
-                    quanzhong = false;
-                    quanxiao = false;
-                }
-            if (quanda) {
-                // 不计 大于五, 无字
-                deletefan(ans, 8035);
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 24, 'id': 8024}); // 全大
-            }
-            if (quanzhong) {
-                // 不计 断幺
-                deletefan(ans, 8069);
-                ans.fans.push({'val': 24, 'id': 8025}); // 全中
-            }
-            if (quanxiao) {
-                // 不计 小于五, 无字
-                deletefan(ans, 8036);
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 24, 'id': 8026}); // 全小
-            }
-            // ---------------------------
-            // 32 番
-            let sibugao = false;
-            for (let i = 0; i <= 2; i++) {
-                for (let j = 2; j <= 5; j++)
-                    if (shunzi[i * 9 + j] >= 1 && shunzi[i * 9 + j + 1] >= 1 && shunzi[i * 9 + j + 2] >= 1 && shunzi[i * 9 + j + 3] >= 1)
-                        sibugao = true;
-
-                if (shunzi[i * 9 + 2] >= 1 && shunzi[i * 9 + 4] >= 1 && shunzi[i * 9 + 6] >= 1 && shunzi[i * 9 + 8] >= 1)
-                    sibugao = true;
-            }
-            if (sibugao) {
-                // 不计 一色三步高, 连六, 老少副
-                deletefan(ans, 8029);
-                deletefan(ans, 8072);
-                deletefan(ans, 8073);
-                ans.fans.push({'val': 32, 'id': 8015}); // 一色四步高
-            }
-            if (gangzi_num === 3)
-                ans.fans.push({'val': 32, 'id': 8016}); // 三杠
-            if (flag_hunlaotou && !flag_qinglaotou) {
-                // 不计 碰碰和, 全带幺, 幺九刻
-                deletefan(ans, 8047);
-                deletefan(ans, 8054);
-                deletefan(ans, 8074);
-                ans.fans.push({'val': 32, 'id': 8017}); // 混幺九
-            }
-            // ---------------------------
-            // 48 番
-            let sitongshun = false, sijiegao = false;
-            for (let i = 0; i <= 2; i++)
-                for (let j = 1; j <= 9; j++) {
-                    if (j !== 1 && j !== 9 && shunzi[i * 9 + j] >= 4)
-                        sitongshun = true;
-                    if (j <= 6 && kezi[i * 9 + j] >= 1 && kezi[i * 9 + j + 1] >= 1 && kezi[i * 9 + j + 2] >= 1 && kezi[i * 9 + j + 3] >= 1)
-                        sijiegao = true;
-                }
-            if (sitongshun) {
-                // 不计 一色三同顺, 一色三节高, 七对, 四归一, 一般高
-                deletefan(ans, 8022);
-                deletefan(ans, 8023);
-                deletefan(ans, 8018);
-                deletefan(ans, 8065);
-                deletefan(ans, 8070);
-                ans.fans.push({'val': 48, 'id': 8013}); // 一色四同顺
-            }
-            if (sijiegao) {
-                // 不计 一色三同顺, 一色三节高, 碰碰和
-                deletefan(ans, 8022);
-                deletefan(ans, 8023);
-                deletefan(ans, 8047);
-                ans.fans.push({'val': 48, 'id': 8014}); // 一色四节高
-            }
-            // ---------------------------
-            // 64 番
-            if (flag_qinglaotou) {
-                // 不计混幺九、碰碰和、全带幺、双同刻、幺九刻、无字
-                deletefan(ans, 8017);
-                deletefan(ans, 8047);
-                deletefan(ans, 8054);
-                deletefan(ans, 8066);
-                deletefan(ans, 8074);
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 64, 'id': 8007}); // 清幺九
-            }
-            if (xiaosixi) {
-                // 不计 三风刻, 幺九刻
-                deletefan(ans, 8037);
-                deletefan(ans, 8074);
-                ans.fans.push({'val': 64, 'id': 8008}); // 小四喜
-            }
-            if (xiaosanyuan) {
-                // 不计 箭刻, 双箭刻, 组成小三元的两副刻子不计幺九刻
-                deletefan(ans, 8058);
-                deletefan(ans, 8059);
-                deletefan(ans, 8060);
-                deletefan(ans, 8053);
-                ans.fans.push({'val': 64, 'id': 8009}); // 小三元
-            }
-            if (flag_ziyise) {
-                // 不计 混幺九, 碰碰和, 全带幺, 幺九刻
-                // 此外删除判断漏洞的混一色
-                deletefan(ans, 8017);
-                deletefan(ans, 8047);
-                deletefan(ans, 8054);
-                deletefan(ans, 8074);
-
-                deletefan(ans, 8048);
-                ans.fans.push({'val': 64, 'id': 8010}); // 字一色
-            }
-            if (anke_num === 4) {
-                // 不计 碰碰和, 不求人, 门前清
-                deletefan(ans, 8047);
-                deletefan(ans, 8055);
-                deletefan(ans, 8063);
-                ans.fans.push({'val': 64, 'id': 8011}); // 四暗刻
-            }
-
-            let shuanglonghui = false;
-            for (let i = 0; i <= 2; i++) {
-                if (cnt2[1 + i] >= 2 && cnt2[2 + i] >= 2 && cnt2[3 + i] >= 2)
-                    if (cnt2[7 + i] >= 2 && cnt2[8 + i] >= 2 && cnt2[9 + i] >= 2)
-                        if (cnt2[5 + i] >= 2) {
-                            shuanglonghui = true;
-                            break;
-                        }
-            }
-            if (shuanglonghui) {
-                // 不计 七对, 清一色, 平和, 一般高, 老少副, 无字
-                deletefan(ans, 8018);
-                deletefan(ans, 8021);
-                deletefan(ans, 8064);
-                deletefan(ans, 8070);
-                deletefan(ans, 8073);
-                deletefan(ans, 8077);
-                ans.fans.push({'val': 64, 'id': 8012}); // 一色双龙会
-            }
-
+            // --------------------------
+            // --------------------------
             // --------------------------
             // 88 番, 十三幺在 calcfan_guobiao 函数最后
-            if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1) {
-                // 不计 三风刻, 碰碰和, 圈风刻, 门风刻, 幺九刻
-                deletefan(ans, 8037);
-                deletefan(ans, 8047);
-                deletefan(ans, 8061);
-                deletefan(ans, 8062);
-                deletefan(ans, 8074);
+            if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1 && !is_banned(8000)) {
                 ans.fans.push({'val': 88, 'id': 8000}); // 大四喜
+                // 不计 三风刻, 碰碰和, 圈风刻, 门风刻, 幺九刻
+                banfan(8037);
+                banfan(8047);
+                banfan(8061);
+                banfan(8062);
+                banfan(8074);
             }
-            if (kezi[32] >= 1 && kezi[33] >= 1 && kezi[34] >= 1) {
-                // 不计 双箭刻, 箭刻, 组成大三元的三副刻子不计幺九刻
-                deletefan(ans, 8053);
-                deletefan(ans, 8058);
-                deletefan(ans, 8059);
-                deletefan(ans, 8060);
+            if (kezi[32] >= 1 && kezi[33] >= 1 && kezi[34] >= 1 && !is_banned(8001)) {
                 ans.fans.push({'val': 88, 'id': 8001}); // 大三元
+                // 不计 双箭刻, 箭刻, 组成大三元的三副刻子不计幺九刻
+                banfan(8053);
+                banfan(8058);
+                banfan(8059);
+                banfan(8060);
+                ban_yaojiuke_num += 3;
             }
-            if (flag_lvyise) {
-                // 不计混一色。如无发，可计清一色
-                deletefan(ans, 8048);
+            if (flag_lvyise && !is_banned(8002)) {
                 ans.fans.push({'val': 88, 'id': 8002}); // 绿一色
+                // 不计混一色。如无发，可计清一色
+                banfan(8048);
             }
-            if (jiulian) {
-                // 不计 清一色, 不求人, 门前清, 无字, 一个幺九刻
-                deletefan(ans, 8021);
-                deletefan(ans, 8055);
-                deletefan(ans, 8063);
-                deletefan(ans, 8077);
-                for (let i = 0; i < ans.fans.length; i++)
-                    if (ans.fans[i].id === 8074) { // 去除一个幺九刻
-                        if (ans.fans[i].val >= 2)
-                            ans.fans[i].val -= 1;
-                        else
-                            deletefan(ans, 8074);
-                        break;
-                    }
+            // 国标中的九莲对标立直麻将中的纯九
+            if (jiulian && !is_banned(8003)) {
                 ans.fans.push({'val': 88, 'id': 8003}); // 九莲宝灯
-            }// 国标中的九莲对标立直麻将中的纯九
-            if (gangzi_num === 4) {
-                // 不计 碰碰和, 单钓将
-                deletefan(ans, 8047);
-                deletefan(ans, 8080);
+                // 不计 清一色, 不求人, 门前清, 无字, 一个幺九刻
+                banfan(8021);
+                banfan(8055);
+                banfan(8063);
+                banfan(8077);
+                ban_yaojiuke_num++;
+            }
+            if (gangzi_num === 4 && !is_banned(8004)) {
                 ans.fans.push({'val': 88, 'id': 8004}); // 四杠
+                // 不计 碰碰和, 单钓将
+                banfan(8047);
+                banfan(8080);
             }
 
             let lianqidui = false;
@@ -2440,62 +1790,664 @@ function calcfan_guobiao(tiles, seat, zimo) {
                         break;
                     }
                 }
-            if (lianqidui) {
-                // 不计 清一色, 七对, 不求人, 门前清, 无字, 单钓将
-                deletefan(ans, 8021);
-                deletefan(ans, 8018);
-                deletefan(ans, 8055);
-                deletefan(ans, 8063);
-                deletefan(ans, 8077);
-                deletefan(ans, 8080);
+            if (lianqidui && !is_banned(8005)) {
                 ans.fans.push({'val': 88, 'id': 8005}); // 连七对
+                // 不计 清一色, 七对, 不求人, 门前清, 无字, 单钓将
+                banfan(8021);
+                banfan(8018);
+                banfan(8055);
+                banfan(8063);
+                banfan(8077);
+                banfan(8080);
+            }
+            // ---------------------------
+            // 64 番
+            if (flag_qinglaotou && !is_banned(8007)) {
+                ans.fans.push({'val': 64, 'id': 8007}); // 清幺九
+                // 不计混幺九、碰碰和、全带幺、双同刻、幺九刻、无字
+                banfan(8017);
+                banfan(8047);
+                banfan(8054);
+                banfan(8066);
+                banfan(8074);
+                banfan(8077);
+            }
+            if (xiaosixi && !is_banned(8008)) {
+                ans.fans.push({'val': 64, 'id': 8008}); // 小四喜
+                // 不计 三风刻, 幺九刻
+                banfan(8037);
+                banfan(8074);
+            }
+            if (xiaosanyuan && !is_banned(8009)) {
+                ans.fans.push({'val': 64, 'id': 8009}); // 小三元
+                // 不计 箭刻, 双箭刻, 组成小三元的两副刻子不计幺九刻
+                banfan(8058);
+                banfan(8059);
+                banfan(8060);
+                banfan(8053);
+                ban_yaojiuke_num += 2;
+            }
+            if (flag_ziyise && !is_banned(8010)) {
+                ans.fans.push({'val': 64, 'id': 8010}); // 字一色
+                // 不计 混幺九, 碰碰和, 全带幺, 幺九刻
+                // 此外删除判断漏洞的混一色
+                banfan(8017);
+                banfan(8047);
+                banfan(8054);
+                banfan(8074);
+
+                banfan(8048);
+            }
+            if (anke_num === 4 && !is_banned(8011)) {
+                ans.fans.push({'val': 64, 'id': 8011}); // 四暗刻
+                // 不计 碰碰和, 不求人, 门前清
+                banfan(8047);
+                banfan(8055);
+                banfan(8063);
             }
 
+            let shuanglonghui = false;
+            for (let i = 0; i <= 2; i++) {
+                if (cnt2[1 + i] >= 2 && cnt2[2 + i] >= 2 && cnt2[3 + i] >= 2)
+                    if (cnt2[7 + i] >= 2 && cnt2[8 + i] >= 2 && cnt2[9 + i] >= 2)
+                        if (cnt2[5 + i] >= 2) {
+                            shuanglonghui = true;
+                            break;
+                        }
+            }
+            if (shuanglonghui && !is_banned(8012)) {
+                ans.fans.push({'val': 64, 'id': 8012}); // 一色双龙会
+                // 不计 七对, 清一色, 平和, 一般高, 老少副, 无字
+                banfan(8018);
+                banfan(8021);
+                banfan(8064);
+                banfan(8070);
+                banfan(8073);
+                banfan(8077);
+            }
             // ---------------------------
+            // 48 番
+            let sitongshun = false, sijiegao = false;
+            for (let i = 0; i <= 2; i++)
+                for (let j = 1; j <= 9; j++) {
+                    if (j !== 1 && j !== 9 && shunzi[i * 9 + j] >= 4)
+                        sitongshun = true;
+                    if (j <= 6 && kezi[i * 9 + j] >= 1 && kezi[i * 9 + j + 1] >= 1 && kezi[i * 9 + j + 2] >= 1 && kezi[i * 9 + j + 3] >= 1)
+                        sijiegao = true;
+                }
+            if (sitongshun && !is_banned(8013)) {
+                ans.fans.push({'val': 48, 'id': 8013}); // 一色四同顺
+                // 不计 一色三同顺, 一色三节高, 七对, 四归一, 一般高
+                banfan(8022);
+                banfan(8023);
+                banfan(8018);
+                banfan(8065);
+                banfan(8070);
+            }
+            if (sijiegao && !is_banned(8014)) {
+                ans.fans.push({'val': 48, 'id': 8014}); // 一色四节高
+                // 不计 一色三同顺, 一色三节高, 碰碰和
+                banfan(8022);
+                banfan(8023);
+                banfan(8047);
+            }
             // ---------------------------
+            // 32 番
+            let sibugao = false;
+            for (let i = 0; i <= 2; i++) {
+                for (let j = 2; j <= 5; j++)
+                    if (shunzi[i * 9 + j] >= 1 && shunzi[i * 9 + j + 1] >= 1 && shunzi[i * 9 + j + 2] >= 1 && shunzi[i * 9 + j + 3] >= 1)
+                        sibugao = true;
+
+                if (shunzi[i * 9 + 2] >= 1 && shunzi[i * 9 + 4] >= 1 && shunzi[i * 9 + 6] >= 1 && shunzi[i * 9 + 8] >= 1)
+                    sibugao = true;
+            }
+            if (sibugao && !is_banned(8015)) {
+                ans.fans.push({'val': 32, 'id': 8015}); // 一色四步高
+                // 不计 一色三步高, 连六, 老少副
+                banfan(8029);
+                banfan(8072);
+                banfan(8073);
+            }
+            if (gangzi_num === 3)
+                ans.fans.push({'val': 32, 'id': 8016}); // 三杠
+            if (flag_hunlaotou && !flag_qinglaotou && !is_banned(8017)) {
+                ans.fans.push({'val': 32, 'id': 8017}); // 混幺九
+                // 不计 碰碰和, 全带幺, 幺九刻
+                banfan(8047);
+                banfan(8054);
+                banfan(8074);
+            }
             // ---------------------------
-            if (angang_num === 1 && gangzi_num === 2)
-                ans.fans.push({'val': 5, 'id': 8082}); // 明暗杠
-            // ---------------------------
-            // 天地人和
-            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat === ju && zimo){
-                // 不计 不求人, 边张, 坎张, 单调将
-                deletefan(ans, 8055);
-                deletefan(ans, 8078);
-                deletefan(ans, 8079);
-                deletefan(ans, 8080);
-                ans.fans.push({'val': 8, 'id': 8083}); // 天和
+            // 24 番
+            // 七星不靠放到最后
+            if (duizi_num === 7 && !is_banned(8018)) {
+                ans.fans.push({'val': 24, 'id': 8018}); // 七对
+                // 不计 不求人、门前清、单钓将
+                banfan(8055);
+                banfan(8063);
+                banfan(8080);
+            }
+            let quanshuangke = true;
+            for (let i = 1; i <= 34; i++)
+                if (i !== 2 && i !== 4 && i !== 6 && i !== 8 && i !== 11 && i !== 13 && i !== 15 && i !== 17 && i !== 20 && i !== 22 && i !== 24 && i !== 26)
+                    if (cnt2[i] >= 1)
+                        quanshuangke = false;
+            if (duizi_num >= 2) // 不能是七对
+                quanshuangke = false;
+            if (quanshuangke && !is_banned(8020)) {
+                ans.fans.push({'val': 24, 'id': 8020}); // 全双刻
+                // 不计 碰碰和、断幺、无字
+                banfan(8047);
+                banfan(8069);
+                banfan(8077);
+            }
+            if (qingyise && !is_banned(8021)) {
+                ans.fans.push({'val': 24, 'id': 8021}); // 清一色
+                // 不计 无字
+                banfan(8077);
             }
 
-            let first_tile = true;
+            if (santongshun && !is_banned(8022)) {
+                ans.fans.push({'val': 24, 'id': 8022}); // 一色三同顺
+                // 不计 一色三节高、一般高
+                banfan(8023);
+                banfan(8070);
+            }
+
+            let sanjiegao = false;
+            for (let j = 0; j <= 2; j++)
+                for (let i = 1; i <= 7; i++)
+                    if (kezi[j * 9 + i] >= 1 && kezi[j * 9 + i + 1] >= 1 && kezi[j * 9 + i + 2] >= 1)
+                        sanjiegao = true;
+            if (sanjiegao && !is_banned(8023)) {
+                ans.fans.push({'val': 24, 'id': 8023}); // 一色三节高
+                // 不计一色三同顺
+                banfan(8022);
+            }
+
+            let quanda = true, quanzhong = true, quanxiao = true;
+            for (let i = 1; i <= 27; i++) {
+                let num = (i - 1) % 9 + 1;
+                if (num <= 6 && cnt2[i] >= 1)
+                    quanda = false;
+                if ((num <= 2 || num >= 7) && cnt2[i] >= 1)
+                    quanzhong = false;
+                if (num >= 4 && cnt2[i] >= 1)
+                    quanxiao = false;
+            }
+            for (let i = 28; i <= 34; i++)
+                if (cnt2[i] >= 1) {
+                    quanda = false;
+                    quanzhong = false;
+                    quanxiao = false;
+                }
+            if (quanda && !is_banned(8024)) {
+                ans.fans.push({'val': 24, 'id': 8024}); // 全大
+                // 不计 大于五, 无字
+                banfan(8035);
+                banfan(8077);
+            }
+            if (quanzhong && !is_banned(8025)) {
+                ans.fans.push({'val': 24, 'id': 8025}); // 全中
+                // 不计 断幺, 无字
+                banfan(8069);
+                banfan(8077);
+            }
+            if (quanxiao && !is_banned(8026)) {
+                ans.fans.push({'val': 24, 'id': 8026}); // 全小
+                // 不计 小于五, 无字
+                banfan(8036);
+                banfan(8077);
+            }
+            // ---------------------------
+            // 16 番
+            if (yiqi && !is_banned(8027)) {
+                ans.fans.push({'val': 16, 'id': 8027}); // 清龙
+                // 不计 连六, 老少副
+                banfan(8072);
+                banfan(8073);
+            }
+            let sanseshuanglonghui = false;
+            if (shunzi[2] >= 1 && shunzi[8] >= 1 && shunzi[11] >= 1 && shunzi[17] >= 1 && typecnt[23][7] >= 1)
+                sanseshuanglonghui = true;
+            if (shunzi[2] >= 1 && shunzi[8] >= 1 && typecnt[14][7] >= 1 && shunzi[20] >= 1 && shunzi[26] >= 1)
+                sanseshuanglonghui = true;
+            if (typecnt[5][7] >= 1 && shunzi[11] >= 1 && shunzi[17] >= 1 && shunzi[20] >= 1 && shunzi[26] >= 1)
+                sanseshuanglonghui = true;
+            if (sanseshuanglonghui && !is_banned(8028)) {
+                ans.fans.push({'val': 16, 'id': 8028}); // 三色双龙会
+                // 不计 喜相逢、老少副、无字、平和
+                banfan(8071);
+                banfan(8073);
+                banfan(8077);
+                banfan(8064);
+            }
+            let sanbugao = false;
+            for (let j = 0; j <= 2; j++) {
+                for (let i = 2; i <= 6; i++)
+                    if (shunzi[j * 9 + i] >= 1 && shunzi[j * 9 + i + 1] >= 1 && shunzi[j * 9 + i + 2] >= 1)
+                        sanbugao = true;
+                for (let i = 0; i <= 2; i++)
+                    if (shunzi[j * 9 + 2 + i] >= 1 && shunzi[j * 9 + 4 + i] >= 1 && shunzi[j * 9 + 6 + i] >= 1)
+                        sanbugao = true;
+            }
+            if (sanbugao && !is_banned(8029))
+                ans.fans.push({'val': 16, 'id': 8029}); // 一色三步高
+            let quandaiwu = true;
+            for (let i = 1; i <= 34; i++) {
+                if (!(i >= 4 && i <= 6) && !(i >= 13 && i <= 15) && !(i >= 22 && i <= 24) && shunzi[i] >= 1)
+                    quandaiwu = false;
+                if (i !== 5 && i !== 14 && i !== 23) {
+                    if (kezi[i] >= 1 || typecnt[i][7] >= 1)
+                        quandaiwu = false;
+                }
+            }
+            if (quandaiwu && !is_banned(8030)) {
+                ans.fans.push({'val': 16, 'id': 8030}); // 全带五
+                // 不计 断幺, 无字
+                banfan(8069);
+                banfan(8077);
+            }
+
+            if (santongke && !is_banned(8031)) {
+                ans.fans.push({'val': 16, 'id': 8031}); // 三同刻
+                // 不计 双同刻
+                banfan(8066);
+            }
+            if (anke_num === 3 && !is_banned(8032))
+                ans.fans.push({'val': 16, 'id': 8032}); // 三暗刻
+            // ---------------------------
+            // 12 番
+            // 全不靠和组合龙放到最后
+            let dayuwu = true, xiaoyuwu = true;
+            for (let i = 1; i <= 27; i++) {
+                let num = (i - 1) % 9 + 1;
+                if (num <= 5 && cnt2[i] >= 1)
+                    dayuwu = false;
+                if (num >= 5 && cnt2[i] >= 1)
+                    xiaoyuwu = false;
+            }
+            for (let i = 28; i <= 34; i++)
+                if (cnt2[i] >= 1) {
+                    dayuwu = false;
+                    xiaoyuwu = false;
+                }
+            if (dayuwu && !is_banned(8035)) {
+                ans.fans.push({'val': 12, 'id': 8035}); // 大于五
+                // 不计 无字
+                banfan(8077);
+            }
+            if (xiaoyuwu && !is_banned(8036)) {
+                ans.fans.push({'val': 12, 'id': 8036}); // 小于五
+                // 不计 无字
+                banfan(8077);
+            }
+            let sanfengke = false;
+            if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1)
+                sanfengke = true;
+            if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[31] >= 1)
+                sanfengke = true;
+            if (kezi[28] >= 1 && kezi[30] >= 1 && kezi[31] >= 1)
+                sanfengke = true;
+            if (kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1)
+                sanfengke = true;
+            if (sanfengke && !xiaosixi && !is_banned(8037)) {
+                ans.fans.push({'val': 12, 'id': 8037}); // 三风刻
+                // 组成三风刻的三副刻子不计幺九刻
+                ban_yaojiuke_num += 3;
+            }
+            // ---------------------------
+            // 8 番, 无番和放到最后
+            let hualong = false;
+            if (shunzi[2] >= 1 && shunzi[14] >= 1 && shunzi[26] >= 1)
+                hualong = true;
+            if (shunzi[2] >= 1 && shunzi[17] >= 1 && shunzi[23] >= 1)
+                hualong = true;
+            if (shunzi[5] >= 1 && shunzi[11] >= 1 && shunzi[26] >= 1)
+                hualong = true;
+            if (shunzi[5] >= 1 && shunzi[17] >= 1 && shunzi[20] >= 1)
+                hualong = true;
+            if (shunzi[8] >= 1 && shunzi[11] >= 1 && shunzi[23] >= 1)
+                hualong = true;
+            if (shunzi[8] >= 1 && shunzi[14] >= 1 && shunzi[20] >= 1)
+                hualong = true;
+            if (hualong && !is_banned(8038)) {
+                ans.fans.push({'val': 8, 'id': 8038}); // 花龙
+                // 还有喜相逢时, 删除连六和老少副
+                if (ersetongshun_num >= 1) {
+                    banfan(8072);
+                    banfan(8073);
+                }
+            }
+
+            let tuibudao = true;
+            for (let i = 0; i <= 34; i++)
+                if (i !== 10 && i !== 11 && i !== 12 && i !== 13 && i !== 14 && i !== 17 && i !== 18)
+                    if (i !== 20 && i !== 22 && i !== 23 && i !== 24 && i !== 26 && i !== 27)
+                        if (i !== 32 && cnt2[i] >= 1) {
+                            tuibudao = false;
+                            break;
+                        }
+            if (tuibudao && !is_banned(8039)) {
+                ans.fans.push({'val': 8, 'id': 8039}); // 推不倒
+                // 不计 缺一门
+                banfan(8076);
+            }
+
+            if (sansetongshun && !is_banned(8040)) {
+                ans.fans.push({'val': 8, 'id': 8040}); // 三色三同顺
+                // 不计 喜相逢
+                banfan(8071);
+            }
+            let sansesanjiegao = false;
+            for (let i = 1; i <= 9; i++) {
+                if (i <= 7 && kezi[i] >= 1 && kezi[i + 9 + 1] >= 1 && kezi[i + 18 + 2] >= 1)
+                    sansesanjiegao = true;
+                if (i <= 7 && kezi[i] >= 1 && kezi[i + 9 + 2] >= 1 && kezi[i + 18 + 1] >= 1)
+                    sansesanjiegao = true;
+                if (i !== 1 && i !== 9 && kezi[i] >= 1 && kezi[i + 9 - 1] >= 1 && kezi[i + 18 + 1] >= 1)
+                    sansesanjiegao = true;
+                if (i !== 1 && i !== 9 && kezi[i] >= 1 && kezi[i + 9 + 1] >= 1 && kezi[i + 18 - 1] >= 1)
+                    sansesanjiegao = true;
+                if (i >= 3 && kezi[i] >= 1 && kezi[i + 9 - 2] >= 1 && kezi[i + 18 - 1] >= 1)
+                    sansesanjiegao = true;
+                if (i >= 3 && kezi[i] >= 1 && kezi[i + 9 - 1] >= 1 && kezi[i + 18 - 2] >= 1)
+                    sansesanjiegao = true;
+            }
+            if (sansesanjiegao && !is_banned(8041))
+                ans.fans.push({'val': 8, 'id': 8041}); // 三色三节高
+            if (paishan.length === 0) {
+                if (zimo && !is_banned(8043)) {
+                    ans.fans.push({'val': 8, 'id': 8043}); // 妙手回春
+                    // 不计 自摸
+                    banfan(8081);
+                } else if (!is_banned(8044))
+                    ans.fans.push({'val': 8, 'id': 8044}); // 海底捞月
+            }
+            if (zimo && lstdrawtype === 0 && !is_banned(8045)) {
+                ans.fans.push({'val': 8, 'id': 8045}); // 杠上开花
+                // 不计 自摸
+                banfan(8081);
+            }
+            if (lstaction.name === "RecordAnGangAddGang" && !is_banned(8046)) {
+                ans.fans.push({'val': 8, 'id': 8046}); // 抢杠和
+                // 不计 和绝张
+                banfan(8057);
+            }
+            // ---------------------------
+            // 6 番
+            if (kezi_num === 4 && !is_banned(8047))
+                ans.fans.push({'val': 6, 'id': 8047}); // 碰碰和
+            if (hunyise && !qingyise && !is_banned(8048))
+                ans.fans.push({'val': 6, 'id': 8048}); // 混一色
+            let sansesanbugao = false;
+            for (let i = 2; i <= 8; i++) {
+                if (i <= 6 && shunzi[i] >= 1 && shunzi[i + 9 + 1] >= 1 && shunzi[i + 18 + 2] >= 1)
+                    sansesanbugao = true;
+                if (i <= 6 && shunzi[i] >= 1 && shunzi[i + 9 + 2] >= 1 && shunzi[i + 18 + 1] >= 1)
+                    sansesanbugao = true;
+                if (i !== 2 && i !== 8 && shunzi[i] >= 1 && shunzi[i + 9 - 1] >= 1 && shunzi[i + 18 + 1] >= 1)
+                    sansesanbugao = true;
+                if (i !== 2 && i !== 8 && shunzi[i] >= 1 && shunzi[i + 9 + 1] >= 1 && shunzi[i + 18 - 1] >= 1)
+                    sansesanbugao = true;
+                if (i >= 4 && shunzi[i] >= 1 && shunzi[i + 9 - 2] >= 1 && shunzi[i + 18 - 1] >= 1)
+                    sansesanbugao = true;
+                if (i >= 4 && shunzi[i] >= 1 && shunzi[i + 9 - 1] >= 1 && shunzi[i + 18 - 2] >= 1)
+                    sansesanbugao = true;
+            }
+            if (sansesanbugao && !is_banned(8049))
+                ans.fans.push({'val': 6, 'id': 8049}); // 三色三步高
+            if (wumenqi && !is_banned(8050))
+                ans.fans.push({'val': 6, 'id': 8050}); // 五门齐
+            let quanqiuren = true;
+            if (zimo)
+                quanqiuren = false;
+            if (fulu[seat].length !== 4)
+                quanqiuren = false;
+            else
+                for (let i = 0; i < 4; i++)
+                    if (fulu[seat][i].type === 3)
+                        quanqiuren = false;
+
+            if (quanqiuren && !is_banned(8051)) {
+                ans.fans.push({'val': 6, 'id': 8051}); // 全求人
+                // 不计 单钓将
+                banfan(8080);
+            }
+            if (angang_num === 2 && !is_banned(8052)) {
+                ans.fans.push({'val': 6, 'id': 8052}); // 双暗杠
+                // 不计 双暗刻
+                banfan(8067);
+            }
+
+            let shuangjianke = false;
+            if (kezi[32] >= 1 && kezi[33] >= 1)
+                shuangjianke = true;
+            if (kezi[32] >= 1 && kezi[34] >= 1)
+                shuangjianke = true;
+            if (kezi[33] >= 1 && kezi[34] >= 1)
+                shuangjianke = true;
+            if (shuangjianke && !is_banned(8053)) {
+                // 不计箭刻, 组成双箭刻的两副刻子不计幺九刻
+                banfan(8058);
+                banfan(8059);
+                banfan(8060);
+                ban_yaojiuke_num += 2;
+                ans.fans.push({'val': 6, 'id': 8053}); // 双箭刻
+            }
+            // ---------------------------
+            // 4 番
+            if (hunquandai && !is_banned(8054))
+                ans.fans.push({'val': 4, 'id': 8054}); // 全带幺
+            if (menqing && zimo && !is_banned(8055)) {
+                // 不计 自摸
+                banfan(8081);
+                ans.fans.push({'val': 4, 'id': 8055}); // 不求人
+            }
+
+            if (minggang_num === 2 && gangzi_num === 2 && !is_banned(8056))
+                ans.fans.push({'val': 4, 'id': 8056}); // 双明杠
+
+            let lastile_num = 0;
             for (let i = 0; i < playercnt; i++) {
-                if (i === ju)
-                    continue;
-                if (!(liqiinfo[i].yifa !== 0 && liqiinfo[i].liqi === 0))
-                    first_tile = false;
+                for (let j = 0; j < paihe[i].tiles.length; j++) // 查牌河, 注意被鸣走的牌还在 paihe 中
+                    if (equaltile(lastile, paihe[i].tiles[j]))
+                        lastile_num++;
+                for (let j = 0; j < fulu[i].length; j++) { // 查副露
+                    if (fulu[i][j].from !== undefined) {
+                        for (let k = 0; k < fulu[i][j].tile.length - 1; k++) // -1 是要剔除掉被鸣走的牌
+                            if (equaltile(lastile, fulu[i][j].tile[k]))
+                                lastile_num++;
+                    }
+                }
             }
-            if (first_tile && seat !== ju && !zimo){
-                // 不计 门前清
-                deletefan(ans, 8063);
-                ans.fans.push({'val': 8, 'id': 8084}); // 地和
+            if (lastile_num === 4 && !is_banned(8057))
+                ans.fans.push({'val': 4, 'id': 8057}); // 和绝张
+            // ---------------------------
+            // 2 番
+            if (!is_banned(8058))
+                for (let i = 0; i < kezi[32]; i++) {
+                    ans.fans.push({'val': 2, 'id': 8058}); // 箭刻 白
+                    // 这副刻子不计幺九刻
+                    ban_yaojiuke_num++;
+                }
+            if (!is_banned(8059))
+                for (let i = 0; i < kezi[33]; i++) {
+                    ans.fans.push({'val': 2, 'id': 8059}); // 箭刻 发
+                    // 这副刻子不计幺九刻
+                    ban_yaojiuke_num++;
+                }
+            if (!is_banned(8060))
+                for (let i = 0; i < kezi[34]; i++) {
+                    ans.fans.push({'val': 2, 'id': 8060}); // 箭刻 中
+                    // 这副刻子不计幺九刻
+                    ban_yaojiuke_num++;
+                }
+
+            if (!is_banned(8061))
+                for (let i = 0; i < kezi[tiletoint((chang + 1).toString() + "z")]; i++) {
+                    ans.fans.push({'val': 2, 'id': 8061}); // 圈风刻
+                    // 这副刻子不计幺九刻
+                    ban_yaojiuke_num++;
+                }
+            if (!is_banned(8062))
+                for (let i = 0; i < kezi[tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z")]; i++) {
+                    ans.fans.push({'val': 2, 'id': 8062}); // 门风刻
+                    // 这副刻子不计幺九刻
+                    ban_yaojiuke_num++;
+                }
+
+            if (menqing && !zimo && !is_banned(8063))
+                ans.fans.push({'val': 2, 'id': 8063}); // 门前清
+
+            if (pinghu && !is_banned(8064)) {
+                ans.fans.push({'val': 2, 'id': 8064}); // 平和
+                // 不计 无字
+                banfan(8077);
             }
 
-            // 在立直麻将中人和的基础上添加亲家的下一家没有一发(因为国标没有立直, 所以任何情况下切牌后都没有一发)
-            if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && zimo){
-                // 不计 不求人
-                deletefan(ans, 8055);
-                ans.fans.push({'val': 8, 'id': 8085}); // 人和
+            let siguiyi_num = 0;
+            for (let i = 1; i <= 34; i++)
+                if (cnt2[i] === 4 && typecnt[i][2] === 0 && typecnt[i][3] === 0)
+                    siguiyi_num++;
+            if (siguiyi_num >= 1 && !is_banned(8065))
+                ans.fans.push({'val': 2 * siguiyi_num, 'id': 8065}); // 四归一
+
+            if (shuangtongke && !is_banned(8066))
+                ans.fans.push({'val': 2, 'id': 8066}); // 双同刻
+
+            if (anke_num === 2 && !is_banned(8067))
+                ans.fans.push({'val': 2, 'id': 8067}); // 双暗刻
+            if (angang_num === 1 && gangzi_num === 1 && !is_banned(8068))
+                ans.fans.push({'val': 2, 'id': 8068}); // 暗杠
+            if (flag_duanyao && !is_banned(8069)) {
+                ans.fans.push({'val': 2, 'id': 8069}); // 断幺
+                // 不计 无字
+                banfan(8077);
             }
-            else if (liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0 && seat !== ju && !zimo && liqiinfo[(ju + 1) % playercnt].yifa === 0){
-                // 不计 门前清
-                deletefan(ans, 8063);
-                ans.fans.push({'val': 8, 'id': 8085}); // 人和
+            // ---------------------------
+            // 1 番
+            if (beikou >= 1 && !is_banned(8070))
+                ans.fans.push({'val': beikou, 'id': 8070}); // 一般高
+            if (ersetongshun_num >= 1 && !sansetongshun && !is_banned(8071)) {
+                if (beikou >= 2)
+                    ans.fans.push({'val': 1, 'id': 8071}); // 有2个一般高的情况下喜相逢最多只会算1个
+                else
+                    ans.fans.push({'val': ersetongshun_num, 'id': 8071}); // 喜相逢
             }
+            let lianliu_num = 0;
+            for (let j = 0; j <= 2; j++)
+                for (let i = 2; i <= 5; i++)
+                    if (shunzi[j * 9 + i] >= 1 && shunzi[j * 9 + i + 3] >= 1)
+                        lianliu_num++;
+            if (lianliu_num >= 1 && !is_banned(8072)) {
+                if (beikou >= 2 || ersetongshun_num >= 2) // 有2个一般高, 喜相逢的情况下连六最多只会算1个
+                    ans.fans.push({'val': 1, 'id': 8072});
+                else
+                    ans.fans.push({'val': lianliu_num, 'id': 8072}); // 连六
+            }
+
+            let laoshaofu_num = 0;
+            for (let j = 0; j <= 2; j++)
+                if (shunzi[j * 9 + 2] >= 1 && shunzi[j * 9 + 8] >= 1) {
+                    if (shunzi[j * 9 + 2] >= 2 && shunzi[j * 9 + 8] >= 2)
+                        laoshaofu_num += 2;
+                    else
+                        laoshaofu_num++;
+                }
+            if (laoshaofu_num >= 1 && !is_banned(8073)) {
+                if (beikou >= 2 || ersetongshun_num >= 2) // 有2个一般高, 喜相逢的情况下老少副最多只会算1个
+                    ans.fans.push({'val': 1, 'id': 8073});
+                else
+                    ans.fans.push({'val': laoshaofu_num, 'id': 8073}); // 老少副
+            }
+
+            let yaojiuke_num = 0;
+            yaojiuke_num += kezi[1] + kezi[9] + kezi[10] + kezi[18] + kezi[19] + kezi[27];
+            yaojiuke_num += kezi[28] + kezi[29] + kezi[30] + kezi[31] + kezi[32] + kezi[33] + kezi[34];
+            if (!is_banned(8074) && yaojiuke_num - ban_yaojiuke_num >= 1)
+                ans.fans.push({'val': yaojiuke_num - ban_yaojiuke_num, 'id': 8074}); // 幺九刻
+
+            if (minggang_num === 1 && gangzi_num === 1 && !is_banned(8075))
+                ans.fans.push({'val': 1, 'id': 8075}); // 明杠
+
+            let queyimen = false;
+            let havewanzi = false, havebingzi = false, havesuozi = false;
+            for (let i = 1; i <= 9; i++) {
+                if (cnt2[i] >= 1)
+                    havewanzi = true;
+                if (cnt2[i + 9] >= 1)
+                    havebingzi = true;
+                if (cnt2[i + 18] >= 1)
+                    havesuozi = true;
+            }
+            if (havewanzi && havebingzi && !havesuozi)
+                queyimen = true;
+            if (havewanzi && !havebingzi && havesuozi)
+                queyimen = true;
+            if (!havewanzi && havebingzi && havesuozi)
+                queyimen = true;
+            if (queyimen && !is_banned(8076))
+                ans.fans.push({'val': 1, 'id': 8076}); // 缺一门
+
+            let wuzi = true;
+            for (let i = 28; i <= 34; i++)
+                if (cnt2[i] >= 1)
+                    wuzi = false;
+            if (wuzi && !is_banned(8077))
+                ans.fans.push({'val': 1, 'id': 8077}); // 无字
+
+            let cnt_tiles = [];
+            for (let i = 0; i < nxt2.length; i++)
+                cnt_tiles[i] = 0;
+            for (let i = 0; i < tiles.length; i++)
+                cnt_tiles[tiletoint(tiles[i])]++;
+
+            let bianzhang = false;
+            if ((tiletoint(lastile) - 1) % 9 + 1 === 3 && cnt_tiles[tiletoint(lastile) - 1] >= 1 && cnt_tiles[tiletoint(lastile) - 2] >= 1)
+                bianzhang = true;
+            if ((tiletoint(lastile) - 1) % 9 + 1 === 7 && cnt_tiles[tiletoint(lastile) + 1] >= 1 && cnt_tiles[tiletoint(lastile) + 2] >= 1)
+                bianzhang = true;
+            if (bianzhang && !is_banned(8078)) {
+                cnt[tiletoint(lastile)]--;
+                tiles.length--;
+                if (calctingpai(seat, true).length === 1) // 严格独听
+                    ans.fans.push({'val': 1, 'id': 8078}); // 边张
+                tiles.push(lastile);
+                cnt[tiletoint(lastile)]++;
+            }
+
+            let kanzhang = cnt_tiles[tiletoint(lastile) - 1] >= 1 && cnt_tiles[tiletoint(lastile) + 1] >= 1;
+            if (kanzhang && !bianzhang && !is_banned(8079)) {
+                cnt[tiletoint(lastile)]--;
+                tiles.length--;
+                if (calctingpai(seat, true).length === 1) // 严格独听
+                    ans.fans.push({'val': 1, 'id': 8079}); // 坎张
+                tiles.push(lastile);
+                cnt[tiletoint(lastile)]++;
+            }
+
+            let dandiaojiang = true;
+            if (typecnt[tiletoint(lastile)][7] !== 1)
+                dandiaojiang = false;
+
+            if (dandiaojiang && !kanzhang && !bianzhang && !is_banned(8080)) {
+                cnt[tiletoint(lastile)]--;
+                tiles.length--;
+                if (calctingpai(seat, true).length === 1) // 严格独听
+                    ans.fans.push({'val': 1, 'id': 8080}); // 单钓将
+                tiles.push(lastile);
+                cnt[tiletoint(lastile)]++;
+            }
+
+            if (zimo && !is_banned(8081))
+                ans.fans.push({'val': 1, 'id': 8081}); // 自摸
             // ---------------------------
             // ---------------------------
             // ---------------------------
             // 无番和
-            if (ans.fans.length === 0)
+            if (ans.fans.length === 0 && !is_banned(8042))
                 ans.fans.push({'val': 8, 'id': 8042}); // 无番和
             // ---------------------------
             // ---------------------------

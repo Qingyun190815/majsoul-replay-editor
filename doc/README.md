@@ -82,11 +82,11 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 有无双倍役满(天凤规则: 大四喜, 四单, 纯九, 十三面算单倍役满, 但复合役满仍有效)
         - 有无累计役满(即最高三倍满)
 
-2. 在 [add_function.js](../add_function.js) 文件中还提供了以下两种雀魂没有的模式, 但性能原因载入这个文件后放映牌谱会很卡,
-   目前不建议使用
+2. 在 [add_function.js](../add_function.js) 文件中还提供了以下几种雀魂没有的模式, 但该文件维护很困难, bug可能比较多
     - 血流成河,
       有仓库原作者的视频参考: [【雀魂】（自制回放）假设雀魂有了血流成河（快速版）](https://www.bilibili.com/video/BV1dB4y1F78x)
     - 二人麻将
+    - 开立直
 
 3. 另外增加了国标模式, 但本人对国标不是很熟, 可能有很多bug, 如需使用请把 [guobiao.js](../guobiao.js) 里面的内容也输入到控制台,
    并在 `'detail_rule'` 中注明 `'guobiao': true`, 详细说明请参照 products

@@ -1,520 +1,798 @@
 "use strict";
 
-// code.js 文件 129157 行
+var view;
+
 function editfunction() {
-    !function (t) {
-        t.ActionDiscardTile = function (e) {
-            function i() {
-                return null !== e && e.apply(this, arguments) || this
+    // code.js 文件 129157 行 : ActionDiscardTile
+    !function (O) {
+        O.ActionDiscardTile = function (K) {
+            function U() {
+                return null !== K && K['apply'](this, arguments) || this;
             }
 
-            return __extends(i, e), i.play = function (e) {
-                app.Log.log("ActionDiscardTile play data:" + JSON.stringify(e)), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !1);
-                var i = e.seat,
-                    n = mjcore.MJPai.Create(e.tile),
-                    a = !(null == e.is_liqi || void 0 === e.is_liqi || !e.is_liqi);
-                if (e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !0), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].AddQiPai(n, a, e.moqie), a) {
-                    e.is_wliqi ? t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].PlaySound("act_drich") : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].PlaySound("act_rich");
-                    var r = t.DesktopMgr.Inst.player_effects[i][game.EView.lizhi_bgm];
-                    if (r && 0 !== r) {
-                        var s = cfg.item_definition.item.get(r).sargs[0];
-                        t.AudioMgr.lizhiMuted ? t.AudioMgr.PlayLiqiBgm(s, 300, !0) : (t.BgmListMgr.stopBgm(), Laya.timer.once(1e3, this, function () {
-                            t.DesktopMgr.Inst.gameing && (t.BgmListMgr.PlayMJBgm("", !0), t.AudioMgr.PlayLiqiBgm(s, 300, !0))
-                        }))
-                    }
-                }
-                var o = !1;
-                e.tile_state && e.tile_state > 0 && (o = !0), i === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(n, o, !1, e.moqie) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].onDiscardTile(e.moqie, e.tile, o, !1), e.operation && Laya.timer.once(500, this, function () {
-                    t.ActionOperation.play(e.operation)
-                }), void 0 !== e.zhenting && void 0 === e.operation && (uiscript.UI_DesktopInfo.Inst.setZhenting(e.zhenting), uiscript.UI_TingPai.Inst.setZhengting(e.zhenting)), i === t.DesktopMgr.Inst.seat && uiscript.UI_TingPai.Inst.setData1(e, !1), Laya.timer.once(500, this, function () {
-                    a ? t.DesktopMgr.Inst.clearMindVoice() : t.DesktopMgr.Inst.playMindVoice()
-                })
-            }, i.fastplay = function (e, i) {
-                app.Log.log("ActionDiscardTile fastplay data:" + JSON.stringify(e) + " usetime:" + i), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !0);
-                var n = e.seat,
-                    a = mjcore.MJPai.Create(e.tile),
-                    r = !(null === e.is_liqi || void 0 === e.is_liqi || !e.is_liqi),
-                    s = !1;
-                e.tile_state && e.tile_state > 0 && (s = !0), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddQiPai(a, r, e.moqie, !1), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !1), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(a, s, !0, e.moqie) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].onDiscardTile(e.moqie, e.tile, s, !0), e.operation && -1 !== i && Laya.timer.once(500, this, function () {
-                    t.ActionOperation.play(e.operation, i)
-                }), void 0 !== e.zhenting && void 0 === e.operation && (uiscript.UI_DesktopInfo.Inst.setZhenting(e.zhenting), uiscript.UI_TingPai.Inst.setZhengting(e.zhenting)), n === t.DesktopMgr.Inst.seat && uiscript.UI_TingPai.Inst.setData1(e, !0)
-            }, i.record = function (e, i) {
-                void 0 === i && (i = 0), app.Log.log("ActionDiscardTile record data:" + JSON.stringify(e)), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !0);
-                var n = e.seat,
-                    a = mjcore.MJPai.Create(e.tile),
-                    r = !(null === e.is_liqi || void 0 === e.is_liqi || !e.is_liqi),
-                    s = !1;
+            return __extends(U, K),
+                U['play'] = function (K) {
+                    app.Log.log('ActionDiscardTile play data:' + JSON['stringify'](K));
+                    var U = 500;
+                    K['doras'] && O['DesktopMgr'].Inst['WhenDoras'](K['doras'], !1);
+                    var V = K.seat
+                        , N = mjcore['MJPai']['Create'](K.tile)
+                        , q = !(null == K['is_liqi'] || void 0 === K['is_liqi'] || !K['is_liqi']);
 
-
-                if (e.is_kailiqi) {
-                    if (e.seat !== view.DesktopMgr.Inst.seat) {
-                        for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand.length; i++) view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand[i].DoAnim_FullDown();
-                        for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand.length; i++) view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand[i].is_open = true;
-                    }
-                    /*else{
-                      for (o = 0; o < view.DesktopMgr.Inst.players[0].hand.length; o++) view.DesktopMgr.Inst.players[0].hand[o].Hule();
-                      for (var r = [], s =view.DesktopMgr.Inst.players[0].trans_hand3D, o = 0; o < view.DesktopMgr.Inst.players[0].hand.length; o++) {
-                        var l = new t.HandPai3D(s);
-                        l.SetVal(view.DesktopMgr.Inst.players[0].hand[o].val, !1), l.SetIndex(o, !1), l.Stand(), t.DesktopMgr.Inst.is_chuanma_mode() && (l.pai3D.is_gap = l.val.type === view.DesktopMgr.Inst.players[0].gap_type, l.pai3D.OnChoosedPai()), r.push(l)
-                      }
-                      var h = r.length;
-                      for (o = 0; o < h; o++) view.DesktopMgr.Inst.players[0]._hand3d[o].DoAnim_FullDown();
-                    }*/
-                }
-
-
-                if (e.tile_state && e.tile_state > 0 && (s = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !0), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddQiPai(a, r, e.moqie), r && (e.is_wliqi ? t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].PlaySound("act_drich") : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].PlaySound("act_rich"), uiscript.UI_DesktopInfo.Inst.changeHeadEmo(n, "emoji_9", 2e3)), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(a, s, !1, e.moqie) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].recordDiscardTile(a, e.moqie, s, !1), e.tingpais && t.DesktopMgr.Inst.setTingpai(e.seat, e.tingpais), t.DesktopMgr.Inst.mode === t.EMJMode.live_broadcast && uiscript.UI_Live_Broadcast.Inst.during_play && e.operations)
-                    for (var o = 0; o < e.operations.length; o++) t.ActionOperation.ob(e.operations[o], i, 450);
-                return 500
-            }, i.fastrecord = function (e, i) {
-                void 0 === i && (i = -1), app.Log.log("ActionDiscardTile fastrecord data:" + JSON.stringify(e)), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !0);
-                var n = e.seat,
-                    a = mjcore.MJPai.Create(e.tile),
-                    r = !(null === e.is_liqi || void 0 === e.is_liqi || !e.is_liqi),
-                    s = !1;
-
-
-                if (e.is_kailiqi) {
-                    if (e.seat !== view.DesktopMgr.Inst.seat) {
-                        for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand.length; i++) view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand[i].DoAnim_FullDown();
-                        for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand.length; i++) view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(e.seat)].hand[i].is_open = true;
-                    }
-                    /*else{
-                      for (o = 0; o < view.DesktopMgr.Inst.players[0].hand.length; o++) view.DesktopMgr.Inst.players[0].hand[o].Hule();
-                      for (var r = [], s =view.DesktopMgr.Inst.players[0].trans_hand3D, o = 0; o < view.DesktopMgr.Inst.players[0].hand.length; o++) {
-                        var l = new t.HandPai3D(s);
-                        l.SetVal(view.DesktopMgr.Inst.players[0].hand[o].val, !1), l.SetIndex(o, !1), l.Stand(), t.DesktopMgr.Inst.is_chuanma_mode() && (l.pai3D.is_gap = l.val.type === view.DesktopMgr.Inst.players[0].gap_type, l.pai3D.OnChoosedPai()), r.push(l)
-                      }
-                      var h = r.length;
-                      for (o = 0; o < h; o++)view.DesktopMgr.Inst.players[0]._hand3d[o].FullDown();
-                    }*/
-                }
-
-
-                if (e.tile_state && e.tile_state > 0 && (s = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !1), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddQiPai(a, r, e.moqie, !1), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(a, s, !0, e.moqie) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].recordDiscardTile(a, e.moqie, s, !0), e.tingpais && t.DesktopMgr.Inst.setTingpai(e.seat, e.tingpais), t.DesktopMgr.Inst.mode === t.EMJMode.live_broadcast && uiscript.UI_Live_Broadcast.Inst.during_play && i >= 0 && e.operations)
-                    for (var o = 0; o < e.operations.length; o++) t.ActionOperation.ob(e.operations[o], i, 450)
-            }, i
-        }(t.ActionBase)
-    }(view || (view = {}));
-    !function (t) {
-        t.ActionBabei = function (e) {
-            function i() {
-                return null !== e && e.apply(this, arguments) || this
-            }
-
-            return __extends(i, e), i.play = function (e) {
-                app.Log.log("ActionBabei play data:" + JSON.stringify(e)), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !1);
-                var i = e.seat, n;
-                e.tile ? n = mjcore.MJPai.Create(e.tile) : n = mjcore.MJPai.Create("4z");
-                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].AddBabei(n, e.moqie, !0), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].PlaySound("act_babei");
-                var a = !1;
-                e.tile_state && e.tile_state > 0 && (a = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !0), i === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.onBabei(n, a, !1) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].onBabei(e.moqie, a, !1), e.operation && Laya.timer.once(500, this, function () {
-                    t.ActionOperation.play(e.operation)
-                }), void 0 !== e.zhenting && void 0 === e.operation && (uiscript.UI_DesktopInfo.Inst.setZhenting(e.zhenting), uiscript.UI_TingPai.Inst.setZhengting(e.zhenting)), i === t.DesktopMgr.Inst.seat && uiscript.UI_TingPai.Inst.setData1(e, !1), t.DesktopMgr.Inst.waiting_lingshang_deal_tile = !0
-            }, i.fastplay = function (e, i) {
-                app.Log.log("ActionBabei fastplay data:" + JSON.stringify(e) + " usetime:" + i), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !0);
-                var n = e.seat, a;
-                e.tile ? a = mjcore.MJPai.Create(e.tile) : a = mjcore.MJPai.Create("4z");
-                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddBabei(a, e.moqie, !1);
-                var r = !1;
-                e.tile_state && e.tile_state > 0 && (r = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !1), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.onBabei(a, r, !0) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].onBabei(e.moqie, r, !0), e.operation && -1 !== i && Laya.timer.once(500, this, function () {
-                    t.ActionOperation.play(e.operation, i)
-                }), void 0 !== e.zhenting && void 0 === e.operation && (uiscript.UI_DesktopInfo.Inst.setZhenting(e.zhenting), uiscript.UI_TingPai.Inst.setZhengting(e.zhenting)), n === t.DesktopMgr.Inst.seat && uiscript.UI_TingPai.Inst.setData1(e, !0), t.DesktopMgr.Inst.waiting_lingshang_deal_tile = !0
-            }, i.record = function (e, i) {
-                void 0 === i && (i = 0), app.Log.log("ActionBabei record data:" + JSON.stringify(e)), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !0);
-                var n = e.seat, a;
-                e.tile ? a = mjcore.MJPai.Create(e.tile) : a = mjcore.MJPai.Create("4z");
-                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddBabei(a, e.moqie, !0), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].PlaySound("act_babei");
-                var r = !1;
-                if (e.tile_state && e.tile_state > 0 && (r = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !0), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.onBabei(a, r, !1) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].recordBabei(a, e.moqie, r, !1), e.tingpais && t.DesktopMgr.Inst.setTingpai(e.seat, e.tingpais), t.DesktopMgr.Inst.mode === t.EMJMode.live_broadcast && uiscript.UI_Live_Broadcast.Inst.during_play && e.operations)
-                    for (var s = 0; s < e.operations.length; s++) t.ActionOperation.ob(e.operations[s], i, 450);
-                return t.DesktopMgr.Inst.waiting_lingshang_deal_tile = !0, 1e3
-            }, i.fastrecord = function (e, i) {
-                void 0 === i && (i = -1), app.Log.log("ActionBabei fastrecord data:" + JSON.stringify(e)), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !0);
-                var n = e.seat, a;
-                e.tile ? a = mjcore.MJPai.Create(e.tile) : a = mjcore.MJPai.Create("4z");
-                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].AddBabei(a, e.moqie, !1);
-                var r = !1;
-                if (e.tile_state && e.tile_state > 0 && (r = !0), e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !1), n === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.onBabei(a, r, !0) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(n)].recordBabei(a, e.moqie, r, !0), e.tingpais && t.DesktopMgr.Inst.setTingpai(e.seat, e.tingpais), t.DesktopMgr.Inst.mode === t.EMJMode.live_broadcast && uiscript.UI_Live_Broadcast.Inst.during_play && i >= 0 && e.operations)
-                    for (var s = 0; s < e.operations.length; s++) t.ActionOperation.ob(e.operations[s], i, 450);
-                t.DesktopMgr.Inst.waiting_lingshang_deal_tile = !0
-            }, i
-        }(t.ActionBase)
-    }(view || (view = {}));
-    !function (t) {
-        t.ActionHuleXueLiu = function (e) {
-            function i() {
-                return null !== e && e.apply(this, arguments) || this
-            }
-
-            return __extends(i, e), i.record = function (e) {
-                var i = this, n = 1;
-                e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, 0);
-                Laya.timer.once(100, this, function () {
-                    var a = e.hules, r = 0;
-                    if (a[0].zimo) {
-                        var s = a[0].seat;
-                        uiscript.UI_Huleshow.Inst.showZimo([t.DesktopMgr.Inst.seat2LocalPosition(s)]), r += n ? 1200 : 200,
-                            Laya.timer.once(r, i, function () {
-                                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(s)].AddBabei(mjcore.MJPai.Create(a[0].hu_tile), true, 1);
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai();
-                                s === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(mjcore.MJPai.Create(a[0].hu_tile), 0, 0) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(s)].recordDiscardTile(mjcore.MJPai.Create(a[0].hu_tile), true, 0, 0);
-                            })
-                        if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0;
-                        //if(t.DesktopMgr.Inst.lastqipai&&t.DesktopMgr.Inst.lastqipai.model.meshRender)t.DesktopMgr.Inst.lastqipai.OnChoosedPai();
-                    } else {
-                        for (var l = -1, h = [], c = 0; c < a.length; c++) {
-                            var _ = a[c].seat;
-                            h.push(t.DesktopMgr.Inst.seat2LocalPosition(_)), -1 === l && (l = _)
+                    // 添加内容: kailiqi
+                    if (K.is_kailiqi) {
+                        if (K.seat !== view.DesktopMgr.Inst.seat) {
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].DoAnim_FullDown();
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].is_open = true;
                         }
-                        l >= 0 && (t.DesktopMgr.Inst.player_effects[l][game.EView.hupai_effect]), n && uiscript.UI_Huleshow.Inst.showRong(h), r += n ? 1200 : 200, Laya.timer.once(r, i, function () {
-                            if (!t.DesktopMgr.Inst.isLastPaiMingPai()) t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(t.DesktopMgr.Inst.lastpai_seat)].QiPaiNoPass();
-                            else {
-                                t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
-                                t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, t.DesktopMgr.Inst.lastqipai.lastColor);
-                                t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
-                                t.DesktopMgr.Inst.lastqipai.val.type += 10;
-                                t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                    }
+
+                    if (K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !0),
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddQiPai'](N, q, K['moqie']),
+                    O['DesktopMgr'].Inst['is_field_spell_mode']() && uiscript['UI_FieldSpell'].Inst['onDiscard'](V, q),
+                    O['DesktopMgr'].Inst['is_zhanxing_mode']() && uiscript['UI_Astrology'].Inst['alignTile'](),
+                        q) {
+                        K['is_wliqi'] ? O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['PlaySound']('act_drich') :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['PlaySound']('act_rich');
+                        var _ = O['DesktopMgr'].Inst['player_effects'][V][game['EView']['lizhi_bgm']];
+                        if (_ && 0 !== _) {
+                            var h = cfg['item_definition'].item.get(_)['sargs'][0];
+                            O['AudioMgr']['lizhiMuted'] ? O['AudioMgr']['PlayLiqiBgm'](h, 300, !0) : (O['BgmListMgr']['stopBgm'](),
+                                Laya['timer'].once(1000, this, function () {
+                                    O['DesktopMgr'].Inst['gameing'] && (O['BgmListMgr']['PlayMJBgm']('', !0),
+                                        O['AudioMgr']['PlayLiqiBgm'](h, 300, !0));
+                                }));
+                        }
+                    }
+                    var t = !1;
+                    return !N['touming'] && K['tile_state'] && K['tile_state'] > 0 && (t = !0),
+                        V === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['OnDiscardTile'](N, t, !1, K['moqie']) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['onDiscardTile'](K['moqie'], K.tile, t, !1),
+                    K['operation'] && Laya['timer'].once(500, this, function () {
+                        O['ActionOperation'].play(K['operation']);
+                    }),
+                    void 0 !== K['zhenting'] && void 0 === K['operation'] && (uiscript['UI_DesktopInfo'].Inst['setZhenting'](K['zhenting']),
+                        uiscript['UI_TingPai'].Inst['setZhengting'](K['zhenting'])),
+                    V === O['DesktopMgr'].Inst.seat && uiscript['UI_TingPai'].Inst['setData1'](K, !1),
+                    O['DesktopMgr'].Inst['is_tianming_mode']() && uiscript['UI_DesktopInfo'].Inst['SetTianMingRate'](V,
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['getTianMingRate'](), !0),
+                    K['yongchang'] && uiscript['UI_DesktopInfo'].Inst['SetYongChangRate'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['yongchang'].seat), K['yongchang']['moqie_count'], K['yongchang']['moqie_bonus'], K['yongchang']['shouqie_count'], K['yongchang']['shouqie_bonus'], !0),
+                    K['hun_zhi_yi_ji_info'] && (uiscript['UI_DesktopInfo'].Inst['SetHunZhiContinueDealCount'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['hun_zhi_yi_ji_info'].seat), K['hun_zhi_yi_ji_info']['continue_deal_count'], K['hun_zhi_yi_ji_info']['overload'], !0),
+                    K['hun_zhi_yi_ji_info']['overload'] || (U = q ? 1100 : 600)),
+                        Laya['timer'].once(500, this, function () {
+                            q ? O['DesktopMgr'].Inst['clearMindVoice']() : O['DesktopMgr'].Inst['playMindVoice']();
+                        }),
+                        U;
+                }
+                ,
+                U['fastplay'] = function (K, U) {
+                    app.Log.log('ActionDiscardTile fastplay data:' + JSON['stringify'](K) + ' usetime:' + U),
+                    K['doras'] && O['DesktopMgr'].Inst['WhenDoras'](K['doras'], !0);
+                    var V = K.seat
+                        , N = mjcore['MJPai']['Create'](K.tile)
+                        , q = !(null == K['is_liqi'] || void 0 === K['is_liqi'] || !K['is_liqi'])
+                        , _ = !1;
+
+                    // 添加内容: kailiqi
+                    if (K.is_kailiqi) {
+                        if (K.seat !== view.DesktopMgr.Inst.seat) {
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].DoAnim_FullDown();
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].is_open = true;
+                        }
+                    }
+
+                    !N['touming'] && K['tile_state'] && K['tile_state'] > 0 && (_ = !0),
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddQiPai'](N, q, K['moqie'], !1),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !1),
+                        V === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['OnDiscardTile'](N, _, !0, K['moqie']) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['onDiscardTile'](K['moqie'], K.tile, _, !0),
+                    K['operation'] && -1 !== U && Laya['timer'].once(500, this, function () {
+                        O['ActionOperation'].play(K['operation'], U);
+                    }),
+                    void 0 !== K['zhenting'] && void 0 === K['operation'] && (uiscript['UI_DesktopInfo'].Inst['setZhenting'](K['zhenting']),
+                        uiscript['UI_TingPai'].Inst['setZhengting'](K['zhenting'])),
+                    V === O['DesktopMgr'].Inst.seat && uiscript['UI_TingPai'].Inst['setData1'](K, !0),
+                    O['DesktopMgr'].Inst['is_field_spell_mode']() && uiscript['UI_FieldSpell'].Inst['onDiscard'](V, q),
+                    O['DesktopMgr'].Inst['is_zhanxing_mode']() && uiscript['UI_Astrology'].Inst['alignTile'](),
+                    O['DesktopMgr'].Inst['is_tianming_mode']() && uiscript['UI_DesktopInfo'].Inst['SetTianMingRate'](V, O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['getTianMingRate']()),
+                    K['yongchang'] && uiscript['UI_DesktopInfo'].Inst['SetYongChangRate'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['yongchang'].seat), K['yongchang']['moqie_count'], K['yongchang']['moqie_bonus'], K['yongchang']['shouqie_count'], K['yongchang']['shouqie_bonus'], !1),
+                    K['hun_zhi_yi_ji_info'] && uiscript['UI_DesktopInfo'].Inst['SetHunZhiContinueDealCount'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['hun_zhi_yi_ji_info'].seat), K['hun_zhi_yi_ji_info']['continue_deal_count'], K['hun_zhi_yi_ji_info']['overload'], !1);
+                }
+                ,
+                U['record'] = function (K, U) {
+                    void 0 === U && (U = 0),
+                        app.Log.log("ActionDiscardTile record data:" + JSON.stringify(K));
+                    var V = 500;
+                    K.doras && O.DesktopMgr.Inst.WhenDoras(K.doras, !0);
+                    var N = K.seat,
+                        q = mjcore.MJPai.Create(K.tile),
+                        _ = !(null === K.is_liqi || void 0 === K.is_liqi || !K.is_liqi),
+                        h = !1;
+
+                    // 添加内容: kailiqi
+                    if (K.is_kailiqi) {
+                        if (K.seat !== view.DesktopMgr.Inst.seat) {
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].DoAnim_FullDown();
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].is_open = true;
+                        }
+                    }
+
+                    if (!q['touming'] && K['tile_state'] && K['tile_state'] > 0 && (h = !0),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !0),
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](N)]['AddQiPai'](q, _, K['moqie']),
+                    _ && (K['is_wliqi'] ? O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](N)]['PlaySound']('act_drich') :
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](N)]['PlaySound']('act_rich'),
+                        uiscript['UI_DesktopInfo'].Inst['changeHeadEmo'](N, 'emoji_9', 2000)),
+                        N === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['OnDiscardTile'](q, h, !1, K['moqie']) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](N)]['recordDiscardTile'](q, K['moqie'], h, !1),
+                    K['tingpais'] && O['DesktopMgr'].Inst['setTingpai'](K.seat, K['tingpais']),
+                    O['DesktopMgr'].Inst.mode === O['EMJMode']['live_broadcast'] && uiscript['UI_Live_Broadcast'].Inst['during_play'] && K['operations'])
+                        for (var t = 0; t < K['operations']['length']; t++)
+                            O['ActionOperation'].ob(K['operations'][t], U, 450);
+                    return K['operation'] && Laya['timer'].once(500, this, function () {
+                        O['ActionOperation'].play(K['operation']);
+                    }),
+                    O['DesktopMgr'].Inst['is_field_spell_mode']() && uiscript['UI_FieldSpell'].Inst['onDiscard'](N, _),
+                    O['DesktopMgr'].Inst['is_zhanxing_mode']() && uiscript['UI_Astrology'].Inst['alignTile'](),
+                    O['DesktopMgr'].Inst['is_tianming_mode']() &&
+                    uiscript['UI_DesktopInfo'].Inst['SetTianMingRate'](N, O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](N)]['getTianMingRate'](), !0),
+                    K['yongchang'] && uiscript['UI_DesktopInfo'].Inst['SetYongChangRate'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['yongchang'].seat),
+                        K['yongchang']['moqie_count'], K['yongchang']['moqie_bonus'], K['yongchang']['shouqie_count'], K['yongchang']['shouqie_bonus'], !0),
+                    K['hun_zhi_yi_ji_info'] &&
+                    (uiscript['UI_DesktopInfo'].Inst['SetHunZhiContinueDealCount'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['hun_zhi_yi_ji_info'].seat),
+                        K['hun_zhi_yi_ji_info']['continue_deal_count'], K['hun_zhi_yi_ji_info']['overload'], !0),
+                    K['hun_zhi_yi_ji_info']['overload'] || (V = _ ? 1100 : 600)),
+                        V;
+                }
+                ,
+                U['fastrecord'] = function (K, U) {
+                    void 0 === U && (U = -1),
+                        app.Log.log('ActionDiscardTile fastrecord data:' + JSON['stringify'](K)),
+                    K['doras'] && O['DesktopMgr'].Inst['WhenDoras'](K['doras'], !0);
+                    var V = K.seat
+                        , N = mjcore['MJPai']['Create'](K.tile)
+                        , q = !(null == K['is_liqi'] || void 0 == K['is_liqi'] || !K['is_liqi'])
+                        , _ = !1;
+
+                    // 添加内容: kailiqi
+                    if (K.is_kailiqi) {
+                        if (K.seat !== view.DesktopMgr.Inst.seat) {
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].DoAnim_FullDown();
+                            for (let i = 0; i < view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand.length; i++)
+                                view.DesktopMgr.Inst.players[view.DesktopMgr.Inst.seat2LocalPosition(K.seat)].hand[i].is_open = true;
+                        }
+                    }
+
+                    if (!N['touming'] && K['tile_state'] && K['tile_state'] > 0 && (_ = !0),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !1),
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddQiPai'](N, q, K['moqie'], !1),
+                        V === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['OnDiscardTile'](N, _, !0, K['moqie']) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['recordDiscardTile'](N, K['moqie'], _, !0),
+                    K['tingpais'] && O['DesktopMgr'].Inst['setTingpai'](K.seat, K['tingpais']),
+                    O['DesktopMgr'].Inst.mode === O['EMJMode']['live_broadcast'] && uiscript['UI_Live_Broadcast'].Inst['during_play'] && U >= 0 && K['operations'])
+                        for (var h = 0; h < K['operations']['length']; h++)
+                            O['ActionOperation'].ob(K['operations'][h], U, 450);
+                    O['DesktopMgr'].Inst['is_field_spell_mode']() && uiscript['UI_FieldSpell'].Inst['onDiscard'](V, q),
+                    O['DesktopMgr'].Inst['is_zhanxing_mode']() && uiscript['UI_Astrology'].Inst['alignTile'](),
+                    O['DesktopMgr'].Inst['is_tianming_mode']() && uiscript['UI_DesktopInfo'].Inst['SetTianMingRate'](V,
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['getTianMingRate']()),
+                    K['yongchang'] && uiscript['UI_DesktopInfo'].Inst['SetYongChangRate'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['yongchang'].seat),
+                        K['yongchang']['moqie_count'], K['yongchang']['moqie_bonus'], K['yongchang']['shouqie_count'], K['yongchang']['shouqie_bonus'], !1),
+                    K['hun_zhi_yi_ji_info'] &&
+                    uiscript['UI_DesktopInfo'].Inst['SetHunZhiContinueDealCount'](O['DesktopMgr'].Inst['seat2LocalPosition'](K['hun_zhi_yi_ji_info'].seat),
+                        K['hun_zhi_yi_ji_info']['continue_deal_count'], K['hun_zhi_yi_ji_info']['overload'], !1);
+                }
+                ,
+                U;
+        }(O.ActionBase)
+    }(view || (view = {}));
+    // code.js 文件 260255 行 : ActionBabei
+    !function (O) {
+        O.ActionBabei = function (K) {
+            function U() {
+                return null !== K && K.apply(this, arguments) || this
+            }
+
+            return __extends(U, K),
+                U.play = function (K) {
+                    app.Log.log('ActionBabei play data:' + JSON['stringify'](K)),
+                    K['doras'] && O['DesktopMgr'].Inst['WhenDoras'](K['doras'], !1);
+                    var U = K.seat, V;
+
+                    // 添加内容: 拔的牌可以是其他牌
+                    V = K.tile ? mjcore['MJPai']['Create'](K.tile) : mjcore['MJPai']['Create']('4z');
+
+                    O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](U)]['AddBabei'](V, K['moqie'], !0),
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](U)]['PlaySound']('act_babei');
+                    var N = !1;
+                    K['tile_state'] && K['tile_state'] > 0 && (N = !0),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !0),
+                        U === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['onBabei'](V, N, !1) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](U)]['onBabei'](K['moqie'], N, !1),
+                    K['operation'] && Laya['timer'].once(500, this, function () {
+                        O['ActionOperation'].play(K['operation']);
+                    }),
+                    void 0 !== K['zhenting'] && void 0 === K['operation'] && (uiscript['UI_DesktopInfo'].Inst['setZhenting'](K['zhenting']),
+                        uiscript['UI_TingPai'].Inst['setZhengting'](K['zhenting'])),
+                    U === O['DesktopMgr'].Inst.seat && uiscript['UI_TingPai'].Inst['setData1'](K, !1),
+                        O['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] = !0;
+                }
+                ,
+                U.fastplay = function (K, U) {
+                    app.Log.log('ActionBabei fastplay data:' + JSON['stringify'](K) + ' usetime:' + U),
+                    K['doras'] && O['DesktopMgr'].Inst['WhenDoras'](K['doras'], !0);
+                    var V = K.seat, N;
+
+                    // 添加内容: 拔的牌可以是其他牌
+                    N = K.tile ? mjcore.MJPai.Create(K.tile) : mjcore.MJPai.Create("4z");
+
+                    O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddBabei'](N, K['moqie'], !1);
+                    var q = !1;
+                    K['tile_state'] && K['tile_state'] > 0 && (q = !0),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !1),
+                        V === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['onBabei'](N, q, !0) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['onBabei'](K['moqie'], q, !0),
+                    K['operation'] && -1 !== U && Laya['timer'].once(500, this, function () {
+                        O['ActionOperation'].play(K['operation'], U);
+                    }),
+                    void 0 !== K['zhenting'] && void 0 === K['operation'] && (uiscript['UI_DesktopInfo'].Inst['setZhenting'](K['zhenting']),
+                        uiscript['UI_TingPai'].Inst['setZhengting'](K['zhenting'])),
+                    V === O['DesktopMgr'].Inst.seat && uiscript['UI_TingPai'].Inst['setData1'](K, !0),
+                        O['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] = !0;
+                }
+                ,
+                U.record = function (K, U) {
+                    void 0 === U && (U = 0),
+                        app.Log.log("ActionBabei record data:" + JSON.stringify(K)), K.doras && O.DesktopMgr.Inst.WhenDoras(K.doras, !0);
+                    var V = K.seat, N;
+
+                    // 添加内容: 拔的牌可以是其他牌
+                    N = K.tile ? mjcore.MJPai.Create(K.tile) : mjcore.MJPai.Create("4z");
+
+                    ['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddBabei'](N, K['moqie'], !0),
+                        O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['PlaySound']('act_babei');
+                    var q = !1;
+                    if (K['tile_state'] && K['tile_state'] > 0 && (q = !0),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !0),
+                        V === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['onBabei'](N, q, !1) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['recordBabei'](N, K['moqie'], q, !1),
+                    K['tingpais'] && O['DesktopMgr'].Inst['setTingpai'](K.seat, K['tingpais']),
+                    O['DesktopMgr'].Inst.mode === O['EMJMode']['live_broadcast'] && uiscript['UI_Live_Broadcast'].Inst['during_play'] && K['operations'])
+                        for (var _ = 0; _ < K['operations']['length']; _++)
+                            O['ActionOperation'].ob(K['operations'][_], U, 450);
+                    return O['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] = !0,
+                        1000;
+                }
+                ,
+                U.fastrecord = function (K, U) {
+                    void 0 === U && (U = -1),
+                        app.Log.log("ActionBabei fastrecord data:" + JSON.stringify(K)),
+                    K.doras && O.DesktopMgr.Inst.WhenDoras(K.doras, !0);
+                    var V = K.seat, N;
+
+                    // 添加内容: 拔的牌可以是其他牌
+                    N = K.tile ? mjcore.MJPai.Create(K.tile) : mjcore.MJPai.Create("4z");
+
+                    O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddBabei'](N, K['moqie'], !1);
+                    var q = !1;
+                    if (K['tile_state'] && K['tile_state'] > 0 && (q = !0),
+                    K.muyu && O['DesktopMgr'].Inst['onMuyuChange'](K.muyu, !1),
+                        V === O['DesktopMgr'].Inst.seat ? O['DesktopMgr'].Inst['mainrole']['onBabei'](N, q, !0) :
+                            O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['recordBabei'](N, K['moqie'], q, !0),
+                    K['tingpais'] && O['DesktopMgr'].Inst['setTingpai'](K.seat, K['tingpais']),
+                    O['DesktopMgr'].Inst.mode === O['EMJMode']['live_broadcast'] && uiscript['UI_Live_Broadcast'].Inst['during_play'] && U >= 0 &&
+                    K['operations'])
+                        for (var _ = 0; _ < K['operations']['length']; _++)
+                            O['ActionOperation'].ob(K['operations'][_], U, 450);
+                    O['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] = !0;
+                }
+                ,
+                U;
+        }(O.ActionBase)
+    }(view || (view = {}));
+    // 自创函数: ActionHuleXueLiu, 改编自 code.js 文件 190038 行 : ActionHuleXueZhanMid
+    !function (O) {
+        O.ActionHuleXueLiu = function (K) {
+            function U() {
+                return null !== K && K.apply(this, arguments) || this
+            }
+
+            return __extends(U, K),
+                U.record = function (K) {
+                    var U = this;
+                    var n = 1;
+
+                    K['doras'] && O['DesktopMgr'].Inst['WhenDoras'](K['doras'], !1);
+                    Laya.timer.once(100, this, function () {
+                        var N = K.hules
+                            , q = 0;
+                        if (N[0].zimo) {
+                            var _ = N[0].seat;
+                            uiscript.UI_Huleshow.Inst.showZimo([O.DesktopMgr.Inst.seat2LocalPosition(_)]),
+                                q += n ? 1200 : 200,
+                                Laya.timer.once(q, U, function () {
+                                    O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(_)].AddBabei(mjcore.MJPai.Create(N[0].hu_tile), true, 1);
+                                    if (O.DesktopMgr.Inst.lastqipai)
+                                        O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai();
+                                    _ === O.DesktopMgr.Inst.seat ? O.DesktopMgr.Inst.mainrole.OnDiscardTile(mjcore.MJPai.Create(N[0].hu_tile), 0, 0) :
+                                        O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(_)].recordDiscardTile(mjcore.MJPai.Create(N[0].hu_tile), true, 0, 0);
+                                })
+                            if (O.DesktopMgr.Inst.lastqipai)
+                                O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0;
+                        } else {
+                            for (var l = -1, h = [], c = 0; c < N.length; c++) {
+                                var _ = N[c].seat;
+                                h.push(O.DesktopMgr.Inst.seat2LocalPosition(_)), -1 === l && (l = _)
                             }
-                            for (var e = 0; e < a.length; e++) {
-                                var i = a[e].seat;
-                                var s = mjcore.MJPai.Create(a[0].hu_tile);
-                                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].AddBabei(s, true, 1);
-                                //i==t.DesktopMgr.Inst.seat?t.DesktopMgr.Inst.mainrole.onBabei(mjcore.MJPai.Create(a[e].hu_tile),0,0):t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].recordBabei(mjcore.MJPai.Create(a[e].hu_tile),true,0,0);
-                                if (e !== 0) t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
-                                else t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, 1);
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, t.DesktopMgr.Inst.lastqipai.lastColor);
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.val.type += 10;
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                            l >= 0 && (O.DesktopMgr.Inst.player_effects[l][game.EView.hupai_effect]), n && uiscript.UI_Huleshow.Inst.showRong(h), q += n ? 1200 : 200, Laya.timer.once(q, U, function () {
+                                if (!O.DesktopMgr.Inst.isLastPaiMingPai()) O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(O.DesktopMgr.Inst.lastpai_seat)].QiPaiNoPass();
+                                else {
+                                    O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
+                                    // O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, O.DesktopMgr.Inst.lastqipai.lastColor);
+                                    // O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
+                                    O.DesktopMgr.Inst.lastqipai.val.type += 10;
+                                    O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                                }
+                                for (var e = 0; e < N.length; e++) {
+                                    var i = N[e].seat;
+                                    var s = mjcore.MJPai.Create(N[0].hu_tile);
+                                    O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(i)].AddBabei(s, true, 1);
+                                    //i==t.DesktopMgr.Inst.seat?t.DesktopMgr.Inst.mainrole.onBabei(mjcore.MJPai.Create(a[e].hu_tile),0,0):t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].recordBabei(mjcore.MJPai.Create(a[e].hu_tile),true,0,0);
+                                    if (e !== 0) O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
+                                    else O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, 1);
+                                    // if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, O.DesktopMgr.Inst.lastqipai.lastColor);
+                                    // if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
+                                    if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.val.type += 10;
+                                    if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                                }
+                            })
+                        }
+                        q += 2e3, Laya.timer.once(q, U, function () {
+                            for (var n = 0, r = O.DesktopMgr.Inst.players; n < r.length; n++) {
+                                r[n].hideLiqi()
+                            }
+                            K.liqi ? Laya.timer.once(2500, U, function () {
+                                O.ActionLiqi.play(K.liqi)
+                            }) : uiscript.UI_DesktopInfo.Inst.setLiqibang(0);
+                            for (var s = [], o = 0; o < K.delta_scores.length; o++) {
+                                var l = {
+                                    title_id: 0,
+                                    score: 0,
+                                    delta: 0
+                                };
+                                if (K.delta_scores[o] > 0) {
+                                    o === O.DesktopMgr.Inst.seat, uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_7", -1), l.delta = K.delta_scores[o];
+                                    for (var h = 0, c = N; h < c.length; h++) {
+                                        var _ = c[h];
+                                        if (_.seat === o) {
+                                            l.title_id = _.title_id;
+                                            break
+                                        }
+                                    }
+                                } else
+                                    K.delta_scores[o] < 0 && (l.delta = K.delta_scores[o], uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_8", -1));
+                                l.score = K.old_scores[o], s.push(l)
+                            }
+                            Laya.timer.once(200, U, function () {
+                                O.DesktopMgr.Inst.setScores(K.scores)
+                            }), uiscript.UI_Hu_Xuezhan.Inst.showScoreChange(s)
+                        }), q += 3e3, Laya.timer.once(q, U, function () {
+                            O.DesktopMgr.Inst.ActionRunComplete()
+                        })
+                    })
+                    return 6e3;
+                },
+                U.fastrecord = function (e) {
+                    app.Log.log("ActionHule fastplay data:" + JSON.stringify(e));
+                    var n = e.hules;
+                    if (n[0].zimo) {
+                        var a = n[0].seat;
+                        O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(a)].AddBabei(mjcore.MJPai.Create(n[0].hu_tile), true, 0);
+                        a === O.DesktopMgr.Inst.seat ? O.DesktopMgr.Inst.mainrole.OnDiscardTile(mjcore.MJPai.Create(n[0].hu_tile), 0, 1) : O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(a)].recordDiscardTile(mjcore.MJPai.Create(n[0].hu_tile), true, 0, 1);
+                        if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai();
+                    } else {
+                        if (!O.DesktopMgr.Inst.isLastPaiMingPai()) O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(O.DesktopMgr.Inst.lastpai_seat)].QiPaiNoPass();
+                        else {
+                            O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
+                            // O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, O.DesktopMgr.Inst.lastqipai.lastColor);
+                            // O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
+                            O.DesktopMgr.Inst.lastqipai.val.type += 10;
+                            O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                        }
+                        for (let s = 0; s < n.length; s++) {
+                            var o = n[s].seat;
+                            O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(o)].AddBabei(mjcore.MJPai.Create(n[s].hu_tile), true, 0);
+                            //o==t.DesktopMgr.Inst.seat?t.DesktopMgr.Inst.mainrole.onBabei(mjcore.MJPai.Create(n[s].hu_tile),0,1):t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(o)].recordBabei(mjcore.MJPai.Create(n[s].hu_tile),true,0,1);
+                            if (s !== 0)
+                                O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
+                            else
+                                O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, 1);
+                            // if (O.DesktopMgr.Inst.lastqipai)
+                            //     O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, O.DesktopMgr.Inst.lastqipai.lastColor);
+                            // if (O.DesktopMgr.Inst.lastqipai)
+                            //     O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
+                            if (O.DesktopMgr.Inst.lastqipai)
+                                O.DesktopMgr.Inst.lastqipai.val.type += 10;
+                            if (O.DesktopMgr.Inst.lastqipai)
+                                O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                        }
+                    }
+                    for (var l = 0, h = O.DesktopMgr.Inst.players; l < h.length; l++) {
+                        var c = h[l];
+                        c.hideLiqi()
+                    }
+                    e.liqi ? O.ActionLiqi.fastplay(e.liqi, 0) :
+                        uiscript.UI_DesktopInfo.Inst.setLiqibang(0), O.DesktopMgr.Inst.setScores(e.scores)
+                }
+                ,
+                U
+        }(O.ActionBase)
+    }(view || (view = {}));
+    // 自创函数: ActionHuleXueLiuEnd, 改编自 code.js 文件 147282 行 : ActionHuleXueZhanEnd
+    !function (O) {
+        O.ActionHuleXueLiuEnd = function (K) {
+            function U() {
+                return null !== K && K.apply(this, arguments) || this
+            }
+
+            return __extends(U, K),
+                U.record = function (e) {
+                    var i = this, n = 1;
+                    e.doras && O.DesktopMgr.Inst.WhenDoras(e.doras, 0);
+                    Laya.timer.once(100, this, function () {
+                        var a = e.hules, r = 0;
+                        if (e.hules_history) Laya.timer.once(3e3, i, function () {
+                            for (var i = 0, a = e.hules_history; i < a.length; i++) {
+                                var r = a[i],
+                                    s = O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(r.seat)];
+                                if (s && s.already_xuezhan_hule_state) {
+                                    for (var o = [], l = 0; l < r.hand.length; l++) o.push(mjcore.MJPai.Create(r.hand[l]));
+                                    o = o.sort(mjcore.MJPai.Distance), s.onXuezhanEnd(o, !n)
+                                }
                             }
                         })
-                    }
-                    r += 2e3, Laya.timer.once(r, i, function () {
-                        for (var n = 0, r = t.DesktopMgr.Inst.players; n < r.length; n++) {
-                            r[n].hideLiqi()
-                        }
-                        e.liqi ? Laya.timer.once(2500, i, function () {
-                            t.ActionLiqi.play(e.liqi)
-                        }) : uiscript.UI_DesktopInfo.Inst.setLiqibang(0);
-                        for (var s = [], o = 0; o < e.delta_scores.length; o++) {
-                            var l = {
-                                title_id: 0,
-                                score: 0,
-                                delta: 0
-                            };
-                            if (e.delta_scores[o] > 0) {
-                                o === t.DesktopMgr.Inst.seat, uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_7", -1), l.delta = e.delta_scores[o];
-                                for (var h = 0, c = a; h < c.length; h++) {
-                                    var _ = c[h];
-                                    if (_.seat === o) {
-                                        l.title_id = _.title_id;
-                                        break
-                                    }
-                                }
-                            } else e.delta_scores[o] < 0 && (l.delta = e.delta_scores[o], uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_8", -1));
-                            l.score = e.old_scores[o], s.push(l)
-                        }
-                        Laya.timer.once(200, i, function () {
-                            t.DesktopMgr.Inst.setScores(e.scores)
-                        }), uiscript.UI_Hu_Xuezhan.Inst.showScoreChange(s)
-                    }), r += 3e3, Laya.timer.once(r, i, function () {
-                        t.DesktopMgr.Inst.ActionRunComplete()
-                    })
-                })
-                return 6e3;
-            }, i.fastrecord = function (e) {
-                app.Log.log("ActionHule fastplay data:" + JSON.stringify(e));
-                var n = e.hules;
-                if (n[0].zimo) {
-                    a = n[0].seat;
-                    t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(a)].AddBabei(mjcore.MJPai.Create(n[0].hu_tile), true, 0);
-                    a === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(mjcore.MJPai.Create(n[0].hu_tile), 0, 1) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(a)].recordDiscardTile(mjcore.MJPai.Create(n[0].hu_tile), true, 0, 1);
-                    if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai();
-                } else {
-                    if (!t.DesktopMgr.Inst.isLastPaiMingPai()) t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(t.DesktopMgr.Inst.lastpai_seat)].QiPaiNoPass();
-                    else {
-                        t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
-                        t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, t.DesktopMgr.Inst.lastqipai.lastColor);
-                        t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
-                        t.DesktopMgr.Inst.lastqipai.val.type += 10;
-                        t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai()
-                    }
-                    for (s = 0; s < n.length; s++) {
-                        var o = n[s].seat;
-                        t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(o)].AddBabei(mjcore.MJPai.Create(n[s].hu_tile), true, 0);
-                        //o==t.DesktopMgr.Inst.seat?t.DesktopMgr.Inst.mainrole.onBabei(mjcore.MJPai.Create(n[s].hu_tile),0,1):t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(o)].recordBabei(mjcore.MJPai.Create(n[s].hu_tile),true,0,1);
-                        if (s !== 0) t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
-                        else t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, 1);
-                        if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, t.DesktopMgr.Inst.lastqipai.lastColor);
-                        if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
-                        if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.val.type += 10;
-                        if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai()
-                    }
-                }
-                for (var l = 0, h = t.DesktopMgr.Inst.players; l < h.length; l++) {
-                    var c = h[l];
-                    c.hideLiqi()
-                }
-                e.liqi ? t.ActionLiqi.fastplay(e.liqi, 0) : uiscript.UI_DesktopInfo.Inst.setLiqibang(0), t.DesktopMgr.Inst.setScores(e.scores)
-            }, i
-        }(t.ActionBase)
-    }(view || (view = {}));
-    !function (t) {
-        t.ActionHuleXueLiuEnd = function (e) {
-            function i() {
-                return null !== e && e.apply(this, arguments) || this
-            }
-
-            return __extends(i, e), i.record = function (e) {
-                var i = this, n = 1;
-                e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, 0);
-                Laya.timer.once(100, this, function () {
-                    var a = e.hules, r = 0;
-                    if (e.hules_history) Laya.timer.once(3e3, i, function () {
-                        for (var i = 0, a = e.hules_history; i < a.length; i++) {
-                            var r = a[i],
-                                s = t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(r.seat)];
-                            if (s && s.already_xuezhan_hule_state) {
-                                for (var o = [], l = 0; l < r.hand.length; l++) o.push(mjcore.MJPai.Create(r.hand[l]));
-                                o = o.sort(mjcore.MJPai.Distance), s.onXuezhanEnd(o, !n)
+                        if (a[0].zimo) {
+                            var s = a[0].seat;
+                            uiscript.UI_Huleshow.Inst.showZimo([O.DesktopMgr.Inst.seat2LocalPosition(s)]), r += n ? 1200 : 200,
+                                Laya.timer.once(r, i, function () {
+                                    O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(s)].AddBabei(mjcore.MJPai.Create(a[0].hu_tile), true, 1);
+                                    if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai();
+                                    s === O.DesktopMgr.Inst.seat ? O.DesktopMgr.Inst.mainrole.OnDiscardTile(mjcore.MJPai.Create(a[0].hu_tile), 0, 0) : O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(s)].recordDiscardTile(mjcore.MJPai.Create(a[0].hu_tile), true, 0, 0);
+                                })
+                            if (O.DesktopMgr.Inst.lastqipai) O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0;
+                            //if(t.DesktopMgr.Inst.lastqipai&&t.DesktopMgr.Inst.lastqipai.model.meshRender)t.DesktopMgr.Inst.lastqipai.OnChoosedPai();
+                        } else {
+                            for (var l = -1, h = [], c = 0; c < a.length; c++) {
+                                var _ = a[c].seat;
+                                h.push(O.DesktopMgr.Inst.seat2LocalPosition(_)), -1 === l && (l = _)
                             }
-                        }
-                    })
-                    if (a[0].zimo) {
-                        var s = a[0].seat;
-                        uiscript.UI_Huleshow.Inst.showZimo([t.DesktopMgr.Inst.seat2LocalPosition(s)]), r += n ? 1200 : 200,
-                            Laya.timer.once(r, i, function () {
-                                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(s)].AddBabei(mjcore.MJPai.Create(a[0].hu_tile), true, 1);
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai();
-                                s === t.DesktopMgr.Inst.seat ? t.DesktopMgr.Inst.mainrole.OnDiscardTile(mjcore.MJPai.Create(a[0].hu_tile), 0, 0) : t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(s)].recordDiscardTile(mjcore.MJPai.Create(a[0].hu_tile), true, 0, 0);
+                            l >= 0 && (O.DesktopMgr.Inst.player_effects[l][game.EView.hupai_effect]), n && uiscript.UI_Huleshow.Inst.showRong(h), r += n ? 1200 : 200, Laya.timer.once(r, i, function () {
+                                if (!O.DesktopMgr.Inst.isLastPaiMingPai())
+                                    O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(O.DesktopMgr.Inst.lastpai_seat)].QiPaiNoPass();
+                                else {
+                                    O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
+                                    // O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, O.DesktopMgr.Inst.lastqipai.lastColor);
+                                    // O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
+                                    O.DesktopMgr.Inst.lastqipai.val.type += 10;
+                                    O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                                }
+                                for (let e = 0; e < a.length; e++) {
+                                    var i = a[e].seat;
+                                    var s = mjcore.MJPai.Create(a[0].hu_tile);
+                                    O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(i)].AddBabei(s, true, 1);
+                                    //i==t.DesktopMgr.Inst.seat?t.DesktopMgr.Inst.mainrole.onBabei(mjcore.MJPai.Create(a[e].hu_tile),0,0):t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].recordBabei(mjcore.MJPai.Create(a[e].hu_tile),true,0,0);
+                                    if (e !== 0)
+                                        O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
+                                    else
+                                        O.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, 1);
+                                    // if (O.DesktopMgr.Inst.lastqipai)
+                                    //     O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, O.DesktopMgr.Inst.lastqipai.lastColor);
+                                    // if (O.DesktopMgr.Inst.lastqipai)
+                                    //     O.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
+                                    if (O.DesktopMgr.Inst.lastqipai)
+                                        O.DesktopMgr.Inst.lastqipai.val.type += 10;
+                                    if (O.DesktopMgr.Inst.lastqipai)
+                                        O.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, O.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                                }
                             })
-                        if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0;
-                        //if(t.DesktopMgr.Inst.lastqipai&&t.DesktopMgr.Inst.lastqipai.model.meshRender)t.DesktopMgr.Inst.lastqipai.OnChoosedPai();
-                    } else {
-                        for (var l = -1, h = [], c = 0; c < a.length; c++) {
-                            var _ = a[c].seat;
-                            h.push(t.DesktopMgr.Inst.seat2LocalPosition(_)), -1 === l && (l = _)
                         }
-                        l >= 0 && (t.DesktopMgr.Inst.player_effects[l][game.EView.hupai_effect]), n && uiscript.UI_Huleshow.Inst.showRong(h), r += n ? 1200 : 200, Laya.timer.once(r, i, function () {
-                            if (!t.DesktopMgr.Inst.isLastPaiMingPai()) t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(t.DesktopMgr.Inst.lastpai_seat)].QiPaiNoPass();
-                            else {
-                                t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
-                                t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, t.DesktopMgr.Inst.lastqipai.lastColor);
-                                t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
-                                t.DesktopMgr.Inst.lastqipai.val.type += 10;
-                                t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai()
+                        r += 2e3, Laya.timer.once(r, i, function () {
+                            for (var n = 0, r = O.DesktopMgr.Inst.players; n < r.length; n++) {
+                                r[n].hideLiqi()
                             }
-                            for (var e = 0; e < a.length; e++) {
-                                var i = a[e].seat;
-                                var s = mjcore.MJPai.Create(a[0].hu_tile);
-                                t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].AddBabei(s, true, 1);
-                                //i==t.DesktopMgr.Inst.seat?t.DesktopMgr.Inst.mainrole.onBabei(mjcore.MJPai.Create(a[e].hu_tile),0,0):t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].recordBabei(mjcore.MJPai.Create(a[e].hu_tile),true,0,0);
-                                if (e !== 0) t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, .4);
-                                else t.DesktopMgr.Inst.lastqipai.lastColor = new Laya.Vector4(1, .78, .78, 1);
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, t.DesktopMgr.Inst.lastqipai.lastColor);
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.model.meshRender.sharedMaterial.blend = 2;
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.val.type += 10;
-                                if (t.DesktopMgr.Inst.lastqipai) t.DesktopMgr.Inst.lastqipai.isxuezhanhu = !0, t.DesktopMgr.Inst.lastqipai.OnChoosedPai()
-                            }
-                        })
-                    }
-                    r += 2e3, Laya.timer.once(r, i, function () {
-                        for (var n = 0, r = t.DesktopMgr.Inst.players; n < r.length; n++) {
-                            r[n].hideLiqi()
-                        }
-                        e.liqi ? Laya.timer.once(2500, i, function () {
-                            t.ActionLiqi.play(e.liqi)
-                        }) : uiscript.UI_DesktopInfo.Inst.setLiqibang(0);
-                        for (var s = [], o = 0; o < e.delta_scores.length; o++) {
-                            var l = {
-                                title_id: 0,
-                                score: 0,
-                                delta: 0
-                            };
-                            if (e.delta_scores[o] > 0) {
-                                o === t.DesktopMgr.Inst.seat, uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_7", -1), l.delta = e.delta_scores[o];
-                                for (var h = 0, c = a; h < c.length; h++) {
-                                    var _ = c[h];
-                                    if (_.seat === o) {
-                                        l.title_id = _.title_id;
-                                        break
+                            e.liqi ? Laya.timer.once(2500, i, function () {
+                                O.ActionLiqi.play(e.liqi)
+                            }) : uiscript.UI_DesktopInfo.Inst.setLiqibang(0);
+                            for (var s = [], o = 0; o < e.delta_scores.length; o++) {
+                                var l = {
+                                    title_id: 0,
+                                    score: 0,
+                                    delta: 0
+                                };
+                                if (e.delta_scores[o] > 0) {
+                                    o === O.DesktopMgr.Inst.seat, uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_7", -1), l.delta = e.delta_scores[o];
+                                    for (var h = 0, c = a; h < c.length; h++) {
+                                        var _ = c[h];
+                                        if (_.seat === o) {
+                                            l.title_id = _.title_id;
+                                            break
+                                        }
                                     }
-                                }
-                            } else e.delta_scores[o] < 0 && (l.delta = e.delta_scores[o], uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_8", -1));
-                            l.score = e.old_scores[o], s.push(l)
-                        }
-                        Laya.timer.once(200, i, function () {
-                            t.DesktopMgr.Inst.setScores(e.scores)
-                        }), uiscript.UI_Hu_Xuezhan.Inst.showScoreChange(s)
-                    }), r += 2500, Laya.timer.once(r, this, function () {
-                        for (var i = 0; i < e.allplayertiles.length; i++) {
-                            for (var n = e.allplayertiles[i].split("|"), r = [], s = 0; s < n.length; s++) r.push(mjcore.MJPai.Create(n[s]));
-                            r = r.sort(mjcore.MJPai.Distance), t.DesktopMgr.Inst.players[t.DesktopMgr.Inst.seat2LocalPosition(i)].Huangpai(!0, r, !1)
-                        }
-                    }), r += 2500, Laya.timer.once(r, i, function () {
-                        uiscript.UIMgr.Inst.ShowWin(e, !1), t.DesktopMgr.Inst.ActionRunComplete()
+                                } else
+                                    e.delta_scores[o] < 0 && (l.delta = e.delta_scores[o], uiscript.UI_DesktopInfo.Inst.changeHeadEmo(o, "emoji_8", -1));
+                                l.score = e.old_scores[o], s.push(l)
+                            }
+                            Laya.timer.once(200, i, function () {
+                                O.DesktopMgr.Inst.setScores(e.scores)
+                            }), uiscript.UI_Hu_Xuezhan.Inst.showScoreChange(s)
+                        }), r += 2500, Laya.timer.once(r, this, function () {
+                            for (var i = 0; i < e.allplayertiles.length; i++) {
+                                for (var n = e.allplayertiles[i].split("|"), r = [], s = 0; s < n.length; s++)
+                                    r.push(mjcore.MJPai.Create(n[s]));
+                                r = r.sort(mjcore.MJPai.Distance), O.DesktopMgr.Inst.players[O.DesktopMgr.Inst.seat2LocalPosition(i)].Huangpai(!0, r, !1)
+                            }
+                        }), r += 2500, Laya.timer.once(r, i, function () {
+                            uiscript.UIMgr.Inst.ShowWin(e, !1), O.DesktopMgr.Inst.ActionRunComplete()
+                        })
                     })
-                })
-                return 1e5;
-            }, i.fastrecord = function (e, i) {
-                app.Log.log("ActionHule fastplay data:" + JSON.stringify(e));
-                t.BgmListMgr.stopBgm(), t.DesktopMgr.Inst.gameing = !1, e.muyu && t.DesktopMgr.Inst.onMuyuChange(e.muyu, !1), e.doras && t.DesktopMgr.Inst.WhenDoras(e.doras, !1), t.DesktopMgr.Inst.setScores(e.scores), uiscript.UIMgr.Inst.ShowWin(e, !1)
-            }, i
-        }(t.ActionBase)
+                    return 1e5;
+                },
+                U.fastrecord = function (e, i) {
+                    app.Log.log("ActionHule fastplay data:" + JSON.stringify(e));
+                    O.BgmListMgr.stopBgm(), O.DesktopMgr.Inst.gameing = !1, e.muyu && O.DesktopMgr.Inst.onMuyuChange(e.muyu, !1),
+                    e.doras && O.DesktopMgr.Inst.WhenDoras(e.doras, !1), O.DesktopMgr.Inst.setScores(e.scores),
+                        uiscript.UIMgr.Inst.ShowWin(e, !1)
+                }
+                ,
+                U
+        }(O.ActionBase)
     }(view || (view = {}));
-    let OnChoosedPai = view.ViewPai.prototype.OnChoosedPai;
+
+    // code.js 244309 行
+    var OnChoosedPai = view.ViewPai.prototype.OnChoosedPai;
     view.ViewPai.prototype.OnChoosedPai = function () {
         try {
-            let e = view.DesktopMgr.Inst.choosed_pai;
-            if (null == e || 0 !== mjcore.MJPai.Distance(this.val, e)) {
-                if (this.lastColor !== undefined) this.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, this.lastColor);
-                else if (this.isxuezhanhu || this.ispaopai) this.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, new Laya.Vector4(1, .78, .78, 1));
-                else if (this.ismoqie) this.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, new Laya.Vector4(.8, .8, .8, 1));
-                else this.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, this.GetDefaultColor());
-            } else this.model.meshRender.sharedMaterial.setColor(caps.Cartoon.COLOR, new Laya.Vector4(.615, .827, .976, 1));
+            var K = view['ERevealState'];
+            if (!view['DesktopMgr']['bianjietishi'] || this['revealState'] === K['reveal'])
+                return this['ResetShow'](),
+                    void 0;
+            var U = view['DesktopMgr'].Inst['choosed_pai']
+                , V = null;
+            if (null == U || 0 !== mjcore.MJPai.Distance(this.val, U)) {
+                var N = this['revealState'] === K.self ? 0.6 : 1;
+
+                // 添加内容: lastColor
+                V = this.lastColor ? this.lastColor :
+                    this['isxuezhanhu'] ? new Laya['Vector4'](1, 0.78, 0.78, N) :
+                        this['ispaopai'] ? new Laya['Vector4'](1, 0.78, 0.78, N) :
+                            this['is_gap'] ? new Laya['Vector4'](0.6, 0.6, 0.6, N) :
+                                this['ismoqie'] ? new Laya['Vector4'](0.8, 0.8, 0.8, N) : this['GetDefaultColor']();
+            } else
+                V = new Laya['Vector4'](0.615, 0.827, 0.976, 1);
+
+            this['setMeshColor'](V),
+            this['contianer_touming_touying'] &&
+            (this['contianer_touming_touying']['getChildByName']('bg')['meshRender']['sharedMaterial']['albedoColor'] = V);
         } catch (e) {
             OnChoosedPai.call(this);
             console.error(e);
         }
     }
-    uiscript.UI_Replay.prototype.doRecord = function (t) {
+
+    uiscript.UI_Replay.prototype.doRecord = function (O) {
         try {
-            var e = 0;
-            switch (t.name) {
-                case "RecordNewRound":
-                    e = view.ActionNewRound.record(t.data);
+            var K = 0;
+            switch (O.name) {
+                case 'RecordNewRound':
+                    K = view['ActionNewRound']['record'](O.data);
                     break;
-                case "RecordChangeTile":
-                    e = view.ActionChangeTile.record(t.data);
+                case 'RecordChangeTile':
+                    K = view['ActionChangeTile']['record'](O.data);
                     break;
-                case "RecordSelectGap":
-                    e = view.ActionSelectGap.record(t.data);
+                case 'RecordSelectGap':
+                    K = view['ActionSelectGap']['record'](O.data);
                     break;
-                case "RecordDiscardTile":
-                    e = view.ActionDiscardTile.record(t.data);
+                case 'RecordDiscardTile':
+                    K = view['ActionDiscardTile']['record'](O.data);
                     break;
-                case "RecordDealTile":
-                    e = view.ActionDealTile.record(t.data);
+                case 'RecordDealTile':
+                    K = view['ActionDealTile']['record'](O.data);
                     break;
-                case "RecordChiPengGang":
-                    e = view.ActionChiPengGang.record(t.data);
+                case 'RecordChiPengGang':
+                    K = view['ActionChiPengGang']['record'](O.data);
                     break;
-                case "RecordAnGangAddGang":
-                    e = view.ActionAnGangAddGang.record(t.data);
+                case 'RecordAnGangAddGang':
+                    K = view['ActionAnGangAddGang']['record'](O.data);
                     break;
-                case "RecordBaBei":
-                    e = view.ActionBabei.record(t.data);
+                case 'RecordBaBei':
+                    K = view['ActionBabei']['record'](O.data);
                     break;
-                case "RecordHule":
-                    e = view.ActionHule.record(t.data);
+                case 'RecordHule':
+                    K = view['ActionHule']['record'](O.data);
                     break;
-                case "RecordLiuJu":
-                    e = view.ActionLiuJu.record(t.data);
+                case 'RecordLiuJu':
+                    K = view['ActionLiuJu']['record'](O.data);
                     break;
-                case "RecordNoTile":
-                    e = view.ActionNoTile.record(t.data);
+                case 'RecordNoTile':
+                    K = view['ActionNoTile']['record'](O.data);
                     break;
-                case "RecordHuleXueZhanMid":
-                    e = view.ActionHuleXueZhanMid.record(t.data);
+                case 'RecordHuleXueZhanMid':
+                    K = view['ActionHuleXueZhanMid']['record'](O.data);
                     break;
-                case "RecordHuleXueZhanEnd":
-                    e = view.ActionHuleXueZhanEnd.record(t.data);
+                case 'RecordHuleXueZhanEnd':
+                    K = view['ActionHuleXueZhanEnd']['record'](O.data);
                     break;
-                case "RecordGangResult":
-                    e = view.ActionGangResult.record(t.data);
+                case 'RecordGangResult':
+                    K = view['ActionGangResult']['record'](O.data);
                     break;
-                case "RecordGangResultEnd":
-                    e = view.ActionGangResultEnd.record(t.data);
+                case 'RecordGangResultEnd':
+                    K = view['ActionGangResultEnd']['record'](O.data);
                     break;
+                case 'RecordRevealTile':
+                    K = view['ActionRevealTile']['record'](O.data);
+                    break;
+                case 'RecordLockTile':
+                    K = view['ActionLockTile']['record'](O.data);
+                    break;
+                case 'RecordUnveilTile':
+                    K = view['ActionUnveilTile']['record'](O.data);
+                    break;
+                case 'RecordNewCard':
+                    K = view['ActionNewCard']['record'](O.data);
+                    break;
+                case 'RecordFillAwaitingTiles':
+                    K = view['ActionFillAwaitingTiles']['record'](O.data);
+                    break;
+
+                // 添加内容: RecordHuleXueLiu 和 RecordHuleXueLiuEnd
                 case "RecordHuleXueLiu":
-                    e = view.ActionHuleXueLiu.record(t.data);
+                    K = view.ActionHuleXueLiu.record(O.data);
                     break;
                 case "RecordHuleXueLiuEnd":
-                    e = view.ActionHuleXueLiuEnd.record(t.data)
+                    K = view.ActionHuleXueLiuEnd.record(O.data)
             }
-            return this.auto_play && (e += this._get_autoplay_delay(t)), "RecordNewRound" !== t.name && "RecordDealTile" !== t.name || this.page_paishan.refresh(), e
-        } catch (e) {
-            var i = {};
-            return i.error = e.message, i.stack = e.stack, i.method = "ui_replay doRecord", i.name = t.name, i.data = t.data, GameMgr.Inst.onFatalError(i), 1e6
+            return this['auto_play'] && (K += this['_get_autoplay_delay'](O)),
+            ('RecordNewRound' === O.name || 'RecordDealTile' === O.name || view['DesktopMgr'].Inst['is_zhanxing_mode']() &&
+                'RecordDiscardTile' === O.name || 'RecordFillAwaitingTiles' === O.name) && this['page_paishan']['refresh'](),
+                K;
+        } catch (U) {
+            var V = {};
+            return V['error'] = U['message'],
+                V['stack'] = U['stack'],
+                V['method'] = 'ui_replay doRecord',
+                V.name = O.name,
+                V.data = O.data,
+                GameMgr.Inst['onFatalError'](V),
+                1000000;
         }
     };
-    uiscript.UI_Replay.prototype.doFastRecord = function (t) {
+    uiscript.UI_Replay.prototype.doFastRecord = function (O) {
         try {
-            switch (t.name) {
-                case "RecordNewRound":
-                    view.ActionNewRound.fastrecord(t.data);
+            switch (O.name) {
+                case 'RecordNewRound':
+                    view['ActionNewRound']['fastrecord'](O.data);
                     break;
-                case "RecordChangeTile":
-                    view.ActionChangeTile.fastrecord(t.data);
+                case 'RecordChangeTile':
+                    view['ActionChangeTile']['fastrecord'](O.data);
                     break;
-                case "RecordSelectGap":
-                    view.ActionSelectGap.fastrecord(t.data);
+                case 'RecordSelectGap':
+                    view['ActionSelectGap']['fastrecord'](O.data);
                     break;
-                case "RecordDiscardTile":
-                    view.ActionDiscardTile.fastrecord(t.data);
+                case 'RecordDiscardTile':
+                    view['ActionDiscardTile']['fastrecord'](O.data);
                     break;
-                case "RecordDealTile":
-                    view.ActionDealTile.fastrecord(t.data);
+                case 'RecordDealTile':
+                    view['ActionDealTile']['fastrecord'](O.data);
                     break;
-                case "RecordChiPengGang":
-                    view.ActionChiPengGang.fastrecord(t.data);
+                case 'RecordChiPengGang':
+                    view['ActionChiPengGang']['fastrecord'](O.data);
                     break;
-                case "RecordAnGangAddGang":
-                    view.ActionAnGangAddGang.fastrecord(t.data);
+                case 'RecordAnGangAddGang':
+                    view['ActionAnGangAddGang']['fastrecord'](O.data);
                     break;
-                case "RecordHule":
-                    view.ActionHule.fastrecord(t.data);
+                case 'RecordHule':
+                    view['ActionHule']['fastrecord'](O.data);
                     break;
-                case "RecordLiuJu":
-                    view.ActionLiuJu.fastrecord(t.data);
+                case 'RecordLiuJu':
+                    view['ActionLiuJu']['fastrecord'](O.data);
                     break;
-                case "RecordNoTile":
-                    view.ActionNoTile.fastrecord(t.data);
+                case 'RecordNoTile':
+                    view['ActionNoTile']['fastrecord'](O.data);
                     break;
-                case "RecordBaBei":
-                    view.ActionBabei.fastrecord(t.data);
+                case 'RecordBaBei':
+                    view['ActionBabei']['fastrecord'](O.data);
                     break;
-                case "RecordHuleXueZhanMid":
-                    view.ActionHuleXueZhanMid.fastrecord(t.data);
+                case 'RecordHuleXueZhanMid':
+                    view['ActionHuleXueZhanMid']['fastrecord'](O.data);
                     break;
-                case "RecordHuleXueZhanEnd":
-                    view.ActionHuleXueZhanEnd.fastrecord(t.data);
+                case 'RecordHuleXueZhanEnd':
+                    view['ActionHuleXueZhanEnd']['fastrecord'](O.data);
                     break;
+                case 'RecordRevealTile':
+                    view['ActionRevealTile']['fastrecord'](O.data);
+                    break;
+                case 'RecordLockTile':
+                    view['ActionLockTile']['fastrecord'](O.data);
+                    break;
+                case 'RecordUnveilTile':
+                    view['ActionUnveilTile']['fastrecord'](O.data);
+                    break;
+                case 'RecordGangResult':
+                    view['ActionGangResult']['fastrecord'](O.data);
+                    break;
+                case 'RecordGangResultEnd':
+                    view['ActionGangResultEnd']['fastrecord'](O.data);
+                    break;
+                case 'RecordNewCard':
+                    view['ActionNewCard']['fastrecord'](O.data);
+                    break;
+                case 'RecordFillAwaitingTiles':
+                    view['ActionFillAwaitingTiles']['fastrecord'](O.data);
+                    break;
+
+                // 添加内容: RecordHuleXueLiu 和 RecordHuleXueLiuEnd
                 case "RecordHuleXueLiu":
-                    view.ActionHuleXueLiu.fastrecord(t.data);
+                    view.ActionHuleXueLiu.fastrecord(O.data);
                     break;
                 case "RecordHuleXueLiuEnd":
-                    view.ActionHuleXueLiuEnd.fastrecord(t.data);
+                    view.ActionHuleXueLiuEnd.fastrecord(O.data);
             }
-            "RecordNewRound" !== t.name && "RecordDealTile" !== t.name || this.page_paishan.refresh()
-        } catch (i) {
-            var e = {};
-            return e.error = i.message, e.stack = i.stack, e.method = "ui_replay doRecord", e.name = t.name, e.data = t.data, GameMgr.Inst.onFatalError(e), 1e6
+            ('RecordNewRound' === O.name || 'RecordDealTile' === O.name || view['DesktopMgr'].Inst['is_zhanxing_mode']() &&
+                'RecordDiscardTile' === O.name || 'RecordFillAwaitingTiles' === O.name) && this['page_paishan']['refresh']();
+        } catch (K) {
+            var U = {};
+            return U['error'] = K['message'],
+                U['stack'] = K['stack'],
+                U['method'] = 'ui_replay doRecord',
+                U.name = O.name,
+                U.data = O.data,
+                GameMgr.Inst['onFatalError'](U),
+                1000000;
         }
-        return 0
+        return 0;
     }
     uiscript.UI_Replay.prototype._get_autoplay_delay = function (t) {
         switch (t.name) {
-            case "RecordNewRound":
+            case 'RecordNewCard':
                 return 0;
-            case "RecordChangeTile":
-            case "RecordDiscardTile":
-            case "RecordDealTile":
-            case "RecordChiPengGang":
+            case 'RecordNewRound':
+                return 0;
+            case 'RecordChangeTile':
                 return 500;
-            case "RecordAnGangAddGang":
-            case "RecordBaBei":
+            case 'RecordDiscardTile':
+                return 500;
+            case 'RecordDealTile':
+                return 500;
+            case 'RecordChiPengGang':
+                return 500;
+            case 'RecordAnGangAddGang':
                 return 200;
-            case "RecordHuleXueZhanMid":
+            case 'RecordBaBei':
+                return 200;
+            case 'RecordHuleXueZhanMid':
                 return 500;
+            case 'RecordRevealTile':
+                return 500;
+            case 'RecordUnveilTile':
+                return 500;
+            case 'RecordLockTile':
+                return 1000;
+
+            // 添加内容: RecordHuleXueLiu
             case "RecordHuleXueLiu":
                 return 500;
         }
-        return 0
+        return 0;
     }
-    let seat2LocalPosition = view.DesktopMgr.prototype.seat2LocalPosition;
-    let localPosition2Seat = view.DesktopMgr.prototype.localPosition2Seat;
+    var seat2LocalPosition = view.DesktopMgr.prototype.seat2LocalPosition;
+    var localPosition2Seat = view.DesktopMgr.prototype.localPosition2Seat;
     view.ERuleMode[view.ERuleMode.Liqi2 = 2] = "Liqi2";
     //view.DesktopMgr.prototype.rule_mode=2;
     view.DesktopMgr.prototype.seat2LocalPosition = function (t) {
@@ -526,18 +804,24 @@ function editfunction() {
     }
     view.DesktopMgr.prototype.localPosition2Seat = function (t) {
         if (this.rule_mode === view.ERuleMode.Liqi2) {
-            if (t === 1 || t === 3) return -1;
-            if (t === 0) return this.seat;
-            if (t === 2) return 1 - this.seat;
+            if (t === 1 || t === 3)
+                return -1;
+            if (t === 0)
+                return this.seat;
+            if (t === 2)
+                return 1 - this.seat;
         }
         return localPosition2Seat.call(this, t);
     }
     view.ViewPlayer.prototype.RefreshDir = function () {
         if (-1 !== this.seat) {
             var e = new Laya.Vector4, i = 0;
-            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi3) i = (this.seat - view.DesktopMgr.Inst.index_ju + 3) % 3;
-            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2) i = (this.seat - view.DesktopMgr.Inst.index_ju + 2) % 2;
-            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi4) i = (this.seat - view.DesktopMgr.Inst.index_ju + 4) % 4;
+            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi3)
+                i = (this.seat - view.DesktopMgr.Inst.index_ju + 3) % 3;
+            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2)
+                i = (this.seat - view.DesktopMgr.Inst.index_ju + 2) % 2;
+            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi4)
+                i = (this.seat - view.DesktopMgr.Inst.index_ju + 4) % 4;
             e.z = .25 * i, e.w = 0, e.x = .25, e.y = 1, this.trans_dir.meshRender.material.tilingOffset = e
         }
     }
@@ -577,29 +861,70 @@ function editfunction() {
 // code.js 文件 167319 行
 function editfunction2() {
     uiscript.UI_Replay.Inst.page_paishan.setInfo = function () {
-        if (!this.noinfo) {
-            var t = view.DesktopMgr.Inst.left_tile_count,
-                e = view.DesktopMgr.Inst.dora.length,
-                i = view.DesktopMgr.Inst.get_gang_count() + view.DesktopMgr.Inst.get_babei_count();
-            i > 0 && view.DesktopMgr.Inst.waiting_lingshang_deal_tile && i--;
-            var n = 14;
-            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2) n = 18;
-            view.DesktopMgr.Inst.is_chuanma_mode() && (i = 0, n = 0);
-            var a = this.tile_count - i - n;
-            a < 0 && (a = 0);
-            for (var r = this.tiles[0].width, s = this.tiles[0].height + 10, o = 0; o < a; o++) {
-                var l = 0;
-                view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi3 ? l = o % 12 * r + 5 * Math.floor(o % 12 / 3) : l += 2 + o % 12 * r + 5 * Math.floor(o % 12 / 4), this.tiles[o].x = l, this.tiles[o].y = Math.floor(o / 12) * s, this.tiles[o].filters = a - o <= t ? [] : [this.gray_filter]
+        if (!this['noinfo']) {
+            var K = view['DesktopMgr'].Inst['left_tile_count']
+                , U = view['DesktopMgr'].Inst.dora['length'];
+            view['DesktopMgr'].Inst['is_zhanxing_mode']() && (K -= uiscript['UI_Astrology'].Inst['getTileCount']());
+            var V = view['DesktopMgr'].Inst['get_gang_count']()
+                , N = view['DesktopMgr'].Inst['get_babei_count']()
+                , q = V + N;
+            q > 0 && view['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] && q--;
+            var _ = 14;
+
+            // 添加内容: 二人麻将王牌18张
+            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2)
+                _ = 18;
+
+            view['DesktopMgr'].Inst['is_chuanma_mode']() && (q = 0, _ = 0);
+            var h = view['DesktopMgr'].Inst['sha256'] ? view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 40 : 53 : 0
+                , t = this['tile_count'] - q - _ - h;
+            0 > t && (t = 0);
+            for (var X = this['tiles'][0]['width'], m = this['tiles'][0]['height'] + 5, y = view['DesktopMgr'].Inst['index_ju'],
+                     w = view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 3 :
+                         // 添加内容: 二人麻将玩家数2
+                         view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi2'] ? 2 : 4,
+
+                     A = (view['DesktopMgr'].Inst.seat - y + w) % w, l = 0; h > l; l++) {
+                var r = 0;
+                r += 2 + l % 12 * X + 5 * Math['floor'](l % 12 / 4),
+                    this['tiles'][l].x = r,
+                    this['tiles'][l].y = Math['floor'](l / 12) * m,
+                    this['tiles'][l]['filters'] = h - w - 1 > l && Math['floor'](l / 4) % w === A ? [this['yellow_filter']] :
+                        l >= h - w - 1 && (l - h + w + 1) % w === A ? [this['yellow_filter']] : [this['gray_filter']];
             }
-            for (var h = Math.ceil(a / 12) * s + 20, o = a; o < this.tile_count; o++) {
-                var c = this.tiles[o];
-                c.x = (o - a) % 12 * r, c.y = Math.floor((o - a) / 12) * s + h, c.filters = []
+            for (var i = h ? Math.ceil(h / 12) * m + 20 : 0, l = 0; t > l; l++) {
+                var Q = l + h
+                    , r = 0;
+                view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? r = l % 12 * X + 5 * Math['floor'](l % 12 / 3) :
+                    r += 2 + l % 12 * X + 5 * Math['floor'](l % 12 / 4),
+                    this['tiles'][Q].x = r,
+                    this['tiles'][Q].y = Math['floor'](l / 12) * m + i,
+                    this['tiles'][Q]['filters'] = K >= t - l ? [] : [this['gray_filter']];
             }
-            var _ = view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi3 ? 8 : 4;
-            if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2) _ = 12;
-            for (var o = 0; o < e; o++) this.tiles[this.tile_count - _ - 1 - 2 * o].filters = [this.dora_filter], this.tiles[this.tile_count - _ - 2 - 2 * o].filters = [this.lidora_filter];
-            for (o = 0; o < i; o++) this.tiles[this.tile_count - 1 - o].filters = [this.gray_filter];
-            h += Math.ceil((this.tile_count - a) / 12) * s, this.container_input.y = h + 80, this.content.refresh()
+            i += Math.ceil(t / 12) * m + 20;
+            for (var l = t + h; l < this['tile_count']; l++) {
+                var u = this['tiles'][l];
+                u.x = (l - t - h) % 12 * X,
+                    u.y = Math['floor']((l - t - h) / 12) * m + i,
+                    u['filters'] = [];
+            }
+            for (var j = view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 8 :
+                // 添加内容: 二人麻将岭上牌12张
+                view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi2'] ? 12 :
+                    4, l = 0; U > l; l++){
+
+                this['tiles'][this['tile_count'] - j - 1 - 2 * l]['filters'] = [this['dora_filter']],
+                    this['tiles'][this['tile_count'] - j - 2 - 2 * l]['filters'] = [this['lidora_filter']];
+            }
+            for (var l = 0; q > l; l++)
+                this['tiles'][this['tile_count'] - 1 - l]['filters'] = [this['gray_filter']];
+            i += Math.ceil((this['tile_count'] - t - h) / 12) * m,
+                this['container_input'].y = i + 80,
+                view['DesktopMgr'].Inst.salt ? (this['container_salt'].y = i + 290,
+                    this['container_salt']['visible'] = !0,
+                    this['input_salt'].text = view['DesktopMgr'].Inst.salt) : (this['container_salt'].y = i + 0,
+                    this['container_salt']['visible'] = !1),
+                this['content']['refresh']();
         }
     }
 }
