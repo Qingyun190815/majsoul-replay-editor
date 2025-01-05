@@ -2767,6 +2767,25 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                 else
                     ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 49}); // 国士无双十三面
             }
+            if (liqiinfo[seat].liqi === 2) {
+                let is_shishangsannian = false;
+                if (playercnt === 4) {
+                    if (zimo && paishan_len() === 14 && lstdrawtype === 1 || !zimo && paishan_len() === 14)
+                        is_shishangsannian = true;
+                } else if (playercnt === 3) {
+                    if (zimo && paishan_len() === 18 && lstdrawtype === 1 || !zimo && paishan_len() === 18)
+                        is_shishangsannian = true;
+                } else if (playercnt === 2) {
+                    if (zimo && paishan_len() === 22 && lstdrawtype === 1 || !zimo && paishan_len() === 22)
+                        is_shishangsannian = true;
+                }
+                if (is_shishangsannian) {
+                    if (!is_qingtianjing())
+                        ans.fans.push({'val': 1, 'id': 63}); // 石上三年
+                    else
+                        ans.fans.push({'val': 13, 'id': 63}); // 石上三年
+                }
+            }
             updateret(ans);
         }
     } else if (cnt[tiletoint("bd")] === 1) {
@@ -2819,6 +2838,25 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
                         ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 49}); // 国士无双十三面
                     else
                         ans.fans.push({'val': no_wyakuman() ? 13 : 26, 'id': 49}); // 国士无双十三面
+                }
+                if (liqiinfo[seat].liqi === 2) {
+                    let is_shishangsannian = false;
+                    if (playercnt === 4) {
+                        if (zimo && paishan_len() === 14 && lstdrawtype === 1 || !zimo && paishan_len() === 14)
+                            is_shishangsannian = true;
+                    } else if (playercnt === 3) {
+                        if (zimo && paishan_len() === 18 && lstdrawtype === 1 || !zimo && paishan_len() === 18)
+                            is_shishangsannian = true;
+                    } else if (playercnt === 2) {
+                        if (zimo && paishan_len() === 22 && lstdrawtype === 1 || !zimo && paishan_len() === 22)
+                            is_shishangsannian = true;
+                    }
+                    if (is_shishangsannian) {
+                        if (!is_qingtianjing())
+                            ans.fans.push({'val': 1, 'id': 63}); // 石上三年
+                        else
+                            ans.fans.push({'val': 13, 'id': 63}); // 石上三年
+                    }
                 }
                 updateret(ans);
             }
