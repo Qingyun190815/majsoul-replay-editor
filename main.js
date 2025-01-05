@@ -3831,7 +3831,7 @@ function hupaioneplayer(seat) {
             delta_scores[seat] += (playercnt - 1) * 100 * benchangbang;
         }
     } else if (zimo) { // 一般自摸
-        if (baogangseat !== -1 || !hupaied[baogangseat]) { // 存在包杠, 则包杠家支付全部本场, 相当于包杠家放铳
+        if (baogangseat !== -1 && !hupaied[baogangseat]) { // 存在包杠, 则包杠家支付全部本场, 相当于包杠家放铳
             delta_scores[baogangseat] -= (playercnt - 1) * 100 * benchangbang;
             delta_scores[seat] += (playercnt - 1) * 100 * benchangbang;
         } else
