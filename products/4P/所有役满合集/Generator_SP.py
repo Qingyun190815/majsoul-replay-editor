@@ -32,7 +32,7 @@ for i in range(len(charids)):
         os.makedirs("./output/" + outfile_dirname[i])
 
 
-def Generate_Avatar():
+def generator_sp():
     for file_name in file_names:
         infile = open("./" + file_name, "r")
 
@@ -97,4 +97,4 @@ def Generate_Avatar():
     return
 
 
-Generate_Avatar()
+generator_sp()

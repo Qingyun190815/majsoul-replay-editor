@@ -7,7 +7,7 @@ import os
 import re
 
 # 这里 player_num 参数表示对局玩家数, 默认是四麻, 三麻参数填3就行
-def Generate_All_Avatar(player_num=4):
+def generator(player_num=4):
     # 作为模版的文件, 文件名是 template.js
     infile = open("./template.js", "r")
     if not os.path.exists("./output"):

@@ -62,8 +62,8 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
     - 魂之一击
     - 万象修罗
     - 友人房的自定义规则:
-        - 古役
-        - 赤宝牌数量
+        - 古役(包括一番街的, 详见 products 文件夹下的[古役专题](../products/古役专题))
+        - 赤宝牌数量(四麻除了3/4赤以外, 还支持6/9/12赤, 后者的几种情况暗杠可能会显示异常, 这种情况需要导入[override.js](../override.js))
         - 食断
         - 番缚
         - 有无自摸损(三麻)
@@ -73,7 +73,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 青天井模式(谨慎使用, 高打点时很容易崩溃)
         - 无大三元大四喜包牌
         - 包杠
-        - 四杠子包牌
+        - 四杠子包牌(与其他包牌以及包杠的复合可以阅读 [README.md](../products/4P/包牌与包杠的本场划分/README.md))
         - 切上满贯
         - 头跳
         - 杠表宝牌即开

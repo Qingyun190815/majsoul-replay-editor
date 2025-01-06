@@ -1830,8 +1830,7 @@ function calcfan_chuanma(tiles, seat, zimo, type = false) {
     return ret;
 }
 
-function calcfan(tiles, seat, zimo, fangchong, debug = false) {
-    // debug = true 时不添加包牌信息
+function calcfan(tiles, seat, zimo, fangchong) {
     let lastile = tiles[tiles.length - 1], fulucnt = 0;
     let ret = {'yiman': false, 'fans': [], 'fu': 0};
     let cnt = [];
@@ -1886,6 +1885,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             }
 
             let tianhu = false;
+            baopai[seat] = []; // 重置和牌玩家包牌信息
             let menqing = fulucnt === 0;
             // 无青天井情况下默认为 true, 之后再否定
             let ans = {'yiman': !is_qingtianjing(), 'fans': [], 'fu': 0};
@@ -2165,7 +2165,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             if (kezi[32] >= 1 && kezi[33] >= 1 && kezi[34] >= 1) {
                 if (!is_qingtianjing()) {
                     ans.fans.push({'val': 1, 'id': 37}); // 大三元
-                    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !no_normalbaopai() && !debug) {
+                    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !no_normalbaopai()) {
                         let fulusanyuancnt = 0;
                         for (let i = 0; i < fulu[seat].length; i++) {
                             let type = fulu[seat][i].type, tile = tiletoint(fulu[seat][i].tile[0]);
@@ -2220,7 +2220,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             if (gangzi_num === 4) {
                 if (!is_qingtianjing()) {
                     ans.fans.push({'val': 1, 'id': 44}); // 四杠子
-                    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && sigangbaopai() && sigangbao[seat] && !debug) {
+                    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && sigangbaopai() && sigangbao[seat]) {
                         let fulugangzi = 0;
                         for (let i = 0; i < fulu[seat].length; i++) {
                             let type = fulu[seat][i].type;
@@ -2252,7 +2252,7 @@ function calcfan(tiles, seat, zimo, fangchong, debug = false) {
             if (kezi[28] >= 1 && kezi[29] >= 1 && kezi[30] >= 1 && kezi[31] >= 1) {
                 if (!is_qingtianjing()) {
                     ans.fans.push({'val': no_wyakuman() ? 1 : 2, 'id': 50}); // 大四喜
-                    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !no_normalbaopai() && !debug) {
+                    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !no_normalbaopai()) {
                         let fulusixicnt = 0;
                         for (let i = 0; i < fulu[seat].length; i++) {
                             let type = fulu[seat][i].type, tile = tiletoint(fulu[seat][i].tile[0]);
@@ -4016,7 +4016,7 @@ function hupai(x, type) {
         else { // 荣和
             zimo = false;
             x = [];
-            for (let i = lstaction.data.seat; i < playercnt + lstaction.data.seat; i++) {
+            for (let i = lstaction.data.seat + 1; i < playercnt + lstaction.data.seat; i++) {
                 const seat = i % playercnt;
                 if (seat === lstaction.data.seat || hupaied[seat])
                     continue;
@@ -4028,7 +4028,7 @@ function hupai(x, type) {
                     playertiles[seat].push(lstaction.data.tile);
                 if ((is_chuanma() || is_guobiao() || !is_chuanma() && !is_guobiao() && !zhenting[seat]) && calchupai(playertiles[seat]) !== 0) {
                     if (!is_chuanma() && !is_guobiao() && !ronghuzhahu()) { // 非川麻国标防止自动无役荣和诈和
-                        let points = calcfan(playertiles[seat], seat, false, lstaction.data.seat, true);
+                        let points = calcfan(playertiles[seat], seat, false, lstaction.data.seat);
                         if (calcsudian(points) !== -2000)
                             x.push(seat);
                     } else
@@ -4068,13 +4068,18 @@ function hupai(x, type) {
                 ret.push(hupaioneplayer(x[i]));
             for (let i = 0; i < x.length; i++)
                 hupaied[x[i]] = true;
-            for (let i = 0; i < x.length; i++) {
-                if (baogangseat !== -1)
-                    baopait = baogangseat + 1
-                if (baopai[x[i]].length !== 0)
-                    baopait = baopai[x[i]][0].seat + 1;
-            }
+            // "包"字的选择
+            // 包牌比包杠优先, 因为雀魂目前没有包杠, 以雀魂为主
+            if (baogangseat !== -1)
+                baopait = baogangseat + 1
             baogangseat = -1;
+            // 多家包牌, 自摸情况下以最先包牌的玩家为准
+            // 荣和情况下, 以距放铳玩家最近的玩家的最先包牌的玩家为准
+            for (let i = 0; i < x.length; i++)
+                if (baopai[x[i]].length !== 0) {
+                    baopait = baopai[x[i]][0].seat + 1;
+                    break;
+                }
             let old_scores = [].concat(scores);
             for (let i = 0; i < playercnt; i++)
                 scores[i] = scores[i] + delta_scores[i];
@@ -4083,8 +4088,7 @@ function hupai(x, type) {
             if (hupaied[ju]) { // 庄家和牌, 则连庄
                 ben++;
                 lianzhuangcnt++;
-            }
-            else {
+            } else {
                 ju++;
                 ben = 0;
                 lianzhuangcnt = 0;
@@ -4976,14 +4980,12 @@ function mingpai(seat, tiles) {
             if (!is_guobiao()) {
                 if (!sigangbao[seat]) { // 查是否四杠子确定, 用于包牌
                     let gang_num = 0;
-                    for (let j = 0; j < fulu[seat].length; j++) {
-                        if (fulu[seat][j].type !== 2 && fulu[seat][j].type !== 3) // 查杠子个数
+                    for (let j = 0; j < fulu[seat].length; j++)
+                        if (fulu[seat][j].type === 2 || fulu[seat][j].type === 3) // 查杠子个数
                             gang_num++;
-                        if (gang_num === 3) { // 之前已经有3个杠子, 则第4个杠构成四杠子包牌
-                            sigangbao[seat] = true;
-                            break;
-                        }
-                    }
+
+                    if (gang_num === 3) // 之前已经有3个杠子, 则第4个杠构成四杠子包牌
+                        sigangbao[seat] = true;
                 }
                 if (is_baogang())
                     baogangseat = from;
@@ -5024,8 +5026,8 @@ function leimingpai(seat, tile, type) {
             seat = lstaction.data.seat;
     }
     if (tile === undefined) {
-        if (is_guobiao() && leimingpai("4zt", "babei"))
-            return true;
+        // if (is_guobiao() && leimingpai("4zt", "babei"))
+        //     return true;
         if (leimingpai("4zt", "babei") || leimingpai("4z", "babei"))
             return true;
         if (leimingpai("3zt", "babei") || leimingpai("3z", "babei"))
@@ -5631,6 +5633,11 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
             console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", tiles" + i + " 长度不对: " + tiles_len);
     }
 
+    if (typeof (paishanfront) == "number") {
+        reddora = paishanfront;
+        paishanfront = paishanback = "";
+    }
+
     if (typeof (paishanback) == "number") {
         reddora = paishanback;
         paishanback = "";
@@ -5777,7 +5784,7 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
             tiles.length--;
         } else if (paishanfront[i] === 'T') { // 老头牌
             for (let j = 0; j < tiles.length; j++) {
-                if (!(tiles[j][0] === '1' || tiles[j][0] === '9')) {
+                if (tiles[j][0] === '1' && tiles[j][1] !== 'z' || tiles[j][0] === '9') {
                     let tmp = tiles[j];
                     tiles[j] = tiles[tiles.length - 1];
                     tiles[tiles.length - 1] = tmp;
@@ -5861,7 +5868,7 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
             tiles.length--;
         } else if (paishanback[i] === 'T') { // 老头牌
             for (let j = 0; j < tiles.length; j++) {
-                if (!(tiles[j][0] === '1' || tiles[j][0] === '9')) {
+                if (tiles[j][0] === '1' && tiles[j][1] !== 'z' || tiles[j][0] === '9') {
                     let tmp = tiles[j];
                     tiles[j] = tiles[tiles.length - 1];
                     tiles[tiles.length - 1] = tmp;

@@ -5,8 +5,8 @@ import os
 
 home = os.getcwd()
 
-file_name = "Generate_All_Avatar"
-run_python = "python3 " + file_name + ".py"
+file_name = "Generator.py"
+run_python = "python3 " + file_name
 path_prefix = "4P/"
 paths = [
     "所有报菜名合集",
@@ -15,8 +15,8 @@ paths = [
     "../作弊牌型/纯享版报菜名",
 ]
 
-file_name_3P = "Generate_All_Avatar_3P"
-run_python_3P = "python3 " + file_name_3P + ".py"
+file_name_3P = "Generator_3P.py"
+run_python_3P = "python3 " + file_name_3P
 path_prefix_3P = "3P/"
 paths_3P = [
     "对局操作语音合集",
@@ -36,5 +36,5 @@ for path_3P in paths_3P:
     os.chdir(home)
 
 os.chdir("4P/所有役满合集")
-os.system("python3 Generate_Avatar.py")
+os.system("python3 Generator_SP.py")
 os.chdir(home)
