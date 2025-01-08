@@ -10,8 +10,11 @@ editdata.player_datas[2].avatar_id = 403603;
 editdata.player_datas[3].avatar_id = 403703;
 
 editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308003}, // 立直棒-墨西哥卷饼
     {"slot": 1, "item_id": 308001}, // 和牌-龙卷雷霆
     {"slot": 2, "item_id": 308002}, // 立直-花天月地
+    {"slot": 6, "item_id": 308004}, // 桌布-赛间小憩
+    {"slot": 7, "item_id": 308005}, // 牌背-艾托企鹅
 ];
 
 editdata.config = {
@@ -25,22 +28,13 @@ editdata.config = {
     }
 };
 
-// Insert your code below
-
-/*
-tiles0 = "11112223334446z";
+// 示例对局
+tiles0 = "11223344556777z";
 tiles1 = "1112340678999m";
-tiles2 = "111333777999s6z";
-tiles3 = "222444666888s6z";
-paishan = randompaishan("6z", "0p432z");
+tiles2 = "1112340678999p";
+tiles3 = "1112340678999s";
+paishan = randompaishan("6z", "5z....");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
-qiepai();
-mopai();
-qiepai("6z", true);
+qiepai(true);
+normalmoqie();
 hupai();
-*/
-

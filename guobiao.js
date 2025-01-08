@@ -1308,6 +1308,143 @@ cfg.fan.fan.map_[8085] = {
     "merge_id": 0
 };
 
+// 花牌1-8, 以及"一大堆"情况
+cfg.fan.fan.map_[8091] = {
+    "id": 8091,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 8091,
+    "sound": "fan_dora1",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8092] = {
+    "id": 8092,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 2,
+    "fan_fulu": 2,
+    "show_index": 8092,
+    "sound": "fan_dora2",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8093] = {
+    "id": 8093,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 3,
+    "fan_fulu": 3,
+    "show_index": 8093,
+    "sound": "fan_dora3",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8094] = {
+    "id": 8094,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 4,
+    "fan_fulu": 4,
+    "show_index": 8094,
+    "sound": "fan_dora4",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8095] = {
+    "id": 8095,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 5,
+    "fan_fulu": 5,
+    "show_index": 8095,
+    "sound": "fan_dora5",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8096] = {
+    "id": 8096,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 6,
+    "fan_fulu": 6,
+    "show_index": 8096,
+    "sound": "fan_dora6",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8097] = {
+    "id": 8097,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 7,
+    "fan_fulu": 7,
+    "show_index": 8097,
+    "sound": "fan_dora7",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8098] = {
+    "id": 8098,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 8098,
+    "sound": "fan_dora8",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+cfg.fan.fan.map_[8099] = {
+    "id": 8099,
+    "name_chs": "花牌",
+    "name_chs_t": "",
+    "name_jp": "",
+    "name_en": "",
+    "name_kr": "",
+    "fan_menqing": 1,
+    "fan_fulu": 1,
+    "show_index": 8099,
+    "sound": "fan_dora13",
+    "show_range_1": 0,
+    "show_range_2": "",
+    "merge_id": 0
+};
+
 
 function hupai_guobiao(seat) {
     let lstaction = getlstaction(), zimo = false;
@@ -1355,7 +1492,8 @@ function hupai_guobiao(seat) {
         zhahu = true;
     if (!is_guobiao_no_8fanfu() && sudian < 8 * scale_points)
         zhahu = true;
-    if (lstaction.name === "RecordAnGangAddGang" && lstaction.data.type === 3)
+    // 国标无法听花牌, 所以和拔北的花牌一定是诈和
+    if (lstaction.name === "RecordBaBei" ||lstaction.name === "RecordAnGangAddGang" && lstaction.data.type === 3)
         zhahu = true;
 
     if (zhahu) { // 诈和, 错和赔三家各 24 * scale_points 点
@@ -2449,6 +2587,23 @@ function calcfan_guobiao(tiles, seat, zimo) {
             // 无番和
             if (ans.fans.length === 0 && !is_banned(8042))
                 ans.fans.push({'val': 8, 'id': 8042}); // 无番和
+            // ---------------------------
+            // ---------------------------
+            // ---------------------------
+            // ---------------------------
+            // ---------------------------
+            // 花牌
+            let huapai_num = 0;
+            for (let i = 0; i < fulu[seat].length; i++)
+                if (fulu[seat][i].type === 4) {
+                    cnt2[tiletoint(fulu[seat][i].tile[0])]++;
+                    huapai_num++;
+                }
+            // 花牌
+            if (huapai_num >= 1 && huapai_num <= 8)
+                ans.fans.push({'val': huapai_num, 'id': 8090 + huapai_num});
+            else if (huapai_num >= 9)
+                ans.fans.push({'val': huapai_num, 'id': 8099});
             // ---------------------------
             // ---------------------------
             // ---------------------------

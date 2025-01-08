@@ -170,5 +170,3 @@ hupai(true);
 
 
 gameend();
-
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

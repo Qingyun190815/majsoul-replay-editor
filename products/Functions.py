@@ -15,7 +15,8 @@ def generator(player_num=4):
 
     for index in range(len(avatar_ids)):
         outfile = open("./output/" + outfile_names[index], "w")
-        flag_hand = flag_views = True
+        # flag_hand = True
+        flag_views = True
         name_count = id_count = 0
 
         """ tmp_nickname: 一桌角色所用的皮肤
@@ -76,10 +77,10 @@ def generator(player_num=4):
                 if flag_views and charids[index] in char_unique_views and id_count == 4 and name_count == 4:
                     outfile.write("\n" + char_unique_views[charids[index]] + "\n")
                     flag_views = False
-                if not use_dict and use_views:
-                    if flag_hand and id_count == 4 and name_count == 4:
-                        outfile.write("\n" + change_hand + "\n")
-                        flag_hand = False
+                # if not use_dict and use_views:
+                #     if flag_hand and id_count == 4 and name_count == 4:
+                #         outfile.write("\n" + change_hand + "\n")
+                #         flag_hand = False
 
         elif player_num == 3:
             if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
@@ -122,13 +123,13 @@ def generator(player_num=4):
                 if flag_views and charids[index] in char_unique_views_3P and id_count == 3 and name_count == 3:
                     outfile.write("\n" + char_unique_views_3P[charids[index]] + "\n")
                     flag_views = False
-                if not use_dict and use_views:
-                    if flag_hand and id_count == 3 and name_count == 3:
-                        outfile.write("\n" + change_hand + "\n")
-                        flag_hand = False
-        if use_dict and not use_views:
-            if charids[index] in dict_spchar_paipu:
-                outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
+        #         if not use_dict and use_views:
+        #             if flag_hand and id_count == 3 and name_count == 3:
+        #                 outfile.write("\n" + change_hand + "\n")
+        #                 flag_hand = False
+        # if use_dict and not use_views:
+        #     if charids[index] in dict_spchar_paipu:
+        #         outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
         infile.seek(0)
         outfile.close()
 

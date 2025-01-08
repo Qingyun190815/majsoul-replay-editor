@@ -10,6 +10,10 @@ editdata.player_datas[0].avatar_id = 402902;
 editdata.player_datas[1].avatar_id = 402904;
 editdata.player_datas[2].avatar_id = 402905;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 6, "item_id": 30580005}, // 桌布-预热开场
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

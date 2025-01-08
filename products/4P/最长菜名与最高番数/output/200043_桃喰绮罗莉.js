@@ -9,7 +9,13 @@ editdata.player_datas[1].avatar_id = 404301;
 editdata.player_datas[2].avatar_id = 404302;
 editdata.player_datas[3].avatar_id = 404303;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308006}, {"slot": 2, "item_id": 308007}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308008}, // 立直棒-生死之剑
+    {"slot": 1, "item_id": 308006}, // 和牌-命运之轮
+    {"slot": 2, "item_id": 308007}, // 立直-纸牌花火
+    {"slot": 6, "item_id": 308009}, // 桌布-无双之花
+    {"slot": 7, "item_id": 308010}, // 牌背-百花境界
+];
 
 editdata.config = {
     'category': 1,
@@ -59,5 +65,3 @@ mopai();
 leimingpai();
 normalmoqie();
 hupai();
-
-GameMgr.Inst.checkPaiPu("210429-9171010b-679d-4ee6-af18-44ade99be7e1", 0)

@@ -10,7 +10,13 @@ editdata.player_datas[0].avatar_id = 406402;
 editdata.player_datas[1].avatar_id = 406401;
 editdata.player_datas[2].avatar_id = 406403;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 1, "item_id": 308021}, {"slot": 2, "item_id": 308022}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 308023}, // 立直棒-爱心便当
+    {"slot": 1, "item_id": 308021}, // 和牌-高岭之花
+    {"slot": 2, "item_id": 308022}, // 立直-未来视
+    {"slot": 6, "item_id": 308024}, // 桌布-清凉假日
+    {"slot": 7, "item_id": 308025}, // 牌背-摇曳彩球
+];
 
 editdata.config = {
     'category': 1,

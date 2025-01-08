@@ -7,8 +7,13 @@ editdata.player_datas[0].avatar_id = 401702;
 editdata.player_datas[1].avatar_id = 401708;
 editdata.player_datas[2].avatar_id = 401709;
 
+// 头像框-豆芽
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = 305500;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 5, "item_id": 305500}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 305621}, // 立直棒-盆栽
+    {"slot": 5, "item_id": 305500}, // 头像框-豆芽
+    {"slot": 6, "item_id": 305801}, // 桌布-锦鲤游
+];
 
 editdata.config = {
     'category': 1,

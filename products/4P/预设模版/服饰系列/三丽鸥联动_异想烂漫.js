@@ -1,10 +1,10 @@
 loadproject();
 
-// 三丽鸥联动只有新服饰, 没有新角色, 联动的三丽鸥家族与服饰角色对应如下:
-// 凯蒂猫: 福姬
-// 酷洛米: 泽尼娅
-// 大耳狗: 八木唯
-// 美乐蒂: 相原舞
+// 三丽鸥联动只有新服饰, 没有新角色, 联动的三丽鸥家族与服饰角色和装扮对应如下:
+// 凯蒂猫: 福姬, 立直棒-童话绘梦
+// 酷洛米: 泽尼娅, 桌布-小恶魔日记
+// 大耳狗: 八木唯, 头像框-肉桂卷定位器
+// 美乐蒂: 相原舞, 牌背-萌主驾到
 
 editdata.player_datas[0].nickname = "相原舞";
 editdata.player_datas[1].nickname = "八木唯";
@@ -17,7 +17,12 @@ editdata.player_datas[3].avatar_id = 403806;
 
 // 头像框-肉桂卷定位器
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 30550014;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 30550014}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 30560004}, // 立直棒-童话绘梦
+    {"slot": 5, "item_id": 30550014}, // 头像框-肉桂卷定位器
+    {"slot": 6, "item_id": 30580008}, // 桌布-小恶魔日记
+    {"slot": 7, "item_id": 30570005}, // 牌背-萌主驾到
+];
 
 editdata.config = {
     'category': 1,
@@ -30,22 +35,13 @@ editdata.config = {
     }
 };
 
-// Insert your code below
-
-/*
-tiles0 = "11112223334446z";
+// 示例对局
+tiles0 = "11223344556777z";
 tiles1 = "1112340678999m";
-tiles2 = "111333777999s6z";
-tiles3 = "222444666888s6z";
-paishan = randompaishan("6z", "0p432z");
+tiles2 = "1112340678999p";
+tiles3 = "1112340678999s";
+paishan = randompaishan("6z", "5z....");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
-qiepai();
-mopai();
-qiepai("6z", true);
+qiepai(true);
+normalmoqie();
 hupai();
-*/
-

@@ -7,6 +7,10 @@ editdata.player_datas[0].avatar_id = 400902;
 editdata.player_datas[1].avatar_id = 400905;
 editdata.player_datas[2].avatar_id = 400906;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 6, "item_id": 30580008}, // 桌布-小恶魔日记
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

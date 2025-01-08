@@ -31,23 +31,13 @@ editdata.config = {
     }
 };
 
-// Insert your code below
-
-/*
-tiles0 = "11112223334446z";
+// 示例对局
+tiles0 = "11223344556777z";
 tiles1 = "1112340678999m";
-tiles2 = "111333777999s6z";
-tiles3 = "222444666888s6z";
-paishan = randompaishan("6z", "0p432z");
+tiles2 = "1112340678999p";
+tiles3 = "1112340678999s";
+paishan = randompaishan("6z", "5z....");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
-qiepai();
-mopai();
-qiepai("6z", true);
+qiepai(true);
+normalmoqie();
 hupai();
-*/
-
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

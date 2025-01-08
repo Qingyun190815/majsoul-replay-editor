@@ -38,7 +38,6 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 3. [每一局所使用的函数(段位场部分)](doc/每一局所使用的函数（段位场部分）.md)
 4. [(可选)每一局所使用的函数(活动场部分)](doc/每一局所使用的函数（活动场部分）.md)
 5. [examples文件的解释](doc/examples文件解释.md)
-6. [注意事项](doc/注意事项.md)
 
 [字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
 

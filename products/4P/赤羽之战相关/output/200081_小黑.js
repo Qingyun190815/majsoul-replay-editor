@@ -11,7 +11,13 @@ editdata.player_datas[1].avatar_id = 408101;
 editdata.player_datas[2].avatar_id = 408102;
 editdata.player_datas[3].avatar_id = 408103;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308031}, {"slot": 2, "item_id": 308032}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308033}, // 立直棒-红晖的魔杖
+    {"slot": 1, "item_id": 308031}, // 和牌-魔力的迸发
+    {"slot": 2, "item_id": 308032}, // 立直-英灵的典仪
+    {"slot": 6, "item_id": 308034}, // 桌布-星夜的羁绊
+    {"slot": 7, "item_id": 308035}, // 牌背-苍蓝的星辰
+];
 
 editdata.config = {
     'category': 1,
@@ -172,5 +178,3 @@ hupai(true);
 
 
 gameend();
-
-GameMgr.Inst.checkPaiPu("240822-4b832cf6-1310-41e8-9379-ee3179a3dedd", 0)

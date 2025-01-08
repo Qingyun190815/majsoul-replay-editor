@@ -256,7 +256,7 @@ function editfunction() {
                     // 添加内容: 拔的牌可以是其他牌
                     N = K.tile ? mjcore.MJPai.Create(K.tile) : mjcore.MJPai.Create("4z");
 
-                    ['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddBabei'](N, K['moqie'], !0),
+                    O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['AddBabei'](N, K['moqie'], !0),
                         O['DesktopMgr'].Inst['players'][O['DesktopMgr'].Inst['seat2LocalPosition'](V)]['PlaySound']('act_babei');
                     var q = !1;
                     if (K['tile_state'] && K['tile_state'] > 0 && (q = !0),

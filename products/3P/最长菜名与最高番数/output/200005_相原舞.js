@@ -10,6 +10,10 @@ editdata.player_datas[0].avatar_id = 400502;
 editdata.player_datas[1].avatar_id = 400506;
 editdata.player_datas[2].avatar_id = 400507;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 6, "item_id": 305804}, // 桌布-贺华岁
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

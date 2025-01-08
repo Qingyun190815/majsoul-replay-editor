@@ -11,6 +11,10 @@ editdata.player_datas[1].avatar_id = 400604;
 editdata.player_datas[2].avatar_id = 400605;
 editdata.player_datas[3].avatar_id = 400606;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 305048}, // 桌布-雀魂祭一周年
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

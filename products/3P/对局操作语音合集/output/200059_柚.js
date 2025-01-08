@@ -7,6 +7,10 @@ editdata.player_datas[0].avatar_id = 405902;
 editdata.player_datas[1].avatar_id = 405904;
 editdata.player_datas[2].avatar_id = 405905;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 305612}, // 立直棒-陨石法杖
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

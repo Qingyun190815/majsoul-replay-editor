@@ -296,5 +296,3 @@ combomopai(4);
 qiepai(true);
 normalmoqie(65);
 notileliuju();
-
-GameMgr.Inst.checkPaiPu("240822-4b832cf6-1310-41e8-9379-ee3179a3dedd", 0)

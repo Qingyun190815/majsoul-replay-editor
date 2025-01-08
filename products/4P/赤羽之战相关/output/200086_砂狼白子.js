@@ -11,7 +11,13 @@ editdata.player_datas[1].avatar_id = 408601;
 editdata.player_datas[2].avatar_id = 408602;
 editdata.player_datas[3].avatar_id = 408603;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308036}, {"slot": 2, "item_id": 308037}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308038}, // 立直棒-大蛇比纳
+    {"slot": 1, "item_id": 308036}, // 和牌-冷血射击
+    {"slot": 2, "item_id": 308037}, // 立直-虹色轨迹
+    {"slot": 6, "item_id": 308039}, // 桌布-什亭青空
+    {"slot": 7, "item_id": 308040}, // 牌背-佩洛之星
+];
 
 editdata.config = {
     'category': 1,

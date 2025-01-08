@@ -7,8 +7,11 @@ editdata.player_datas[0].avatar_id = 402002;
 editdata.player_datas[1].avatar_id = 402005;
 editdata.player_datas[2].avatar_id = 402006;
 
+// 头像框-猫咪军团的身份
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = 305523;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 5, "item_id": 305523}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 5, "item_id": 305523}, // 头像框-猫咪军团的身份
+];
 
 editdata.config = {
     'category': 1,

@@ -1,5 +1,11 @@
 loadproject();
 
+// 同期UP装扮:
+// 立直音乐-终结之战
+// 头像框-一汪打尽
+// 桌布-禁锢之武
+// 牌背-封印术
+
 editdata.player_datas[0].nickname = "一之濑空";
 editdata.player_datas[1].nickname = "A-37";
 editdata.player_datas[2].nickname = "森川绫子";
@@ -11,7 +17,11 @@ editdata.player_datas[3].avatar_id = 407403;
 
 // 头像框-一汪打尽
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 30550017;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 30550017}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 5, "item_id": 30550017}, // 头像框-一汪打尽
+    {"slot": 6, "item_id": 30580009}, // 桌布-禁锢之武
+    {"slot": 7, "item_id": 30570006}, // 牌背-封印术
+];
 
 editdata.config = {
     'category': 1,
@@ -24,23 +34,13 @@ editdata.config = {
     }
 };
 
-// Insert your code below
-
-/*
-tiles0 = "11112223334446z";
+// 示例对局
+tiles0 = "11223344556777z";
 tiles1 = "1112340678999m";
-tiles2 = "111333777999s6z";
-tiles3 = "222444666888s6z";
-paishan = randompaishan("6z", "0p432z");
+tiles2 = "1112340678999p";
+tiles3 = "1112340678999s";
+paishan = randompaishan("6z", "5z....");
 roundbegin();
-for (let i = 0; i < 4; i++) {
-    leimingpai();
-    mopai();
-}
-qiepai();
-mopai();
-qiepai("6z", true);
+qiepai(true);
+normalmoqie();
 hupai();
-*/
-
-GameMgr.Inst.checkPaiPu("240824-069a7e45-a8cb-49d8-be75-594a207f9c1e", 0)

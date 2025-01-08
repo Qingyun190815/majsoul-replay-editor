@@ -10,7 +10,13 @@ editdata.player_datas[0].avatar_id = 401502;
 editdata.player_datas[1].avatar_id = 401501;
 editdata.player_datas[2].avatar_id = 401503;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 1, "item_id": 305208}, {"slot": 2, "item_id": 305308}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 305604}, // 立直棒-乘风破浪
+    {"slot": 1, "item_id": 305208}, // 和牌-海浪的馈赠
+    {"slot": 2, "item_id": 305308}, // 立直-浪之声
+    {"slot": 6, "item_id": 305802}, // 桌布-冲鸭！
+    {"slot": 7, "item_id": 305702}, // 牌背-浪花朵朵
+];
 
 editdata.config = {
     'category': 1,

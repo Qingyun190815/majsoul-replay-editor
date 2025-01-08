@@ -235,5 +235,3 @@ normalmoqie(4);
 mingqiepai(2);
 normalmoqie(23);
 hupai();
-
-GameMgr.Inst.checkPaiPu("240511-60b20bea-356e-4fd8-8a75-c44cfd2a1df6", 0)

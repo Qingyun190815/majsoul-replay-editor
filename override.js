@@ -286,14 +286,13 @@
                     for (var Q = 0; 4 > Q; Q++) {
                         var X = mjcore['MJPai']['Create'](K);
                         O['DesktopMgr'].Inst['is_jiuchao_mode']() && (X['touming'] = 3 !== Q),
-                            // 修改: 原文 X.dora = 0 === Q ? !1 : _ >= Q,
-                            X.dora = _ > Q,
+                            X.dora = 0 === Q ? !1 : _ >= Q,
                             V.push(X);
                     }
                     */
                     // 贪心策略: 优先杠出赤宝牌
                     var N = O['DesktopMgr'].Inst['seat2LocalPosition'](U)
-                            , q = O['DesktopMgr'].Inst['players'][N]
+                        , q = O['DesktopMgr'].Inst['players'][N]
                     var X = mjcore['MJPai']['Create'](K);
                     var dora_cnt = 0;
 
@@ -325,4 +324,3 @@
             U;
     }(O['ActionBase']);
 }(view || (view = {}));
-

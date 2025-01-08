@@ -40,7 +40,8 @@ def generator_sp():
         tmp_avatar_id = []
         for index in range(len(avatar_ids)):
             outfile = open("./output/" + outfile_dirname[index] + "/" + file_name, "w")
-            flag_hand = flag_views = True
+            # flag_hand = True
+            flag_views = True
             name_count = id_count = 0
 
             if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
@@ -80,16 +81,17 @@ def generator_sp():
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if charids[index] in char_unique_views and id_count == 4 and name_count == 4:
+                if flag_views and charids[index] in char_unique_views and id_count == 4 and name_count == 4:
                     outfile.write("\n" + char_unique_views[charids[index]] + "\n")
-                if not use_dict and use_views:
-                    if flag_hand and id_count == 4 and name_count == 4:
-                        outfile.write("\n" + change_hand + "\n")
-                        flag_hand = False
-
-            if use_dict and not use_views:
-                if charids[index] in dict_spchar_paipu:
-                    outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
+                    flag_views = False
+            #     if not use_dict and use_views:
+            #         if flag_hand and id_count == 4 and name_count == 4:
+            #             outfile.write("\n" + change_hand + "\n")
+            #             flag_hand = False
+            #
+            # if use_dict and not use_views:
+            #     if charids[index] in dict_spchar_paipu:
+            #         outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
             infile.seek(0)
             outfile.close()
 

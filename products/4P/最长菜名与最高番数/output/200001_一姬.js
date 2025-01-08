@@ -9,7 +9,13 @@ editdata.player_datas[1].avatar_id = 400104;
 editdata.player_datas[2].avatar_id = 400105;
 editdata.player_datas[3].avatar_id = 400106;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305213}, {"slot": 2, "item_id": 305324}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 305049}, // 立直棒-炎夏型一姬甜筒
+    {"slot": 1, "item_id": 305213}, // 和牌-疾月斩
+    {"slot": 2, "item_id": 305324}, // 立直-猫过留痕
+    {"slot": 6, "item_id": 305046}, // 桌布-吃瓜
+    {"slot": 13, "item_id": 305718}, // 牌面-猫咪雀圣
+];
 
 editdata.config = {
     'category': 1,

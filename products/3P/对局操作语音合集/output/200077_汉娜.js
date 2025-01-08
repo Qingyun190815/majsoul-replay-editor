@@ -51,5 +51,3 @@ paishan = randompaishan("", "1m........");
 roundbegin();
 qiepai("2p");
 hupai();
-
-GameMgr.Inst.checkPaiPu("240808-28d4bd69-6322-4b16-9eba-2f8d29f2e8f8", 0)
