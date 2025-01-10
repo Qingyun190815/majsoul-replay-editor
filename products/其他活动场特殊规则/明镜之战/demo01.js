@@ -37,5 +37,3 @@ normalmoqie(2);
 mopai();
 leimingpai();
 hupai();
-
-GameMgr.Inst.checkPaiPu("211110-68c66157-07ad-48b7-91ac-7641581edf32", 0)

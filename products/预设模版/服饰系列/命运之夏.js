@@ -7,7 +7,7 @@ loadproject();
 // 桌布-勇喵传说
 // 牌背-鬼煤球
 
-// 此外还有活动获得的 称号-一姬当千
+// 此外还有活动获得的 称号-一姬当千 和 动态桌布-捞金鱼 (没加入views)
 
 editdata.player_datas[0].nickname = "卡维";
 editdata.player_datas[1].nickname = "明智英树";

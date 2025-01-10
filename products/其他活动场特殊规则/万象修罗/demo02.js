@@ -33,5 +33,3 @@ qiepai();
 zimohu(true);
 
 gameend();
-
-GameMgr.Inst.checkPaiPu("241214-cb67bca2-b108-4006-bc61-777b255d0a63", 0)
