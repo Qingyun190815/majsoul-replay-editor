@@ -8,7 +8,6 @@ const liqibangs = [
     305004,  // 巧克力立直棒
     305005,  // 邪眼立直棒
     305006,  // 翡翠立直棒
-    305010,  // 立直-苍火
     305018,  // 猩红立直棒
     305019,  // 24K金棒
     305027,  // 立直棒-爆竹
@@ -115,6 +114,7 @@ const hupais = [
 ];
 
 const liqis = [
+    305010,  // 立直-苍火
     305021,  // 立直-碎冰
     305022,  // 立直-火焰
     305032,  // 立直-幻影
@@ -231,6 +231,60 @@ const avatar_frames = [
     30550016,  // 头像框-四象战
     30550017,  // 头像框-一汪打尽
 ];
+
+const tablecloths = [
+    305012, // 孔雀绿桌布
+    305013, // 莲藕紫桌布
+    305014, // 紫罗兰桌布
+    305020, // 圣夜桌布
+    305024, // 新春桌布
+    305044, // 藏青桌布
+    305046, // 桌布-吃瓜
+    305048, // 桌布-雀魂祭一周年
+    305801, // 桌布-锦鲤游
+    305802, // 桌布-冲鸭！
+    305803, // 桌布-堆雪人
+    305804, // 桌布-贺华岁
+    305805, // 动态桌布-捞金鱼
+    305806, // 桌布-勇喵传说
+    305807, // 桌布-暖屋圣夜
+    305808, // 桌布-乾坤福袋
+    305809, // 动态桌布-紫霞海岸
+    305810, // 桌布-中光波——————！
+    305811, // 桌布-小黄鸭冲浪里
+    305812, // 桌布-仙境茶话会
+    305813, // 桌布-RML联赛
+    305814, // 桌布-去海边
+    305815, // 桌布-萌芽地
+    305816, // 桌布-花月夜
+    305817, // 桌布-萤火之森
+    305818, // 桌布-藤萝悦色
+    305819, // 酒红桌布
+    305820, // 炭灰桌布
+    308004, // 桌布-赛间小憩
+    308009, // 桌布-无双之花
+    308014, // 桌布-传说之夜
+    308019, // 桌布-恋之见证
+    308024, // 桌布-清凉假日
+    308029, // 桌布-魔女的契约
+    308034, // 桌布-星夜的羁绊
+    308039, // 桌布-什亭青空
+    308997, // 桌布-官方赛事麒麟战
+    308998, // 桌布-官方赛事四象战
+    308999, // 桌布-官方赛事
+    30580001, // 桌布-月圆传说
+    30580002, // 桌布-一番祥瑞录
+    30580003, // 桌布-熊猫观月
+    30580004, // 桌布-斗鱼纪念
+    30580005, // 桌布-预热开场
+    30580006, // 桌布-破茧
+    30580007, // 动态桌布-星间飞行
+    30580008, // 桌布-小恶魔日记
+    30580009, // 桌布-禁锢之武
+    30580010, // 桌布-官方赛事麒麟战
+    30580011, // 桌布-闪耀吧！
+    30580012, // 桌布-瑞雪祈狐
+]
 
 const titles = [
     // 600001,  // 无称号
@@ -557,27 +611,27 @@ function editgame(editdata) {
 }
 
 // 回放接口, 在 edit 中重写, 并在 canceledit 中复原
-var initData, initRoom, checkPaiPu, load_my_desktop_view, load_my_mjp_view;
+var initData, checkPaiPu, load_my_desktop_view;
 
 function edit(x) {
     if (initData === undefined)
         initData = uiscript.UI_Replay.prototype.initData;
-    if (initRoom === undefined)
-        initRoom = view.DesktopMgr.prototype.initRoom;
     if (checkPaiPu === undefined)
         checkPaiPu = GameMgr.Inst.checkPaiPu;
     if (load_my_desktop_view === undefined)
         load_my_desktop_view = game.Scene_MJ.prototype._load_my_desktop_view;
-    if (load_my_mjp_view === undefined)
-        load_my_mjp_view = game.Scene_MJ.prototype._load_my_mjp_view;
+
+    if (x === undefined)
+        x = JSON.parse(JSON.stringify(editdata));
 
     // 玩家信息
     function player_datas(a) {
         let ret = [];
         let views_pool = [];
-        views_pool[0] = liqibangs, views_pool[1] = hupais, views_pool[2] = liqis, views_pool[5] = avatar_frames, views_pool[11] = titles;
-        let slot_num = [0, 1, 2, 5, 11];
-        // 建议玩家随机的装扮: 立直棒(0), 和牌特效(1), 立直特效(2), 头像框(5), 称号(11)
+        views_pool[0] = liqibangs, views_pool[1] = hupais, views_pool[2] = liqis;
+        views_pool[5] = avatar_frames, views_pool[6] = tablecloths, views_pool[11] = titles;
+        let slot_num = [0, 1, 2, 5, 6, 11];
+        // 建议玩家随机的装扮: 立直棒(0), 和牌特效(1), 立直特效(2), 头像框(5), 桌布(6), 称号(11)
         for (let seat = 0; seat < x.player_datas.length; seat++) {
             ret[seat] = {
                 'account_id': (seat + 1) * 10000,
@@ -611,10 +665,17 @@ function edit(x) {
                     }
                     if (slot === 5)
                         ret[seat].avatar_frame = item_id;
-                    ret[seat].views.push({
-                        "slot": slot,
-                        "item_id": item_id,
-                    });
+                    let existed = false;
+                    for (let j = 0; j < ret[seat].views.length; j++)
+                        if (ret[seat].views[j].slot === slot) {
+                            ret[seat].views[j].item_id = item_id;
+                            existed = true;
+                        }
+                    if (!existed)
+                        ret[seat].views.push({
+                            "slot": slot,
+                            "item_id": item_id,
+                        });
                 }
             }
             if (is_random_skin()) {
@@ -629,33 +690,6 @@ function edit(x) {
         }
         return ret;
     }
-
-    if (x === undefined)
-        x = JSON.parse(JSON.stringify(editdata));
-
-    // uiscript.UI_Replay.prototype.initData = function (data) {
-    //     let _ = initData.call(this, data);
-    //     if (typeof (editfunction2) !== "undefined")
-    //         editfunction2();
-    //     return _;
-    // }
-    // MJMode 有四种取值:
-    // play: 0, 正常玩游戏的情况
-    // paipu: 1, 牌谱回放
-    // live_broadcast: 2, 观战
-    // xinshouyindao: 3, 新手引导的固定对局
-    // 牌谱回放只能使用 1 这种情况
-
-    // view.DesktopMgr.prototype.initRoom = function (game_config, playerdatas, myaccountid, MJMode, UI_Laya) {
-    //     if (MJMode === 1)
-    //         initRoom.call(this, x.config, playerdatas, myaccountid, MJMode, UI_Laya);
-    //     else
-    //         initRoom.call(this, game_config, playerdatas, myaccountid, MJMode, UI_Laya);
-    //     if (typeof (editfunction2) !== "undefined")
-    //         editfunction2();
-    //     if (MJMode === 1 && x.config.mode.mode > 20)
-    //         view.DesktopMgr.Inst.rule_mode = view.ERuleMode.Liqi2;
-    // }
 
     function is_random_views() {
         return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.random_views);
@@ -705,6 +739,15 @@ function edit(x) {
         return 305725; // 默认牌面: 牌面-默认
     }
 
+    // 重写 initData 主要是为了切换视角时数据不复原, 如果不需要切换视角则可以不用管
+    uiscript.UI_Replay.prototype.initData = function (data) {
+        let _ = initData.call(this, data);
+        if (typeof (editfunction2) !== "undefined")
+            editfunction2();
+        editgame(x);
+        return _;
+    }
+
     game.Scene_MJ.prototype._load_my_desktop_view = function (K, U) {
         var O = game;
         var V = this
@@ -738,47 +781,13 @@ function edit(x) {
             }), U);
     }
 
-    // game.Scene_MJ.prototype._load_my_mjp_view = function (K, U, V) {
-    //     var O = game;
-    //     var N = [];
-    //     var _ = O['GameUtility']['get_view_res_name'](O['EView'].mjp)
-    //         , h = 'scene/Assets/Resource/mjpai/',
-    //         // 添加下面三行
-    //         tt = cfg.item_definition.view.get(get_mjp_id());
-    //     if (tt !== undefined)
-    //         _ = tt.res_name, uiscript['UI_Sushe']['now_mjp_id'] = get_mjp_id();
-    //
-    //     N.push(h + _ + '/mjp.png'),
-    //         N.push(h + _ + '/hand.png');
-    //     var t = K && K.mode && K.mode['detail_rule'] && !!K.mode['detail_rule']['jiuchao_mode']
-    //         , X = t ? 'mjpface_default' : O['GameUtility']['get_view_res_name'](O['EView']['mjp_surface']),
-    //         // 添加下面三行
-    //         ss = cfg.item_definition.view.get(get_mjpsurface_id());
-    //     if (ss !== undefined)
-    //         X = ss.res_name, uiscript['UI_Sushe']['now_mjp_surface_id'] = get_mjpsurface_id();
-    //
-    //     view['DesktopMgr']['en_mjp'] && (X += '_0');
-    //     var m = 'scene/Assets/Resource/mjpaimian/';
-    //     ('en' === GameMgr['client_language'] || 'kr' === GameMgr['client_language']) && (m += 'en_kr/'),
-    //         N.push(m + X + '/mjp.png'),
-    //         N.push(m + X + '/hand.png'),
-    //     K && K.mode && K.mode['detail_rule'] && K.mode['detail_rule']['jiuchao_mode'] && ('en' === GameMgr['client_language'] ||
-    //     'kr' === GameMgr['client_language'] ? view['DesktopMgr']['en_mjp'] ? (N.push('scene/Assets/Resource/mjpai/en_kr/toumingpai_0/mjp.png'),
-    //         N.push('scene/Assets/Resource/mjpai/en_kr/toumingpai_0/hand_ui.png')) : (N.push('scene/Assets/Resource/mjpai/en_kr/toumingpai/mjp.png'),
-    //         N.push('scene/Assets/Resource/mjpai/en_kr/toumingpai/hand_ui.png')) : (N.push('scene/Assets/Resource/mjpai/toumingpai/mjp.png'),
-    //         N.push('scene/Assets/Resource/mjpai/toumingpai/hand_ui.png'))),
-    //         this['_mjp_textures'] = N,
-    //         Laya['loader']['create'](N, U, V);
-    // }
-
     // code.js 文件 263712 行 : GameMgr.Inst.checkPaiPu
     GameMgr.Inst.checkPaiPu = function (game_uuid, account_id, paipu_config) {
-        // 添加下面四行
+        // 添加下面6行
         if (cfg.item_definition.view.get(get_mjp_id()) !== undefined)
             uiscript.UI_Sushe.now_mjp_id = get_mjp_id();
         if (cfg.item_definition.view.get(get_mjpsurface_id()) !== undefined)
             uiscript.UI_Sushe.now_mjp_surface_id = get_mjpsurface_id();
-
         if (typeof (editfunction2) !== "undefined")
             editfunction2();
 
@@ -907,7 +916,7 @@ function edit(x) {
                                                 view.DesktopMgr.Inst.rule_mode = view.ERuleMode.Liqi2;
                                             uiscript['UI_Replay'].Inst['initData'](O),
                                                 // 添加下面1行
-                                                editgame(x),
+                                                // editgame(x),
                                                 uiscript['UI_Replay'].Inst['enable'] = !0,
                                                 Laya['timer'].once(1000, N, function () {
                                                     N['EnterMJ']();
@@ -950,7 +959,7 @@ function edit(x) {
                     }
                 }),
                 void 0)
-    };
+    }
 }
 
 // 取消编辑
@@ -959,10 +968,6 @@ function canceledit() {
         uiscript.UI_Replay.prototype.initData = function (data) {
             return initData.call(this, data);
         }
-    if (initRoom !== undefined)
-        view.DesktopMgr.prototype.initRoom = function (game_config, playerDatas, myaccountid, MJMode, UI_Laya) {
-            return initRoom.call(this, game_config, playerDatas, myaccountid, MJMode, UI_Laya);
-        }
     if (checkPaiPu !== undefined)
         GameMgr.Inst.checkPaiPu = function (game_uuid, account_id, paipu_config) {
             return checkPaiPu.call(this, game_uuid, account_id, paipu_config);
@@ -970,10 +975,6 @@ function canceledit() {
     if (load_my_desktop_view !== undefined)
         game.Scene_MJ.prototype._load_my_desktop_view = function (K, U) {
             return load_my_desktop_view.call(this, K, U);
-        }
-    if (load_my_mjp_view !== undefined)
-        game.Scene_MJ.prototype._load_my_mjp_view = function (K, U, V) {
-            return load_my_mjp_view.call(this, K, U, V);
         }
 }
 
@@ -1032,8 +1033,7 @@ let shezhangzhenting = [false, false, false, false], pretongxunzhenting = [false
 let tongxunzhenting = [false, false, false, false], lizhizhenting = [false, false, false, false],
     zhenting = [false, false, false, false];
 // 特殊牌的后缀以及和普通牌编码的差值
-let tile_suf = 't';
-let OFFSET = 40;
+let tile_suf = 't', OFFSET = 40;
 let specialtiles = {
     'all': separatetile("0123456789m0123456789p0123456789s1234567z"),
     'lvyise': separatetile("0123456789m0123456789p01579s123457z"),
@@ -1539,7 +1539,7 @@ function update_muyu() {
 function decompose(x) {
     x = x.replace(/\s*/g, "");
     for (let i = 0; i < x.length; i++) {
-        if (x[i] === '.' || x[i] === 'Y' || x[i] === 'D' || x[i] === 'H' || x[i] === 'T') {
+        if (x[i] === '.' || x[i] === 'Y' || x[i] === 'D' || x[i] === 'H' || x[i] === 'T' || x[i] === 'M' || x[i] === 'P' || x[i] === 'S') {
             x = x.substring(0, i + 1) + x[i] + x.substring(i + 1);
             i++;
             continue;
@@ -6484,14 +6484,15 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
     let all_paishan = [paishanfront, paishanback];
     for (let j = 0; j < all_paishan.length; j++) {
         for (let i = 0; i < all_paishan[j].length; i++)
-            if (all_paishan[j][i] !== '.' && all_paishan[j][i] !== 'Y' && all_paishan[j][i] !== 'D' && all_paishan[j][i] !== 'H' && all_paishan[j][i] !== 'T') {
-                if (i + 2 < all_paishan[j].length && all_paishan[j][i + 2] === tile_suf) {
-                    cnt2[tiletoint(all_paishan[j][i] + all_paishan[j][i + 1] + tile_suf, true)]--;
+            if (all_paishan[j][i] !== '.' && all_paishan[j][i] !== 'Y' && all_paishan[j][i] !== 'D' && all_paishan[j][i] !== 'H' && all_paishan[j][i] !== 'T')
+                if (all_paishan[j][i] !== 'M' && all_paishan[j][i] !== 'P' && all_paishan[j][i] !== 'S') {
+                    if (i + 2 < all_paishan[j].length && all_paishan[j][i + 2] === tile_suf) {
+                        cnt2[tiletoint(all_paishan[j][i] + all_paishan[j][i + 1] + tile_suf, true)]--;
+                        i++;
+                    } else
+                        cnt[tiletoint(all_paishan[j][i] + all_paishan[j][i + 1], true)]--;
                     i++;
-                } else
-                    cnt[tiletoint(all_paishan[j][i] + all_paishan[j][i + 1], true)]--;
-                i++;
-            }
+                }
     }
 
     for (let i = 1; i <= nxt2.length; i++) {
@@ -6559,6 +6560,54 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
         } else if (paishanfront[i] === 'D') { // 中张牌
             for (let j = 0; j < tiles.length; j++) {
                 if (!(tiles[j][0] === '1' || tiles[j][0] === '9' || tiles[j][1] === 'z')) {
+                    let tmp = tiles[j];
+                    tiles[j] = tiles[tiles.length - 1];
+                    tiles[tiles.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishanfront[i] = tiles[tiles.length - 1][0];
+            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
+                insert_paishan(paishanfront, i + 2, tile_suf);
+                i++;
+            }
+            tiles.length--;
+        } else if (paishanfront[i] === 'M') { // 万子
+            for (let j = 0; j < tiles.length; j++) {
+                if (tiles[j][1] === 'm') {
+                    let tmp = tiles[j];
+                    tiles[j] = tiles[tiles.length - 1];
+                    tiles[tiles.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishanfront[i] = tiles[tiles.length - 1][0];
+            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
+                insert_paishan(paishanfront, i + 2, tile_suf);
+                i++;
+            }
+            tiles.length--;
+        } else if (paishanfront[i] === 'P') { // 饼子
+            for (let j = 0; j < tiles.length; j++) {
+                if (tiles[j][1] === 'p') {
+                    let tmp = tiles[j];
+                    tiles[j] = tiles[tiles.length - 1];
+                    tiles[tiles.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishanfront[i] = tiles[tiles.length - 1][0];
+            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
+                insert_paishan(paishanfront, i + 2, tile_suf);
+                i++;
+            }
+            tiles.length--;
+        } else if (paishanfront[i] === 'S') { // 索子
+            for (let j = 0; j < tiles.length; j++) {
+                if (tiles[j][1] === 's') {
                     let tmp = tiles[j];
                     tiles[j] = tiles[tiles.length - 1];
                     tiles[tiles.length - 1] = tmp;
@@ -6643,6 +6692,54 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
         } else if (paishanback[i] === 'D') { // 中张牌
             for (let j = 0; j < tiles.length; j++) {
                 if (!(tiles[j][0] === '1' || tiles[j][0] === '9' || tiles[j][1] === 'z')) {
+                    let tmp = tiles[j];
+                    tiles[j] = tiles[tiles.length - 1];
+                    tiles[tiles.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishanback[i] = tiles[tiles.length - 1][0];
+            paishanback[i + 1] = tiles[tiles.length - 1][1];
+            if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
+                insert_paishan(paishanback, i + 2, tile_suf);
+                i++;
+            }
+            tiles.length--;
+        } else if (paishanback[i] === 'M') { // 万子
+            for (let j = 0; j < tiles.length; j++) {
+                if (tiles[j][1] === 'm') {
+                    let tmp = tiles[j];
+                    tiles[j] = tiles[tiles.length - 1];
+                    tiles[tiles.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishanback[i] = tiles[tiles.length - 1][0];
+            paishanback[i + 1] = tiles[tiles.length - 1][1];
+            if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
+                insert_paishan(paishanback, i + 2, tile_suf);
+                i++;
+            }
+            tiles.length--;
+        } else if (paishanback[i] === 'P') { // 饼子
+            for (let j = 0; j < tiles.length; j++) {
+                if (tiles[j][1] === 'p') {
+                    let tmp = tiles[j];
+                    tiles[j] = tiles[tiles.length - 1];
+                    tiles[tiles.length - 1] = tmp;
+                    break;
+                }
+            }
+            paishanback[i] = tiles[tiles.length - 1][0];
+            paishanback[i + 1] = tiles[tiles.length - 1][1];
+            if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
+                insert_paishan(paishanback, i + 2, tile_suf);
+                i++;
+            }
+            tiles.length--;
+        } else if (paishanback[i] === 'S') { // 索子
+            for (let j = 0; j < tiles.length; j++) {
+                if (tiles[j][1] === 's') {
                     let tmp = tiles[j];
                     tiles[j] = tiles[tiles.length - 1];
                     tiles[tiles.length - 1] = tmp;
@@ -6803,10 +6900,52 @@ function transition3P(c_chang = chang, c_ju = ju, c_ben = ben) {
     ben = c_ben;
 }
 
+function demogame() {
+    tiles0 = "11223344556777z";
+    tiles1 = "1112340678999m";
+    tiles2 = "1112340678999p";
+    tiles3 = "1112340678999s";
+    paishan = randompaishan("6z", "55z....");
+    roundbegin();
+    qiepai(true);
+    normalmoqie();
+    hupai();
+}
+
 function gotoju(c_chang = chang, c_ju = ju, c_ben = ben) {
     chang = c_chang;
     ju = c_ju;
     ben = c_ben;
+}
+
+function normalmoqie(tileorcnt) {
+    if (tileorcnt === undefined)
+        tileorcnt = 1;
+    if (typeof (tileorcnt) === "number")
+        for (let i = 0; i < tileorcnt; i++) {
+            mopai();
+            qiepai();
+        }
+    else if (typeof (tileorcnt) === "string") {
+        mopai();
+        qiepai(tileorcnt);
+    } else
+        console.error("Error at normalmoqie()");
+}
+
+function mingqiepai(tileorcnt) {
+    if (tileorcnt === undefined)
+        tileorcnt = 1;
+    if (typeof (tileorcnt) === "number")
+        for (let i = 0; i < tileorcnt; i++) {
+            mingpai();
+            qiepai();
+        }
+    else if (typeof (tileorcnt) === "string") {
+        mingpai();
+        qiepai(tileorcnt);
+    } else
+        console.error("Error at mingqiepai()");
 }
 
 function moqieliqi(tile) {
@@ -6819,34 +6958,6 @@ function moqieliqi(tile) {
     }
 }
 
-function normalmoqie(cnt = 1) {
-    for (let i = 0; i < cnt; i++) {
-        mopai();
-        qiepai();
-    }
-}
-
-function combomopai(cnt = 1) {
-    for (let i = 0; i < cnt; i++) {
-        leimingpai();
-        mopai();
-    }
-}
-
-function mingqiepai(tileorcnt) {
-    if (tileorcnt === undefined)
-        tileorcnt = 1;
-    if (typeof (tileorcnt) === "number")
-        for (let i = 0; i < tileorcnt; i++) {
-            mingpai();
-            qiepai();
-        } else if (typeof (tileorcnt) === "string") {
-        mingpai();
-        qiepai(tileorcnt);
-    } else
-        console.error("Error at mingqiepai()");
-}
-
 function zimohu(flag = false) {
     if (typeof (flag) == "boolean") {
         mopai();
@@ -6855,16 +6966,11 @@ function zimohu(flag = false) {
         console.error("Error at zimohu()");
 }
 
-function demogame() {
-    tiles0 = "11223344556777z";
-    tiles1 = "1112340678999m";
-    tiles2 = "1112340678999p";
-    tiles3 = "1112340678999s";
-    paishan = randompaishan("6z", "55z....");
-    roundbegin();
-    qiepai(true);
-    normalmoqie();
-    hupai();
+function combomopai(cnt = 1) {
+    for (let i = 0; i < cnt; i++) {
+        leimingpai();
+        mopai();
+    }
 }
 
 // 自定义役种: 役种名称的汉字需要在已有的里面选, 否则不会显示
