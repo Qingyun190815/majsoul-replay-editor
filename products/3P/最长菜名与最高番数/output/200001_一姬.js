@@ -10,6 +10,10 @@ editdata.player_datas[0].avatar_id = 400102;
 editdata.player_datas[1].avatar_id = 400105;
 editdata.player_datas[2].avatar_id = 400106;
 
+// 称号-一姬当千
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = 600045;
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = 1;
 editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
     {"slot": 0, "item_id": 305049}, // 立直棒-炎夏型一姬甜筒
     {"slot": 1, "item_id": 305213}, // 和牌-疾月斩

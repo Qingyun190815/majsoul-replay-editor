@@ -1,9 +1,346 @@
 "use strict";
 
+// 回放用装扮
+const liqibangs = [
+    305001,
+    305002,
+    305003,
+    305004,
+    305005,
+    305006,
+    305010,
+    305018,
+    305019,
+    305027,
+    305028,
+    305041,
+    305042,
+    305049,
+    305600,
+    305601,
+    305602,
+    305603,
+    305604,
+    305605,
+    305606,
+    305607,
+    305608,
+    305609,
+    305610,
+    305611,
+    305612,
+    305613,
+    305614,
+    305615,
+    305616,
+    305617,
+    305618,
+    305619,
+    305620,
+    305621,
+    305622,
+    305623,
+    305624,
+    305625,
+    305626,
+    308003,
+    308008,
+    308013,
+    308018,
+    308023,
+    308028,
+    308033,
+    308038,
+    30560001,
+    30560002,
+    30560003,
+    30560004,
+    30560005,
+    30560006,
+];
+
+const hupais = [
+    305007,
+    305008,
+    305009,
+    305023,
+    305029,
+    305034,
+    305035,
+    305036,
+    305039,
+    305040,
+    305200,
+    305201,
+    305202,
+    305203,
+    305204,
+    305205,
+    305206,
+    305207,
+    305208,
+    305209,
+    305210,
+    305211,
+    305212,
+    305213,
+    305215,
+    305216,
+    305217,
+    305218,
+    305219,
+    305220,
+    305221,
+    305222,
+    305223,
+    305224,
+    305225,
+    305226,
+    308001,
+    308006,
+    308011,
+    308016,
+    308021,
+    308026,
+    308031,
+    308036,
+    30520001,
+    30520002,
+    30520003,
+    30520004,
+    30520005,
+    30520006,
+    30520007,
+    30520008,
+];
+
+const liqis = [
+    305021,
+    305022,
+    305032,
+    305033,
+    305037,
+    305038,
+    305300,
+    305301,
+    305302,
+    305303,
+    305304,
+    305305,
+    305306,
+    305307,
+    305308,
+    305309,
+    305310,
+    305311,
+    305312,
+    305313,
+    305315,
+    305316,
+    305317,
+    305318,
+    305319,
+    305320,
+    305321,
+    305322,
+    305323,
+    305324,
+    305325,
+    305326,
+    308002,
+    308007,
+    308012,
+    308017,
+    308022,
+    308027,
+    308032,
+    308037,
+    30530001,
+    30530002,
+    30530003,
+    30530004,
+    30530005,
+    30530006,
+    30530007,
+    30530008,
+];
+
+const avatar_frames = [
+    305500,
+    305501,
+    305510,
+    305511,
+    305512,
+    305513,
+    305514,
+    305515,
+    305516,
+    305517,
+    305518,
+    305519,
+    305520,
+    305521,
+    305522,
+    305523,
+    305524,
+    305525,
+    305526,
+    305527,
+    305528,
+    305529,
+    305530,
+    305531,
+    305532,
+    305533,
+    305534,
+    305535,
+    305536,
+    305537,
+    305538,
+    305539,
+    305540,
+    305541,
+    305542,
+    305543,
+    305544,
+    305545,
+    305546,
+    305547,
+    305548,
+    305549,
+    305550,
+    305551,
+    305552,
+    305553,
+    305555,
+    30550001,
+    30550002,
+    30550003,
+    30550004,
+    30550005,
+    30550006,
+    30550007,
+    30550008,
+    30550009,
+    30550010,
+    30550011,
+    30550012,
+    30550013,
+    30550014,
+    30550015,
+    30550016,
+    30550017,
+];
+
+const titles = [
+    600001,
+    600002,
+    600003,
+    600004,
+    600005,
+    600006,
+    600007,
+    600008,
+    600009,
+    600010,
+    600011,
+    600012,
+    600013,
+    600014,
+    600015,
+    600016,
+    600017,
+    600018,
+    600019,
+    600020,
+    600021,
+    600022,
+    600023,
+    600024,
+    600025,
+    600026,
+    600027,
+    600028,
+    600029,
+    600031,
+    600032,
+    600033,
+    600034,
+    600035,
+    600036,
+    600037,
+    600038,
+    600039,
+    600040,
+    600041,
+    600042,
+    600043,
+    600044,
+    600045,
+    600046,
+    600047,
+    600048,
+    600049,
+    600050,
+    600051,
+    600052,
+    600053,
+    600054,
+    600055,
+    600056,
+    600064,
+    600065,
+    600066,
+    600067,
+    600068,
+    600069,
+    600070,
+    600071,
+    600072,
+    600073,
+    600074,
+    600075,
+    600076,
+    600077,
+    600078,
+    600079,
+    600080,
+    600081,
+    600082,
+    600083,
+    600084,
+    600085,
+    600086,
+    600087,
+    600088,
+    600089,
+    600090,
+    600091,
+    600092,
+    600093,
+    600094,
+    600095,
+    600096,
+    600097,
+    600098,
+    600099,
+    600100,
+    600101,
+    600102,
+    600103,
+    600104,
+    600105,
+    600106,
+    600107,
+    600108,
+    600109,
+    600110,
+];
+
 // md5 计算函数, 与牌谱回放关系不大
 function md5(string) {
     function md5_RotateLeft(lValue, iShiftBits) {
-        return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
+        return lValue << iShiftBits | lValue >>> 32 - iShiftBits;
     }
 
     function md5_AddUnsigned(lX, lY) {
@@ -12,7 +349,7 @@ function md5(string) {
         lY8 = lY & 0x80000000;
         lX4 = lX & 0x40000000;
         lY4 = lY & 0x40000000;
-        lResult = lX & 0x3FFFFFFF + lY & 0x3FFFFFFF;
+        lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
         if (lX4 & lY4)
             return lResult ^ 0x80000000 ^ lX8 ^ lY8;
         if (lX4 | lY4) {
@@ -25,11 +362,11 @@ function md5(string) {
     }
 
     function md5_F(x, y, z) {
-        return (x & y) | (~x & z);
+        return x & y | ~x & z;
     }
 
     function md5_G(x, y, z) {
-        return (x & z) | (y & ~z);
+        return x & z | y & ~z;
     }
 
     function md5_H(x, y, z) {
@@ -84,7 +421,9 @@ function md5(string) {
     }
 
     function md5_WordToHex(lValue) {
-        let WordToHexValue = "", WordToHexValue_temp = "", lByte, lCount;
+        let WordToHexValue = "",
+            WordToHexValue_temp = "",
+            lByte, lCount;
         for (lCount = 0; lCount <= 3; lCount++) {
             lByte = (lValue >>> (lCount * 8)) & 255;
             WordToHexValue_temp = "0" + lByte.toString(16);
@@ -98,7 +437,9 @@ function md5(string) {
         let utftext = "";
         for (let n = 0; n < string.length; n++) {
             let c = string.charCodeAt(n);
-            if (c < 128) utftext += String.fromCharCode(c); else if ((c > 127) && (c < 2048)) {
+            if (c < 128)
+                utftext += String.fromCharCode(c);
+            else if ((c > 127) && (c < 2048)) {
                 utftext += String.fromCharCode((c >> 6) | 192);
                 utftext += String.fromCharCode((c & 63) | 128);
             } else {
@@ -216,7 +557,7 @@ function editgame(editdata) {
 }
 
 // 回放接口, 在 edit 中重写, 并在 canceledit 中复原
-var initData, initRoom, checkPaiPu, _load_my_desktop_view, _load_my_mjp_view;
+var initData, initRoom, checkPaiPu, load_my_desktop_view, load_my_mjp_view;
 
 function edit(x) {
     if (initData === undefined)
@@ -225,14 +566,18 @@ function edit(x) {
         initRoom = view.DesktopMgr.prototype.initRoom;
     if (checkPaiPu === undefined)
         checkPaiPu = GameMgr.Inst.checkPaiPu;
-    if (_load_my_desktop_view === undefined)
-        _load_my_desktop_view = game.Scene_MJ.prototype._load_my_desktop_view;
-    if (_load_my_mjp_view === undefined)
-        _load_my_mjp_view = game.Scene_MJ.prototype._load_my_mjp_view;
+    if (load_my_desktop_view === undefined)
+        load_my_desktop_view = game.Scene_MJ.prototype._load_my_desktop_view;
+    if (load_my_mjp_view === undefined)
+        load_my_mjp_view = game.Scene_MJ.prototype._load_my_mjp_view;
 
     // 玩家信息
     function player_datas(a) {
         let ret = [];
+        let views_pool = [];
+        views_pool[0] = liqibangs, views_pool[1] = hupais, views_pool[2] = liqis, views_pool[5] = avatar_frames, views_pool[11] = titles;
+        let slot_num = [0, 1, 2, 5, 11];
+        // 建议玩家随机的装扮: 立直棒(0), 和牌特效(1), 立直特效(2), 头像框(5), 称号(11)
         for (let seat = 0; seat < x.player_datas.length; seat++) {
             ret[seat] = {
                 'account_id': (seat + 1) * 10000,
@@ -256,6 +601,24 @@ function edit(x) {
             }
             if (a[seat].account_id !== undefined)
                 ret[seat].account_id = a[seat].account_id;
+            try {
+                if (is_random_views()) {
+                    for (let i = 0; i < slot_num.length; i++) {
+                        let slot = slot_num[i];
+                        let item_id = views_pool[slot][Math.floor(Math.random() * views_pool[slot].length)];
+                        ret[seat].views.push({
+                            "slot": slot,
+                            "item_id": item_id,
+                        });
+                        if (slot === 5)
+                            ret[seat].avatar_frame = item_id;
+                        if (slot === 11)
+                            ret[seat].title = item_id;
+                    }
+                }
+            }catch (e) {
+                console.error(e);
+            }
         }
         return ret;
     }
@@ -278,7 +641,7 @@ function edit(x) {
     // 牌谱回放只能使用 1 这种情况
     view.DesktopMgr.prototype.initRoom = function (game_config, playerdatas, myaccountid, MJMode, UI_Laya) {
         if (MJMode === 1)
-            initRoom.call(this, x.config, player_datas(playerdatas), myaccountid, MJMode, UI_Laya);
+            initRoom.call(this, x.config, playerdatas, myaccountid, MJMode, UI_Laya);
         else
             initRoom.call(this, game_config, playerdatas, myaccountid, MJMode, UI_Laya);
         if (typeof (editfunction2) !== "undefined")
@@ -287,42 +650,46 @@ function edit(x) {
             view.DesktopMgr.Inst.rule_mode = view.ERuleMode.Liqi2;
     }
 
+    function is_random_views() {
+        return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.random_views);
+    }
+
     function get_tablecloth_id() {
+        if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.tablecloth_id !== undefined))
+            return parseInt(config.mode.detail_rule.tablecloth_id);
         if (x.player_datas[0].views) {
             let views = x.player_datas[0].views;
             for (let i = 0; i < views.length; i++)
                 if (views[i].slot === 6)
                     return views[i].item_id;
         }
-        if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.tablecloth_id !== undefined))
-            return parseInt(config.mode.detail_rule.tablecloth_id);
         return 305044; // 默认桌布: 藏青桌布
     }
 
     function get_mjp_id() {
+        if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.mjp_id !== undefined))
+            return parseInt(config.mode.detail_rule.mjp_id);
         if (x.player_datas[0].views) {
             let views = x.player_datas[0].views;
             for (let i = 0; i < views.length; i++)
                 if (views[i].slot === 7)
                     return views[i].item_id;
         }
-        if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.mjp_id !== undefined))
-            return parseInt(config.mode.detail_rule.mjp_id);
         return 305045; // 默认牌背: 橘黄牌背
     }
 
     function get_mjpsurface_id() {
+        if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.mjpsurface_id !== undefined)) {
+            if (typeof (config.mode.detail_rule.mjpsurface_id) === "boolean" && config.mode.detail_rule.mjpsurface_id)
+                return 305718; // 目前只有两个牌面, 另一个牌面是: 牌面-猫咪雀圣
+            else
+                return parseInt(config.mode.detail_rule.mjpsurface_id);
+        }
         if (x.player_datas[0].views) {
             let views = x.player_datas[0].views;
             for (let i = 0; i < views.length; i++)
                 if (views[i].slot === 13)
                     return views[i].item_id;
-        }
-        if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.mjpsurface_id !== undefined)){
-            if (typeof (config.mode.detail_rule.mjpsurface_id) === "boolean" && config.mode.detail_rule.mjpsurface_id)
-                return 305718; // 目前只有两个牌面, 另一个牌面是: 牌面-猫咪雀圣
-            else
-                return parseInt(config.mode.detail_rule.mjpsurface_id);
         }
         return 305725; // 默认牌面: 牌面-默认
     }
@@ -331,14 +698,10 @@ function edit(x) {
         var O = game;
         var V = this
             , N = O['GameUtility']['get_view_res_name'](O['EView']['desktop']),
-        // 添加下面七行
+            // 添加下面三行
             tt = cfg.item_definition.view.get(get_tablecloth_id());
         if (tt !== undefined)
             N = tt.res_name;
-        if (cfg.item_definition.view.get(get_mjp_id()) !== undefined)
-            uiscript.UI_Sushe.now_mjp_id = get_mjp_id();
-        if (cfg.item_definition.view.get(get_mjpsurface_id()) !== undefined)
-            uiscript.UI_Sushe.now_mjp_surface_id = get_mjpsurface_id();
 
         'tablecloth_quehunji1' === N && 'chs' !== GameMgr['client_language'] && 'chs_t' !== GameMgr['client_language'] && (N += '_enjp'),
         'tablecloth_20chunjie' === N && 'en' === GameMgr['client_language'] && (N += '_en'),
@@ -399,6 +762,12 @@ function edit(x) {
 
     // code.js 文件 263712 行 : GameMgr.Inst.checkPaiPu
     GameMgr.Inst.checkPaiPu = function (game_uuid, account_id, paipu_config) {
+        // 添加下面四行
+        if (cfg.item_definition.view.get(get_mjp_id()) !== undefined)
+            uiscript.UI_Sushe.now_mjp_id = get_mjp_id();
+        if (cfg.item_definition.view.get(get_mjpsurface_id()) !== undefined)
+            uiscript.UI_Sushe.now_mjp_surface_id = get_mjpsurface_id();
+
         var O = GameMgr;
         var N = this;
         return game_uuid = game_uuid.trim(),
@@ -510,13 +879,14 @@ function edit(x) {
                                     is_upgraded: !1
                                 }
                             });
+                        // 修改的地方: 本来是 m, 现在套上了 player_datas 函数
+                        let new_player_datas = player_datas(m);
                         var P = Laya['Handler']['create'](N, function (O) {
                             game['Scene_Lobby'].Inst['active'] && (game['Scene_Lobby'].Inst['active'] = !1),
-                                // 唯一修改的地方: 加了 player_datas 函数
-                                game['Scene_MJ'].Inst['openMJRoom'](X['config'], player_datas(m), Laya['Handler']['create'](N, function () {
+                                game['Scene_MJ'].Inst['openMJRoom'](X['config'], new_player_datas, Laya['Handler']['create'](N, function () {
                                     N['duringPaipu'] = !1,
                                         view['DesktopMgr'].Inst['paipu_config'] = paipu_config,
-                                        view['DesktopMgr'].Inst['initRoom'](JSON['parse'](JSON['stringify'](X['config'])), m, account_id, view['EMJMode']['paipu'], Laya['Handler']['create'](N, function () {
+                                        view['DesktopMgr'].Inst['initRoom'](JSON['parse'](JSON['stringify'](X['config'])), new_player_datas, account_id, view['EMJMode']['paipu'], Laya['Handler']['create'](N, function () {
                                             uiscript['UI_Replay'].Inst['initData'](O),
                                                 uiscript['UI_Replay'].Inst['enable'] = !0,
                                                 Laya['timer'].once(1000, N, function () {
@@ -577,13 +947,13 @@ function canceledit() {
         GameMgr.Inst.checkPaiPu = function (game_uuid, account_id, paipu_config) {
             return checkPaiPu.call(this, game_uuid, account_id, paipu_config);
         }
-    if (_load_my_desktop_view !== undefined)
+    if (load_my_desktop_view !== undefined)
         game.Scene_MJ.prototype._load_my_desktop_view = function (K, U) {
-            return _load_my_desktop_view.call(this, K, U);
+            return load_my_desktop_view.call(this, K, U);
         }
-    if (_load_my_mjp_view !== undefined)
+    if (load_my_mjp_view !== undefined)
         game.Scene_MJ.prototype._load_my_mjp_view = function (K, U, V) {
-            return _load_my_mjp_view.call(this, K, U, V);
+            return load_my_mjp_view.call(this, K, U, V);
         }
 }
 
@@ -6461,6 +6831,18 @@ function zimohu(flag = false) {
         hupai(flag);
     } else
         console.error("Error at zimohu()");
+}
+
+function demogame() {
+    tiles0 = "11223344556777z";
+    tiles1 = "1112340678999m";
+    tiles2 = "1112340678999p";
+    tiles3 = "1112340678999s";
+    paishan = randompaishan("6z", "55z....");
+    roundbegin();
+    qiepai(true);
+    normalmoqie();
+    hupai();
 }
 
 // 自定义役种: 役种名称的汉字需要在已有的里面选, 否则不会显示

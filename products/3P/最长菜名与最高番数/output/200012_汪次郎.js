@@ -10,6 +10,10 @@ editdata.player_datas[0].avatar_id = 401202;
 editdata.player_datas[1].avatar_id = 401204;
 editdata.player_datas[2].avatar_id = 401205;
 
+// 称号-神社贵宾
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = 600038;
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = 1;
 editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
     {"slot": 6, "item_id": 305810}, // 桌布-中光波——————！
 ];

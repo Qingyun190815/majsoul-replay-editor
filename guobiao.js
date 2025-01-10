@@ -2303,7 +2303,7 @@ function calcfan_guobiao(tiles, seat, zimo) {
                 } else if (!is_banned(8044))
                     ans.fans.push({'val': 8, 'id': 8044}); // 海底捞月
             }
-            if (zimo && lstdrawtype === 0 && !is_banned(8045)) {
+            if (zimo && lstdrawtype === 0 && !is_banned(8045) && getlstaction(2).name !== "RecordBaBei") {
                 ans.fans.push({'val': 8, 'id': 8045}); // 杠上开花
                 // 不计 自摸
                 banfan(8081);

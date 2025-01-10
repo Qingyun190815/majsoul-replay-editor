@@ -23,11 +23,11 @@ if not os.path.exists("./output"):
     os.makedirs("./output")
 
 outfile_dirname = []
-for i in range(len(charids)):
-    if charids[i] == 200071:  # 因为文件夹不能以句点结尾, 故 C.C. 舍弃两个句点变成 CC
-        outfile_dirname.append(str(charids[i]) + "_CC")
+for i in range(len(chars)):
+    if chars[i]['id'] == 200071:  # 因为文件夹不能以句点结尾, 故 C.C. 舍弃两个句点变成 CC
+        outfile_dirname.append(str(chars[i]['id']) + "_CC")
     else:
-        outfile_dirname.append(str(charids[i]) + "_" + nicknames[i][0])
+        outfile_dirname.append(str(chars[i]['id']) + "_" + chars[i]['skin'][0]['name'])
     if not os.path.exists("./output/" + outfile_dirname[i]):
         os.makedirs("./output/" + outfile_dirname[i])
 
@@ -38,37 +38,32 @@ def generator_sp():
 
         tmp_nickname = []
         tmp_avatar_id = []
-        for index in range(len(avatar_ids)):
+        for index in range(len(chars)):
             outfile = open("./output/" + outfile_dirname[index] + "/" + file_name, "w")
             # flag_hand = True
             flag_views = True
             name_count = id_count = 0
 
-            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
+            if len(chars[index]['skin']) == 1 or len(chars[index]['skin']) == 2:
                 for j in [0, 1, 2, 3]:
-                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
-            if len(nicknames[index]) == 3 or len(nicknames[index]) == 4:
-                tmp_nickname.append(nicknames[index][1])
-                tmp_nickname.append(nicknames[index][0])
-                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 2])
-                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 1])
-            if len(nicknames[index]) >= 5:
-                tmp_nickname.append(nicknames[index][1])
-                for j in [-3, -2, -1]:
-                    tmp_nickname.append(nicknames[index][j])
+                    tmp_nickname.append(chars[index]['skin'][(j + 1) % len(chars[index]['skin'])]['name'])
+                    tmp_avatar_id.append(chars[index]['skin'][(j + 1) % len(chars[index]['skin'])]['id'])
+            if len(chars[index]['skin']) == 3 or len(chars[index]['skin']) == 4:
+                tmp_nickname.append(chars[index]['skin'][1]['name'])
+                tmp_nickname.append(chars[index]['skin'][0]['name'])
+                tmp_nickname.append(chars[index]['skin'][len(chars[index]['skin']) - 2]['name'])
+                tmp_nickname.append(chars[index]['skin'][len(chars[index]['skin']) - 1]['name'])
 
-            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
-                for j in [0, 1, 2, 3]:
-                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
-            if len(avatar_ids[index]) == 3 or len(avatar_ids[index]) == 4:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                tmp_avatar_id.append(avatar_ids[index][0])
-                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 2])
-                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 1])
-            if len(avatar_ids[index]) >= 5:
-                tmp_avatar_id.append(avatar_ids[index][1])
+                tmp_avatar_id.append(chars[index]['skin'][1]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][0]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][len(chars[index]['skin']) - 2]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][len(chars[index]['skin']) - 1]['id'])
+            if len(chars[index]['skin']) >= 5:
+                tmp_nickname.append(chars[index]['skin'][1]['name'])
+                tmp_avatar_id.append(chars[index]['skin'][1]['id'])
                 for j in [-3, -2, -1]:
-                    tmp_avatar_id.append(avatar_ids[index][j])
+                    tmp_nickname.append(chars[index]['skin'][j]['name'])
+                    tmp_avatar_id.append(chars[index]['skin'][j]['id'])
 
             for line in infile:
                 result = re.search(pattern_name, line)
@@ -81,17 +76,9 @@ def generator_sp():
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if flag_views and charids[index] in char_unique_views and id_count == 4 and name_count == 4:
-                    outfile.write("\n" + char_unique_views[charids[index]] + "\n")
+                if flag_views and chars[index]['id'] in char_unique_views and id_count == 4 and name_count == 4:
+                    outfile.write("\n" + char_unique_views[chars[index]['id']])
                     flag_views = False
-            #     if not use_dict and use_views:
-            #         if flag_hand and id_count == 4 and name_count == 4:
-            #             outfile.write("\n" + change_hand + "\n")
-            #             flag_hand = False
-            #
-            # if use_dict and not use_views:
-            #     if charids[index] in dict_spchar_paipu:
-            #         outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
             infile.seek(0)
             outfile.close()
 
