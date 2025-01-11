@@ -25,5 +25,4 @@
 ## 示例牌谱
 
 - [demo01](demo01.js)
-
-
+- [demo02](demo02.js)

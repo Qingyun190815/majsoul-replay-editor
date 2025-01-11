@@ -9,8 +9,9 @@ editdata.player_datas[1].avatar_id = 400104;
 editdata.player_datas[2].avatar_id = 400105;
 editdata.player_datas[3].avatar_id = 400106;
 
-// 主播(猫爪子)认证
-editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = editdata.player_datas[3].verified = 1;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 305812}, // 桌布-仙境茶话会
+];
 
 editdata.config = {
     'category': 1,

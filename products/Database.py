@@ -4,7 +4,6 @@ chars = db.chars
 views = db.views
 titles = db.titles
 
-get_char = db.get_char
 get_view = db.get_view
 get_title = db.get_title
 
@@ -34,7 +33,7 @@ def generate_title(title_id, player_num=4):
     return '// 称号-' + get_title(title_id)['name'] + '\n' + temp + str(title_id) + ';\n'
 
 
-def generate_verified(verified=1, player_num=4):
+def generate_verified(verified, player_num=4):
     temp = template_verified
     if player_num != 4:
         temp = template_verified_3P
@@ -174,10 +173,10 @@ char_unique_views = {
     200046: generate_verified(1),
     # 柚: 立直棒-陨石法杖
     200059: generate_views([0], [305612]),
-    # 青鸾: 猫爪子认证
-    200066: generate_verified(1),
     # 四宫冬实: 桌布-仙境茶话会
-    200067: generate_views([6], [305812]),
+    200066: generate_views([6], [305812]),
+    # 青鸾: 猫爪子认证
+    200067: generate_verified(1),
     # 岚星: 立直棒-秘传之卷; 和牌-天地无用; 立直-毒烟玉
     200074: generate_views([0, 1, 2], [305620, 305222, 305322]),
     # 琳琅: 猫爪子认证

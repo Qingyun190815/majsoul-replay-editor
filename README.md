@@ -20,8 +20,8 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
-**注意: 当前 main.js 正在添加大量新功能, 很多没有经过充分测试, 所以可能有bug**, 如果存在不符合预期的情况, 可以在 Github 上提 issue, 
-或在B站联系我: [肥pig崔的B站空间](https://space.bilibili.com/372365985), 内容比较多的话还可以发邮件到我的邮箱说明: **chubbypig@qq.com**
+**注意: 当前 main.js 正在添加大量新功能, 很多没有经过充分测试, 所以可能有bug**, 如果存在不符合预期的情况, 可以在 commit 记录中使用老版本,
+也可以提 issue, 或在B站联系我: [肥pig崔的B站空间](https://space.bilibili.com/372365985), 内容比较多的话还可以发邮件到我的邮箱说明: **chubbypig@qq.com**
 
 ### 自制教程
 
@@ -98,7 +98,6 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
     - 幻境传说
     - 占星之战
 - 实现"三家和了流局"
-- 称号等装扮细分对应到角色
 - 研究"装扮预览"功能
 - 维护二人麻将和血流成河模式
 - 真实牌谱的json文件与自制牌谱的js文件相互转化
