@@ -1,4 +1,4 @@
-# 暗夜之战模式(未实现)
+# 暗夜之战模式
 
 活动场对应 `mode_id` 是 45, 关键词是 `reveal_discard`
 
@@ -8,75 +8,26 @@
 
 其他玩家可以选择支付2000点作为场供对"暗牌"进行"开牌"操作, 查看牌内容, 若开牌成功, 则会对所有玩家显示牌内容, 可以被鸣
 
-此时"暗牌家"仍可以显示再支付4000点作为场供"否决"其他玩家的"开牌"操作, 强制暗牌
+此时"暗牌家"仍可以显示再支付4000点作为场供"锁定", 强制暗牌
 
-此外, 对"立直宣言牌"进行"暗牌"操作时, 需要额外支付1000点作为场供
+---
 
-## 实现思路
+该模式的牌谱不是很方便编辑, bug可能也比较多
 
-需要实现很多函数, 比如
+## 函数特殊说明
 
-```json
-{
-  "passed": 728674,
-  "type": 1,
-  "result": {
-    "name": ".lq.RecordRevealTile",
-    "data": {
-      "seat": 0,
-      "is_liqi": false,
-      "is_wliqi": false,
-      "moqie": true,
-      "scores": [
-        22000,
-        22000,
-        30300,
-        24700
-      ],
-      "liqibang": 1,
-      "operations": [
-        {
-          "seat": 1,
-          "operation_list": [
-            {
-              "type": 15
-            }
-          ],
-          "time_add": 0,
-          "time_fixed": 5000
-        },
-        {
-          "seat": 2,
-          "operation_list": [
-            {
-              "type": 15
-            }
-          ],
-          "time_add": 0,
-          "time_fixed": 5000
-        },
-        {
-          "seat": 3,
-          "operation_list": [
-            {
-              "type": 15
-            }
-          ],
-          "time_add": 0,
-          "time_fixed": 5000
-        }
-      ],
-      "tile": "7m",
-      "zhenting": [
-        false,
-        false,
-        false,
-        false
-      ]
-    }
-  }
-}
-```
+### 出牌: `qiepai(seat, kind, is_liqi, anpai)`
 
-`RecordRevealTile` 就是一个比较棘手的函数, 因为设计的操作变化太多
+与段位场的出牌相比, 多了一个参数 `anpai`, 如果 `anpai` 的值是字符串 `"anpai"` 时, 在暗夜之战切牌会暗牌
 
+### 开牌: `unveil(seat)`
+
+有人暗牌之后, 调用该函数可以使得 seat 号玩家开牌, 并且暗牌家没有锁定, 开牌成功
+
+### 开牌后锁定: `unveil_lock(seat)`
+
+有人暗牌之后, 调用该函数可以使得 seat 号玩家开牌, 紧跟着暗牌家锁定, 开牌失败
+
+## 示例牌谱
+
+- [demo01](demo01.js)

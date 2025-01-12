@@ -13,7 +13,7 @@
 
 ## 函数特殊说明
 
-摸牌: `mopai(seat, index)`
+### 摸牌: `mopai(seat, index)`
 
 seat 和在段位场中的一样, 指 seat 号玩家摸牌; index 是指在牌候选池中选择的牌位置, 没有该参数时默认选第一张牌
 

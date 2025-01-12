@@ -20,8 +20,10 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
-**注意: 当前 main.js 正在添加大量新功能, 很多没有经过充分测试, 所以可能有bug**, 如果存在不符合预期的情况, 可以在 commit 记录中使用老版本,
-也可以提 issue, 或在B站联系我: [肥pig崔的B站空间](https://space.bilibili.com/372365985), 内容比较多的话还可以发邮件到我的邮箱说明: **chubbypig@qq.com**
+**注意: 当前 main.js 正在添加大量新功能, 很多没有经过充分测试, 所以可能有bug**, 如果存在不符合预期的情况, 可以在
+可以在 [commit](https://github.com/Fat-pig-Cui/majsoul-replay-editor/commits/main/) 记录中使用老版本,
+也可以提 issue, 或在B站联系我: [肥pig崔的B站空间](https://space.bilibili.com/372365985),
+内容比较多的话还可以发邮件到我的邮箱说明: **chubbypig@qq.com**
 
 ### 自制教程
 
@@ -46,21 +48,27 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 功能概述
 
-1. 目前支持以下规则:
+1. 目前支持以下规则: (雀魂中的常见规则都有实现)
     - 段位场三四麻规则
-    - 宝牌狂热
-    - 配牌明牌
-    - 龙之目玉
-    - 修罗之战
-    - 赤羽之战(川麻)
-    - 明镜之战
-    - 天命之战
-    - 咏唱之战
-    - 魂之一击
-    - 万象修罗
+    - 常驻活动场规则
+        - 修罗之战
+        - 赤羽之战(川麻)
+    - 其他活动场规则
+        - 宝牌狂热
+        - 配牌明牌
+        - 龙之目玉
+        - 明镜之战
+        - 暗夜之战
+        - 幻境传说
+        - 占星之战
+        - 天命之战
+        - 咏唱之战
+        - 魂之一击
+        - 万象修罗
     - 友人房的自定义规则:
         - 古役(包括一番街的, 详见 products 文件夹下的[古役专题](../products/古役专题))
-        - 赤宝牌数量(四麻除了3/4赤以外, 还支持6/9/12赤, 后者的几种情况暗杠可能会显示异常, 这种情况需要导入[override.js](../override.js))
+        - 赤宝牌数量(四麻除了3/4赤以外, 还支持6/9/12赤, 后者的几种情况暗杠可能会显示异常,
+          这种情况需要导入[override.js](../override.js))
         - 食断
         - 番缚
         - 有无自摸损(三麻)
@@ -93,10 +101,6 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## TODO(欢迎contribute)
 
-- 实现以下特殊活动场的规则
-    - 暗夜之战
-    - 幻境传说
-    - 占星之战
 - 实现"三家和了流局"
 - 研究"装扮预览"功能
 - 维护二人麻将和血流成河模式
