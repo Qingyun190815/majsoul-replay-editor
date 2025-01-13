@@ -2244,7 +2244,7 @@ function calcfan_chuanma(tiles, seat, zimo, type = false) {
         for (let i = 0; i < tingpais.length; i++) {
             tiles.push(tingpais[i].tile);
             let tmp = calcfan_chuanma(tiles.slice(), seat, zimo, true);
-            if (calcsudian_chuanma(tmp, 1) > calcsudian_chuanma(ret, true))
+            if (calcsudian_chuanma(tmp, 1) > calcsudian_chuanma(ret, 1))
                 ret = tmp;
             tiles.length--;
         }
@@ -2546,7 +2546,7 @@ function calcfan(tiles, seat, zimo, fangchong) {
 
     // 幻境传说: 庄家卡1: 庄家门清状态下荣和只能是立直状态, 否则诈和
     if (get_field_spell_mode1() === 1 && seat === ju && fulucnt === 0 && !zimo && liqiinfo[seat].liqi !== 0)
-        return ans;
+        return ret;
 
     function updateret(x) {
         if (x !== undefined && calcsudian(x, 1) > calcsudian(ret, 1))
@@ -3710,11 +3710,11 @@ function addNewRound(chang, ju, ben, doras, left_tile_count, liqibang, md5, pais
         for (let i = 1; i <= nxt2.length; i++) {
             if (cnt[i] === 0)
                 continue;
-            ret.tiles.push(inttotile(i, 1));
+            ret.tiles.push(inttotile(i, true));
             ret.count.push(cnt[i]);
         }
         for (let i = 1; i <= nxt2.length; i++)
-            mingpais[seat][inttotile(i, 1)] = cnt[i];
+            mingpais[seat][inttotile(i, true)] = cnt[i];
         return ret;
     }
 
