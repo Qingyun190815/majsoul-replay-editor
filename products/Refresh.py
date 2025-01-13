@@ -38,3 +38,7 @@ for path_3P in paths_3P:
 os.chdir("4P/所有役满合集")
 os.system("python3 Generator_SP.py")
 os.chdir(home)
+
+os.chdir("../doc/")
+os.system("python3 Generate_Dictionary.py")
+os.chdir(home)

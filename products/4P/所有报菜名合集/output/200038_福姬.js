@@ -250,9 +250,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -285,9 +284,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

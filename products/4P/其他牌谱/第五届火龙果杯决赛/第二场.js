@@ -66,14 +66,11 @@ discardtiles = ["2p5p7p6s3s1s", "4z9p5z3z1s2s", "9p9s3z7z6z", "9m6m1p4z3s"];
 roundbegin();
 qiepai();
 normalmoqie(3);
-mingpai();
-qiepai();
+mingqiepai();
 normalmoqie(5);
-mingpai();
-qiepai();
+mingqiepai();
 normalmoqie(10);
-mingpai();
-qiepai();
+mingqiepai();
 hupai();
 
 // 东2局0本场
@@ -86,8 +83,7 @@ discardtiles = ["1z1p6z7z7z5z2m7p5p2z6m2z5z1m3m2m1m", "1m5z9m9p4z9m2z5p9p3z8m8m1
 roundbegin();
 qiepai();
 normalmoqie(43);
-mingpai();
-qiepai();
+mingqiepai();
 normalmoqie();
 moqieliqi();
 normalmoqie(24);
@@ -103,11 +99,9 @@ discardtiles = ["2z7z5z8s1m7s1p", "4s8s7s2m5m4z1p3m", "4z9s1z3z4p2m1m9p1z", "3z2
 roundbegin();
 qiepai();
 normalmoqie();
-mingpai();
-qiepai();
+mingqiepai();
 normalmoqie(5);
-mingpai();
-qiepai();
+mingqiepai();
 normalmoqie(21);
 moqieliqi();
 normalmoqie();

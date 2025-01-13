@@ -23,13 +23,16 @@ class Database_class:
                             self.chars[char_num - 1]['skin'][index]['name'] = origin_name + "-契约"
 
         self.views = []
-        # 立直棒, 和牌特效, 立直特效, 手的样式, 头像框, 桌布, 牌背, 牌面
-        slots = [0, 1, 2, 3, 5, 6, 7, 13]
+        # 立直棒, 和牌特效, 立直特效, 手的样式, 立直音乐, 头像框,
+        # 桌布, 牌背, 大厅背景, 大厅/对局音乐, 鸣牌指示, 加载图, 牌面
+        # 11 是称号, 但在 ITEM 中不全
+        slots = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13]
         for slot in slots:
             self.views.append({"slot": slot, "item": []})
         for item in ITEM:
-            if ITEM[item]['category'] == 5 and ITEM[item]['type'] in slots:
-                item_slot = ITEM[item]['type']
+            category = ITEM[item]['category']
+            item_slot = ITEM[item]['type']
+            if category == 5 and item_slot in slots or category == 8 and item_slot == 12:
                 index = 0
                 while index < len(self.views) and self.views[index]['slot'] != item_slot:
                     index += 1
@@ -58,6 +61,11 @@ class Database_class:
             for item in slot['item']:
                 if item['id'] == view_id:
                     return item
+
+    def get_slot(self, slot_id):
+        for slot in self.views:
+            if slot['slot'] == slot_id:
+                return slot['item']
 
     def get_title(self, title_id):
         for title in self.titles:

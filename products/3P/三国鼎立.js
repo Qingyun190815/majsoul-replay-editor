@@ -15,11 +15,11 @@ editdata.config = {
     }
 };
 
-tiles0 = "19m129p19s1234567z";
+tiles0 = "19m19p189s1234567z";
 tiles1 = "19m19p19s1234567z";
 tiles2 = "19m19p19s1234567z";
 paishan = randompaishan("", "YYYYYDYYYYYYYY");
 roundbegin();
-qiepai("2p");
+qiepai("8s");
 normalmoqie(54);
 notileliuju();

@@ -22,17 +22,13 @@ editdata.config = {
     }
 };
 
-tiles0 = "11112224445556z";
-tiles1 = "111999m111999p6z";
-tiles2 = "222444666888s6z";
-tiles3 = "111333777999s6z";
-paishan = randompaishan("1m2s1s", "23333z");
+tiles0 = "2223444666888s5z";
+tiles1 = "1112340678999m";
+tiles2 = "1112340678999p";
+tiles3 = "1112340678999s";
+paishan = randompaishan("555z");
 roundbegin();
-combomopai();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
-    mopai();
-    combomopai();
-    qiepai(true);
-}
+for (let i = 0; i < 3; i++)
+    moqieliqi();
 liuju();

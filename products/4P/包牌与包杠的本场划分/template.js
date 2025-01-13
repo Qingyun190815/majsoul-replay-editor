@@ -56,7 +56,7 @@ paishan = randompaishan("765zT4zTT1z", "TTTT");
 roundbegin();
 qiepai("2z");
 normalmoqie();
-for (let i = 0; i<3;i++){
+for (let i = 0; i < 3; i++) {
     mingpai();
     normalmoqie(2);
 }
@@ -74,7 +74,7 @@ paishan = randompaishan("765zT4z", "1zTTT");
 roundbegin();
 qiepai("2z");
 normalmoqie();
-for (let i = 0; i<3;i++){
+for (let i = 0; i < 3; i++) {
     mingpai();
     normalmoqie(2);
 }
@@ -91,7 +91,7 @@ paishan = randompaishan("765z9mHHH1m", "HHHH");
 roundbegin();
 qiepai("2z");
 normalmoqie();
-for (let i = 0; i < 4;i++){
+for (let i = 0; i < 4; i++) {
     mingpai();
     normalmoqie(2);
 }
@@ -107,7 +107,7 @@ paishan = randompaishan("7654zTTT1z", "TTTT");
 roundbegin();
 qiepai("2z");
 normalmoqie();
-for (let i = 0; i < 4;i++){
+for (let i = 0; i < 4; i++) {
     mingpai();
     normalmoqie(2);
 }
@@ -123,7 +123,7 @@ paishan = randompaishan("765zH9mHHH1m", "HHHH");
 roundbegin();
 qiepai("2z");
 normalmoqie();
-for (let i = 0; i<3;i++){
+for (let i = 0; i < 3; i++) {
     mingpai();
     normalmoqie(2);
 }
@@ -141,7 +141,7 @@ paishan = randompaishan("765zT4zTTT1z", "TTTT");
 roundbegin();
 qiepai("2z");
 normalmoqie();
-for (let i = 0; i<3;i++){
+for (let i = 0; i < 3; i++) {
     mingpai();
     normalmoqie(2);
 }
@@ -149,4 +149,3 @@ normalmoqie();
 mingpai();
 normalmoqie(4);
 zimohu();
-
