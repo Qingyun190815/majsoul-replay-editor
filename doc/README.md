@@ -105,6 +105,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 - 研究"装扮预览"功能
 - 维护二人麻将和血流成河模式
 - 真实牌谱的json文件与自制牌谱的js文件相互转化
+- 通过重写函数的方式自制真实牌谱的观战
 
 ## 版权声明
 

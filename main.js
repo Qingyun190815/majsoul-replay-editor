@@ -1708,13 +1708,10 @@ function pop_lastile() {
         let tile = paishan.substring(paishan.length - 3);
         paishan = paishan.substring(0, paishan.length - 3);
         return tile;
-    } else {
-        let tile = paishan.substring(paishan.length - 2);
-        paishan = paishan.substring(0, paishan.length - 2);
-        return tile;
     }
-    console.warn("Illegal input at pop_lastile()");
-    return "";
+    let tile = paishan.substring(paishan.length - 2);
+    paishan = paishan.substring(0, paishan.length - 2);
+    return tile;
 }
 
 // 获取 paishan 中正数第 n 个牌
@@ -1740,13 +1737,10 @@ function pop_firstile() {
         let tile = paishan.substring(0, 3);
         paishan = paishan.substring(3);
         return tile;
-    } else {
-        let tile = paishan.substring(0, 2);
-        paishan = paishan.substring(2);
-        return tile;
     }
-    console.warn("Illegal input at pop_firstile()");
-    return "";
+    let tile = paishan.substring(0, 2);
+    paishan = paishan.substring(2);
+    return tile;
 }
 
 // 获取 paishan 中有多少个牌
@@ -2117,7 +2111,7 @@ function calchupai(tiles, type = true) {
         let shisanbuda = true;
         let duizi_num = 0;
         for (let i = 1; i <= 34; i++) {
-            if (cnt[i] == 2)
+            if (cnt[i] === 2)
                 duizi_num++;
             if (cnt[i] >= 3)
                 shisanbuda = false;
@@ -3905,7 +3899,7 @@ function addDiscardTile(is_liqi, is_wliqi, doras, moqie, seat, tile, tingpais, t
     edit_online();
 }
 
-function addRevealTile(is_liqi, is_wliqi, moqie, seat, tile, tingpais) {
+function addRevealTile(is_liqi, is_wliqi, moqie, seat, tile) {
     for (let i = 0; i < playertiles[seat].length; i++)
         if (playertiles[seat][i] === tile) {
             playertiles[seat][i] = playertiles[seat][playertiles[seat].length - 1];
@@ -4337,7 +4331,7 @@ function hupaioneplayer(seat) {
     // -------------------------------------------
     let tianming_bonus = 1;
     if (is_tianming())
-        tianming_bonus = calc_tianming(seat, zimo, hu_tile);
+        tianming_bonus = calc_tianming(seat, zimo);
     // -------------------------------------------
     let sudian = calcsudian(points);
     let zhahu = false;
@@ -4737,7 +4731,7 @@ function hupaioneplayer(seat) {
     return ret;
 }
 
-function calc_tianming(seat, zimo, hu_tile) {
+function calc_tianming(seat, zimo) {
     let sum = 1;
     // 查手牌
     for (let i = 0; i < playertiles[seat].length; i++) {
@@ -4749,11 +4743,10 @@ function calc_tianming(seat, zimo, hu_tile) {
     // 查副露
     for (let i = 0; i < fulu[seat].length; i++)
         for (let j = 0; j < fulu[seat][i].length; j++) {
-            if (fulu[seat][i].type !== 3 && j === fulu[seat][i].length - 1) { // 不是暗杠, 则最后一张牌不考虑
+            if (fulu[seat][i].type !== 3 && j === fulu[seat][i].length - 1) // 不是暗杠, 则最后一张牌不考虑
                 break;
-                if (fulu[seat][i][j].length >= 2 && fulu[seat][i][j][2] === tile_suf)
-                    sum++;
-            }
+            if (fulu[seat][i][j].length > 2 && fulu[seat][i][j][2] === tile_suf)
+                sum++;
         }
     return sum
 }
@@ -4866,7 +4859,6 @@ function hupai(x, type) {
     }
     if (typeof (x) == "number")
         x = [x];
-    let zimo = true;
     if (x === undefined || x.length === 0) {
         let lstaction = getlstaction();
         if (lstaction.name === "RecordDealTile")
@@ -4874,7 +4866,6 @@ function hupai(x, type) {
         else if (lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile")
             x = [ju];
         else { // 荣和
-            zimo = false;
             x = [];
             for (let i = lstaction.data.seat + 1; i < playercnt + lstaction.data.seat; i++) {
                 const seat = i % playercnt;
@@ -5590,9 +5581,9 @@ function qiepai(seat, kind, is_liqi, anpai) {
             liqiinfo[seat].yifa--;
         if (is_anye() && anpai === "anpai") {
             if (playertiles[seat][playertiles[seat].length - 1] === kind && lstactionname !== "RecordNewRound" && lstactionname !== "RecordChiPengGang")
-                addRevealTile(is_liqi, is_wliqi, true, seat, kind, calctingpai(seat));
+                addRevealTile(is_liqi, is_wliqi, true, seat, kind);
             else
-                addRevealTile(is_liqi, is_wliqi, false, seat, kind, calctingpai(seat));
+                addRevealTile(is_liqi, is_wliqi, false, seat, kind);
         } else {
             if (playertiles[seat][playertiles[seat].length - 1] === kind && lstactionname !== "RecordNewRound" && lstactionname !== "RecordChiPengGang")
                 addDiscardTile(is_liqi, is_wliqi, calcdoras(), true, seat, kind, calctingpai(seat), tile_state, is_kailiqi);
@@ -5648,7 +5639,7 @@ function qiepai(seat, kind, is_liqi, anpai) {
         if (liqiinfo[seat].yifa > 0)
             liqiinfo[seat].yifa--;
         if (is_anye() && anpai === "anpai")
-            addRevealTile(is_liqi, is_wliqi, false, seat, tile, calctingpai(seat));
+            addRevealTile(is_liqi, is_wliqi, false, seat, tile);
         else {
             addDiscardTile(is_liqi, is_wliqi, calcdoras(), false, seat, tile, calctingpai(seat), tile_state, is_kailiqi);
 
@@ -5699,7 +5690,7 @@ function qiepai(seat, kind, is_liqi, anpai) {
         if (liqiinfo[seat].yifa > 0)
             liqiinfo[seat].yifa--;
         if (is_anye() && anpai === "anpai")
-            addRevealTile(is_liqi, is_wliqi, true, seat, tile, calctingpai(seat));
+            addRevealTile(is_liqi, is_wliqi, true, seat, tile);
         else {
             addDiscardTile(is_liqi, is_wliqi, calcdoras(), true, seat, tile, calctingpai(seat), tile_state, is_kailiqi);
 
@@ -6059,7 +6050,7 @@ function leimingpai(seat, tile, type, first) {
 
     function preprocess() {
         let obj = {};
-        let mat = [seat, kind, is_liqi, anpai];
+        let mat = [seat, tile, type];
         for (let i = 0; i < mat.length; i++) {
             if (mat[i] === "babei" || mat[i] === "angang" || mat[i] === "jiagang" || mat[i] === "baxi")
                 obj.type = mat[i];

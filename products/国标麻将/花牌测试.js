@@ -1,5 +1,7 @@
 loadproject();
 
+// 需要导入 add_function.js
+
 // 用"0m"当做花牌
 
 editdata.player_datas[0].nickname = "一姬-契约";
