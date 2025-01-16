@@ -1,7 +1,5 @@
 loadproject();
 
-// 报菜名界面会见到所有 7*4 = 28 张字牌(四杠子18张+10张指示牌)
-
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
 editdata.player_datas[2].nickname = "一姬当千";
@@ -17,19 +15,25 @@ editdata.config = {
     'mode': {
         'mode': 1,
         'detail_rule': {
-            'init_point': 100000,
+            'reveal_discard': true,
         }
     }
 };
 
-tiles0 = "9s1112223334447z";
-tiles1 = "1112340678999m";
-tiles2 = "1112340678999p";
-tiles3 = "1112223345599s";
-paishan = randompaishan("1z", "7565656567z7432z");
+
+tiles0 = "22223444666888s";
+tiles1 = "2228m333557777s";
+tiles2 = "233344447777m0s";
+tiles3 = "05556666888m08p";
+paishan = randompaishan("YYYYYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDYYYDY", "Y864s");
 roundbegin();
-qiepai("9s", true);
-mingqiepai("4s");
-mopai();
 combomopai(4);
-hupai();
+qiepai(true);
+normalmoqie(4);
+for (let i = 0; i < 15; i++) {
+    normalmoqie(3);
+    mopai();
+    qiepai("anpai");
+}
+normalmoqie();
+notileliuju();

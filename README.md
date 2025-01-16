@@ -34,15 +34,15 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 建议阅读顺序:
 
-1. [编辑每一场游戏的方法](doc/编辑每一场游戏的方法.md)
-2. [编辑每一局的方法](doc/编辑每一局的方法.md)
-3. [每一局所使用的函数(段位场部分)](doc/每一局所使用的函数（段位场部分）.md)
-4. [(可选)每一局所使用的函数(活动场部分)](doc/每一局所使用的函数（活动场部分）.md)
-5. [examples文件的解释](doc/examples文件解释.md)
+1. [编辑游戏信息](doc/编辑游戏信息.md)
+2. [编辑每个小局](doc/编辑每个小局.md)
+3. [对局操作相关函数](doc/对局操作相关函数.md)
+4. [(可选)对局操作相关函数(活动场)](doc/对局操作相关函数（活动场）.md)
+5. [(可选)examples文件夹下的示例牌谱](doc/examples文件夹下的示例牌谱.md)
 
-[字典](doc/字典.md) 是用来查阅的, 建议放到最后或者在制作牌谱时使用
+[字典](doc/字典.md) 是用来查阅的, 建议放到最后或者编辑牌谱时使用, [字典_template](doc/字典_template.md) 是生成字典的模版, 无需阅读
 
-至于 [code.js](code.js) , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25
+至于 code.js , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25
 版本,
 不要轻易打开),
 解混淆的方法见另一个仓库: [misc-code](https://github.com/Fat-pig-Cui/misc-code)
@@ -83,7 +83,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 四杠子包牌(与其他包牌以及包杠的复合可以阅读 [README.md](products/4P/包牌与包杠的本场划分/README.md))
         - 切上满贯
         - 头跳
-        - 杠表宝牌即开
+        - 杠表宝牌即翻
         - 有无流局满贯
         - 有无国士无双枪暗杠
         - 有无双倍役满(天凤规则: 大四喜, 四单, 纯九, 十三面算单倍役满, 但复合役满仍有效)
@@ -111,7 +111,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 版权声明
 
-1. md5加密源自[百度百科](https://baike.baidu.com/item/MD5)
+1. md5算法源自[百度百科](https://baike.baidu.com/item/MD5)
 
 2. 更改回放的方法参考了B站 [一般通过彳亍人](https://space.bilibili.com/23019265)
    的 [BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)
@@ -126,7 +126,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 6. 请不要在任何第三方网站下载该源代码, 否则后果自负
 
-7. 允许用途: 可以用于个人使用, 请勿用于商业用途, 谢谢配合, 请不要将 examples 文件夹下面的代码进行录制并宣传, 谢谢
+7. 允许用途: 可以用于个人使用, 请勿用于商业用途, 谢谢配合, 请不要将 examples 文件夹下面的示例牌谱进行录制并宣传, 谢谢
 
 ## 示例代码的部分截图
 

@@ -1563,7 +1563,8 @@ function get_muyu(type) {
             muyu.seat = parseInt(muyuseats[0]);
             muyuseats = muyuseats.substring(1);
         } else
-            muyu.seat = Math.floor(Math.random() * 4);
+            muyu.seat = Math.floor(Math.random() * playercnt);
+        return muyu;
     }
     if (type === "countdown")
         muyu.count--;
@@ -3685,7 +3686,7 @@ function gamebegin() {
         else {
             if (is_guobiao())
                 scores = [30000, 30000, 30000, 30000];
-            else if (is_chuanma())
+            else if (is_chuanma() || is_tianming())
                 scores = [50000, 50000, 50000, 50000];
             else if (is_muyu())
                 scores = [40000, 40000, 40000, 40000];
@@ -5260,9 +5261,11 @@ function unveil(seat) {
         }
         addUnveilTile(seat, seat_tile);
         addLockTile(seat_tile, 0, tile);
+        if (tile !== 1 && tile !== 9 && tile !== 10 && tile !== 18 && tile !== 19 && tile !== 27 && tile <= 27)
+            paihe[seat].liujumanguan = false;
         saveproject();
     } else
-        console.error("unveil: 暗夜之战开牌的前提是有人暗牌");
+        console.error("unveil: 暗夜之战开牌的前提是有人刚暗牌");
 }
 
 function unveil_lock(seat) {
@@ -5280,7 +5283,7 @@ function unveil_lock(seat) {
         addLockTile(seat_tile, 1);
         saveproject();
     } else
-        console.error("unveil_lock: 暗夜之战开牌的前提是有人暗牌");
+        console.error("unveil_lock: 暗夜之战开牌的前提是有人刚暗牌");
 }
 
 function mopai(seat, index) {
@@ -5291,9 +5294,8 @@ function mopai(seat, index) {
     let lstaction = getlstaction();
 
     // 暗夜之战暗牌无人开
-    if (is_anye() && lstaction.name === "RecordRevealTile") {
+    if (is_anye() && lstaction.name === "RecordRevealTile")
         addLockTile(lstaction.data.seat, 2);
-    }
 
     if (is_chuanma())
         calcgangpoint();
@@ -6754,7 +6756,7 @@ function gameend(noedit = false) {
         edit();
 }
 
-function randompaishan(paishanfront = "", paishanback = "", reddora) {
+function randompaishan(paishanhead = "", paishanback = "", reddora) {
     if (editdata.actions.length === 0)
         gamebegin();
 
@@ -6778,16 +6780,16 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
             console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ", tiles" + i + " 长度不对: " + tiles_len);
     }
 
-    if (typeof (paishanfront) == "number") {
-        reddora = paishanfront;
-        paishanfront = paishanback = "";
+    if (typeof (paishanhead) == "number") {
+        reddora = paishanhead;
+        paishanhead = paishanback = "";
     }
 
     if (typeof (paishanback) == "number") {
         reddora = paishanback;
         paishanback = "";
     }
-    paishanfront = decompose(paishanfront);
+    paishanhead = decompose(paishanhead);
     paishanback = decompose(paishanback);
     if (reddora === undefined) {
         if (config.mode.mode >= 21) {
@@ -6884,13 +6886,13 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
     let all_tiles = [tiles0, tiles1, tiles2, tiles3];
     for (let j = 0; j < all_tiles.length; j++) {
         for (let i = 0; i < all_tiles[j].length; i++)
-            if (all_tiles[j][i].length > 2 && all_tiles[j][i][2] === tile_suf)
+            if (all_tiles[j][i].length > 2 && all_tiles[j][i][2] === tile_suf && !is_tianming())
                 cnt2[tiletoint(all_tiles[j][i])]--;
 
             else
                 cnt[tiletoint(all_tiles[j][i], true)]--;
     }
-    let all_paishan = [paishanfront, paishanback];
+    let all_paishan = [paishanhead, paishanback];
     for (let j = 0; j < all_paishan.length; j++) {
         for (let i = 0; i < all_paishan[j].length; i++)
             if (all_paishan[j][i] !== '.' && all_paishan[j][i] !== 'Y' && all_paishan[j][i] !== 'D' && all_paishan[j][i] !== 'H' && all_paishan[j][i] !== 'T')
@@ -6913,9 +6915,9 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
     }
 
     tiles.sort(randomcmp);
-    paishanfront = paishanfront.split('');
-    for (let i = 0; i < paishanfront.length; i++) {
-        if (paishanfront[i] === 'H') { // 字牌
+    paishanhead = paishanhead.split('');
+    for (let i = 0; i < paishanhead.length; i++) {
+        if (paishanhead[i] === 'H') { // 字牌
             for (let j = 0; j < tiles.length; j++) {
                 if (tiles[j][1] === 'z') {
                     let tmp = tiles[j];
@@ -6924,14 +6926,14 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
-        } else if (paishanfront[i] === 'T') { // 老头牌
+        } else if (paishanhead[i] === 'T') { // 老头牌
             for (let j = 0; j < tiles.length; j++) {
                 if (tiles[j][0] === '1' && tiles[j][1] !== 'z' || tiles[j][0] === '9') {
                     let tmp = tiles[j];
@@ -6940,17 +6942,17 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
         }
     }
-    for (let i = 0; i < paishanfront.length; i++) {
-        if (paishanfront[i] === 'Y') { // 幺九牌
+    for (let i = 0; i < paishanhead.length; i++) {
+        if (paishanhead[i] === 'Y') { // 幺九牌
             for (let j = 0; j < tiles.length; j++) {
                 if (tiles[j][0] === '1' || tiles[j][0] === '9' || tiles[j][1] === 'z') {
                     let tmp = tiles[j];
@@ -6959,14 +6961,14 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
-        } else if (paishanfront[i] === 'D') { // 中张牌
+        } else if (paishanhead[i] === 'D') { // 中张牌
             for (let j = 0; j < tiles.length; j++) {
                 if (!(tiles[j][0] === '1' || tiles[j][0] === '9' || tiles[j][1] === 'z')) {
                     let tmp = tiles[j];
@@ -6975,14 +6977,14 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
-        } else if (paishanfront[i] === 'M') { // 万子
+        } else if (paishanhead[i] === 'M') { // 万子
             for (let j = 0; j < tiles.length; j++) {
                 if (tiles[j][1] === 'm') {
                     let tmp = tiles[j];
@@ -6991,14 +6993,14 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
-        } else if (paishanfront[i] === 'P') { // 饼子
+        } else if (paishanhead[i] === 'P') { // 饼子
             for (let j = 0; j < tiles.length; j++) {
                 if (tiles[j][1] === 'p') {
                     let tmp = tiles[j];
@@ -7007,14 +7009,14 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
-        } else if (paishanfront[i] === 'S') { // 索子
+        } else if (paishanhead[i] === 'S') { // 索子
             for (let j = 0; j < tiles.length; j++) {
                 if (tiles[j][1] === 's') {
                     let tmp = tiles[j];
@@ -7023,27 +7025,27 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
                     break;
                 }
             }
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
         }
     }
-    for (let i = 0; i < paishanfront.length; i++) {
-        if (paishanfront[i] === '.') { // 任意其他牌
-            paishanfront[i] = tiles[tiles.length - 1][0];
-            paishanfront[i + 1] = tiles[tiles.length - 1][1];
+    for (let i = 0; i < paishanhead.length; i++) {
+        if (paishanhead[i] === '.') { // 任意其他牌
+            paishanhead[i] = tiles[tiles.length - 1][0];
+            paishanhead[i + 1] = tiles[tiles.length - 1][1];
             if (tiles[tiles.length - 1].length > 2 && tiles[tiles.length - 1][2] === tile_suf) {
-                insert_paishan(paishanfront, i + 2, tile_suf);
+                insert_paishan(paishanhead, i + 2, tile_suf);
                 i++;
             }
             tiles.length--;
         }
     }
-    paishanfront = paishanfront.join('');
+    paishanhead = paishanhead.join('');
 
     paishanback = paishanback.split('');
     for (let i = 0; i < paishanback.length; i++) {
@@ -7177,25 +7179,26 @@ function randompaishan(paishanfront = "", paishanback = "", reddora) {
     }
     paishanback = paishanback.join('');
     for (let i = 0; i < tiles.length; i++)
-        paishanfront += tiles[i];
-    paishanfront += paishanback;
+        paishanhead += tiles[i];
+
+    let ret_paishan = paishanhead + paishanback;
     for (let i = 0; i < cnt.length; i++) {
         if (cnt[i] !== undefined && cnt[i] < 0) {
-            if (is_chuanma() && paishanfront.length !== 55 * 2)
+            if (is_chuanma() && ret_paishan.length !== 55 * 2)
                 console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: " + (4 - cnt[i]) + " 个 " + inttotile(i));
-            if (!is_chuanma() && !is_guobiao() && config.mode.mode >= 10 && config.mode.mode <= 19 && paishanfront.length !== 68 * 2)
+            if (!is_chuanma() && !is_guobiao() && config.mode.mode >= 10 && config.mode.mode <= 19 && ret_paishan.length !== 68 * 2)
                 console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: " + (4 - cnt[i]) + " 个 " + inttotile(i));
-            if (!is_chuanma() && !is_guobiao() && config.mode.mode < 10 && config.mode.mode >= 0 && paishanfront.length !== 83 * 2)
+            if (!is_chuanma() && !is_guobiao() && config.mode.mode < 10 && config.mode.mode >= 0 && ret_paishan.length !== 83 * 2)
                 console.warn("chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: " + (4 - cnt[i]) + " 个 " + inttotile(i));
         }
         if (is_mingjing()) {
-            if (cnt[i] < 0 && paishanfront.length !== 83 * 2)
+            if (cnt[i] < 0 && ret_paishan.length !== 83 * 2)
                 console.warn("明镜之战: chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: " + (1 - cnt[i]) + " 个 " + inttotile(i));
-            if (cnt2[i] < 0 && paishanfront.length !== 83 * 2)
+            if (cnt2[i] < 0 && ret_paishan.length !== 83 * 2)
                 console.warn("明镜之战: chang: " + chang + ", ju: " + ju + ", ben: " + ben + " paishan 不合规: " + (3 - cnt2[i]) + " 个 " + inttotile(i) + tile_suf);
         }
     }
-    return paishanfront;
+    return ret_paishan;
 
     function insert_paishan(paishan, index, char) {
         for (let i = paishan.length - 1; i >= index; i--)

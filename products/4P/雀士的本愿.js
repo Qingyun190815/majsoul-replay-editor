@@ -1,6 +1,6 @@
 loadproject();
 
-// 报菜名界面会见到所有 7*4 = 28 张字牌(四杠子18张+10张指示牌)
+// 雀士的本愿: 和牌役种只包含 立直, 一发, 自摸, 平和, 一杯口, 断幺九, 三色同顺
 
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
@@ -16,20 +16,17 @@ editdata.config = {
     'meta': {'mode_id': 0},
     'mode': {
         'mode': 1,
-        'detail_rule': {
-            'init_point': 100000,
-        }
     }
 };
 
-tiles0 = "9s1112223334447z";
+tiles0 = "456m45556p4456s67z";
 tiles1 = "1112340678999m";
 tiles2 = "1112340678999p";
-tiles3 = "1112223345599s";
-paishan = randompaishan("1z", "7565656567z7432z");
+tiles3 = "23799s55566677z";
+paishan = randompaishan("5sHHH6s", "57z....");
 roundbegin();
-qiepai("9s", true);
-mingqiepai("4s");
-mopai();
-combomopai(4);
-hupai();
+qiepai();
+mingqiepai("7s");
+moqieliqi("6z");
+normalmoqie(3);
+zimohu();
