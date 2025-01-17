@@ -84,6 +84,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 切上满贯
         - 头跳
         - 杠表宝牌即翻
+        - 三家和了流局
         - 有无流局满贯
         - 有无国士无双枪暗杠
         - 有无双倍役满(天凤规则: 大四喜, 四单, 纯九, 十三面算单倍役满, 但复合役满仍有效)
@@ -103,7 +104,6 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## TODO(欢迎contribute)
 
-- 实现"三家和了流局"
 - 研究"装扮预览"功能
 - 维护二人麻将和血流成河模式
 - 真实牌谱的json文件与自制牌谱的js文件相互转化

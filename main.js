@@ -1474,7 +1474,6 @@ function ronghuzhahu() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.ronghuzhahu)
 }
 
-// 三家和了流局, 暂时实现不了
 function is_sanxiangliuju() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.sanxiangliuju)
 }
@@ -6564,34 +6563,48 @@ function notileliuju() {
     saveproject();
 }
 
-function liuju() {
-    let ret;
-    for (let seat = 0; seat < playercnt; seat++) {
-        let cnt = [], yaojiutype = 0;
-        for (let i = 0; i <= 36; i++)
-            cnt[i] = 0;
-        for (let i = 0; i < playertiles[seat].length; i++)
-            cnt[tiletoint(playertiles[seat][i])]++;
-        for (let i = 0; i <= 36; i++)
-            if ((i === 1 || i === 9 || i === 10 || i === 18 || i === 19 || (i >= 27 && i <= 34)) && cnt[i] >= 1)
-                yaojiutype++;
-        // 九种九牌
-        if (yaojiutype >= 9 && liqiinfo[seat].liqi === 0 && liqiinfo[seat].yifa === 1 && playertiles[seat].length === 14) {
-            let lastile = playertiles[seat][playertiles[seat].length - 1];
-            playertiles[seat].length = playertiles[seat].length - 1;
-            playertiles[seat].sort(cmp);
-            playertiles[seat].push(lastile);
-            if (ret === undefined)
-                ret = {
-                    'name': "RecordLiuJu",
-                    'data': {
-                        'seat': seat,
-                        'tiles': playertiles[seat].slice(),
-                        'type': 1
-                    }
-                };
-        }
+function liuju(liuju_type) {
+    let ret, seat;
+    let lstaction = getlstaction();
+    if (lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile" || lstaction.name === "RecordSelectGap")
+        seat = ju;
+    else
+        seat = lstaction.data.seat;
+
+    let cnt = [], yaojiutype = 0;
+    for (let i = 0; i <= 36; i++)
+        cnt[i] = 0;
+    for (let i = 0; i < playertiles[seat].length; i++)
+        cnt[tiletoint(playertiles[seat][i])]++;
+    for (let i = 0; i <= 36; i++)
+        if ((i === 1 || i === 9 || i === 10 || i === 18 || i === 19 || (i >= 27 && i <= 34)) && cnt[i] >= 1)
+            yaojiutype++;
+    // 九种九牌
+    if (yaojiutype >= 9 && liqiinfo[seat].liqi === 0 && liqiinfo[seat].yifa === 1 && playertiles[seat].length === 14) {
+        let lastile = playertiles[seat][playertiles[seat].length - 1];
+        playertiles[seat].length--;
+        playertiles[seat].sort(cmp);
+        playertiles[seat].push(lastile);
+        if (ret === undefined)
+            ret = {
+                'name': "RecordLiuJu",
+                'data': {
+                    'seat': seat,
+                    'tiles': playertiles[seat].slice(),
+                    'type': 1
+                }
+            };
     }
+    if (liuju_type === 1 && ret === undefined)
+        ret = {
+            'name': "RecordLiuJu",
+            'data': {
+                'seat': seat,
+                'tiles': playertiles[seat].slice(),
+                'type': 1
+            }
+        };
+
     // 四风连打
     if (playercnt === 4)
         if (fulu[0].length === 0 && fulu[1].length === 0 && fulu[2].length === 0 && fulu[3].length === 0)
@@ -6605,6 +6618,13 @@ function liuju() {
                                     'type': 2
                                 }
                             };
+    if (liuju_type === 2 && ret === undefined)
+        ret = {
+            'name': "RecordLiuJu",
+            'data': {
+                'type': 2
+            }
+        };
 
     // 四杠散了
     let havegang = [false, false, false, false], havegangcnt = 0;
@@ -6633,6 +6653,24 @@ function liuju() {
                 }
             };
     }
+    if (liuju_type === 3 && ret === undefined)
+        ret = {
+            'name': "RecordLiuJu",
+            'data': {
+                'type': 3
+            }
+        };
+
+    let allplayertiles = ["", "", "", ""];
+    for (let seat = 0; seat < playercnt; seat++) {
+        playertiles[seat].sort(cmp);
+        for (let i = 0; i < playertiles[seat].length; i++) {
+            allplayertiles[seat] += playertiles[seat][i];
+            if (i !== playertiles[seat].length - 1)
+                allplayertiles[seat] += "|";
+        }
+    }
+
     // 四家立直
     if (playercnt === 4 && ret === undefined) {
         let liqiplayercnt = 0;
@@ -6643,19 +6681,26 @@ function liuju() {
         // 幻境传说: 命运卡2
         if (get_field_spell_mode3() === 2)
             need_bangzi = 2;
-        if (liqiplayercnt === 3 && lstliqi != null && scores[lstliqi.seat] >= need_bangzi * 1000) {
+
+        if (lstliqi != null && scores[lstliqi.seat] >= need_bangzi * 1000) {
             liqibang += need_bangzi;
             scores[lstliqi.seat] -= need_bangzi * 1000;
             liqiinfo[lstliqi.seat] = {'liqi': lstliqi.type, 'yifa': 1, 'kai': lstliqi.kai};
-            let allplayertiles = ["", "", "", ""];
-            for (let seat = 0; seat < playercnt; seat++) {
-                playertiles[seat].sort(cmp);
-                for (let i = 0; i < playertiles[seat].length; i++) {
-                    allplayertiles[seat] += playertiles[seat][i];
-                    if (i !== playertiles[seat].length - 1)
-                        allplayertiles[seat] += "|";
-                }
-            }
+            if (liqiplayercnt === 3)
+                ret = {
+                    'name': "RecordLiuJu",
+                    'data': {
+                        'type': 4,
+                        'liqi': {
+                            'liqibang': liqibang,
+                            'score': scores[lstliqi.seat],
+                            'seat': lstliqi.seat
+                        },
+                        'allplayertiles': allplayertiles
+                    }
+                };
+        }
+        if (liuju_type === 4 && ret === undefined)
             ret = {
                 'name': "RecordLiuJu",
                 'data': {
@@ -6668,18 +6713,17 @@ function liuju() {
                     'allplayertiles': allplayertiles
                 }
             };
-        }
     }
     // 三家和了, 暂时实现不了
-    // if (flag) {
-    //     if (ret === undefined)
-    //         ret = {
-    //             'name': "RecordLiuJu",
-    //             'data': {
-    //                 'type': 5
-    //             }
-    //         };
-    // }
+    if ((liuju_type === 5 || ret === undefined) && is_sanxiangliuju())
+        ret = {
+            'name': "RecordLiuJu",
+            'data': {
+                'seat': seat,
+                'type': 5,
+                'allplayertiles': allplayertiles
+            }
+        };
 
     if (hules_history.length !== 0 && ret != null)
         ret.data.hules_history = hules_history;
