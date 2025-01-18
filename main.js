@@ -634,7 +634,7 @@ function edit(x) {
         // 建议玩家随机的装扮: 立直棒(0), 和牌特效(1), 立直特效(2), 头像框(5), 桌布(6), 称号(11)
         for (let seat = 0; seat < x.player_datas.length; seat++) {
             ret[seat] = {
-                'account_id': (seat + 1) * 10000,
+                'account_id': x.player_datas[seat].avatar_id,
                 'seat': seat,
                 'nickname': x.player_datas[seat].nickname,
                 'avatar_id': x.player_datas[seat].avatar_id,
@@ -1468,6 +1468,14 @@ function sigangbaopai() {
 
 function no_zhenting() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_zhenting)
+}
+
+function no_yifa() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_yifa)
+}
+
+function no_lianfengsifu() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_lianfengsifu)
 }
 
 function ronghuzhahu() {
@@ -3129,7 +3137,7 @@ function calcfan(tiles, seat, zimo, fangchong) {
                     if (liqiinfo[seat].liqi !== 0 && liqiinfo[seat].yifa !== 0)
                         ans.fans.push({'val': 2, 'id': 30}); // 一发
                 } else {
-                    if (liqiinfo[seat].liqi !== 0 && liqiinfo[seat].yifa !== 0)
+                    if (liqiinfo[seat].liqi !== 0 && liqiinfo[seat].yifa !== 0 && !no_yifa())
                         ans.fans.push({'val': 1, 'id': 30}); // 一发
                 }
             }
@@ -3376,10 +3384,16 @@ function calcfan(tiles, seat, zimo, fangchong) {
                 }
                 if (typecnt[i][7] === 1) {
                     // 雀头符, 雀头是自风, 场风, 三元
-                    if (i === tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z"))
-                        ans.fu += 2;
-                    if (i === tiletoint((chang + 1).toString() + "z"))
-                        ans.fu += 2;
+                    if (no_lianfengsifu()) {
+                        if (i === tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z") || i === tiletoint((chang + 1).toString() + "z"))
+                            ans.fu += 2;
+                    }
+                    else {
+                        if (i === tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z"))
+                            ans.fu += 2;
+                        if (i === tiletoint((chang + 1).toString() + "z"))
+                            ans.fu += 2;
+                    }
                     if (i === 32 || i === 33 || i === 34)
                         ans.fu += 2;
                 }
@@ -6080,9 +6094,9 @@ function leimingpai(seat, tile, type, first) {
         // 国标补花
         if (is_guobiao() && leimingpai(seat, huapai, "babei", false))
             return true;
-        if (playercnt === 3 && (leimingpai(seat, "4zt", "babei", false) || leimingpai(seat, "4z", "babei", false)))
+        if ((playercnt === 2 || playercnt === 3) && (leimingpai(seat, "4zt", "babei", false) || leimingpai(seat, "4z", "babei", false)))
             return true;
-        if ((playercnt === 2 || playercnt === 3) && (leimingpai(seat, "3zt", "babei", false) || leimingpai(seat, "3z", "babei", false)))
+        if (playercnt === 2 && (leimingpai(seat, "3zt", "babei", false) || leimingpai(seat, "3z", "babei", false)))
             return true;
         for (let i = 1; i <= nxt2.length; i++)
             if (leimingpai(seat, inttotile(i) + tile_suf, "angang", false) || leimingpai(seat, inttotile(i), "angang", false))
@@ -6865,10 +6879,10 @@ function randompaishan(paishanhead = "", paishanback = "", reddora) {
         cnt[i] = 0;
 
     if ((tiles2.length === 0) && (tiles3.length === 0)) { // 二麻
-        cnt[2] = cnt[3] = cnt[4] = cnt[5] = cnt[6] = cnt[7] = cnt[8] = cnt[11] = cnt[12] = cnt[13] = cnt[14] = cnt[15] = cnt[16] = cnt[17] = 0;
+        cnt[11] = cnt[12] = cnt[13] = cnt[14] = cnt[15] = cnt[16] = cnt[17] = cnt[20] = cnt[21] = cnt[22] = cnt[23] = cnt[24] = cnt[25] = cnt[26] = 0;
         if (reddora === undefined || reddora === 1) {
-            cnt[23] = 3;
-            cnt[37] = 1;
+            cnt[5] = 3;
+            cnt[35] = 1;
         }
     } else if (tiles3.length === 0) { // 三麻, 赤宝牌数量分为 3, 4, 6, 9, 12
         cnt[2] = cnt[3] = cnt[4] = cnt[5] = cnt[6] = cnt[7] = cnt[8] = 0;

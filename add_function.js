@@ -1,5 +1,7 @@
 "use strict";
 
+// 由于更换了仓库中的 code.js 版本, 所以下面所在的行数很大概率已经不对了
+
 var view;
 
 function editfunction() {
@@ -794,11 +796,12 @@ function editfunction() {
     var seat2LocalPosition = view.DesktopMgr.prototype.seat2LocalPosition;
     var localPosition2Seat = view.DesktopMgr.prototype.localPosition2Seat;
     view.ERuleMode[view.ERuleMode.Liqi2 = 2] = "Liqi2";
-    //view.DesktopMgr.prototype.rule_mode=2;
     view.DesktopMgr.prototype.seat2LocalPosition = function (t) {
         if (this.rule_mode === view.ERuleMode.Liqi2) {
-            if (t === this.seat) return 0;
-            else return 2;
+            if (t === this.seat)
+                return 0;
+            else
+                return 2;
         }
         return seat2LocalPosition.call(this, t);
     }
@@ -827,32 +830,46 @@ function editfunction() {
     }
     Object.defineProperty(view.DesktopMgr.prototype, "player_count", {
         get: function () {
-            if (this.rule_mode === view.ERuleMode.Liqi2) return 2;
+            if (this.rule_mode === view.ERuleMode.Liqi2)
+                return 2;
             return this.rule_mode === view.ERuleMode.Liqi3 ? 3 : 4
         },
         enumerable: !0,
         configurable: !0
     })
     mjcore.MJPai.DoraMet = function (t, i) {
-        if (t.type !== i.type) return !1;
+        if (t.type !== i.type)
+            return !1;
         var n = i.index + 1;
         if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2) {
-            if (i.type === 3 && n === 5) n = 1;
-            else if (i.type === 3 && n === 8) n = 5;
-            else if (i.type === 1 && n === 2) n = 9;
-            else if (i.type === 0 && n === 2) n = 9;
-            else if (n === 10) n = 1;
+            if (i.type === 3 && n === 5)
+                n = 1;
+            else if (i.type === 3 && n === 8)
+                n = 5;
+            else if (i.type === 1 && n === 2)
+                n = 9;
+            else if (i.type === 0 && n === 2)
+                n = 9;
+            else if (n === 10)
+                n = 1;
         }
         if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi3) {
-            if (i.type === 3 && n === 5) n = 1;
-            else if (i.type === 3 && n === 8) n = 5;
-            else if (i.type === 1 && n === 2) n = 9;
-            else if (n === 10) n = 1;
+            if (i.type === 3 && n === 5)
+                n = 1;
+            else if (i.type === 3 && n === 8)
+                n = 5;
+            else if (i.type === 1 && n === 2)
+                n = 9;
+            else if (n === 10)
+                n = 1;
         }
         if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi4) {
-            if (i.type === 3 && n === 5) n = 1;
-            else if (i.type === 3 && n === 8) n = 5;
-            else if (n === 10) n = 1;
+            if (i.type === 3 && n === 5)
+                n = 1;
+            else if (i.type === 3 && n === 8)
+                n = 5;
+            else if (n === 10)
+                n = 1;
         }
         return n === t.index;
     }
@@ -861,68 +878,63 @@ function editfunction() {
 // code.js 文件 167319 行
 function editfunction2() {
     uiscript.UI_Replay.Inst.page_paishan.setInfo = function () {
+        var z = uiscript;
         if (!this['noinfo']) {
-            var K = view['DesktopMgr'].Inst['left_tile_count']
-                , U = view['DesktopMgr'].Inst.dora['length'];
-            view['DesktopMgr'].Inst['is_zhanxing_mode']() && (K -= uiscript['UI_Astrology'].Inst['getTileCount']());
-            var V = view['DesktopMgr'].Inst['get_gang_count']()
-                , N = view['DesktopMgr'].Inst['get_babei_count']()
-                , q = V + N;
-            q > 0 && view['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] && q--;
-            var _ = 14;
+            var I = view['DesktopMgr'].Inst['left_tile_count']
+                , C = view['DesktopMgr'].Inst.dora['length'];
+            view['DesktopMgr'].Inst['is_zhanxing_mode']() && (I -= z['UI_Astrology'].Inst['getTileCount']());
+            var r = view['DesktopMgr'].Inst['get_gang_count']()
+                , B = view['DesktopMgr'].Inst['get_babei_count']()
+                , W = r + B;
+            W > 0 && view['DesktopMgr'].Inst['waiting_lingshang_deal_tile'] && W--;
+            var R = 14;
 
             // 添加内容: 二人麻将王牌18张
             if (view.DesktopMgr.Inst.rule_mode === view.ERuleMode.Liqi2)
-                _ = 18;
+                R = 18;
 
-            view['DesktopMgr'].Inst['is_chuanma_mode']() && (q = 0, _ = 0);
-            var h = view['DesktopMgr'].Inst['sha256'] ? view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 40 : 53 : 0
-                , t = this['tile_count'] - q - _ - h;
-            0 > t && (t = 0);
-            for (var X = this['tiles'][0]['width'], m = this['tiles'][0]['height'] + 5, y = view['DesktopMgr'].Inst['index_ju'],
-                     w = view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 3 :
+            view['DesktopMgr'].Inst['is_chuanma_mode']() && (W = 0,
+                R = 0);
+            var L = view['DesktopMgr'].Inst['sha256'] ? view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 40 : view['DesktopMgr'].Inst['is_wanxiangxiuluo_mode']() ? 49 : 53 : 0
+                , G = this['tile_count'] - W - R - L;
+            0 > G && (G = 0);
+            for (var T = this['tiles'][0].me['width'], Z = this['tiles'][0].me['height'] + 5, U = view['DesktopMgr'].Inst['index_ju'],
+                     P = view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 3 :
                          // 添加内容: 二人麻将玩家数2
-                         view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi2'] ? 2 : 4,
-
-                     A = (view['DesktopMgr'].Inst.seat - y + w) % w, l = 0; h > l; l++) {
-                var r = 0;
-                r += 2 + l % 12 * X + 5 * Math['floor'](l % 12 / 4),
-                    this['tiles'][l].x = r,
-                    this['tiles'][l].y = Math['floor'](l / 12) * m,
-                    this['tiles'][l]['filters'] = h - w - 1 > l && Math['floor'](l / 4) % w === A ? [this['yellow_filter']] :
-                        l >= h - w - 1 && (l - h + w + 1) % w === A ? [this['yellow_filter']] : [this['gray_filter']];
+                         view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi2'] ? 2 : 4, v = (view['DesktopMgr'].Inst.seat - U + P) % P, M = 0; L > M; M++) {
+                var m = 0;
+                m += 2 + M % 12 * T + 5 * Math['floor'](M % 12 / 4),
+                    this['tiles'][M].pos(m, Math['floor'](M / 12) * Z),
+                    12 * P > M && Math['floor'](M / 4) % P === v ? this['tiles'][M]['setYellowState']() : M >= 12 * P && (M - L + P + 1) % P === v ? this['tiles'][M]['setYellowState']() : this['tiles'][M]['setFiltersState'](z['EUIPaiFilterState'].gray);
             }
-            for (var i = h ? Math.ceil(h / 12) * m + 20 : 0, l = 0; t > l; l++) {
-                var Q = l + h
-                    , r = 0;
-                view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? r = l % 12 * X + 5 * Math['floor'](l % 12 / 3) :
-                    r += 2 + l % 12 * X + 5 * Math['floor'](l % 12 / 4),
-                    this['tiles'][Q].x = r,
-                    this['tiles'][Q].y = Math['floor'](l / 12) * m + i,
-                    this['tiles'][Q]['filters'] = K >= t - l ? [] : [this['gray_filter']];
+            for (var X = L ? Math.ceil(L / 12) * Z + 20 : 0, M = 0; G > M; M++) {
+                var V = M + L
+                    , m = 0;
+                view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? m = M % 12 * T + 5 * Math['floor'](M % 12 / 3) : m += 2 + M % 12 * T + 5 * Math['floor'](M % 12 / 4),
+                    this['tiles'][V].pos(m, Math['floor'](M / 12) * Z + X),
+                    I >= G - M ? this['tiles'][V]['setFiltersState'](z['EUIPaiFilterState'].none) : this['tiles'][V]['setFiltersState'](z['EUIPaiFilterState'].gray);
             }
-            i += Math.ceil(t / 12) * m + 20;
-            for (var l = t + h; l < this['tile_count']; l++) {
-                var u = this['tiles'][l];
-                u.x = (l - t - h) % 12 * X,
-                    u.y = Math['floor']((l - t - h) / 12) * m + i,
-                    u['filters'] = [];
+            X += Math.ceil(G / 12) * Z + 20;
+            for (var M = G + L; M < this['tile_count']; M++) {
+                var N = this['tiles'][M]
+                    , b = (M - G - L) % 12 * T
+                    , d = Math['floor']((M - G - L) / 12) * Z + X;
+                N.pos(b, d),
+                    N['setFiltersState'](z['EUIPaiFilterState'].none);
             }
-            for (var j = view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 8 :
+            for (var f = view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi3'] ? 8 :
                 // 添加内容: 二人麻将岭上牌12张
                 view['DesktopMgr'].Inst['rule_mode'] === view['ERuleMode']['Liqi2'] ? 12 :
-                    4, l = 0; U > l; l++) {
-
-                this['tiles'][this['tile_count'] - j - 1 - 2 * l]['filters'] = [this['dora_filter']],
-                    this['tiles'][this['tile_count'] - j - 2 - 2 * l]['filters'] = [this['lidora_filter']];
-            }
-            for (var l = 0; q > l; l++)
-                this['tiles'][this['tile_count'] - 1 - l]['filters'] = [this['gray_filter']];
-            i += Math.ceil((this['tile_count'] - t - h) / 12) * m,
-                this['container_input'].y = i + 80,
-                view['DesktopMgr'].Inst.salt ? (this['container_salt'].y = i + 290,
+                4, M = 0; C > M; M++)
+                this['tiles'][this['tile_count'] - f - 1 - 2 * M]['setFiltersState'](z['EUIPaiFilterState'].dora),
+                    this['tiles'][this['tile_count'] - f - 2 - 2 * M]['setFiltersState'](z['EUIPaiFilterState']['lidora']);
+            for (var M = 0; W > M; M++)
+                this['tiles'][this['tile_count'] - 1 - M]['setFiltersState'](z['EUIPaiFilterState'].gray);
+            X += Math.ceil((this['tile_count'] - G - L) / 12) * Z,
+                this['container_input'].y = X + 80,
+                view['DesktopMgr'].Inst.salt ? (this['container_salt'].y = X + 290,
                     this['container_salt']['visible'] = !0,
-                    this['input_salt'].text = view['DesktopMgr'].Inst.salt) : (this['container_salt'].y = i + 0,
+                    this['input_salt'].text = view['DesktopMgr'].Inst.salt) : (this['container_salt'].y = X + 0,
                     this['container_salt']['visible'] = !1),
                 this['content']['refresh']();
         }

@@ -18,7 +18,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 main.js 里面的内容全选复制输入到控制台中,
 然后将牌谱回放js文件内容也输入到控制台中
 
-在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
+在网页版雀魂里随便选择一个牌谱打开(查看自己的牌谱时, 尽量选择自家东起的, 因为很多牌谱以东起为主视角), 就可以看到自制的牌谱了
 
 **注意: 当前 main.js 正在添加大量新功能, 很多没有经过充分测试, 所以可能有bug**, 如果存在不符合预期的情况,
 可以在 [commit](https://github.com/Fat-pig-Cui/majsoul-replay-editor/commits/main/) 记录中使用老版本,
@@ -40,11 +40,10 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 4. [(可选)对局操作相关函数(活动场)](doc/对局操作相关函数（活动场）.md)
 5. [(可选)examples文件夹下的示例牌谱](doc/examples文件夹下的示例牌谱.md)
 
-[字典](doc/字典.md) 是用来查阅的, 建议放到最后或者编辑牌谱时使用, [字典_template](doc/字典_template.md) 是生成字典的模版, 无需阅读
+[字典](doc/字典.md) 是用来查阅的, 建议编辑牌谱时使用, [字典_template](doc/字典_template.md) 是生成字典的模版, 无需阅读
 
-至于 code.js , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/09/25
-版本,
-不要轻易打开),
+至于 code.js , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/12/19
+版本, 不要轻易打开),
 解混淆的方法见另一个仓库: [misc-code](https://github.com/Fat-pig-Cui/misc-code)
 
 ## 功能概述
@@ -66,47 +65,47 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 咏唱之战
         - 魂之一击
         - 万象修罗
-    - 友人房的自定义规则:
-        - 古役(包括一番街的, 详见 products 文件夹下的[古役专题](products/古役专题))
+    - 友人房规则:
+        - 古役(包括一番街的, 详见 products 文件夹下的 [古役专题](products/古役专题))
         - 赤宝牌数量(四麻除了3/4赤以外, 还支持6/9/12赤, 后者的几种情况暗杠可能会显示异常,
-          这种情况需要导入[override.js](override.js))
+          这种情况需要导入 [override.js](override.js))
         - 食断
         - 番缚
         - 有无自摸损(三麻)
         - 是否公开手牌
-    - 其他规则:
-        - **有无振听**
-        - 无役诈和
-        - 青天井模式(谨慎使用, 高打点时很容易崩溃)
-        - 无大三元大四喜包牌
-        - 包杠
-        - 四杠子包牌(与其他包牌以及包杠的复合可以阅读 [README.md](products/4P/包牌与包杠的本场划分/README.md))
+    - 比赛场规则:
         - 切上满贯
         - 头跳
+        - 无大三元大四喜包牌
+        - 四杠子包牌(与其他包牌以及包杠的复合可以阅读 [README.md](products/4P/包牌与包杠的本场划分/README.md))
+        - 有无流局满贯
+        - 有无一发
+        - 是否连风4符
         - 杠表宝牌即翻
         - 三家和了流局
-        - 有无流局满贯
-        - 有无国士无双枪暗杠
-        - 有无双倍役满(天凤规则: 大四喜, 四单, 纯九, 十三面算单倍役满, 但复合役满仍有效)
         - 有无累计役满(即最高三倍满)
+        - 有无双倍役满(天凤规则: 大四喜, 四单, 纯九, 十三面算单倍役满, 但复合役满仍有效)
+        - 有无国士无双枪暗杠
+    - 其他规则
+        - 包杠
+        - 青天井模式(谨慎使用, 高打点时很容易崩溃)
+        - 有无振听
+        - 无役诈和
 
-2. 在 [add_function.js](add_function.js) 文件中还提供了以下几种雀魂没有的模式, 但该文件维护很困难, bug可能比较多
-    - 血流成河,
-      有仓库原作者的视频参考: [【雀魂】（自制回放）假设雀魂有了血流成河（快速版）](https://www.bilibili.com/video/BV1dB4y1F78x)
+2. 在 [add_function.js](add_function.js) 文件中还提供了以下几种雀魂没有的模式, 详见 products
+   文件夹下的 [自制模式](products/自制模式), 但该文件维护很困难, bug可能比较多
     - 二人麻将
     - 开立直
+    - 血流成河
 
-3. 另外增加了国标模式, 但本人对国标不是很熟, 可能有很多bug, 如需使用请把 [guobiao.js](guobiao.js) 里面的内容也输入到控制台,
-   并在 `'detail_rule'` 中注明 `'guobiao': true`, 详细说明请参照 products
-   文件夹下的 [README.md](products/国标麻将/README.md)
+3. 在 [guobiao.js](guobiao.js) 中提供了国标模式, 但本人对国标不是很熟, 可能有很多bug, 详见 products
+   文件夹下的 [国标麻将](products/国标麻将)
 
 4. 对于不符合要求的填写, 可能出现页面崩溃的问题(一般页面会卡住, 控制台会报错)
 
 ## TODO(欢迎contribute)
 
 - 研究"装扮预览"功能
-- 维护二人麻将和血流成河模式
-- 真实牌谱的json文件与自制牌谱的js文件相互转化
 - 通过重写函数的方式自制真实牌谱的观战
 
 ## 版权声明

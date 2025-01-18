@@ -1,5 +1,7 @@
 loadproject();
 
+// 暗牌如果没有被开, 那么可以当成幺九牌, 所以这个模式可以做到四家流满
+
 editdata.player_datas[0].nickname = "一姬-契约";
 editdata.player_datas[1].nickname = "新年初诣";
 editdata.player_datas[2].nickname = "一姬当千";
