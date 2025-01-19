@@ -77,7 +77,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 切上满贯
         - 头跳
         - 无大三元大四喜包牌
-        - 四杠子包牌(与其他包牌以及包杠的复合可以阅读 [README.md](../products/4P/包牌与包杠的本场划分/README.md))
+        - 四杠子包牌
         - 有无流局满贯
         - 有无一发
         - 是否连风4符

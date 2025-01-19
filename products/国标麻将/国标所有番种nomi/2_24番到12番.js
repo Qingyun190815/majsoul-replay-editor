@@ -26,11 +26,11 @@ editdata.config = {
 };
 
 // 第1(19)局: 七对
-tiles0 = "11m2299p22s223347z";
+tiles0 = "11m2299p2288s5567z";
 tiles1 = "1334456789999m";
 tiles2 = "11123447889p11z";
 tiles3 = "1111445555999s";
-paishan = randompaishan("4z");
+paishan = randompaishan("6z");
 roundbegin();
 qiepai();
 normalmoqie();

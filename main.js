@@ -1382,128 +1382,28 @@ function init() {
     }
 }
 
-function is_xuezhandaodi() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.xuezhandaodi);
-}
-
 function is_huansanzhang() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.huansanzhang);
 }
 
-function is_guyi() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guyi_mode);
-}
-
-function is_peipaimingpai() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.begin_open_mode);
-}
-
-function is_dora3() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora3_mode);
-}
-
-function is_muyu() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.muyu_mode);
+function is_xuezhandaodi() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.xuezhandaodi);
 }
 
 function is_chuanma() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.chuanma);
 }
 
-function is_xueliu() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.xueliu);
+function is_dora3() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora3_mode);
 }
 
-function is_openhand(seat) {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.open_hand && config.mode.detail_rule.open_hand[seat] === 1);
+function is_peipaimingpai() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.begin_open_mode);
 }
 
-function no_shiduan() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_shiduan);
-}
-
-function no_zimosun() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_zimosun);
-}
-
-function is_baogang() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.baogang)
-}
-
-function is_qieshangmanguan() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.qieshangmanguan)
-}
-
-function is_toutiao() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.toutiao)
-}
-
-function is_dora_jifan() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora_jifan)
-}
-
-function no_liujumanguan() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_liujumanguan)
-}
-
-function no_guoshiangang() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_guoshiangang)
-}
-
-function no_wyakuman() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_wyakuman)
-}
-
-function no_leijiyiman() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_leijiyiman)
-}
-
-function no_normalbaopai() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_normalbaopai)
-}
-
-function sigangbaopai() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.sigangbaopai)
-}
-
-function no_zhenting() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_zhenting)
-}
-
-function no_yifa() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_yifa)
-}
-
-function no_lianfengsifu() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_lianfengsifu)
-}
-
-function ronghuzhahu() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.ronghuzhahu)
-}
-
-function is_sanxiangliuju() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.sanxiangliuju)
-}
-
-function is_qingtianjing() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.qingtianjing)
-}
-
-function is_wanxiangxiuluo() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.wanxiangxiuluo_mode)
-}
-
-function is_hunzhiyiji() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.hunzhiyiji_mode)
-}
-
-function is_yongchang() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yongchang_mode)
-}
-
-function is_tianming() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.tianming_mode)
+function is_muyu() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.muyu_mode);
 }
 
 function is_mingjing() {
@@ -1517,19 +1417,16 @@ function is_anye() {
 function is_field_spell() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.field_spell_mode)
 }
-
 function get_field_spell_mode1() {
     if (!is_field_spell())
         return 0;
     return Math.floor(parseInt(config.mode.detail_rule.field_spell_mode) % 10);
 }
-
 function get_field_spell_mode2() {
     if (!is_field_spell())
         return 0;
     return Math.floor((parseInt(config.mode.detail_rule.field_spell_mode) % 1000) / 100);
 }
-
 function get_field_spell_mode3() {
     if (!is_field_spell())
         return 0;
@@ -1539,6 +1436,117 @@ function get_field_spell_mode3() {
 function is_zhanxing() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.zhanxing)
 }
+
+function is_tianming() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.tianming_mode)
+}
+
+function is_yongchang() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yongchang_mode)
+}
+
+function is_hunzhiyiji() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.hunzhiyiji_mode)
+}
+
+function is_wanxiangxiuluo() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.wanxiangxiuluo_mode)
+}
+
+function is_xueliu() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.xueliu);
+}
+
+// ==============================
+
+function is_guyi() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guyi_mode);
+}
+function is_yifanjieguyi() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yifanjieguyi)
+}
+
+function no_shiduan() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_shiduan);
+}
+
+function no_zimosun() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_zimosun);
+}
+
+function is_openhand(seat) {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.open_hand && config.mode.detail_rule.open_hand[seat] === 1);
+}
+
+// ==============================
+
+function is_qieshangmanguan() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.qieshangmanguan)
+}
+
+function is_toutiao() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.toutiao)
+}
+
+function no_normalbaopai() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_normalbaopai)
+}
+
+function sigangbaopai() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.sigangbaopai)
+}
+
+function no_liujumanguan() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_liujumanguan)
+}
+
+function no_yifa() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_yifa)
+}
+
+function no_lianfengsifu() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_lianfengsifu)
+}
+
+function is_dora_jifan() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora_jifan)
+}
+
+function is_sanxiangliuju() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.sanxiangliuju)
+}
+
+function no_leijiyiman() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_leijiyiman)
+}
+
+function no_wyakuman() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_wyakuman)
+}
+
+function no_guoshiangang() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_guoshiangang)
+}
+
+// ==============================
+
+function is_baogang() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.baogang)
+}
+
+function is_qingtianjing() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.qingtianjing)
+}
+
+function no_zhenting() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.no_zhenting)
+}
+
+function ronghuzhahu() {
+    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.ronghuzhahu)
+}
+
+// ==============================
 
 function is_guobiao() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guobiao)
@@ -1552,14 +1560,18 @@ function is_guobiao_lianzhuang() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guobiao_lianzhuang)
 }
 
-function is_yifanjieguyi() {
-    return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yifanjieguyi)
-}
+// ==============================
 
 function fanfu() {
     if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.fanfu !== undefined))
         return config.mode.detail_rule.fanfu;
     return 1;
+}
+
+function reddora_count() {
+    if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora_count !== undefined))
+        return config.mode.detail_rule.dora_count;
+    return -1;
 }
 
 function get_muyu(type) {
@@ -3816,7 +3828,6 @@ function addNewRound(chang, ju, ben, doras, left_tile_count, liqibang, md5, pais
 }
 
 function roundbegin() {
-    // editfunction 和 editfunction2 是在 add_function.js 中的函数, 要判断是否已定义, 下同
     if (typeof (editfunction) !== "undefined")
         editfunction();
 
@@ -5484,7 +5495,7 @@ function qiepai(seat, kind, is_liqi, anpai) {
         anpai = false;
 
     let is_wliqi = false, is_kailiqi = false;
-    if (!!is_liqi && liqiinfo[seat].yifa !== 0)
+    if (!!is_liqi && liqiinfo[seat].yifa !== 0 && liqiinfo[seat].liqi === 0)
         is_wliqi = true;
 
     if (is_liqi === "kailiqi") {
@@ -6728,7 +6739,7 @@ function liuju(liuju_type) {
                 }
             };
     }
-    // 三家和了, 暂时实现不了
+    // 三家和了, 需要设置 'sanxiangliuju'
     if ((liuju_type === 5 || ret === undefined) && is_sanxiangliuju())
         ret = {
             'name': "RecordLiuJu",
@@ -6828,8 +6839,8 @@ function randompaishan(paishanhead = "", paishanback = "", reddora) {
         tiles3 = separatetile(tiles3);
 
     // 检查手牌数量是否合规
+    let all_tiles = [tiles0, tiles1, tiles2, tiles3];
     for (let i = 0; i < playercnt; i++) {
-        let all_tiles = [tiles0, tiles1, tiles2, tiles3];
         let tiles_len = all_tiles[i].length;
         if ((i === ju % 4) && !is_chuanma()) {
             if (tiles_len !== 14)
@@ -6850,19 +6861,12 @@ function randompaishan(paishanhead = "", paishanback = "", reddora) {
     paishanhead = decompose(paishanhead);
     paishanback = decompose(paishanback);
     if (reddora === undefined) {
-        if (config.mode.mode >= 21) {
-            if (config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora_count !== undefined)
-                reddora = config.mode.detail_rule.dora_count;
-            else
+        reddora = reddora_count();
+        if (reddora === -1) {
+            if (config.mode.mode >= 21)
                 reddora = 1;
-        } else if (config.mode.mode >= 11 && config.mode.mode <= 20) {
-            if (config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora_count !== undefined)
-                reddora = config.mode.detail_rule.dora_count;
-            else
+            else if (config.mode.mode >= 11 && config.mode.mode <= 20)
                 reddora = 2;
-        } else {
-            if (config && config.mode && config.mode.detail_rule && config.mode.detail_rule.dora_count !== undefined)
-                reddora = config.mode.detail_rule.dora_count;
             else
                 reddora = 3;
         }
@@ -6932,16 +6936,14 @@ function randompaishan(paishanhead = "", paishanback = "", reddora) {
 
     // 明镜之战
     let cnt2 = [];
-    for (let i = 1; i < 34; i++)
+    for (let i = 1; i <= 34; i++)
         cnt2[i] = 3;
     if (is_mingjing()) {
-        for (let i = 1; i < 34; i++)
+        for (let i = 1; i <= 34; i++)
             cnt[i] = 1;
         cnt[35] = cnt[36] = cnt[37] = 0;
     }
 
-
-    let all_tiles = [tiles0, tiles1, tiles2, tiles3];
     for (let j = 0; j < all_tiles.length; j++) {
         for (let i = 0; i < all_tiles[j].length; i++)
             if (all_tiles[j][i].length > 2 && all_tiles[j][i][2] === tile_suf && !is_tianming())
