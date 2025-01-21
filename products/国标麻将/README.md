@@ -4,13 +4,13 @@
 
 开启国标模式需要在 `'detail_rule'` 中注明 `'guobiao': true`
 
-以下番种主要根据[雀渣平台](https://tziakcha.xyz)规则(明暗杠设为5番, 有天地人和)
+以下番种主要根据 [雀渣平台](https://tziakcha.xyz) 规则(明暗杠设为5番, 有天地人和)
 
 为了使得各家点数更加美观, 对局中将各家点数和结算点数都乘了 100 (即 `scale_points`)
 
-对于诈和, 以及在没有设置 `guobiao_no_8fanfu` 的情况下不足8番的错和, 这里按照赔每家各 scale_points * 24 (24 即 `zhahu_points`) 点计算,
+对于诈和, 以及在没有设置 `'guobiao_no_8fanfu'` 的情况下不足8番的错和, 这里按照赔每家各 scale_points * 24 (24 即 `zhahu_points`) 点计算,
 
-为方便编辑复杂牌谱, 提供了参数 `guobiao_lianzhuang`, 若为 `true`, 则可以连庄, 规则同立直麻将
+为方便编辑复杂牌谱, 提供了参数 `'guobiao_lianzhuang'`, 若为 `true`, 则可以连庄, 规则同立直麻将
 
 正常情况下是没有花牌的, 但还是实现了花牌的功能(需要导入 [add_function.js](../../add_function.js)): 使用8张"0m"表示8张花牌,
 补花操作类似拔北, 还添加了手牌有花牌不能和的判断, 但受限于实现方式, 与花牌有关的以下问题暂时没有很好的解决方法:

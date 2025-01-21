@@ -42,7 +42,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 [字典](字典.md) 是用来查阅的, 建议编辑牌谱时使用, [字典_template](字典_template.md) 是生成字典的模版, 无需阅读
 
-至于 code.js , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2024/12/19
+至于 code.js , 这是初步解混淆后的雀魂核心js文件, 与本仓库关系不大, 放在这里仅方便查阅(文件很大, 2025/1/21
 版本, 不要轻易打开),
 解混淆的方法见另一个仓库: [misc-code](https://github.com/Fat-pig-Cui/misc-code)
 
@@ -110,7 +110,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 版权声明
 
-1. md5算法源自[百度百科](https://baike.baidu.com/item/MD5)
+1. md5算法源自 [百度百科](https://baike.baidu.com/item/MD5)
 
 2. 更改回放的方法参考了B站 [一般通过彳亍人](https://space.bilibili.com/23019265)
    的 [BV1HE411Q7JM](https://www.bilibili.com/video/BV1HE411Q7JM)
@@ -120,7 +120,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 4. 有少部分代码来自于雀魂源码
 
-5. 其他部分均由本人编写, 版权归原作者[GrandDawn](https://github.com/GrandDawn)所有, 未经原作者允许不得转载本文内容,
+5. 其他部分均由本人编写, 版权归原作者 [GrandDawn](https://github.com/GrandDawn) 所有, 未经原作者允许不得转载本文内容,
    否则将视为侵权, 对于不遵守此声明或者其他违法使用本文内容者, 本人依法保留追究权等
 
 6. 请不要在任何第三方网站下载该源代码, 否则后果自负

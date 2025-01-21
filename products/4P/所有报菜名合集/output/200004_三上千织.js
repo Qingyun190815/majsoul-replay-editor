@@ -1,13 +1,13 @@
 loadproject();
 
 editdata.player_datas[0].nickname = "三上千织-契约";
-editdata.player_datas[1].nickname = "清凉夏日";
-editdata.player_datas[2].nickname = "甜蜜茶点";
-editdata.player_datas[3].nickname = "天黑请闭眼";
+editdata.player_datas[1].nickname = "甜蜜茶点";
+editdata.player_datas[2].nickname = "天黑请闭眼";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 400402;
-editdata.player_datas[1].avatar_id = 400404;
-editdata.player_datas[2].avatar_id = 400405;
-editdata.player_datas[3].avatar_id = 400406;
+editdata.player_datas[1].avatar_id = 400405;
+editdata.player_datas[2].avatar_id = 400406;
+editdata.player_datas[3].avatar_id = 400407;
 
 // 头像框-大小姐发带
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305552;

@@ -56,6 +56,7 @@ const liqibangs = [
     30560004,  // 立直棒-童话绘梦
     30560005,  // 立直棒-动听之源
     30560006,  // 立直棒-立奇棒
+    30560007,  // 立直棒-青竹伞
 ];
 
 const hupais = [
@@ -230,6 +231,12 @@ const avatar_frames = [
     // 30550015,  // 头像框-四象战
     30550016,  // 头像框-四象战
     30550017,  // 头像框-一汪打尽
+    // 30550018, // Limited Portrait Frame
+    // 30550019, // 프로필 테두리 - MKC 2025
+    30550020, // 头像框-四象战
+    30550021, // 头像框-四象战
+    30550022, // 头像框-竹福滚滚
+    30550023, // 头像框-喵将军
 ];
 
 const tablecloths = [
@@ -284,6 +291,10 @@ const tablecloths = [
     30580010, // 桌布-官方赛事麒麟战
     30580011, // 桌布-闪耀吧！
     30580012, // 桌布-瑞雪祈狐
+    30580013, // Tablecloth - Catfood Bowl
+    30580014, // 작탁: MKC 2025
+    30580015, // 桌布-清辉竹影
+    30580016, // 桌布-锦绣余年
 ]
 
 const titles = [
@@ -389,6 +400,9 @@ const titles = [
     600108,  // 麒麟位2024
     // 600109,  // 雀魂インビ冬将軍
     // 600110,  // ぶいすぽの覇者
+    // 600111, // プロ×魂天覇者
+    600112,  // 喵国大将军
+    600113,  // 喵国至尊
 ];
 
 // md5 计算函数, 与牌谱回放关系不大
@@ -1417,16 +1431,19 @@ function is_anye() {
 function is_field_spell() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.field_spell_mode)
 }
+
 function get_field_spell_mode1() {
     if (!is_field_spell())
         return 0;
     return Math.floor(parseInt(config.mode.detail_rule.field_spell_mode) % 10);
 }
+
 function get_field_spell_mode2() {
     if (!is_field_spell())
         return 0;
     return Math.floor((parseInt(config.mode.detail_rule.field_spell_mode) % 1000) / 100);
 }
+
 function get_field_spell_mode3() {
     if (!is_field_spell())
         return 0;
@@ -1462,6 +1479,7 @@ function is_xueliu() {
 function is_guyi() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.guyi_mode);
 }
+
 function is_yifanjieguyi() {
     return !!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.yifanjieguyi)
 }
@@ -3399,8 +3417,7 @@ function calcfan(tiles, seat, zimo, fangchong) {
                     if (no_lianfengsifu()) {
                         if (i === tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z") || i === tiletoint((chang + 1).toString() + "z"))
                             ans.fu += 2;
-                    }
-                    else {
+                    } else {
                         if (i === tiletoint(((seat - ju + playercnt) % playercnt + 1).toString() + "z"))
                             ans.fu += 2;
                         if (i === tiletoint((chang + 1).toString() + "z"))
@@ -6752,16 +6769,19 @@ function liuju(liuju_type) {
 
     if (hules_history.length !== 0 && ret != null)
         ret.data.hules_history = hules_history;
-    actions.push(ret);
-    edit_online();
-    if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !is_chuanma() && !is_guobiao()) {
-        ben++;
-        // 幻境传说: 庄家卡2
-        if (get_field_spell_mode1() === 2)
-            ben += 4;
-    }
-    roundend();
-    saveproject();
+    if (ret !== undefined) {
+        actions.push(ret);
+        edit_online();
+        if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !is_chuanma() && !is_guobiao()) {
+            ben++;
+            // 幻境传说: 庄家卡2
+            if (get_field_spell_mode1() === 2)
+                ben += 4;
+        }
+        roundend();
+        saveproject();
+    } else
+        console.error("chang: " + chang + ", ju: " + ju + ", ben: " + ben + ": 不符合任何途中流局条件");
 }
 
 function roundend(type) {
@@ -7380,7 +7400,7 @@ function demogame() {
     paishan = randompaishan("6z", "55z....");
     roundbegin();
     qiepai(true);
-    normalmoqie();
+    moqieliqi();
     hupai();
 }
 
