@@ -92,7 +92,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
         - 有无振听
         - 无役诈和
 
-2. 在 [add_function.js](add_function.js) 文件中还提供了以下几种雀魂没有的模式, 详见 products
+2. 在 [add_function.js](add_function.js) 中提供了以下几种雀魂没有的模式, 详见 products
    文件夹下的 [自制模式](products/自制模式), 但该文件维护很困难, bug可能比较多
     - 二人麻将
     - 开立直

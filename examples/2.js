@@ -6,7 +6,6 @@ editdata.player_datas[2].nickname = "电脑2";
 editdata.player_datas[0].avatar_id = 400101;
 editdata.player_datas[1].avatar_id = 400101;
 editdata.player_datas[2].avatar_id = 400101;
-settings.chuanma_points_method = 0;
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

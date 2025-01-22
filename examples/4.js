@@ -9,7 +9,6 @@ editdata.player_datas[1].avatar_id = 400101;
 editdata.player_datas[2].avatar_id = 400101;
 editdata.player_datas[3].avatar_id = 400101;
 
-// editdata.settings.chuanma_points_method = 1;
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -411,7 +410,7 @@ paishan = randompaishan("123456789m", "8p");
 roundbegin();
 dingque("ssss");
 qiepai();
-while (paishan.length != 0) {
+while (paishan.length !== 0) {
     mopai();
     qiepai();
 }

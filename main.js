@@ -715,26 +715,28 @@ function edit(x) {
 
     function get_tablecloth_id() {
         if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.tablecloth_id !== undefined))
-            return parseInt(config.mode.detail_rule.tablecloth_id);
+            return config.mode.detail_rule.tablecloth_id;
         if (x.player_datas[0].views) {
             let views = x.player_datas[0].views;
             for (let i = 0; i < views.length; i++)
                 if (views[i].slot === 6)
                     return views[i].item_id;
         }
-        return uiscript.UI_Sushe.now_desktop_id; // 原来的桌布
+        // 原来的桌布
+        return uiscript.UI_Sushe.now_desktop_id;
     }
 
     function get_mjp_id() {
         if (!!(config && config.mode && config.mode.detail_rule && config.mode.detail_rule.mjp_id !== undefined))
-            return parseInt(config.mode.detail_rule.mjp_id);
+            return config.mode.detail_rule.mjp_id;
         if (x.player_datas[0].views) {
             let views = x.player_datas[0].views;
             for (let i = 0; i < views.length; i++)
                 if (views[i].slot === 7)
                     return views[i].item_id;
         }
-        return uiscript.UI_Sushe.now_mjp_id; // 原来的牌背
+        // 原来的牌背
+        return uiscript.UI_Sushe.now_mjp_id;
     }
 
     function get_mjpsurface_id() {
@@ -742,7 +744,7 @@ function edit(x) {
             if (typeof (config.mode.detail_rule.mjpsurface_id) === "boolean" && config.mode.detail_rule.mjpsurface_id)
                 return 305718; // 目前只有两个牌面, 另一个牌面是: 牌面-猫咪雀圣
             else
-                return parseInt(config.mode.detail_rule.mjpsurface_id);
+                return config.mode.detail_rule.mjpsurface_id;
         }
         if (x.player_datas[0].views) {
             let views = x.player_datas[0].views;
@@ -750,7 +752,8 @@ function edit(x) {
                 if (views[i].slot === 13)
                     return views[i].item_id;
         }
-        return uiscript.UI_Sushe.now_mjp_surface_id; // 原来的牌面
+        // 原来的牌面
+        return uiscript.UI_Sushe.now_mjp_surface_id;
     }
 
     // 重写 initData 主要是为了切换视角时数据不复原, 如果不需要切换视角则可以不用管
