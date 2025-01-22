@@ -464,3 +464,10 @@ id 以 6 开头, 而且有点乱, 很多都限时且无法获得, 乱用可能�
 把 `${ACCOUNT_ID}` 换成你要查询玩家的 `account_id`, 在控制台中输入, 就会像在对局中一样查看玩家信息
 
 已经永封, 甚至已经注销的账号, 信息仍然可以查看
+
+### 对局中玩家显示和牌字样
+
+- 荣和: `uiscript.UI_Huleshow.Inst.showRong(allseats)`
+- 自摸: `uiscript.UI_Huleshow.Inst.showZimo(allseats)`
+
+其中 `allseats` 表示要和牌的玩家列表, 用数组表示, 如 `[0, 1, 2, 3]`

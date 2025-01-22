@@ -10,6 +10,15 @@ editdata.player_datas[0].avatar_id = 40010702;
 editdata.player_datas[1].avatar_id = 40010701;
 editdata.player_datas[2].avatar_id = 40010702;
 
+// 头像框-竹福滚滚
+editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = 30550022;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 30560007}, // 立直棒-青竹伞
+    {"slot": 5, "item_id": 30550022}, // 头像框-竹福滚滚
+    {"slot": 6, "item_id": 30580015}, // 桌布-清辉竹影
+    {"slot": 7, "item_id": 30570009}, // 牌背-翠竹墨影
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

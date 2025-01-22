@@ -18,7 +18,7 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 电脑登录网页版雀魂(注意用小号), F12 打开控制台, 把 main.js 里面的内容全选复制输入到控制台中,
 然后将牌谱回放js文件内容也输入到控制台中
 
-在网页版雀魂里随便选择一个牌谱打开(查看自己的牌谱时, 尽量选择自家东起的, 因为很多牌谱以东起为主视角), 就可以看到自制的牌谱了
+在网页版雀魂里随便选择一个牌谱打开, 就可以看到自制的牌谱了
 
 **注意: 当前 main.js 正在添加大量新功能, 很多没有经过充分测试, 所以可能有bug**, 如果存在不符合预期的情况,
 可以在 [commit](https://github.com/Fat-pig-Cui/majsoul-replay-editor/commits/main/) 记录中使用老版本,

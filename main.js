@@ -722,7 +722,7 @@ function edit(x) {
                 if (views[i].slot === 6)
                     return views[i].item_id;
         }
-        return 305044; // 默认桌布: 藏青桌布
+        return uiscript.UI_Sushe.now_desktop_id; // 原来的桌布
     }
 
     function get_mjp_id() {
@@ -734,7 +734,7 @@ function edit(x) {
                 if (views[i].slot === 7)
                     return views[i].item_id;
         }
-        return 305045; // 默认牌背: 橘黄牌背
+        return uiscript.UI_Sushe.now_mjp_id; // 原来的牌背
     }
 
     function get_mjpsurface_id() {
@@ -750,7 +750,7 @@ function edit(x) {
                 if (views[i].slot === 13)
                     return views[i].item_id;
         }
-        return 305725; // 默认牌面: 牌面-默认
+        return uiscript.UI_Sushe.now_mjp_surface_id; // 原来的牌面
     }
 
     // 重写 initData 主要是为了切换视角时数据不复原, 如果不需要切换视角则可以不用管
@@ -916,7 +916,10 @@ function edit(x) {
                             });
                         // 修改的地方: 本来是 m, 现在套上了 player_datas 函数
                         // 本来是X['config'], 现在是 x.config
+                        // 修改 account_id 主要是为了强制修改一开始的主视角为东起, 防止一些bug
                         let new_player_datas = player_datas(m);
+                        account_id = new_player_datas[0].account_id;
+
                         var P = Laya['Handler']['create'](N, function (O) {
                             game['Scene_Lobby'].Inst['active'] && (game['Scene_Lobby'].Inst['active'] = !1),
                                 game['Scene_MJ'].Inst['openMJRoom'](x.config, new_player_datas, Laya['Handler']['create'](N, function () {
