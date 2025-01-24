@@ -6,6 +6,12 @@
 
 使用该模式需要在 `'detail_rule'` 中注明 `'xueliu': true`
 
+另外记得导入 [add_function.js](../../../add_function.js)
+
+## 注意事项
+
+该模式的最后最好是荒牌流局表示(`notileliuju()`), 否则会出现一大串的和牌历史, 点的比较麻烦
+
 ## 示例牌谱
 
 - [demo01](demo01.js)

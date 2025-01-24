@@ -19,6 +19,17 @@ editdata.config = {
     'meta': {'mode_id': 0},
     'mode': {
         'mode': 2,
+        'detail_rule': {
+            'qieshangmanguan': true,
+            'toutiao': true,
+            'sigangbaopai': true,
+            'no_liujumanguan': true,
+            'no_lianfengsifu': true,
+            'dora_jifan': true,
+            'no_leijiyiman': true,
+            'no_wyakuman': true,
+            'no_guoshiangang': true,
+        }
     }
 };
 

@@ -20,7 +20,15 @@ editdata.config = {
     'mode': {
         'mode': 2,
         'detail_rule': {
-            'toutiao': true
+            'qieshangmanguan': true,
+            'toutiao': true,
+            'sigangbaopai': true,
+            'no_liujumanguan': true,
+            'no_lianfengsifu': true,
+            'dora_jifan': true,
+            'no_leijiyiman': true,
+            'no_wyakuman': true,
+            'no_guoshiangang': true,
         }
     }
 };

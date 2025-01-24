@@ -9,6 +9,8 @@
 
 使用开立直需要在 `qiepai` 函数中注明参数 `"kailiqi"`, 如 `qiepai("kailiqi")` (不需要再加 `true` 表示立直)
 
+另外记得导入 [add_function.js](../../../add_function.js)
+
 ## 示例牌谱
 
 - [demo01](demo01.js) 荣和

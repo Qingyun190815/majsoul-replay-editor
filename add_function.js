@@ -546,7 +546,7 @@ function editfunction() {
                     })
                     return 1e5;
                 },
-                U.fastrecord = function (e, i) {
+                U.fastrecord = function (e) {
                     app.Log.log("ActionHule fastplay data:" + JSON.stringify(e));
                     O.BgmListMgr.stopBgm(), O.DesktopMgr.Inst.gameing = !1, e.muyu && O.DesktopMgr.Inst.onMuyuChange(e.muyu, !1),
                     e.doras && O.DesktopMgr.Inst.WhenDoras(e.doras, !1), O.DesktopMgr.Inst.setScores(e.scores),

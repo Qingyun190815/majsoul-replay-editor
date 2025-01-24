@@ -1628,7 +1628,7 @@ function decompose(x) {
             continue;
         }
         if (x[i] === 'b') { // 万象修罗的百搭牌
-            if (i + 1 < x.length && x[i + 1] !== 'd')
+            if (i + 1 === x.length || (i + 1 < x.length && x[i + 1] !== 'd'))
                 x = x.substring(0, i + 1) + 'd' + x.substring(i + 1);
             i++;
             continue;
@@ -1733,7 +1733,7 @@ function calcbonus(val, type) {
 function lastn_tile(n) {
     let cnt = 0;
     for (let i = paishan.length - 1; i >= 0; i--) {
-        if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z')
+        if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z' || paishan[i] === 'd')
             cnt++;
         if (cnt === n) {
             if (i + 1 < paishan.length && paishan[i + 1] === tile_suf)
@@ -1762,7 +1762,7 @@ function pop_lastile() {
 function firstn_tile(n) {
     let cnt = 0;
     for (let i = 0; i < paishan.length; i++) {
-        if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z')
+        if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z' || paishan[i] === 'd')
             cnt++;
         if (cnt === n) {
             if (i + 1 < paishan.length && paishan[i + 1] === tile_suf)
@@ -1791,7 +1791,7 @@ function pop_firstile() {
 function paishan_len() {
     let cnt = 0;
     for (let i = 0; i < paishan.length; i++)
-        if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z')
+        if (paishan[i] === 'm' || paishan[i] === 'p' || paishan[i] === 's' || paishan[i] === 'z' || paishan[i] === 'd')
             cnt++;
     return cnt;
 }
@@ -6903,6 +6903,7 @@ function randompaishan(paishanhead = "", paishanback = "", reddora) {
     }
 
     let cnt = [], tiles = [];
+    cnt[0] = 0;
     for (let i = 1; i <= 34; i++)
         cnt[i] = 4;
     for (let i = 35; i <= 37; i++)
@@ -6962,6 +6963,7 @@ function randompaishan(paishanhead = "", paishanback = "", reddora) {
 
     // 明镜之战
     let cnt2 = [];
+    cnt2[0] = 0;
     for (let i = 1; i <= 34; i++)
         cnt2[i] = 3;
     if (is_mingjing()) {

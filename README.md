@@ -8,6 +8,9 @@ Forked from [GrandDawn/majsoul-replay-editor](https://github.com/GrandDawn/majso
 
 ## 免责声明: 由于这属于第三方脚本, 猫粮可能发威封号, 使用时请用小号登录实验, 个人对任何因封号等导致的损失概不负责
 
+账号被封的话可以用账号邮箱发邮件给猫粮(中文服是 **cs@maj-soul.com**), 申请注销账号, 对面发了确认通知后回复一下,
+15天之后就可以重新使用该邮箱注册了
+
 ## 使用方法
 
 ### 查看样例
