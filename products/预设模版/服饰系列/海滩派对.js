@@ -30,7 +30,7 @@ editdata.player_datas[0].views = editdata.player_datas[1].views = [
     {"slot": 1, "item_id": 305040}, // 和牌-逆鳞
     {"slot": 2, "item_id": 305038}, // 立直-龙腾
     {"slot": 5, "item_id": 305500}, // 头像框-豆芽
-    {"slot": 7, "item_id": 305048}, // 桌布-雀魂祭一周年
+    {"slot": 6, "item_id": 305048}, // 桌布-雀魂祭一周年
 ];
 // 抚子, 九条璃雨
 editdata.player_datas[2].views = editdata.player_datas[3].views = [
@@ -38,7 +38,7 @@ editdata.player_datas[2].views = editdata.player_datas[3].views = [
     {"slot": 1, "item_id": 305039}, // 和牌-K.O.
     {"slot": 2, "item_id": 305037}, // 立直-叮～
     {"slot": 5, "item_id": 305500}, // 头像框-豆芽
-    {"slot": 7, "item_id": 305048}, // 桌布-雀魂祭一周年
+    {"slot": 6, "item_id": 305048}, // 桌布-雀魂祭一周年
 ];
 
 editdata.config = {
