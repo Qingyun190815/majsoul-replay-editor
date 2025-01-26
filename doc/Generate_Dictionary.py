@@ -1,7 +1,6 @@
 from datetime import datetime
 
 from products.Database_class import db
-import os
 
 chars = db.chars
 views = db.views
@@ -39,7 +38,8 @@ table_head = [
     "| id | 名称 |\n|:--:|:--:|\n",  # 牌背 7
     "| id | 名称 |\n|:--:|:--:|\n",  # 牌面 13
     "| id | 名称 |\n|:--:|:--:|\n",  # 大厅背景 8
-    "| id | 名称 | 备注 |\n|:--:|:--:|:--:|\n",  # 大厅/对局音乐 9
+    "| id | 名称 |\n|:--:|:--:|\n",  # 大厅音乐 9
+    "| id | 名称 |\n|:--:|:--:|\n",  # 对局音乐 9
     "| title_id | 名称 | 备注 |\n|:--:|:--:|:--:|\n",  # 称号
 ]
 
@@ -114,14 +114,17 @@ def print_db():
     elif table_cnt == 12:  # 大厅背景
         for item in get_slot(8):
             outfile.write("|{}|{}|\n".format(item["id"], item["name"]))
-    elif table_cnt == 13:  # 大厅/对局音乐
+    elif table_cnt == 13:  # 大厅音乐
         for item in get_slot(9):
             id_str = str(item["id"])
             if id_str[3] == '0':  # 大厅音乐
-                outfile.write("|{}|{}|大厅音乐|\n".format(item["id"], item["name"]))
-            else:  # 对局音乐
-                outfile.write("|{}|{}|对局音乐|\n".format(item["id"], item["name"]))
-    elif table_cnt == 14:  # 称号
+                outfile.write("|{}|{}|\n".format(item["id"], item["name"]))
+    elif table_cnt == 14:  # 大厅/对局音乐
+        for item in get_slot(9):
+            id_str = str(item["id"])
+            if id_str[3] != '0':  # 对局音乐
+                outfile.write("|{}|{}|\n".format(item["id"], item["name"]))
+    elif table_cnt == 15:  # 称号
         for title in titles:
             title_id = title["id"]
             name = title["name"]

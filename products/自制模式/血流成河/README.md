@@ -14,4 +14,5 @@
 
 ## 示例牌谱
 
-- [demo01](demo01.js)
+- [demo01](demo01.js) 立直麻将
+- [demo02](demo02.js) 赤羽之战
