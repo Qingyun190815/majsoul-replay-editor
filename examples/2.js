@@ -66,7 +66,7 @@ hupai();
 tiles0 = "1199m123456789p4z";
 tiles1 = "2223334448888s";
 tiles2 = "1199m123456789p";
-paishan = randompaishan("");
+paishan = randompaishan();
 roundbegin();
 leimingpai();
 mopai();
@@ -77,20 +77,28 @@ qiepai("8s", true);
     let tingpais = calctingpai(1);
 
     function hule(t, tingpais) {
-        for (let i = 0; i < tingpais.length; i++) if (tingpais[i].tile === t)
-            return true;
+        for (let i = 0; i < tingpais.length; i++)
+            if (equaltile(tingpais[i].tile, t))
+                return true;
         return false;
     }
 
-    try {
-        mopai();
-        if (getlstaction().data.tile !== "4z")
-            qiepai(true);
-        else
-            leimingpai();
-        if (hule(getlstaction().data.tile, tingpais))
-            hupai();
-        else {
+    mopai();
+    if (getlstaction().data.tile !== "4z")
+        qiepai(true);
+    else
+        leimingpai();
+    if (hule(getlstaction().data.tile, tingpais))
+        hupai();
+    else {
+        if (getlstaction().name === "RecordBaBei") {
+            mopai();
+            if (getlstaction().data.tile !== "4z")
+                qiepai(true);
+            else
+                leimingpai();
+            if (hule(getlstaction().data.tile, tingpais))
+                hupai();
             if (getlstaction().name === "RecordBaBei") {
                 mopai();
                 if (getlstaction().data.tile !== "4z")
@@ -99,40 +107,28 @@ qiepai("8s", true);
                     leimingpai();
                 if (hule(getlstaction().data.tile, tingpais))
                     hupai();
-                if (getlstaction().name === "RecordBaBei") {
-                    mopai();
-                    if (getlstaction().data.tile !== "4z")
-                        qiepai(true);
-                    else
-                        leimingpai();
-                    if (hule(getlstaction().data.tile, tingpais))
-                        hupai();
-                }
-            } else {
-                while (getlstaction(2).data.left_tile_count >= 1) {
-                    mopai();
-                    let seat = getlstaction().data.seat, tile = getlstaction().data.tile;
-                    if (hule(tile, tingpais)) {
-                        if (seat !== 1 && tile !== "4z")
-                            qiepai();
-                        else if (seat !== 1)
-                            leimingpai();
-                        hupai();
-                        break;
-                    }
-                    else if (tile === "4z")
-                        leimingpai();
-                    else
+            }
+        } else {
+            while (getlstaction(2).data.left_tile_count >= 1) {
+                mopai();
+                let seat = getlstaction().data.seat, tile = getlstaction().data.tile;
+                if (hule(tile, tingpais)) {
+                    if (seat !== 1 && tile !== "4z")
                         qiepai();
-                    if (getlstaction(2).data.left_tile_count === 0) {
-                        notileliuju();
-                        break;
-                    }
+                    else if (seat !== 1)
+                        leimingpai();
+                    hupai();
+                    break;
+                }
+                else if (tile === "4z")
+                    leimingpai();
+                else
+                    qiepai();
+                if (getlstaction(2).data.left_tile_count === 0) {
+                    notileliuju();
+                    break;
                 }
             }
         }
-    } catch (e) {
     }
 }
-
-gameend();
