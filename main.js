@@ -2597,52 +2597,52 @@ function canceledit() {
 }
 
 // config: 对局房间的信息, playercnt: 玩家数, players: 玩家信息
-let config = null, playercnt = 4, players = [];
+var config = null, playercnt = 4, players = [];
 // tiles: 玩家的起手, paishan: 牌山,
 // playertiles: 玩家的手牌, fulu: 玩家的副露信息
 // paihe: 玩家的牌河, discardtiles: 玩家的切牌, xun: 玩家的巡目
-let tiles0 = [], tiles1 = [], tiles2 = [], tiles3 = [];
-let paishan = [];
-let playertiles = [[], [], [], []], fulu = [[], [], [], []];
-let paihe = [], discardtiles = ["", "", "", ""], xun = [];
+var tiles0 = [], tiles1 = [], tiles2 = [], tiles3 = [];
+var paishan = [];
+var playertiles = [[], [], [], []], fulu = [[], [], [], []];
+var paihe = [], discardtiles = ["", "", "", ""], xun = [];
 // liqiinfo: 立直信息, lstliqi: 宣言立直的玩家信息
-let liqiinfo = [], lstliqi = null;
+var liqiinfo = [], lstliqi = null;
 // doras: 表宝牌, li_doras: 里宝牌, doracnt: dora数量及最近类型: 1表示即翻指示牌(暗杠), 2表示过一个操作才翻指示牌(明杠)
-let doras = [], li_doras = [], doracnt = {'cnt': 1, 'lastype': 0};
+var doras = [], li_doras = [], doracnt = {'cnt': 1, 'lastype': 0};
 // chang: 场(东/南/西/北), ju: 局(东1/2/3/4), ben: 本场数, liqibang: 场上立直棒个数, benchangbang: 本场棒个数
-let chang = 0, ju = 0, ben = 0, liqibang = 0, benchangbang = 0;
+var chang = 0, ju = 0, ben = 0, liqibang = 0, benchangbang = 0;
 // scores: 玩家点数, delta_scores: 玩家点数变动, firstneededscores: 一位必要点数
-let scores = [], delta_scores = [], firstneededscores = 0;
+var scores = [], delta_scores = [], firstneededscores = 0;
 // drawtype: 摸牌方向: 1 表示正常摸牌, 0 表示岭上摸牌, lstdrawtype: 最近玩家摸牌方向
-let drawtype = 1, lstdrawtype = 1;
+var drawtype = 1, lstdrawtype = 1;
 // 最终要注入到牌谱回放中的内容的内容
-let actions = [];
+var actions = [];
 // hules_history: 和牌历史, hupaied: 玩家是否已和牌
-let hules_history = [], hupaied = [];
+var hules_history = [], hupaied = [];
 // baopai: 玩家的包牌信息, sigangbao: 第四个明杠时, 前三副露是否都是杠子(然后第四个杠才构成包牌)
 // baogangseat: 包杠的玩家
-let baopai = [[], [], [], []], sigangbao = [false, false, false, false]
-let baogangseat = -1;
+var baopai = [[], [], [], []], sigangbao = [false, false, false, false]
+var baogangseat = -1;
 
 // mingpais: 配牌明牌模式玩家所亮明的牌
-let mingpais = [{}, {}, {}, {}];
+var mingpais = [{}, {}, {}, {}];
 // muyu: 龙之目玉模式中的目玉位置, muyutimes: 打点的倍数, muyuseats: 当前有目玉的玩家
-let muyu = {'count': 5, 'seat': 0, 'id': 0}, muyutimes = [1, 1, 1, 1], muyuseats = "";
+var muyu = {'count': 5, 'seat': 0, 'id': 0}, muyutimes = [1, 1, 1, 1], muyuseats = "";
 // juc: 赤羽之战模式的第几局, gaps: 玩家的定缺, chuanmagangs: 川麻的开杠
-let juc = -1, gaps = [], chuanmagangs = {'over': [], 'notover': []};
+var juc = -1, gaps = [], chuanmagangs = {'over': [], 'notover': []};
 // 幻境传说: 命运卡3(厄运沙漏): 各家立直后舍牌数量
-let spell_triple = [0, 0, 0, 0];
+var spell_triple = [0, 0, 0, 0];
 // 魂之一击模式中各家相关信息
-let hunzhiyiji_info = [{}, {}, {}, {}];
+var hunzhiyiji_info = [{}, {}, {}, {}];
 // 咏唱之战所有玩家手摸切, max_Len 各家第1位是摸切最大长度, 第2位是手切最大长度
-let shoumoqie = [[], [], [], []], shoumoqiemaxlen = [[0, 0], [0, 0], [0, 0], [0, 0]];
+var shoumoqie = [[], [], [], []], shoumoqiemaxlen = [[0, 0], [0, 0], [0, 0], [0, 0]];
 // 占星之战长度为3的牌候选池
-let awaiting_tiles = [];
+var awaiting_tiles = [];
 
 // 庄家连续和牌连庄数量, 用于八连庄
-let lianzhuangcnt = 0;
+var lianzhuangcnt = 0;
 // 国标花牌
-let huapai = "0m";
+var huapai = "0m";
 // -----振听-----
 // 造成振听的因素
 // 1. 自家牌河中有听的牌 (qiepai)
@@ -2650,13 +2650,13 @@ let huapai = "0m";
 // 只有切牌的时候会解除舍张振听
 // 只有在摸牌和自家鸣牌的时候会解除同巡振听
 // 同巡和立直振听在pass掉这张牌之后才会振听, 紧跟的操作可能是 mopai, mingpai (hupai 不影响)
-let shezhangzhenting = [false, false, false, false], pretongxunzhenting = [false, false, false, false],
+var shezhangzhenting = [false, false, false, false], pretongxunzhenting = [false, false, false, false],
     prelizhizhenting = [false, false, false, false];
-let tongxunzhenting = [false, false, false, false], lizhizhenting = [false, false, false, false],
+var tongxunzhenting = [false, false, false, false], lizhizhenting = [false, false, false, false],
     zhenting = [false, false, false, false];
 // 特殊牌的后缀以及和普通牌编码的差值
-let tile_suf = 't', OFFSET = 40;
-let specialtiles = {
+var tile_suf = 't', OFFSET = 40;
+var specialtiles = {
     'all': separatetile("0123456789m0123456789p0123456789s1234567z"),
     'lvyise': separatetile("0123456789m0123456789p01579s123457z"),
     'ziyise': separatetile("0123456789m0123456789p0123456789s"),
@@ -2671,7 +2671,7 @@ let specialtiles = {
     'hunyise_pin': separatetile("0123456789m0123456789s"),
     'hunyise_sou': separatetile("0123456789m0123456789p"),
 };
-let editdata = {
+var editdata = {
     'actions': [],
     'xun': [],
     'players': [],
@@ -2683,7 +2683,16 @@ let editdata = {
         {'nickname': "电脑3", 'avatar_id': 400101, 'title': 600001, 'avatar_frame': 0, 'verified': 0, 'views': []},
     ]
 };
-let lastscene;
+var lastscene;
+
+// nxt2 表示顺子中比它大的牌, 如果不存在则直接指向 35 和 36
+// 即 j, nxt2[j], nxt2[nxt2[j]] 构成递增的顺子
+// doranxt 表示指示牌对应的宝牌
+// dora_spell 表示"宝牌指示牌也是宝牌", 幻境传说使用
+var nxt2 = [0, 2, 3, 4, 5, 6, 7, 8, 9, 35, 11, 12, 13, 14, 15, 16, 17, 18, 35, 20, 21, 22, 23, 24, 25, 26, 27, 35, 35, 35, 35, 35, 35, 35, 35, 36, 0];
+var doranxt = [0, 2, 3, 4, 5, 6, 7, 8, 9, 1, 11, 12, 13, 14, 15, 16, 17, 18, 10, 20, 21, 22, 23, 24, 25, 26, 27, 19, 29, 30, 31, 28, 33, 34, 32];
+var dora_spell = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34];
+
 
 function updatezhenting() {
     for (let i = 0; i < playercnt; i++)
@@ -3420,14 +3429,6 @@ function is_dora(tile) {
 
     return false;
 }
-
-// nxt2 表示顺子中比它大的牌, 如果不存在则直接指向 35 和 36
-// 即 j, nxt2[j], nxt2[nxt2[j]] 构成递增的顺子
-// doranxt 表示指示牌对应的宝牌
-// dora_spell 表示"宝牌指示牌也是宝牌", 幻境传说使用
-let nxt2 = [0, 2, 3, 4, 5, 6, 7, 8, 9, 35, 11, 12, 13, 14, 15, 16, 17, 18, 35, 20, 21, 22, 23, 24, 25, 26, 27, 35, 35, 35, 35, 35, 35, 35, 35, 36, 0];
-let doranxt = [0, 2, 3, 4, 5, 6, 7, 8, 9, 1, 11, 12, 13, 14, 15, 16, 17, 18, 10, 20, 21, 22, 23, 24, 25, 26, 27, 19, 29, 30, 31, 28, 33, 34, 32];
-let dora_spell = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34];
 
 function equaltile(x, y) {
     if (x[1] === y[1] && x[0] === '0' && y[0] === '5')
@@ -6550,20 +6551,8 @@ function hupai(x, type) {
     }
     updatezhenting();
 
-    if ((is_toutiao() || is_mingjing() || is_guobiao()) && x.length >= 2) { // 有头跳且参数给了至少两家和牌的情况, 则取头跳家
-        let lstaction = getlstaction();
-        if (!(lstaction.name === "RecordDealTile" || lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile")) {
-            let fangchong = lstaction.data.seat;
-            let hupai_seat = [false, false, false, false];
-            for (let i = 0; i < x.length; i++)
-                hupai_seat[x[i]] = true;
-            for (let j = 1; j < 3; j++)
-                if (hupai_seat[(fangchong + j) % playercnt]) {
-                    x = [(fangchong + j) % playercnt];
-                    break;
-                }
-        }
-    }
+    if ((is_toutiao() || is_mingjing() || is_guobiao()) && x.length >= 2) // 有头跳且参数给了至少两家和牌的情况, 则取头跳家
+        x = [x[0]];
 
     if (!is_xuezhandaodi() && !is_wanxiangxiuluo() && !is_chuanma() && !is_xueliu()) {
         if (!is_guobiao()) {
@@ -6976,20 +6965,33 @@ function mopai(seat, index) {
     if (seat === undefined) {
         if (lstaction.name === "RecordChiPengGang" || lstaction.name === "RecordBaBei" || lstaction.name === "RecordAnGangAddGang")
             seat = lstaction.data.seat;
-        if (lstaction.name === "RecordNewRound" || lstaction.name === "RecordChangeTile" || lstaction.name === "RecordSelectGap")
-            seat = ju;
-        if (lstaction.name === "RecordDiscardTile" || lstaction.name === "RecordLockTile" || lstaction.name === "RecordHuleXueZhanMid" || lstaction.name === "RecordHuleXueLiu") {
+        if (lstaction.name === "RecordDiscardTile" || lstaction.name === "RecordLockTile") {
             if (is_hunzhiyiji() && hunzhiyiji_info[lstaction.data.seat].yifa)
                 seat = lstaction.data.seat;
-            else if (lstaction.name === "RecordDiscardTile" || lstaction.name === "RecordLockTile")
+            else
                 seat = (lstaction.data.seat + 1) % playercnt;
+        }
+
+        let lst2action = getlstaction(2);
+        if (lstaction.name === "RecordHuleXueZhanMid") {
+            // 血战到底模式枪杠, 摸牌家为放铳家的下一家
+            if (lst2action.name === "RecordAnGangAddGang")
+                seat = (lst2action.data.seat + 1) % playercnt;
             else
                 seat = (lstaction.data.hules[lstaction.data.hules.length - 1].seat + 1) % playercnt;
-            while (hupaied[seat])
-                seat = (seat + 1) % playercnt;
         }
+        // 血流成河下, 摸牌家为自摸或放铳家的下一家
+        if (lstaction.name === "RecordHuleXueLiu") {
+            if (lst2action.name === "RecordNewRound" || lst2action.name === "RecordChangeTile" || lst2action.name === "RecordSelectGap")
+                seat = (lstaction.data.hules[lstaction.data.hules.length - 1].seat + 1) % playercnt;
+            else
+                seat = (lst2action.data.seat + 1) % playercnt;
+        }
+
+        while (hupaied[seat])
+            seat = (seat + 1) % playercnt;
     }
-    if (seat === undefined)
+    if (isNaN(seat))
         console.error("mopai: 无法判断谁摸牌, lstaction.name: " + lstaction.name);
 
     if (is_zhanxing()) {

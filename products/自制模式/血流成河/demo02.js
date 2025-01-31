@@ -27,7 +27,7 @@ tiles0 = "222888m22255s789p";
 tiles1 = "1112345699m789s";
 tiles2 = "1112345699p588s";
 tiles3 = "1112345699s789m";
-paishan = randompaishan("8sSS");
+paishan = randompaishan("...S");
 roundbegin();
 huansanzhang("789p", "789s", "588s", "789m", 1);
 dingque("psmp");
