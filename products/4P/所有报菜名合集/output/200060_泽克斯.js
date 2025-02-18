@@ -2,12 +2,12 @@ loadproject();
 
 editdata.player_datas[0].nickname = "泽克斯-契约";
 editdata.player_datas[1].nickname = "泽克斯";
-editdata.player_datas[2].nickname = "泽克斯-契约";
-editdata.player_datas[3].nickname = "夏日风物诗";
+editdata.player_datas[2].nickname = "夏日风物诗";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 406002;
 editdata.player_datas[1].avatar_id = 406001;
-editdata.player_datas[2].avatar_id = 406002;
-editdata.player_datas[3].avatar_id = 406003;
+editdata.player_datas[2].avatar_id = 406003;
+editdata.player_datas[3].avatar_id = 406004;
 
 editdata.config = {
     'category': 1,
@@ -245,9 +245,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -280,9 +279,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌
@@ -296,5 +294,3 @@ combomopai(4);
 qiepai(true);
 normalmoqie(65);
 notileliuju();
-
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

@@ -1,13 +1,13 @@
 loadproject();
 
 editdata.player_datas[0].nickname = "白石奈奈-契约";
-editdata.player_datas[1].nickname = "白石奈奈";
-editdata.player_datas[2].nickname = "清凉夏日";
-editdata.player_datas[3].nickname = "馥郁满室";
+editdata.player_datas[1].nickname = "清凉夏日";
+editdata.player_datas[2].nickname = "馥郁满室";
+editdata.player_datas[3].nickname = "冬日心愿簿";
 editdata.player_datas[0].avatar_id = 401802;
-editdata.player_datas[1].avatar_id = 401801;
-editdata.player_datas[2].avatar_id = 401803;
-editdata.player_datas[3].avatar_id = 401804;
+editdata.player_datas[1].avatar_id = 401803;
+editdata.player_datas[2].avatar_id = 401804;
+editdata.player_datas[3].avatar_id = 401805;
 
 editdata.config = {
     'category': 1,
@@ -245,9 +245,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -280,9 +279,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

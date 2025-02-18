@@ -11,6 +11,10 @@ editdata.player_datas[1].avatar_id = 405903;
 editdata.player_datas[2].avatar_id = 405904;
 editdata.player_datas[3].avatar_id = 405905;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 305612}, // 立直棒-陨石法杖
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -154,6 +158,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

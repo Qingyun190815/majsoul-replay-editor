@@ -7,6 +7,9 @@ editdata.player_datas[0].avatar_id = 403902;
 editdata.player_datas[1].avatar_id = 403903;
 editdata.player_datas[2].avatar_id = 403904;
 
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = 1;
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -51,5 +54,3 @@ paishan = randompaishan("", "1m........");
 roundbegin();
 qiepai("2p");
 hupai();
-
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

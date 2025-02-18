@@ -3,13 +3,17 @@ loadproject();
 // 为了方便编辑不考虑换三张的过程
 
 editdata.player_datas[0].nickname = "藤田佳奈-契约";
-editdata.player_datas[1].nickname = "圣诞嘉年华";
-editdata.player_datas[2].nickname = "暗夜法则";
-editdata.player_datas[3].nickname = "假日之滨";
+editdata.player_datas[1].nickname = "暗夜法则";
+editdata.player_datas[2].nickname = "假日之滨";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 400302;
-editdata.player_datas[1].avatar_id = 400303;
-editdata.player_datas[2].avatar_id = 400304;
-editdata.player_datas[3].avatar_id = 400305;
+editdata.player_datas[1].avatar_id = 400304;
+editdata.player_datas[2].avatar_id = 400305;
+editdata.player_datas[3].avatar_id = 400306;
+
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 305048}, // 桌布-雀魂祭一周年
+];
 
 editdata.config = {
     'category': 1,
@@ -154,6 +158,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

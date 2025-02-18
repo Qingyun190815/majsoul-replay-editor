@@ -157,6 +157,16 @@ notileliuju();
 
 
 
-gameend();
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
-GameMgr.Inst.checkPaiPu("240808-28d4bd69-6322-4b16-9eba-2f8d29f2e8f8", 0)
+
+
+gameend();

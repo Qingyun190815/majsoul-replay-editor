@@ -3,13 +3,13 @@ loadproject();
 // 为了方便编辑不考虑换三张的过程
 
 editdata.player_datas[0].nickname = "白石奈奈-契约";
-editdata.player_datas[1].nickname = "白石奈奈";
-editdata.player_datas[2].nickname = "清凉夏日";
-editdata.player_datas[3].nickname = "馥郁满室";
+editdata.player_datas[1].nickname = "清凉夏日";
+editdata.player_datas[2].nickname = "馥郁满室";
+editdata.player_datas[3].nickname = "冬日心愿簿";
 editdata.player_datas[0].avatar_id = 401802;
-editdata.player_datas[1].avatar_id = 401801;
-editdata.player_datas[2].avatar_id = 401803;
-editdata.player_datas[3].avatar_id = 401804;
+editdata.player_datas[1].avatar_id = 401803;
+editdata.player_datas[2].avatar_id = 401804;
+editdata.player_datas[3].avatar_id = 401805;
 
 editdata.config = {
     'category': 1,
@@ -154,6 +154,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

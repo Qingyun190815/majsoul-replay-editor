@@ -9,8 +9,13 @@ editdata.player_datas[1].avatar_id = 406101;
 editdata.player_datas[2].avatar_id = 406102;
 editdata.player_datas[3].avatar_id = 406101;
 
+// 头像框-圣堂百合
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305537;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305219}, {"slot": 2, "item_id": 305319}, {"slot": 5, "item_id": 305537}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 305219}, // 和牌-银链飞雪
+    {"slot": 2, "item_id": 305319}, // 立直-蛇行诡道
+    {"slot": 5, "item_id": 305537}, // 头像框-圣堂百合
+];
 
 editdata.config = {
     'category': 1,
@@ -248,9 +253,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -283,9 +287,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

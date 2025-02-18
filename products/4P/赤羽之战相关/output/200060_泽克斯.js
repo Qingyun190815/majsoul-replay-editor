@@ -4,12 +4,12 @@ loadproject();
 
 editdata.player_datas[0].nickname = "泽克斯-契约";
 editdata.player_datas[1].nickname = "泽克斯";
-editdata.player_datas[2].nickname = "泽克斯-契约";
-editdata.player_datas[3].nickname = "夏日风物诗";
+editdata.player_datas[2].nickname = "夏日风物诗";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 406002;
 editdata.player_datas[1].avatar_id = 406001;
-editdata.player_datas[2].avatar_id = 406002;
-editdata.player_datas[3].avatar_id = 406003;
+editdata.player_datas[2].avatar_id = 406003;
+editdata.player_datas[3].avatar_id = 406004;
 
 editdata.config = {
     'category': 1,
@@ -157,6 +157,16 @@ notileliuju();
 
 
 
-gameend();
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)
+
+
+gameend();

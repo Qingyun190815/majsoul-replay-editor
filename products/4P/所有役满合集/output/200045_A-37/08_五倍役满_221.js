@@ -59,5 +59,3 @@ paishan = randompaishan("", "2m432z");
 roundbegin();
 combomopai(4);
 hupai();
-
-GameMgr.Inst.checkPaiPu("240816-a0cd14b8-4df6-49d6-b13a-f94955ab471d", 0)

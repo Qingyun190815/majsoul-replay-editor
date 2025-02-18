@@ -3,16 +3,20 @@ loadproject();
 // 为了方便编辑不考虑换三张的过程
 
 editdata.player_datas[0].nickname = "三上千织-契约";
-editdata.player_datas[1].nickname = "清凉夏日";
-editdata.player_datas[2].nickname = "甜蜜茶点";
-editdata.player_datas[3].nickname = "天黑请闭眼";
+editdata.player_datas[1].nickname = "甜蜜茶点";
+editdata.player_datas[2].nickname = "天黑请闭眼";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 400402;
-editdata.player_datas[1].avatar_id = 400404;
-editdata.player_datas[2].avatar_id = 400405;
-editdata.player_datas[3].avatar_id = 400406;
+editdata.player_datas[1].avatar_id = 400405;
+editdata.player_datas[2].avatar_id = 400406;
+editdata.player_datas[3].avatar_id = 400407;
 
+// 头像框-大小姐发带
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305552;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 5, "item_id": 305552}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 5, "item_id": 305552}, // 头像框-大小姐发带
+    {"slot": 6, "item_id": 305802}, // 桌布-冲鸭！
+];
 
 editdata.config = {
     'category': 1,
@@ -157,6 +161,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

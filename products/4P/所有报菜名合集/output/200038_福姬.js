@@ -9,6 +9,11 @@ editdata.player_datas[1].avatar_id = 403804;
 editdata.player_datas[2].avatar_id = 403805;
 editdata.player_datas[3].avatar_id = 403806;
 
+// 称号-神社贵宾
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = editdata.player_datas[3].title = 600038;
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = editdata.player_datas[3].verified = 1;
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -245,9 +250,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -280,9 +284,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

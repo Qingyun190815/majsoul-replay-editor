@@ -7,6 +7,9 @@ editdata.player_datas[0].avatar_id = 404602;
 editdata.player_datas[1].avatar_id = 404603;
 editdata.player_datas[2].avatar_id = 404604;
 
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = 1;
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

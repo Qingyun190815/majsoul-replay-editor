@@ -8,7 +8,6 @@ editdata.player_datas[0].avatar_id = 400101;
 editdata.player_datas[1].avatar_id = 400101;
 editdata.player_datas[2].avatar_id = 400101;
 editdata.player_datas[3].avatar_id = 400101;
-settings.chuanma_points_method = 0;
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -38,7 +37,7 @@ tiles0 = "1112340678999m5z";
 tiles1 = "1112340678999p";
 tiles2 = "1112340678999s";
 tiles3 = "1112223334447z";
-paishan = "55555555555555555555555555555555555555555555555555555555555555555555555555555555555z";
+paishan = decompose("55555555555555555555555555555555555555555555555555555555555555555555555555555555555z");
 roundbegin();
 qiepai("5z");
 for (let i = 69; i >= 1; i--) {

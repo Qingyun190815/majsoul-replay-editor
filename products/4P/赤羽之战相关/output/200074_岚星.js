@@ -11,7 +11,11 @@ editdata.player_datas[1].avatar_id = 407401;
 editdata.player_datas[2].avatar_id = 407402;
 editdata.player_datas[3].avatar_id = 407403;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305222}, {"slot": 2, "item_id": 305322}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 305620}, // 立直棒-秘传之卷
+    {"slot": 1, "item_id": 305222}, // 和牌-天地无用
+    {"slot": 2, "item_id": 305322}, // 立直-毒烟玉
+];
 
 editdata.config = {
     'category': 1,
@@ -156,6 +160,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

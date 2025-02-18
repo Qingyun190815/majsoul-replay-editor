@@ -9,7 +9,11 @@ editdata.player_datas[1].avatar_id = 407401;
 editdata.player_datas[2].avatar_id = 407402;
 editdata.player_datas[3].avatar_id = 407403;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305222}, {"slot": 2, "item_id": 305322}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 305620}, // 立直棒-秘传之卷
+    {"slot": 1, "item_id": 305222}, // 和牌-天地无用
+    {"slot": 2, "item_id": 305322}, // 立直-毒烟玉
+];
 
 editdata.config = {
     'category': 1,
@@ -247,9 +251,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -282,9 +285,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

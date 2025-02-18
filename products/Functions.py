@@ -3,16 +3,20 @@
     不要直接运行这个文件, 这个文件只提供函数供其他文件调用
 """
 from products.Database import *
+import os
 import re
 
 # 这里 player_num 参数表示对局玩家数, 默认是四麻, 三麻参数填3就行
-def Generate_All_Avatar(player_num=4):
+def generator(player_num=4):
     # 作为模版的文件, 文件名是 template.js
     infile = open("./template.js", "r")
+    if not os.path.exists("./output"):
+        os.makedirs("./output")
 
-    for index in range(len(avatar_ids)):
+    for index in range(len(chars)):
         outfile = open("./output/" + outfile_names[index], "w")
-        flag_hand = flag_views = True
+        # flag_hand = True
+        flag_views = True
         name_count = id_count = 0
 
         """ tmp_nickname: 一桌角色所用的皮肤
@@ -31,31 +35,26 @@ def Generate_All_Avatar(player_num=4):
         tmp_nickname = []
         tmp_avatar_id = []
         if player_num == 4:
-            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
+            if len(chars[index]['skin']) == 1 or len(chars[index]['skin']) == 2:
                 for j in [0, 1, 2, 3]:
-                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
-            if len(nicknames[index]) == 3 or len(nicknames[index]) == 4:
-                tmp_nickname.append(nicknames[index][1])
-                tmp_nickname.append(nicknames[index][0])
-                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 2])
-                tmp_nickname.append(nicknames[index][len(nicknames[index]) - 1])
-            if len(nicknames[index]) >= 5:
-                tmp_nickname.append(nicknames[index][1])
-                for j in [-3, -2, -1]:
-                    tmp_nickname.append(nicknames[index][j])
+                    tmp_nickname.append(chars[index]['skin'][(j + 1) % len(chars[index]['skin'])]['name'])
+                    tmp_avatar_id.append(chars[index]['skin'][(j + 1) % len(chars[index]['skin'])]['id'])
+            if len(chars[index]['skin']) == 3 or len(chars[index]['skin']) == 4:
+                tmp_nickname.append(chars[index]['skin'][1]['name'])
+                tmp_nickname.append(chars[index]['skin'][0]['name'])
+                tmp_nickname.append(chars[index]['skin'][len(chars[index]['skin']) - 2]['name'])
+                tmp_nickname.append(chars[index]['skin'][len(chars[index]['skin']) - 1]['name'])
 
-            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
-                for j in [0, 1, 2, 3]:
-                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
-            if len(avatar_ids[index]) == 3 or len(avatar_ids[index]) == 4:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                tmp_avatar_id.append(avatar_ids[index][0])
-                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 2])
-                tmp_avatar_id.append(avatar_ids[index][len(avatar_ids[index]) - 1])
-            if len(avatar_ids[index]) >= 5:
-                tmp_avatar_id.append(avatar_ids[index][1])
+                tmp_avatar_id.append(chars[index]['skin'][1]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][0]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][len(chars[index]['skin']) - 2]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][len(chars[index]['skin']) - 1]['id'])
+            if len(chars[index]['skin']) >= 5:
+                tmp_nickname.append(chars[index]['skin'][1]['name'])
+                tmp_avatar_id.append(chars[index]['skin'][1]['id'])
                 for j in [-3, -2, -1]:
-                    tmp_avatar_id.append(avatar_ids[index][j])
+                    tmp_nickname.append(chars[index]['skin'][j]['name'])
+                    tmp_avatar_id.append(chars[index]['skin'][j]['id'])
 
             for line in infile:
                 result = re.search(pattern_name, line)
@@ -70,38 +69,29 @@ def Generate_All_Avatar(player_num=4):
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if flag_views and charids[index] in char_unique_views and id_count == 4 and name_count == 4:
-                    outfile.write("\n" + char_unique_views[charids[index]] + "\n")
+                if flag_views and chars[index]['id'] in char_unique_views and id_count == 4 and name_count == 4:
+                    outfile.write("\n" + char_unique_views[chars[index]['id']])
                     flag_views = False
-                if not use_dict:
-                    if flag_hand and id_count == 4 and name_count == 4:
-                        outfile.write("\n" + change_hand + "\n")
-                        flag_hand = False
 
         elif player_num == 3:
-            if len(nicknames[index]) == 1 or len(nicknames[index]) == 2:
+            if len(chars[index]['skin']) == 1 or len(chars[index]['skin']) == 2:
                 for j in [0, 1, 2]:
-                    tmp_nickname.append(nicknames[index][(j + 1) % len(nicknames[index])])
-            if len(nicknames[index]) == 3:
-                tmp_nickname.append(nicknames[index][1])
-                tmp_nickname.append(nicknames[index][0])
-                tmp_nickname.append(nicknames[index][2])
-            if len(nicknames[index]) >= 4:
-                tmp_nickname.append(nicknames[index][1])
-                for j in [-2, -1]:
-                    tmp_nickname.append(nicknames[index][j])
+                    tmp_nickname.append(chars[index]['skin'][(j + 1) % len(chars[index]['skin'])]['name'])
+                    tmp_avatar_id.append(chars[index]['skin'][(j + 1) % len(chars[index]['skin'])]['id'])
+            if len(chars[index]['skin']) == 3:
+                tmp_nickname.append(chars[index]['skin'][1]['name'])
+                tmp_nickname.append(chars[index]['skin'][0]['name'])
+                tmp_nickname.append(chars[index]['skin'][2]['name'])
 
-            if len(avatar_ids[index]) == 1 or len(avatar_ids[index]) == 2:
-                for j in [0, 1, 2]:
-                    tmp_avatar_id.append(avatar_ids[index][(j + 1) % len(avatar_ids[index])])
-            if len(avatar_ids[index]) == 3:
-                tmp_avatar_id.append(avatar_ids[index][1])
-                tmp_avatar_id.append(avatar_ids[index][0])
-                tmp_avatar_id.append(avatar_ids[index][2])
-            if len(avatar_ids[index]) >= 4:
-                tmp_avatar_id.append(avatar_ids[index][1])
+                tmp_avatar_id.append(chars[index]['skin'][1]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][0]['id'])
+                tmp_avatar_id.append(chars[index]['skin'][2]['id'])
+            if len(chars[index]['skin']) >= 4:
+                tmp_nickname.append(chars[index]['skin'][1]['name'])
+                tmp_avatar_id.append(chars[index]['skin'][1]['id'])
                 for j in [-2, -1]:
-                    tmp_avatar_id.append(avatar_ids[index][j])
+                    tmp_nickname.append(chars[index]['skin'][j]['name'])
+                    tmp_avatar_id.append(chars[index]['skin'][j]['id'])
 
             for line in infile:
                 result = re.search(pattern_name, line)
@@ -116,16 +106,9 @@ def Generate_All_Avatar(player_num=4):
                         line = line.replace(result[1], str(tmp_avatar_id[id_count]))
                         id_count += 1
                 outfile.write(line)
-                if flag_views and charids[index] in char_unique_views_3P and id_count == 3 and name_count == 3:
-                    outfile.write("\n" + char_unique_views_3P[charids[index]] + "\n")
+                if flag_views and chars[index]['id'] in char_unique_views_3P and id_count == 3 and name_count == 3:
+                    outfile.write("\n" + char_unique_views_3P[chars[index]['id']])
                     flag_views = False
-                if not use_dict:
-                    if flag_hand and id_count == 3 and name_count == 3:
-                        outfile.write("\n" + change_hand + "\n")
-                        flag_hand = False
-        if use_dict:
-            if charids[index] in dict_spchar_paipu:
-                outfile.write("\n" + Replay_Script(dict_spchar_paipu[charids[index]]) + "\n")
         infile.seek(0)
         outfile.close()
 

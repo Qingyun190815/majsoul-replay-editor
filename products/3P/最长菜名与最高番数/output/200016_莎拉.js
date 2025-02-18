@@ -4,11 +4,11 @@ loadproject();
 // 最后一局子家的最长菜名(15条55番)
 
 editdata.player_datas[0].nickname = "莎拉-契约";
-editdata.player_datas[1].nickname = "悸动之夏";
-editdata.player_datas[2].nickname = "四方雀者";
+editdata.player_datas[1].nickname = "四方雀者";
+editdata.player_datas[2].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 401602;
-editdata.player_datas[1].avatar_id = 401605;
-editdata.player_datas[2].avatar_id = 401606;
+editdata.player_datas[1].avatar_id = 401606;
+editdata.player_datas[2].avatar_id = 401607;
 
 editdata.config = {
     'category': 1,
@@ -76,5 +76,3 @@ normalmoqie(42);
 moqieliqi();
 normalmoqie(2);
 zimohu();
-
-GameMgr.Inst.checkPaiPu("240822-4b832cf6-1310-41e8-9379-ee3179a3dedd", 0)

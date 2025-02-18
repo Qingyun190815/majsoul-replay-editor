@@ -11,8 +11,13 @@ editdata.player_datas[1].avatar_id = 405201;
 editdata.player_datas[2].avatar_id = 405202;
 editdata.player_datas[3].avatar_id = 405201;
 
+// 头像框-秋霜切玉
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305529;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305215}, {"slot": 2, "item_id": 305315}, {"slot": 5, "item_id": 305529}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 305215}, // 和牌-剑吟虎啸
+    {"slot": 2, "item_id": 305315}, // 立直-虎啸长风
+    {"slot": 5, "item_id": 305529}, // 头像框-秋霜切玉
+];
 
 editdata.config = {
     'category': 1,
@@ -157,6 +162,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

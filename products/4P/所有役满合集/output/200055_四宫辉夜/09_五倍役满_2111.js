@@ -9,241 +9,89 @@ editdata.player_datas[1].avatar_id = 400104;
 editdata.player_datas[2].avatar_id = 400105;
 editdata.player_datas[3].avatar_id = 400106;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308018}, // 立直棒-恋之反省
+    {"slot": 1, "item_id": 308016}, // 和牌-恋之降临
+    {"slot": 2, "item_id": 308017}, // 立直-恋之箭矢
+    {"slot": 6, "item_id": 308019}, // 桌布-恋之见证
+    {"slot": 7, "item_id": 308020}, // 牌背-恋之背影
+];
 
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 editdata.config = {
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
     'category': 1,
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
     'meta': {'mode_id': 0},
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
     'mode': {
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
         'mode': 1,
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
         'detail_rule': {
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
             'init_point': 500000,
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
         }
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
     }
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 };
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第1局: 东亲, 东起 天和, 大三元, 字一色, 四暗刻单骑
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "11122555666777z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112340678999m";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 hupai();
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第2局: 东亲, 东起 天和, 字一色, 小四喜, 四暗刻单骑
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "11122233344555z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112340678999m";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 hupai();
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第3局: 东亲, 南起 地和, 大三元, 字一色, 四暗刻单骑
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "1112340678999m4z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112555666777z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan("2z");
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 qiepai();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 zimohu();
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第4局: 南亲, 西起 地和, 四暗刻, 字一色, 大四喜
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112340678999m7z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112223334455z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan("4z");
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 qiepai();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 zimohu();
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第5局: 西亲, 北起 地和, 字一色, 小四喜, 四暗刻单骑
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112340678999m7z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "1112223334555z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan("4z");
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 qiepai();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 zimohu();
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第6局: 北亲, 北起 大三元, 字一色, 四杠子, 四暗刻单骑
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "11112555666777z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "1112340678999m";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan("", "2567z");
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 combomopai(4);
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 hupai();
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
-
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 // 第7局: 北亲, 北起 字一色, 小四喜, 四杠子, 四暗刻单骑
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles3 = "11112223334555z";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles0 = "1112340678999m";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles1 = "1112340678999p";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 tiles2 = "1112340678999s";
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 paishan = randompaishan("", "4532z");
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 roundbegin();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 combomopai(4);
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
 hupai();
-
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];

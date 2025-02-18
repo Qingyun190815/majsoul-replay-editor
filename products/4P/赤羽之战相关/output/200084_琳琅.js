@@ -11,6 +11,9 @@ editdata.player_datas[1].avatar_id = 408401;
 editdata.player_datas[2].avatar_id = 408402;
 editdata.player_datas[3].avatar_id = 408403;
 
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = editdata.player_datas[3].verified = 1;
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -154,6 +157,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

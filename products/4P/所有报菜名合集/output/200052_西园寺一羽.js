@@ -9,8 +9,13 @@ editdata.player_datas[1].avatar_id = 405201;
 editdata.player_datas[2].avatar_id = 405202;
 editdata.player_datas[3].avatar_id = 405201;
 
+// 头像框-秋霜切玉
 editdata.player_datas[0].avatar_frame = editdata.player_datas[1].avatar_frame = editdata.player_datas[2].avatar_frame = editdata.player_datas[3].avatar_frame = 305529;
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 305215}, {"slot": 2, "item_id": 305315}, {"slot": 5, "item_id": 305529}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 1, "item_id": 305215}, // 和牌-剑吟虎啸
+    {"slot": 2, "item_id": 305315}, // 立直-虎啸长风
+    {"slot": 5, "item_id": 305529}, // 头像框-秋霜切玉
+];
 
 editdata.config = {
     'category': 1,
@@ -248,9 +253,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -283,9 +287,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

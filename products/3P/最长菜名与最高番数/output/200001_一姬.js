@@ -10,7 +10,17 @@ editdata.player_datas[0].avatar_id = 400102;
 editdata.player_datas[1].avatar_id = 400105;
 editdata.player_datas[2].avatar_id = 400106;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 1, "item_id": 305213}, {"slot": 2, "item_id": 305324}];
+// 称号-一姬当千
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = 600045;
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = 1;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 305049}, // 立直棒-炎夏型一姬甜筒
+    {"slot": 1, "item_id": 305213}, // 和牌-疾月斩
+    {"slot": 2, "item_id": 305324}, // 立直-猫过留痕
+    {"slot": 6, "item_id": 305046}, // 桌布-吃瓜
+    {"slot": 13, "item_id": 305718}, // 牌面-猫咪雀圣
+];
 
 editdata.config = {
     'category': 1,

@@ -3,13 +3,21 @@ loadproject();
 // 为了方便编辑不考虑换三张的过程
 
 editdata.player_datas[0].nickname = "汪次郎-契约";
-editdata.player_datas[1].nickname = "汪次郎";
-editdata.player_datas[2].nickname = "化妆舞会";
-editdata.player_datas[3].nickname = "假日之滨";
+editdata.player_datas[1].nickname = "化妆舞会";
+editdata.player_datas[2].nickname = "假日之滨";
+editdata.player_datas[3].nickname = "冬日心愿簿";
 editdata.player_datas[0].avatar_id = 401202;
-editdata.player_datas[1].avatar_id = 401201;
-editdata.player_datas[2].avatar_id = 401203;
-editdata.player_datas[3].avatar_id = 401204;
+editdata.player_datas[1].avatar_id = 401203;
+editdata.player_datas[2].avatar_id = 401204;
+editdata.player_datas[3].avatar_id = 401205;
+
+// 称号-神社贵宾
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = editdata.player_datas[3].title = 600038;
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = editdata.player_datas[3].verified = 1;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 305810}, // 桌布-中光波——————！
+];
 
 editdata.config = {
     'category': 1,
@@ -157,6 +165,16 @@ notileliuju();
 
 
 
-gameend();
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
-GameMgr.Inst.checkPaiPu("210501-efaec1a5-5ac0-4e27-892a-180f82ac9748", 0)
+
+
+gameend();

@@ -11,7 +11,13 @@ editdata.player_datas[1].avatar_id = 40010301;
 editdata.player_datas[2].avatar_id = 40010302;
 editdata.player_datas[3].avatar_id = 40010303;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 30560005}, // 立直棒-动听之源
+    {"slot": 1, "item_id": 30520007}, // 和牌-涟漪之空
+    {"slot": 2, "item_id": 30530007}, // 立直-水漾星光
+    {"slot": 6, "item_id": 30580011}, // 桌布-闪耀吧！
+    {"slot": 7, "item_id": 30570007}, // 牌背-静谧夜光
+];
 
 editdata.config = {
     'category': 1,
@@ -159,6 +165,16 @@ notileliuju();
 
 
 
-gameend();
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
-GameMgr.Inst.checkPaiPu("241125-fb7ea56d-a854-4ba0-8f16-202757a56ba5", 0)
+
+
+gameend();

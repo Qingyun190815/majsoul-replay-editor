@@ -11,7 +11,13 @@ editdata.player_datas[1].avatar_id = 405801;
 editdata.player_datas[2].avatar_id = 405802;
 editdata.player_datas[3].avatar_id = 405803;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308018}, // 立直棒-恋之反省
+    {"slot": 1, "item_id": 308016}, // 和牌-恋之降临
+    {"slot": 2, "item_id": 308017}, // 立直-恋之箭矢
+    {"slot": 6, "item_id": 308019}, // 桌布-恋之见证
+    {"slot": 7, "item_id": 308020}, // 牌背-恋之背影
+];
 
 editdata.config = {
     'category': 1,
@@ -156,6 +162,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

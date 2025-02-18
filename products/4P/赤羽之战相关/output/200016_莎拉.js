@@ -3,13 +3,13 @@ loadproject();
 // 为了方便编辑不考虑换三张的过程
 
 editdata.player_datas[0].nickname = "莎拉-契约";
-editdata.player_datas[1].nickname = "春日返校季";
-editdata.player_datas[2].nickname = "悸动之夏";
-editdata.player_datas[3].nickname = "四方雀者";
+editdata.player_datas[1].nickname = "悸动之夏";
+editdata.player_datas[2].nickname = "四方雀者";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 401602;
-editdata.player_datas[1].avatar_id = 401604;
-editdata.player_datas[2].avatar_id = 401605;
-editdata.player_datas[3].avatar_id = 401606;
+editdata.player_datas[1].avatar_id = 401605;
+editdata.player_datas[2].avatar_id = 401606;
+editdata.player_datas[3].avatar_id = 401607;
 
 editdata.config = {
     'category': 1,
@@ -157,6 +157,16 @@ notileliuju();
 
 
 
-gameend();
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
-GameMgr.Inst.checkPaiPu("240822-4b832cf6-1310-41e8-9379-ee3179a3dedd", 0)
+
+
+gameend();

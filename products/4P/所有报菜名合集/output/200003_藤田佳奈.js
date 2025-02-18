@@ -1,13 +1,17 @@
 loadproject();
 
 editdata.player_datas[0].nickname = "藤田佳奈-契约";
-editdata.player_datas[1].nickname = "圣诞嘉年华";
-editdata.player_datas[2].nickname = "暗夜法则";
-editdata.player_datas[3].nickname = "假日之滨";
+editdata.player_datas[1].nickname = "暗夜法则";
+editdata.player_datas[2].nickname = "假日之滨";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 400302;
-editdata.player_datas[1].avatar_id = 400303;
-editdata.player_datas[2].avatar_id = 400304;
-editdata.player_datas[3].avatar_id = 400305;
+editdata.player_datas[1].avatar_id = 400304;
+editdata.player_datas[2].avatar_id = 400305;
+editdata.player_datas[3].avatar_id = 400306;
+
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 305048}, // 桌布-雀魂祭一周年
+];
 
 editdata.config = {
     'category': 1,
@@ -245,9 +249,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -280,9 +283,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

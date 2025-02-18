@@ -11,6 +11,10 @@ editdata.player_datas[1].avatar_id = 400706;
 editdata.player_datas[2].avatar_id = 400707;
 editdata.player_datas[3].avatar_id = 400708;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 30580007}, // 动态桌布-星间飞行
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -154,6 +158,18 @@ hupai();
 normalmoqie(53);
 zimohu();
 notileliuju();
+
+
+
+// 第7局: 诈和示范
+tiles0 = "22234555678889m";
+tiles1 = "1112345678999m";
+tiles2 = "1112345678999p";
+tiles3 = "1112345678999s";
+paishan = randompaishan();
+roundbegin();
+dingque("pssm");
+hupai(true);
 
 
 

@@ -7,6 +7,10 @@ editdata.player_datas[0].avatar_id = 400802;
 editdata.player_datas[1].avatar_id = 400805;
 editdata.player_datas[2].avatar_id = 400806;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 6, "item_id": 305805}, // 动态桌布-捞金鱼
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

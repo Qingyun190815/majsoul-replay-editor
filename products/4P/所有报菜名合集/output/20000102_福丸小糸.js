@@ -9,7 +9,13 @@ editdata.player_datas[1].avatar_id = 40010201;
 editdata.player_datas[2].avatar_id = 40010202;
 editdata.player_datas[3].avatar_id = 40010203;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 30520007}, {"slot": 2, "item_id": 30530007}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 30560005}, // 立直棒-动听之源
+    {"slot": 1, "item_id": 30520007}, // 和牌-涟漪之空
+    {"slot": 2, "item_id": 30530007}, // 立直-水漾星光
+    {"slot": 6, "item_id": 30580011}, // 桌布-闪耀吧！
+    {"slot": 7, "item_id": 30570007}, // 牌背-静谧夜光
+];
 
 editdata.config = {
     'category': 1,
@@ -247,9 +253,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -282,9 +287,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌
@@ -298,5 +302,3 @@ combomopai(4);
 qiepai(true);
 normalmoqie(65);
 notileliuju();
-
-GameMgr.Inst.checkPaiPu("241125-fb7ea56d-a854-4ba0-8f16-202757a56ba5", 0)

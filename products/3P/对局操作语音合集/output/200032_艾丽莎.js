@@ -7,6 +7,10 @@ editdata.player_datas[0].avatar_id = 403202;
 editdata.player_datas[1].avatar_id = 403205;
 editdata.player_datas[2].avatar_id = 403206;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 6, "item_id": 305803}, // 桌布-堆雪人
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

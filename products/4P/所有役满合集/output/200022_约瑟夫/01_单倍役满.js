@@ -140,5 +140,3 @@ roundbegin();
 qiepai();
 normalmoqie(3);
 hupai();
-
-GameMgr.Inst.checkPaiPu("240816-a0cd14b8-4df6-49d6-b13a-f94955ab471d", 0)

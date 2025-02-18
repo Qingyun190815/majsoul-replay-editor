@@ -9,7 +9,13 @@ editdata.player_datas[1].avatar_id = 407101;
 editdata.player_datas[2].avatar_id = 407102;
 editdata.player_datas[3].avatar_id = 407103;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [{"slot": 1, "item_id": 308026}, {"slot": 2, "item_id": 308027}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 0, "item_id": 308028}, // 立直棒-骑士的钥匙
+    {"slot": 1, "item_id": 308026}, // 和牌-绝对的命令
+    {"slot": 2, "item_id": 308027}, // 立直-王者的决意
+    {"slot": 6, "item_id": 308029}, // 桌布-魔女的契约
+    {"slot": 7, "item_id": 308030}, // 牌背-假面的裁决
+];
 
 editdata.config = {
     'category': 1,
@@ -247,9 +253,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -282,9 +287,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌

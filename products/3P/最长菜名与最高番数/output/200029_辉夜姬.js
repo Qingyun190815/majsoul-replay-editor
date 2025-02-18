@@ -10,6 +10,14 @@ editdata.player_datas[0].avatar_id = 402902;
 editdata.player_datas[1].avatar_id = 402904;
 editdata.player_datas[2].avatar_id = 402905;
 
+// 称号-神社贵宾
+editdata.player_datas[0].title = editdata.player_datas[1].title = editdata.player_datas[2].title = 600038;
+// 主播(猫爪子)认证
+editdata.player_datas[0].verified = editdata.player_datas[1].verified = editdata.player_datas[2].verified = 1;
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 6, "item_id": 30580005}, // 桌布-预热开场
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},

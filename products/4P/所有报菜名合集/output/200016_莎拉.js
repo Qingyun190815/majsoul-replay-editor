@@ -1,13 +1,13 @@
 loadproject();
 
 editdata.player_datas[0].nickname = "莎拉-契约";
-editdata.player_datas[1].nickname = "春日返校季";
-editdata.player_datas[2].nickname = "悸动之夏";
-editdata.player_datas[3].nickname = "四方雀者";
+editdata.player_datas[1].nickname = "悸动之夏";
+editdata.player_datas[2].nickname = "四方雀者";
+editdata.player_datas[3].nickname = "惊鸿岁";
 editdata.player_datas[0].avatar_id = 401602;
-editdata.player_datas[1].avatar_id = 401604;
-editdata.player_datas[2].avatar_id = 401605;
-editdata.player_datas[3].avatar_id = 401606;
+editdata.player_datas[1].avatar_id = 401605;
+editdata.player_datas[2].avatar_id = 401606;
+editdata.player_datas[3].avatar_id = 401607;
 
 editdata.config = {
     'category': 1,
@@ -245,9 +245,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("111z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 四杠流局
@@ -280,9 +279,8 @@ tiles0 = "1112340678999s";
 paishan = randompaishan("555z");
 roundbegin();
 qiepai(true);
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++)
     moqieliqi();
-}
 liuju();
 
 // 流局满贯, 听牌, 未听牌
@@ -296,5 +294,3 @@ combomopai(4);
 qiepai(true);
 normalmoqie(65);
 notileliuju();
-
-GameMgr.Inst.checkPaiPu("240822-4b832cf6-1310-41e8-9379-ee3179a3dedd", 0)

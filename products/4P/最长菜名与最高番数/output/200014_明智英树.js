@@ -9,6 +9,10 @@ editdata.player_datas[1].avatar_id = 401403;
 editdata.player_datas[2].avatar_id = 401404;
 editdata.player_datas[3].avatar_id = 401405;
 
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = editdata.player_datas[3].views = [
+    {"slot": 6, "item_id": 305810}, // 桌布-中光波——————！
+];
+
 editdata.config = {
     'category': 1,
     'meta': {'mode_id': 0},
@@ -57,5 +61,3 @@ mopai();
 leimingpai();
 normalmoqie();
 hupai();
-
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)

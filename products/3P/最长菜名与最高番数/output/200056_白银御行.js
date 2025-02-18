@@ -10,7 +10,13 @@ editdata.player_datas[0].avatar_id = 405602;
 editdata.player_datas[1].avatar_id = 405601;
 editdata.player_datas[2].avatar_id = 405603;
 
-editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [{"slot": 1, "item_id": 308016}, {"slot": 2, "item_id": 308017}];
+editdata.player_datas[0].views = editdata.player_datas[1].views = editdata.player_datas[2].views = [
+    {"slot": 0, "item_id": 308018}, // 立直棒-恋之反省
+    {"slot": 1, "item_id": 308016}, // 和牌-恋之降临
+    {"slot": 2, "item_id": 308017}, // 立直-恋之箭矢
+    {"slot": 6, "item_id": 308019}, // 桌布-恋之见证
+    {"slot": 7, "item_id": 308020}, // 牌背-恋之背影
+];
 
 editdata.config = {
     'category': 1,
@@ -78,5 +84,3 @@ normalmoqie(42);
 moqieliqi();
 normalmoqie(2);
 zimohu();
-
-GameMgr.Inst.checkPaiPu("240824-6cc115df-e972-4d7a-9f16-32a1c52e92b8", 0)
